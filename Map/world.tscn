@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://bo74rhwwir0tc"]
 
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_pi4pv"]
+[ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 
 [node name="World" type="Node2D"]
 
-[node name="Player" type="Sprite2D" parent="."]
-script = ExtResource("1_pi4pv")
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_8n85s")]
+position = Vector2(64, 56)
