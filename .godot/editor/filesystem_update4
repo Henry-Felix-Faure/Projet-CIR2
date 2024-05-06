@@ -1,1 +1,5 @@
 res://Map/world.tscn
+res://Player/player.tscn
+res://Player/Player.tscn
+res://Player/Player.gd
+res://Player/box_test.tscn
