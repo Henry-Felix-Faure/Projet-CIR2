@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bjvbi4ila7pej"]
+[gd_scene load_steps=29 format=3 uid="uid://bjvbi4ila7pej"]
 
 [ext_resource type="Texture2D" uid="uid://cpxye1b6qu2ck" path="res://Assets/idle_down_sync.png" id="1_1ecvm"]
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
@@ -177,6 +177,10 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5xygp"]
+radius = 5.0
+height = 24.0
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_v0has")
@@ -185,3 +189,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_628dk")
 animation = &"idle_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+shape = SubResource("CapsuleShape2D_5xygp")
