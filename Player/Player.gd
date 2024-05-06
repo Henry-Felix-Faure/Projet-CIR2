@@ -23,11 +23,11 @@ func next_animation_selector_moving(input_vector: Vector2): # function to decide
 		last_dir = Vector2.ZERO
 		last_dir.x = -1	
 	elif input_vector.y > 0: # elif the player moving towards the bottom
-		animated_sprite_2d.play("idle_down")
+		animated_sprite_2d.play("run_down")
 		last_dir = Vector2.ZERO
 		last_dir.y = 1
 	elif input_vector.y < 0: # elif the player moving towards the top
-		animated_sprite_2d.play("idle_up")
+		animated_sprite_2d.play("run_up")
 		last_dir = Vector2.ZERO
 		last_dir.y = -1
 		
