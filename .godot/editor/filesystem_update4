@@ -1,5 +1,13 @@
 res://Map/world.tscn
-res://Player/player.tscn
-res://Player/Player.tscn
-res://Player/Player.gd
-res://Player/box_test.tscn
+res://Scripts/Components/spawn_component.gd
+res://Bullet/bullet.tscn
+res://Scripts/Components/auto_aim_bullet.gd
+res://Scripts/Components/move_to_player_component.gd
+res://Bullet/BulletToPlayer.tscn
+res://Bullet/BulletToPlayer.gd
+res://Scripts/Components/detect_player_component.gd
+res://Scenes/DetectPlayerAction.tscn
+res://Scripts/detect_player_action.gd
+res://Test/shooter_test.tscn
+res://Test/character_body_2d.tscn
+res://CharacterBody2D.gd
