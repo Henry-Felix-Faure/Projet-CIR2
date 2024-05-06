@@ -14,12 +14,12 @@ func _ready():
 func next_animation_selector_moving(input_vector: Vector2): # function to decide which running animations we want to play
 	if input_vector.x > 0: # if the player moving towards the right
 		animated_sprite_2d.flip_h = false # facing right
-		animated_sprite_2d.play("idle_right") # playing the correct animation (same for the other if/elif)
+		animated_sprite_2d.play("run_right") # playing the correct animation (same for the other if/elif)
 		last_dir = Vector2.ZERO # resetting the stored last direction faced (same for the other if/elif)
 		last_dir.x = 1 # setting the last direction faced (same for the other if/elif)
 	elif input_vector.x < 0: # elif the player moving towards the left
 		animated_sprite_2d.flip_h = true # facing left
-		animated_sprite_2d.play("idle_right")
+		animated_sprite_2d.play("run_right")
 		last_dir = Vector2.ZERO
 		last_dir.x = -1	
 	elif input_vector.y > 0: # elif the player moving towards the bottom
