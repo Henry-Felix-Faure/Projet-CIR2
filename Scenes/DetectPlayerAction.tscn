@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dweermpoujjmq"]
+
+[ext_resource type="Script" path="res://Scripts/detect_player_action.gd" id="1_hb5j4"]
+
+[node name="DetectActionPlayer" type="Area2D"]
+visibility_layer = 2
+script = ExtResource("1_hb5j4")
