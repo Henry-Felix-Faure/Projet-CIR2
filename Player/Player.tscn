@@ -1,4 +1,4 @@
-[gd_scene load_steps=200 format=3 uid="uid://bjvbi4ila7pej"]
+[gd_scene load_steps=201 format=3 uid="uid://bjvbi4ila7pej"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
 [ext_resource type="Texture2D" uid="uid://daditli8t4b0o" path="res://Assets/Bob/attack_down.png" id="2_nf2kd"]
@@ -961,6 +961,47 @@ tracks/3/keys = {
 "values": [24.0, 20.0, 20.0, 18.0, 18.0]
 }
 
+[sub_resource type="Animation" id="Animation_4ijsv"]
+resource_name = "idle_left_tempo"
+loop_mode = 1
+step = 0.142857
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CollisionShape2D:shape:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5.0, 5.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:shape:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [22.0, 22.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, -4), Vector2(1, -4)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sdqfd"]
 _data = {
 "RESET": SubResource("Animation_ghb2a"),
@@ -977,6 +1018,7 @@ _data = {
 "atk_up_2_tempo": SubResource("Animation_ofy26"),
 "atk_up_3_tempo": SubResource("Animation_wghda"),
 "idle_down_tempo": SubResource("Animation_wgejg"),
+"idle_left_tempo": SubResource("Animation_4ijsv"),
 "idle_right_tempo": SubResource("Animation_4a1v1"),
 "idle_up_tempo": SubResource("Animation_d513y"),
 "run_down_tempo": SubResource("Animation_cwxea"),
@@ -2244,7 +2286,7 @@ libraries = {
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_628dk")
-animation = &"atk_right_1"
+animation = &"idle_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
