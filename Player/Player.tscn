@@ -1,9 +1,9 @@
 [gd_scene load_steps=29 format=3 uid="uid://bjvbi4ila7pej"]
 
-[ext_resource type="Texture2D" uid="uid://cpxye1b6qu2ck" path="res://Assets/idle_down_sync.png" id="1_1ecvm"]
+[ext_resource type="Texture2D" uid="uid://cpxye1b6qu2ck" path="res://Assets/bob/idle_down_sync.png" id="1_1ecvm"]
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
-[ext_resource type="Texture2D" uid="uid://dk2kmy2kfhb0i" path="res://Assets/idle_right.png" id="3_svnfh"]
-[ext_resource type="Texture2D" uid="uid://cj4vv5rw13mr4" path="res://Assets/idle_up.png" id="4_8pwui"]
+[ext_resource type="Texture2D" uid="uid://dk2kmy2kfhb0i" path="res://Assets/bob/idle_right.png" id="3_svnfh"]
+[ext_resource type="Texture2D" uid="uid://cj4vv5rw13mr4" path="res://Assets/bob/idle_up.png" id="4_8pwui"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wnm54"]
 atlas = ExtResource("1_1ecvm")

@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=3 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
+[ext_resource type="PackedScene" uid="uid://c4c2ltf17oux3" path="res://enemy/CAC/mob_cac.tscn" id="2_7exjv"]
 
 [node name="World" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_8n85s")]
+[node name="Player" parent="." instance=ExtResource("1_8n85s")]
 position = Vector2(64, 48)
+collision_layer = 2
+collision_mask = 3
+
+[node name="Mob_cac" parent="." instance=ExtResource("2_7exjv")]
+position = Vector2(108, 51)
+collision_mask = 1
