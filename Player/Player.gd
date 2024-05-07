@@ -32,19 +32,23 @@ func next_animation_selector_moving(input_vector: Vector2): # function to decide
 	if input_vector.x > 0: # if the player moving towards the right
 		animated_sprite_2d.flip_h = false # facing right
 		animated_sprite_2d.play("run_right") # playing the correct animation (same for the other if/elif)
+		animation_player.play("run_right_tempo")
 		last_dir = Vector2.ZERO # resetting the stored last direction faced (same for the other if/elif)
 		last_dir.x = 1 # setting the last direction faced (same for the other if/elif)
 	elif input_vector.x < 0: # elif the player moving towards the left
 		animated_sprite_2d.flip_h = true # facing left
 		animated_sprite_2d.play("run_right")
+		animation_player.play("run_left_tempo")
 		last_dir = Vector2.ZERO
 		last_dir.x = -1	
 	elif input_vector.y > 0: # elif the player moving towards the bottom
 		animated_sprite_2d.play("run_down")
+		animation_player.play("run_down_tempo")
 		last_dir = Vector2.ZERO
 		last_dir.y = 1
 	elif input_vector.y < 0: # elif the player moving towards the top
 		animated_sprite_2d.play("run_up")
+		animation_player.play("run_up_tempo")
 		last_dir = Vector2.ZERO
 		last_dir.y = -1
 		
@@ -106,11 +110,20 @@ func next_animation_selector_attacking():
 		animated_sprite_2d.play(attacks_array[0][attack_counter-1]) # playing the correct animation of attack (same for the other if/elif)
 		match attack_counter: # switch case to play the right tempo for attack
 			1:
-				animation_player.play("atk_right_1_tempo")
+				if last_dir.x > 0:
+					animation_player.play("atk_right_1_tempo")
+				elif last_dir.x < 0:
+					animation_player.play("atk_left_1_tempo")
 			2:
-				animation_player.play("atk_right_2_tempo")
+				if last_dir.x > 0:
+					animation_player.play("atk_right_2_tempo")
+				elif last_dir.x < 0:
+					animation_player.play("atk_left_2_tempo")
 			3:
-				animation_player.play("atk_right_3_tempo")
+				if last_dir.x > 0:
+					animation_player.play("atk_right_3_tempo")
+				elif last_dir.x < 0:
+					animation_player.play("atk_left_3_tempo")
 	
 	elif last_dir.y > 0: # if the player was moving towards bottom
 		animated_sprite_2d.flip_h = false # facing right
