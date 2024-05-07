@@ -55,10 +55,11 @@ func next_animation_selector_moving(input_vector: Vector2): # function to decide
 func next_animation_selector_idling(): # function to decide which idling animations we want to play
 	if last_dir.x != 0: # if the player was moving towards left or right
 		animated_sprite_2d.play("idle_right") # playing the correct animation (same for the other if/elif)
-		animation_player.play("idle_right_tempo")
 		if last_dir.x > 0: # if the player was moving towards right
+			animation_player.play("idle_right_tempo")
 			animated_sprite_2d.flip_h = false # facing right
 		elif last_dir.x < 0: # if the player was moving towards left
+			animation_player.play("idle_left_tempo")
 			animated_sprite_2d.flip_h = true # facing left		
 	elif last_dir.y > 0: # if the player was moving towards bottom
 		animated_sprite_2d.play("idle_down")
