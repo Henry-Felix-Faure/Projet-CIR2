@@ -51,15 +51,19 @@ func next_animation_selector_moving(input_vector: Vector2): # function to decide
 func next_animation_selector_idling(): # function to decide which idling animations we want to play
 	if last_dir.x != 0: # if the player was moving towards left or right
 		animated_sprite_2d.play("idle_right") # playing the correct animation (same for the other if/elif)
+		animation_player.play("idle_right_tempo")
 		if last_dir.x > 0: # if the player was moving towards right
 			animated_sprite_2d.flip_h = false # facing right
 		elif last_dir.x < 0: # if the player was moving towards left
-			animated_sprite_2d.flip_h = true # facing left
-		animated_sprite_2d.play("idle_right")
+			animated_sprite_2d.flip_h = true # facing left		
 	elif last_dir.y > 0: # if the player was moving towards bottom
 		animated_sprite_2d.play("idle_down")
+		animated_sprite_2d.flip_h = false # facing right
+		animation_player.play("idle_down_tempo")
 	elif last_dir.y < 0: # if the player was moving towards top
 		animated_sprite_2d.play("idle_up")
+		animated_sprite_2d.flip_h = false # facing right
+		animation_player.play("idle_up_tempo")
 		
 #func _input(event):
 	#if event is InputEventMouseButton:
@@ -100,18 +104,33 @@ func move_state(delta):
 func next_animation_selector_attacking():
 	if last_dir.x != 0: # if the player was moving towards left or right
 		animated_sprite_2d.play(attacks_array[0][attack_counter-1]) # playing the correct animation of attack (same for the other if/elif)
+		match attack_counter: # switch case to play the right tempo for attack
+			1:
+				animation_player.play("atk_right_1_tempo")
+			2:
+				animation_player.play("atk_right_2_tempo")
+			3:
+				animation_player.play("atk_right_3_tempo")
+	
 	elif last_dir.y > 0: # if the player was moving towards bottom
+		animated_sprite_2d.flip_h = false # facing right
 		animated_sprite_2d.play(attacks_array[1][attack_counter-1])
+		match attack_counter: # switch case to play the right tempo for attack
+			1:
+				animation_player.play("atk_down_1_tempo")
+			2:
+				animation_player.play("atk_down_2_tempo")
+			3:
+				animation_player.play("atk_down_3_tempo")
 	elif last_dir.y < 0: # if the player was moving towards bottom
 		animated_sprite_2d.play(attacks_array[2][attack_counter-1])
-		
-	match attack_counter: # switch case to play the right tempo for attack
-		1:
-			animation_player.play("atk_1_tempo")
-		2:
-			animation_player.play("atk_2_tempo")
-		3:
-			animation_player.play("atk_3_tempo")
+		match attack_counter: # switch case to play the right tempo for attack
+			1:
+				animation_player.play("atk_up_1_tempo")
+			2:
+				animation_player.play("atk_up_2_tempo")
+			3:
+				animation_player.play("atk_up_3_tempo")		
 
 func attack_state(delta): # function who is handling the different case of attack
 	next_animation_selector_attacking() # call the function to play the right animation
