@@ -28,12 +28,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqdun"]
-radius = 124.68
+radius = 401.354
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7qpi"]
 radius = 5.6666
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+scale = Vector2(0.4, 0.425)
 sprite_frames = SubResource("SpriteFrames_gccps")
 script = ExtResource("1_dywhb")
 
@@ -69,7 +70,8 @@ destroy_effect_spawner_component = NodePath("../SpawnComponent")
 
 [node name="EnnemiesStatsComponent" type="Node" parent="."]
 script = ExtResource("5_4g5yo")
-ATK_SPEED = 20
+ATK_SPEED = 5
+SPEED = 50
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("6_hpw6f")
@@ -78,3 +80,7 @@ health = 2
 [node name="SpawnComponent" type="Node2D" parent="."]
 script = ExtResource("7_v65c7")
 scene = ExtResource("8_uq4xo")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.92
+one_shot = true
