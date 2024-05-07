@@ -1,9 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://bjvbi4ila7pej"]
+[gd_scene load_steps=32 format=3 uid="uid://bjvbi4ila7pej"]
 
-[ext_resource type="Texture2D" uid="uid://cpxye1b6qu2ck" path="res://Assets/idle_down_sync.png" id="1_1ecvm"]
+[ext_resource type="Texture2D" uid="uid://cpxye1b6qu2ck" path="res://Assets/bob/idle_down_sync.png" id="1_1ecvm"]
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
-[ext_resource type="Texture2D" uid="uid://dk2kmy2kfhb0i" path="res://Assets/idle_right.png" id="3_svnfh"]
-[ext_resource type="Texture2D" uid="uid://cj4vv5rw13mr4" path="res://Assets/idle_up.png" id="4_8pwui"]
+[ext_resource type="Texture2D" uid="uid://dk2kmy2kfhb0i" path="res://Assets/bob/idle_right.png" id="3_svnfh"]
+[ext_resource type="Texture2D" uid="uid://cj4vv5rw13mr4" path="res://Assets/bob/idle_up.png" id="4_8pwui"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="5_7xwja"]
+[ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="6_jkhyg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wnm54"]
 atlas = ExtResource("1_1ecvm")
@@ -181,7 +183,11 @@ animations = [{
 radius = 5.0
 height = 24.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7af84"]
+size = Vector2(56, 20)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_v0has")
 metadata/_edit_group_ = true
@@ -191,5 +197,20 @@ sprite_frames = SubResource("SpriteFrames_628dk")
 animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+shape = SubResource("CapsuleShape2D_5xygp")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("5_7xwja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(33, 0)
+shape = SubResource("RectangleShape2D_7af84")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("6_jkhyg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 light_mask = 2
 shape = SubResource("CapsuleShape2D_5xygp")
