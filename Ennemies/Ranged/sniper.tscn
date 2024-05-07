@@ -35,6 +35,7 @@ radius = 5.6666
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 scale = Vector2(0.4, 0.425)
+
 sprite_frames = SubResource("SpriteFrames_gccps")
 script = ExtResource("1_dywhb")
 
@@ -72,6 +73,7 @@ destroy_effect_spawner_component = NodePath("../SpawnComponent")
 script = ExtResource("5_4g5yo")
 ATK_SPEED = 5
 SPEED = 50
+
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("6_hpw6f")
