@@ -1,8 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://c44phjt3qn2wl"]
 
-[ext_resource type="Script" path="res://experience.gd" id="1_c66hd"]
-[ext_resource type="Texture2D" uid="uid://ct3cervkg1akt" path="res://experience_test.png" id="2_csf7v"]
-[ext_resource type="Texture2D" uid="uid://wwkiinw3dsco" path="res://experience_test2.png" id="3_3udh1"]
+[ext_resource type="Script" path="res://experience/experience.gd" id="1_c66hd"]
+[ext_resource type="Texture2D" uid="uid://ct3cervkg1akt" path="res://Assets/exp/experience_test.png" id="2_csf7v"]
+[ext_resource type="Texture2D" uid="uid://wwkiinw3dsco" path="res://Assets/exp/experience_test2.png" id="3_3udh1"]
+
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6j60w"]
 animations = [{

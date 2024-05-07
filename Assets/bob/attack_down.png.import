@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wwkiinw3dsco"
-path="res://.godot/imported/experience_test2.png-d8172a60625c8224d050dd2c965346a3.ctex"
+uid="uid://btw84h3atisra"
+path="res://.godot/imported/attack_down.png-36c1234ffa41d2ff457a234fabf98017.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://experience_test2.png"
-dest_files=["res://.godot/imported/experience_test2.png-d8172a60625c8224d050dd2c965346a3.ctex"]
+source_file="res://Assets/bob/attack_down.png"
+dest_files=["res://.godot/imported/attack_down.png-36c1234ffa41d2ff457a234fabf98017.ctex"]
 
 [params]
 
