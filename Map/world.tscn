@@ -20,15 +20,3 @@ texture = ExtResource("2_ry71u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_4ug3j")
-[gd_scene load_steps=3 format=3 uid="uid://bo74rhwwir0tc"]
-
-[ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
-[ext_resource type="PackedScene" uid="uid://dyl50b0s58fit" path="res://Ennemies/Ranged/sniper.tscn" id="2_o88f6"]
-
-[node name="World" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_8n85s")]
-position = Vector2(21, 237)
-
-[node name="Sniper" parent="." instance=ExtResource("2_o88f6")]
-position = Vector2(223, -28)
