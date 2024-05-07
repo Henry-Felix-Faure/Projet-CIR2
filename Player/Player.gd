@@ -23,10 +23,10 @@ var attacks_array: Array = [
 	["atk_up_1", "atk_up_2", "atk_up_3"]
 ]
 
-var attack_counter: int = 0
+var attack_counter: int
 
 func _ready():
-	motion_mode = 1
+	attack_counter = 0
 
 func next_animation_selector_moving(input_vector: Vector2): # function to decide which running animations we want to play
 	if input_vector.x > 0: # if the player moving towards the right
@@ -107,11 +107,11 @@ func next_animation_selector_attacking():
 		
 	match attack_counter: # switch case to play the right tempo for attack
 		1:
-			animation_player.play("atk_1_speed")
+			animation_player.play("atk_1_tempo")
 		2:
-			animation_player.play("atk_2_speed")
+			animation_player.play("atk_2_tempo")
 		3:
-			animation_player.play("atk_3_speed")
+			animation_player.play("atk_3_tempo")
 
 func attack_state(delta): # function who is handling the different case of attack
 	next_animation_selector_attacking() # call the function to play the right animation
