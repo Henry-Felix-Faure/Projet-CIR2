@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://c44phjt3qn2wl"]
+
+[ext_resource type="Script" path="res://experience.gd" id="1_c66hd"]
+[ext_resource type="Texture2D" uid="uid://ct3cervkg1akt" path="res://experience_test.png" id="2_csf7v"]
+[ext_resource type="Texture2D" uid="uid://wwkiinw3dsco" path="res://experience_test2.png" id="3_3udh1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6j60w"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": ExtResource("2_csf7v")
+}, {
+"duration": 4.0,
+"texture": ExtResource("3_3udh1")
+}],
+"loop": true,
+"name": &"exp",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rcud"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npchx"]
+size = Vector2(16, 16)
+
+[node name="experience" type="CharacterBody2D"]
+z_index = -1
+collision_mask = 2
+script = ExtResource("1_c66hd")
+
+[node name="animexp" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.76837e-07, -4.76837e-07)
+scale = Vector2(0.15534, 0.153846)
+sprite_frames = SubResource("SpriteFrames_6j60w")
+animation = &"exp"
+frame_progress = 0.699814
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = -1
+shape = SubResource("RectangleShape2D_8rcud")
+disabled = true
+
+[node name="range_exp" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="range_exp"]
+shape = SubResource("RectangleShape2D_npchx")
