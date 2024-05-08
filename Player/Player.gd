@@ -69,12 +69,6 @@ func next_animation_selector_idling(): # function to decide which idling animati
 		animated_sprite_2d.play("idle_up")
 		animated_sprite_2d.flip_h = false # facing right
 		animation_player.play("idle_up_tempo")
-		
-#func _input(event):
-	#if event is InputEventMouseButton:
-		#print("Mouse Click/Unclick at: ", event.position)
-	#elif event is InputEventMouseMotion:
-		#print("Mouse Motion at: ", event.position)
 
 func _physics_process(delta): 
 	match state: # switch case to call the function associated to the action
@@ -136,6 +130,8 @@ func next_animation_selector_attacking():
 				animation_player.play("atk_down_2_tempo")
 			3:
 				animation_player.play("atk_down_3_tempo")
+
+		
 	elif last_dir.y < 0: # if the player was moving towards bottom
 		animated_sprite_2d.play(attacks_array[2][attack_counter-1])
 		match attack_counter: # switch case to play the right tempo for attack
@@ -168,7 +164,6 @@ func attack_state(delta): # function who is handling the different case of attac
 	
 	attack_counter = 0
 	state = MOVING # changing the state to MOVING
-
 
 func _on_sword_area_2d_body_entered(body):
 	if body.is_in_group("Damageable"):
