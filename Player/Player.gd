@@ -168,3 +168,8 @@ func attack_state(delta): # function who is handling the different case of attac
 	
 	attack_counter = 0
 	state = MOVING # changing the state to MOVING
+
+
+func _on_sword_area_2d_body_entered(body):
+	if body.is_in_group("Damageable"):
+		print("ish")
