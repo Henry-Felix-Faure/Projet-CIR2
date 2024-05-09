@@ -4,7 +4,7 @@ var health: int = 100
 var speed: float = 600.0
 var attack_damage: int = 20
 var attackInterval : float = 2.0
-const expScene = preload("res://experience.tscn")
+const expScene = preload("res://experience/experience.tscn")
 
 @onready var range: Area2D = $range
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
