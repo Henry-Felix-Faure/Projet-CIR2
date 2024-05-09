@@ -23,10 +23,11 @@ var attacks_array: Array = [
 	["atk_up_1", "atk_up_2", "atk_up_3"]
 ]
 
+var attack_select: int
 var attack_counter: int
 
 func _ready():
-	attack_counter = 0
+	attack_select = 0
 
 func next_animation_selector_moving(input_vector: Vector2): # function to decide which running animations we want to play
 	if input_vector.x > 0: # if the player moving towards the right
@@ -97,13 +98,13 @@ func move_state(delta):
 	move_and_slide() # moving the character based on the velocity
 	
 	if Input.is_action_just_pressed("ui_attack"): # if left click is pressed
-		attack_counter += 1
+		attack_select = 1
 		state = ATTACKING # changing the state to ATTACK
 
 func next_animation_selector_attacking():
 	if last_dir.x != 0: # if the player was moving towards left or right
-		animated_sprite_2d.play(attacks_array[0][attack_counter-1]) # playing the correct animation of attack (same for the other if/elif)
-		match attack_counter: # switch case to play the right tempo for attack
+		animated_sprite_2d.play(attacks_array[0][attack_select-1]) # playing the correct animation of attack (same for the other if/elif)
+		match attack_select: # switch case to play the right tempo for attack
 			1:
 				if last_dir.x > 0:
 					animation_player.play("atk_right_1_tempo")
@@ -122,8 +123,8 @@ func next_animation_selector_attacking():
 	
 	elif last_dir.y > 0: # if the player was moving towards bottom
 		animated_sprite_2d.flip_h = false # facing right
-		animated_sprite_2d.play(attacks_array[1][attack_counter-1])
-		match attack_counter: # switch case to play the right tempo for attack
+		animated_sprite_2d.play(attacks_array[1][attack_select-1])
+		match attack_select: # switch case to play the right tempo for attack
 			1:
 				animation_player.play("atk_down_1_tempo")
 			2:
@@ -133,8 +134,8 @@ func next_animation_selector_attacking():
 
 		
 	elif last_dir.y < 0: # if the player was moving towards bottom
-		animated_sprite_2d.play(attacks_array[2][attack_counter-1])
-		match attack_counter: # switch case to play the right tempo for attack
+		animated_sprite_2d.play(attacks_array[2][attack_select-1])
+		match attack_select: # switch case to play the right tempo for attack
 			1:
 				animation_player.play("atk_up_1_tempo")
 			2:
@@ -145,8 +146,8 @@ func next_animation_selector_attacking():
 func attack_state(delta): # function who is handling the different case of attack
 	next_animation_selector_attacking() # call the function to play the right animation
 	
-	if Input.is_action_just_pressed("ui_attack") and attack_counter < 3: # if left click is pressed
-		attack_counter += 1
+	if Input.is_action_just_pressed("ui_attack") and attack_select < 3: # if left click is pressed
+		attack_select += 1
 	
 	var input_vector = Vector2.ZERO # resetting the input vector
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") # setting the direction for next move by checking which key is pressed (left or right, or both (not moving))
@@ -161,8 +162,8 @@ func attack_state(delta): # function who is handling the different case of attac
 	move_and_slide() # moving the character based on the velocity
 	
 	await animated_sprite_2d.animation_finished # waiting for the animation to finish 
-	
-	attack_counter = 0
+
+	attack_select = 0
 	state = MOVING # changing the state to MOVING
 
 func _on_sword_area_2d_body_entered(body):
