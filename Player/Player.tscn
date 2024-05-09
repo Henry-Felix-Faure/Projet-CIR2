@@ -201,6 +201,7 @@ light_mask = 2
 shape = SubResource("CapsuleShape2D_5xygp")
 
 [node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
 script = ExtResource("5_7xwja")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
