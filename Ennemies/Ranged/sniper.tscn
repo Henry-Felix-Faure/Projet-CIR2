@@ -39,6 +39,7 @@ sprite_frames = SubResource("SpriteFrames_gccps")
 script = ExtResource("1_dywhb")
 
 [node name="DetectActionPlayer" parent="." node_paths=PackedStringArray("ComponentFonctionToCallFrom", "AttackSpeed") instance=ExtResource("2_avl84")]
+collision_layer = 0
 ComponentFonctionToCallFrom = NodePath("../AutoAimBullet")
 AttackSpeed = NodePath("../Timer")
 
