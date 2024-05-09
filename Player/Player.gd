@@ -24,6 +24,7 @@ var attacks_array: Array = [
 ]
 
 var attack_select: int
+var attack_counter: int
 
 func _ready():
 	attack_select = 0
