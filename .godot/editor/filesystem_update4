@@ -1,1 +1,7 @@
+res://Menu/MenuStart/MenuStart.tscn
+res://Menu/MenuOption/button.tscn
+res://Menu/MenuStart/parallax_background2.tscn
+res://Menu/MenuOption/Button.gd
 res://Map/world.tscn
+res://Menu/MenuStart/MenuStart.gd
+res://Menu/MenuOption/Control.gd
