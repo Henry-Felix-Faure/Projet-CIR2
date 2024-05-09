@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4c2ltf17oux3"]
+
+[ext_resource type="Script" path="res://mob_cac.gd" id="1_fexvh"]
+[ext_resource type="Texture2D" uid="uid://c7q7kevfrsvu5" path="res://Scripts/bloque_attaquer.png" id="2_sxdes"]
+[ext_resource type="Texture2D" uid="uid://do0kiy50inbk7" path="res://Scripts/bloque_avancer.png" id="2_wmfo1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6mtwq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sxdes")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wmfo1")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqq8n"]
+size = Vector2(128, 128)
+
+[node name="Mob_cac" type="CharacterBody2D"]
+script = ExtResource("1_fexvh")
+health = null
+speed = null
+attack_damage = null
+attack_range = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2.92501e-06, 2.86102e-06)
+scale = Vector2(0.554112, 0.554113)
+sprite_frames = SubResource("SpriteFrames_6mtwq")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qqq8n")
