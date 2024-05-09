@@ -3875,8 +3875,5 @@ root_node = NodePath("../AnimatedSprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_sdqfd")
 }
-[node name="HitboxComponent" type="Area2D" parent="."]
-collision_layer = 0
-script = ExtResource("5_7xwja")
 
 [connection signal="body_entered" from="AnimatedSprite2D/SwordArea2D" to="." method="_on_sword_area_2d_body_entered"]
