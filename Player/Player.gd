@@ -7,23 +7,27 @@ var FRICTION: int = 10000
 
 enum{
 	MOVING,
-	DASHING,
+	DASHING_INIT,
+	DASHING_RECOVERY,
 	ATTACKING
 }
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D # importing the animation sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer # importing the animation player
+@onready var collision_shape_2d = $CollisionShape2D
 
-var last_dir: Vector2 = Vector2(0, 1) # Vector2 of the last direction faced for idling animations
+var last_dir: Vector2 = Vector2(0, 1) # Vector2 of the last direction faced for animations
+var animation_playing = false
 var state = MOVING
-
+var attack_select: int
 var attacks_array: Array = [
 	["atk_right_1", "atk_right_2", "atk_right_3"], 
 	["atk_down_1", "atk_down_2", "atk_down_3"], 
 	["atk_up_1", "atk_up_2", "atk_up_3"]
 ]
 
-var attack_select: int
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
 
 func _ready():
 	attack_select = 0
@@ -74,8 +78,10 @@ func _physics_process(delta):
 	match state: # switch case to call the function associated to the action
 		MOVING:
 			move_state(delta)
-		DASHING:
-			pass
+		DASHING_INIT:
+			dash_init_state(delta)
+		DASHING_RECOVERY:
+			dash_recovery_state(delta)
 		ATTACKING:
 			attack_state(delta)
 
@@ -99,6 +105,9 @@ func move_state(delta):
 	if Input.is_action_just_pressed("ui_attack"): # if left click is pressed
 		attack_select = 1
 		state = ATTACKING # changing the state to ATTACK
+		
+	if Input.is_action_just_pressed("ui_dash"): # if left click is pressed
+		state = DASHING_INIT # changing the state to DASH
 
 func next_animation_selector_attacking():
 	if last_dir.x != 0: # if the player was moving towards left or right
@@ -165,6 +174,95 @@ func attack_state(delta): # function who is handling the different case of attac
 	attack_select = 0
 	state = MOVING # changing the state to MOVING
 
+func next_animation_selector_dashing_init():
+	if last_dir.x > 0: # if the player was moving towards right
+		animated_sprite_2d.play("dash_right_init") # playing the correct animation (same for the other if/elif)
+		animated_sprite_2d.flip_h = false # facing right
+	elif last_dir.x < 0: # if the player was moving towards left
+		animated_sprite_2d.play("dash_right_init")
+		animated_sprite_2d.flip_h = true # facing left		
+	elif last_dir.y > 0: # if the player was moving towards bottom
+		animated_sprite_2d.play("dash_right_init")
+	elif last_dir.y < 0: # if the player was moving towards top
+		animated_sprite_2d.play("dash_right_init")
+
+func dash_init_state(delta):
+	var input_vector = Vector2.ZERO # resetting the input vector
+	
+	if last_dir.x > 0: # if the player was moving towards right
+		input_vector.x = 1
+	elif last_dir.x < 0: # if the player was moving towards left
+		input_vector.x = -1
+	elif last_dir.y > 0: # if the player was moving towards bottom
+		input_vector.y = 1
+	elif last_dir.y < 0: # if the player was moving towards top
+		input_vector.y = -1
+		
+	collision_shape_2d.disabled = true
+	next_animation_selector_dashing_init()		
+	
+	MAX_SPEED = 300
+	velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
+	move_and_slide() # moving the character based on the velocity
+
+	await animated_sprite_2d.animation_finished # waiting for the animation to finish
+		
+	#set_visible(false)
+	#
+	#MAX_SPEED = 300
+	#velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
+	#move_and_slide() # moving the character based on the velocity
+	#
+	#wait(0.3)
+	#MAX_SPEED = 0
+	#set_visible(true)
+	
+	state = DASHING_RECOVERY
+	
+func next_animation_selector_dashing_recovery():
+	if last_dir.x > 0: # if the player was moving towards right
+		animated_sprite_2d.play("dash_right_recovery") # playing the correct animation (same for the other if/elif)
+		animated_sprite_2d.flip_h = false # facing right
+		animation_player.play("dash_right_recovery_tempo")
+	elif last_dir.x < 0: # if the player was moving towards left
+		animated_sprite_2d.play("dash_right_recovery")
+		animated_sprite_2d.flip_h = true # facing left		
+		animation_player.play("dash_left_recovery_tempo")
+	elif last_dir.y > 0: # if the player was moving towards bottom
+		animated_sprite_2d.play("dash_right_recovery")
+		animation_player.play("dash_right_recovery_tempo")
+	elif last_dir.y < 0: # if the player was moving towards top
+		animated_sprite_2d.play("dash_right_recovery")
+		animation_player.play("dash_right_recovery_tempo")
+
+func dash_recovery_state(delta):
+	var input_vector = Vector2.ZERO # resetting the input vector
+	
+	if last_dir.x > 0: # if the player was moving towards right
+		input_vector.x = 1
+	elif last_dir.x < 0: # if the player was moving towards left
+		input_vector.x = -1
+	elif last_dir.y > 0: # if the player was moving towards bottom
+		input_vector.y = 1
+	elif last_dir.y < 0: # if the player was moving towards top
+		input_vector.y = -1
+		
+	next_animation_selector_dashing_recovery() # calling the function to select the right dashing animations
+	
+	MAX_SPEED = 100
+	
+	velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
+	move_and_slide() # moving the character based on the velocity
+	
+	
+	await animated_sprite_2d.animation_finished # waiting for the animation to finish
+	
+	state = MOVING
+
 func _on_sword_area_2d_body_entered(body):
 	if body.is_in_group("Damageable"):
 		print("ish")
+
+
+func _on_animated_sprite_2d_animation_finished():
+	pass
