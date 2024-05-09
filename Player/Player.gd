@@ -5,6 +5,8 @@ extends CharacterBody2D
 var ACCELERATION: int = 10000
 var FRICTION: int = 10000
 
+@export var AIMING_MOUSE: bool
+
 enum{
 	MOVING,
 	DASHING_INIT,
@@ -25,6 +27,7 @@ var attacks_array: Array = [
 	["atk_down_1", "atk_down_2", "atk_down_3"], 
 	["atk_up_1", "atk_up_2", "atk_up_3"]
 ]
+var cursor_pos_from_player: Vector2
 
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
@@ -104,58 +107,109 @@ func move_state(delta):
 	
 	if Input.is_action_just_pressed("ui_attack"): # if left click is pressed
 		attack_select = 1
+		cursor_pos_from_player.x = get_global_mouse_position().x - position.x
+		cursor_pos_from_player.y = get_global_mouse_position().y - position.y
 		state = ATTACKING # changing the state to ATTACK
 		
 	if Input.is_action_just_pressed("ui_dash"): # if left click is pressed
 		state = DASHING_INIT # changing the state to DASH
 
 func next_animation_selector_attacking():
-	if last_dir.x != 0: # if the player was moving towards left or right
-		animated_sprite_2d.play(attacks_array[0][attack_select-1]) # playing the correct animation of attack (same for the other if/elif)
-		match attack_select: # switch case to play the right tempo for attack
-			1:
-				if last_dir.x > 0:
-					animation_player.play("atk_right_1_tempo")
-				elif last_dir.x < 0:
-					animation_player.play("atk_left_1_tempo")
-			2:
-				if last_dir.x > 0:
-					animation_player.play("atk_right_2_tempo")
-				elif last_dir.x < 0:
-					animation_player.play("atk_left_2_tempo")
-			3:
-				if last_dir.x > 0:
-					animation_player.play("atk_right_3_tempo")
-				elif last_dir.x < 0:
-					animation_player.play("atk_left_3_tempo")
-	
-	elif last_dir.y > 0: # if the player was moving towards bottom
-		animated_sprite_2d.flip_h = false # facing right
-		animated_sprite_2d.play(attacks_array[1][attack_select-1])
-		match attack_select: # switch case to play the right tempo for attack
-			1:
-				animation_player.play("atk_down_1_tempo")
-			2:
-				animation_player.play("atk_down_2_tempo")
-			3:
-				animation_player.play("atk_down_3_tempo")
-
+	if not AIMING_MOUSE:
+		if last_dir.x != 0: # if the player was moving towards left or right
+			animated_sprite_2d.play(attacks_array[0][attack_select-1]) # playing the correct animation of attack (same for the other if/elif)
+			match attack_select: # switch case to play the right tempo for attack
+				1:
+					if last_dir.x > 0:
+						animation_player.play("atk_right_1_tempo")
+					elif last_dir.x < 0:
+						animation_player.play("atk_left_1_tempo")
+				2:
+					if last_dir.x > 0:
+						animation_player.play("atk_right_2_tempo")
+					elif last_dir.x < 0:
+						animation_player.play("atk_left_2_tempo")
+				3:
+					if last_dir.x > 0:
+						animation_player.play("atk_right_3_tempo")
+					elif last_dir.x < 0:
+						animation_player.play("atk_left_3_tempo")
 		
-	elif last_dir.y < 0: # if the player was moving towards bottom
-		animated_sprite_2d.play(attacks_array[2][attack_select-1])
-		match attack_select: # switch case to play the right tempo for attack
-			1:
-				animation_player.play("atk_up_1_tempo")
-			2:
-				animation_player.play("atk_up_2_tempo")
-			3:
-				animation_player.play("atk_up_3_tempo")		
+		elif last_dir.y > 0: # if the player was moving towards bottom
+			animated_sprite_2d.flip_h = false # facing right
+			animated_sprite_2d.play(attacks_array[1][attack_select-1])
+			match attack_select: # switch case to play the right tempo for attack
+				1:
+					animation_player.play("atk_down_1_tempo")
+				2:
+					animation_player.play("atk_down_2_tempo")
+				3:
+					animation_player.play("atk_down_3_tempo")
+
+			
+		elif last_dir.y < 0: # if the player was moving towards top
+			animated_sprite_2d.flip_h = false # facing right
+			animated_sprite_2d.play(attacks_array[2][attack_select-1])
+			match attack_select: # switch case to play the right tempo for attack
+				1:
+					animation_player.play("atk_up_1_tempo")
+				2:
+					animation_player.play("atk_up_2_tempo")
+				3:
+					animation_player.play("atk_up_3_tempo")		
+	else:
+		if cursor_pos_from_player.x > 0 and abs(cursor_pos_from_player.x) >= abs(cursor_pos_from_player.y): # if the player was aiming towards right
+			animated_sprite_2d.flip_h = false # facing right
+			animated_sprite_2d.play(attacks_array[0][attack_select-1]) # playing the correct animation of attack (same for the other if/elif)
+			match attack_select: # switch case to play the right tempo for attack
+				1:
+					animation_player.play("atk_right_1_tempo")
+				2:
+					animation_player.play("atk_right_2_tempo")
+				3:
+					animation_player.play("atk_right_3_tempo")
+						
+		elif cursor_pos_from_player.x < 0 and abs(cursor_pos_from_player.x) > abs(cursor_pos_from_player.y): # if the player was aiming towards left
+			animated_sprite_2d.flip_h = true # facing right
+			animated_sprite_2d.play(attacks_array[0][attack_select-1]) # playing the correct animation of attack (same for the other if/elif)
+			match attack_select: # switch case to play the right tempo for attack
+				1:
+					animation_player.play("atk_left_1_tempo")
+				2:
+					animation_player.play("atk_left_2_tempo")
+				3:
+					animation_player.play("atk_left_3_tempo")
+		
+		elif cursor_pos_from_player.y > 0 and abs(cursor_pos_from_player.y) >= abs(cursor_pos_from_player.x): # if the player was aiming towards bottom
+			animated_sprite_2d.flip_h = false # facing right
+			animated_sprite_2d.play(attacks_array[1][attack_select-1])
+			match attack_select: # switch case to play the right tempo for attack
+				1:
+					animation_player.play("atk_down_1_tempo")
+				2:
+					animation_player.play("atk_down_2_tempo")
+				3:
+					animation_player.play("atk_down_3_tempo")
+
+			
+		elif cursor_pos_from_player.y < 0 and abs(cursor_pos_from_player.y) > abs(cursor_pos_from_player.x): # if the player was moving towards top
+			animated_sprite_2d.flip_h = false # facing right
+			animated_sprite_2d.play(attacks_array[2][attack_select-1])
+			match attack_select: # switch case to play the right tempo for attack
+				1:
+					animation_player.play("atk_up_1_tempo")
+				2:
+					animation_player.play("atk_up_2_tempo")
+				3:
+					animation_player.play("atk_up_3_tempo")		
 
 func attack_state(delta): # function who is handling the different case of attack
 	next_animation_selector_attacking() # call the function to play the right animation
 	
 	if Input.is_action_just_pressed("ui_attack") and attack_select < 3: # if left click is pressed
 		attack_select += 1
+		cursor_pos_from_player.x = get_global_mouse_position().x - position.x
+		cursor_pos_from_player.y = get_global_mouse_position().y - position.y
 	
 	var input_vector = Vector2.ZERO # resetting the input vector
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") # setting the direction for next move by checking which key is pressed (left or right, or both (not moving))
@@ -254,7 +308,6 @@ func dash_recovery_state(delta):
 	velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
 	move_and_slide() # moving the character based on the velocity
 	
-	
 	await animated_sprite_2d.animation_finished # waiting for the animation to finish
 	
 	state = MOVING
@@ -262,7 +315,3 @@ func dash_recovery_state(delta):
 func _on_sword_area_2d_body_entered(body):
 	if body.is_in_group("Damageable"):
 		print("ish")
-
-
-func _on_animated_sprite_2d_animation_finished():
-	pass
