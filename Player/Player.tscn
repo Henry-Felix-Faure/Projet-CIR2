@@ -1,4 +1,4 @@
-[gd_scene load_steps=238 format=3 uid="uid://bjvbi4ila7pej"]
+[gd_scene load_steps=244 format=3 uid="uid://bjvbi4ila7pej"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
 [ext_resource type="Texture2D" uid="uid://daditli8t4b0o" path="res://Assets/Bob/attack_down.png" id="2_nf2kd"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ch31jbd1j6357" path="res://Assets/Bob/dash_right.png" id="5_ok7kw"]
 [ext_resource type="Texture2D" uid="uid://g00itgjibt6w" path="res://Assets/Bob/death.png" id="6_pe1mh"]
 [ext_resource type="Texture2D" uid="uid://cj4vv5rw13mr4" path="res://Assets/Bob/idle_up.png" id="6_s6a87"]
+[ext_resource type="Texture2D" uid="uid://ddr4i58t543cs" path="res://Assets/Bob/dash_up.png" id="7_6pi2s"]
 [ext_resource type="Texture2D" uid="uid://byueytqwkekkb" path="res://Assets/Bob/run_up.png" id="7_8k6s6"]
 [ext_resource type="Texture2D" uid="uid://0smr2cvx8hbe" path="res://Assets/Bob/run_right.png" id="9_5xmp1"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="12_6rljm"]
@@ -489,6 +490,26 @@ region = Rect2(36, 36, 36, 36)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vd6y7"]
 atlas = ExtResource("5_ok7kw")
 region = Rect2(108, 36, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkeu1"]
+atlas = ExtResource("7_6pi2s")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gc5s"]
+atlas = ExtResource("7_6pi2s")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eux4"]
+atlas = ExtResource("7_6pi2s")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rn17"]
+atlas = ExtResource("7_6pi2s")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2ssa"]
+atlas = ExtResource("7_6pi2s")
+region = Rect2(0, 50, 50, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00e53"]
 atlas = ExtResource("6_pe1mh")
@@ -1205,6 +1226,31 @@ animations = [{
 }],
 "loop": false,
 "name": &"dash_right_recovery",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkeu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gc5s")
+}],
+"loop": false,
+"name": &"dash_up_init",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eux4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rn17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2ssa")
+}],
+"loop": false,
+"name": &"dash_up_recovery",
 "speed": 12.0
 }, {
 "frames": [{
@@ -4191,7 +4237,7 @@ MAX_SPEED = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_628dk")
-animation = &"dash_down_recovery"
+animation = &"dash_up_recovery"
 
 [node name="SwordArea2D" type="Area2D" parent="AnimatedSprite2D"]
 script = ExtResource("12_6rljm")

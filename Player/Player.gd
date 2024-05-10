@@ -253,7 +253,7 @@ func next_animation_selector_dashing_init():
 	elif last_dir.y > 0: # if the player was moving towards bottom
 		animated_sprite_2d.play("dash_down_init")
 	elif last_dir.y < 0: # if the player was moving towards top
-		animated_sprite_2d.play("dash_right_init")
+		animated_sprite_2d.play("dash_up_init")
 
 func dash_init_state(delta):
 	
@@ -293,7 +293,7 @@ func next_animation_selector_dashing_recovery():
 		animated_sprite_2d.flip_h = false # facing right
 		#animation_player.play("dash_right_recovery_tempo")
 	elif last_dir.y < 0: # if the player was moving towards top
-		animated_sprite_2d.play("dash_right_recovery")
+		animated_sprite_2d.play("dash_up_recovery")
 		animated_sprite_2d.flip_h = false # facing right
 		#animation_player.play("dash_right_recovery_tempo")
 
