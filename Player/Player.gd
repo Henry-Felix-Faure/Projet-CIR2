@@ -319,3 +319,4 @@ func death_state():
 
 func _on_stats_component_no_health() -> void:
 	state = DYING
+
