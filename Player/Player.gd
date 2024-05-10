@@ -18,6 +18,8 @@ enum{
 @onready var animation_player: AnimationPlayer = $AnimationPlayer # importing the animation player
 @onready var collision_shape_2d = $CollisionShape2D
 
+var input_vector = Vector2.ZERO # resetting the input vector
+var last_input_vector = Vector2.ZERO # resetting the input vector
 var last_dir: Vector2 = Vector2(0, 1) # Vector2 of the last direction faced for animations
 var animation_playing = false
 var state = MOVING
@@ -35,7 +37,7 @@ func wait(seconds: float) -> void:
 func _ready():
 	attack_select = 0
 
-func next_animation_selector_moving(input_vector: Vector2): # function to decide which running animations we want to play
+func next_animation_selector_moving(): # function to decide which running animations we want to play
 	if input_vector.x > 0: # if the player moving towards the right
 		animated_sprite_2d.flip_h = false # facing right
 		animated_sprite_2d.play("run_right") # playing the correct animation (same for the other if/elif)
@@ -91,14 +93,14 @@ func _physics_process(delta):
 func move_state(delta):
 	MAX_SPEED = 100
 	
-	var input_vector = Vector2.ZERO # resetting the input vector
+	input_vector = Vector2.ZERO # resetting the input vector
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") # setting the direction for next move by checking which key is pressed (left or right, or both (not moving))
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up") # setting the direction for next move by checking which key is pressed (top or bottom, or both (not moving))
 	input_vector = input_vector.normalized() # we need to normalize because if we move diagonally we will move sqrt(2) pixel instead of 1 pixel
 	
 	if input_vector != Vector2.ZERO: # if we detect a move to execute
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
-		next_animation_selector_moving(input_vector) # calling the function to select the right running animations
+		next_animation_selector_moving() # calling the function to select the right running animations
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta) # updating velocity while taking the parameters in consideration (FRICTION)
 		next_animation_selector_idling() # calling the function to select the right idling animations
@@ -112,6 +114,10 @@ func move_state(delta):
 		state = ATTACKING # changing the state to ATTACK
 		
 	if Input.is_action_just_pressed("ui_dash"): # if left click is pressed
+		if input_vector == Vector2.ZERO:
+			last_input_vector = last_dir
+		else:
+			last_input_vector = input_vector
 		state = DASHING_INIT # changing the state to DASH
 
 func next_animation_selector_attacking():
@@ -211,7 +217,7 @@ func attack_state(delta): # function who is handling the different case of attac
 		cursor_pos_from_player.x = get_global_mouse_position().x - position.x
 		cursor_pos_from_player.y = get_global_mouse_position().y - position.y
 	
-	var input_vector = Vector2.ZERO # resetting the input vector
+	input_vector = Vector2.ZERO # resetting the input vector
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") # setting the direction for next move by checking which key is pressed (left or right, or both (not moving))
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up") # setting the direction for next move by checking which key is pressed (top or bottom, or both (not moving))
 	input_vector = input_vector.normalized() # we need to normalize because if we move diagonally we will move sqrt(2) pixel instead of 1 pixel
@@ -241,22 +247,11 @@ func next_animation_selector_dashing_init():
 		animated_sprite_2d.play("dash_right_init")
 
 func dash_init_state(delta):
-	var input_vector = Vector2.ZERO # resetting the input vector
-	
-	if last_dir.x > 0: # if the player was moving towards right
-		input_vector.x = 1
-	elif last_dir.x < 0: # if the player was moving towards left
-		input_vector.x = -1
-	elif last_dir.y > 0: # if the player was moving towards bottom
-		input_vector.y = 1
-	elif last_dir.y < 0: # if the player was moving towards top
-		input_vector.y = -1
-		
 	collision_shape_2d.disabled = true
 	next_animation_selector_dashing_init()		
 	
 	MAX_SPEED = 300
-	velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
+	velocity = velocity.move_toward(last_input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
 	move_and_slide() # moving the character based on the velocity
 
 	await animated_sprite_2d.animation_finished # waiting for the animation to finish
@@ -277,38 +272,29 @@ func next_animation_selector_dashing_recovery():
 	if last_dir.x > 0: # if the player was moving towards right
 		animated_sprite_2d.play("dash_right_recovery") # playing the correct animation (same for the other if/elif)
 		animated_sprite_2d.flip_h = false # facing right
-		animation_player.play("dash_right_recovery_tempo")
+		#animation_player.play("dash_right_recovery_tempo")
 	elif last_dir.x < 0: # if the player was moving towards left
 		animated_sprite_2d.play("dash_right_recovery")
 		animated_sprite_2d.flip_h = true # facing left		
-		animation_player.play("dash_left_recovery_tempo")
+		#animation_player.play("dash_left_recovery_tempo")
 	elif last_dir.y > 0: # if the player was moving towards bottom
 		animated_sprite_2d.play("dash_right_recovery")
-		animation_player.play("dash_right_recovery_tempo")
+		animated_sprite_2d.flip_h = false # facing right
+		#animation_player.play("dash_right_recovery_tempo")
 	elif last_dir.y < 0: # if the player was moving towards top
 		animated_sprite_2d.play("dash_right_recovery")
-		animation_player.play("dash_right_recovery_tempo")
+		animated_sprite_2d.flip_h = false # facing right
+		#animation_player.play("dash_right_recovery_tempo")
 
-func dash_recovery_state(delta):
-	var input_vector = Vector2.ZERO # resetting the input vector
-	
-	if last_dir.x > 0: # if the player was moving towards right
-		input_vector.x = 1
-	elif last_dir.x < 0: # if the player was moving towards left
-		input_vector.x = -1
-	elif last_dir.y > 0: # if the player was moving towards bottom
-		input_vector.y = 1
-	elif last_dir.y < 0: # if the player was moving towards top
-		input_vector.y = -1
-		
+func dash_recovery_state(delta):	
 	next_animation_selector_dashing_recovery() # calling the function to select the right dashing animations
 	
 	MAX_SPEED = 100
-	
-	velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
+	velocity = velocity.move_toward(last_input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
 	move_and_slide() # moving the character based on the velocity
 	
 	await animated_sprite_2d.animation_finished # waiting for the animation to finish
+	collision_shape_2d.disabled = false
 	
 	state = MOVING
 
