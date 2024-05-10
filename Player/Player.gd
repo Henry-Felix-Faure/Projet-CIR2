@@ -11,12 +11,16 @@ enum{
 	MOVING,
 	DASHING_INIT,
 	DASHING_RECOVERY,
-	ATTACKING
+	ATTACKING,
+	DYING
 }
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D # importing the animation sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer # importing the animation player
-@onready var collision_shape_2d = $CollisionShape2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var hurtbox_area_2d: HurtboxComponent = $HurtboxArea2D
+@onready var stats_component: StatsComponent = $StatsComponent
+
 
 var input_vector = Vector2.ZERO # resetting the input vector
 var last_input_vector = Vector2.ZERO # resetting the input vector
@@ -89,6 +93,8 @@ func _physics_process(delta):
 			dash_recovery_state(delta)
 		ATTACKING:
 			attack_state(delta)
+		DYING:
+			death_state()
 
 func move_state(delta):
 	MAX_SPEED = 100
@@ -119,6 +125,9 @@ func move_state(delta):
 		else:
 			last_input_vector = input_vector
 		state = DASHING_INIT # changing the state to DASH
+	
+	if Input.is_action_just_pressed("ui_kill_debug"): # if left click is pressed
+		stats_component.health = 0
 
 func next_animation_selector_attacking():
 	if not AIMING_MOUSE:
@@ -242,11 +251,13 @@ func next_animation_selector_dashing_init():
 		animated_sprite_2d.play("dash_right_init")
 		animated_sprite_2d.flip_h = true # facing left		
 	elif last_dir.y > 0: # if the player was moving towards bottom
-		animated_sprite_2d.play("dash_right_init")
+		animated_sprite_2d.play("dash_down_init")
 	elif last_dir.y < 0: # if the player was moving towards top
 		animated_sprite_2d.play("dash_right_init")
 
 func dash_init_state(delta):
+	
+	hurtbox_area_2d.is_invincible = true
 	collision_shape_2d.disabled = true
 	next_animation_selector_dashing_init()		
 	
@@ -278,7 +289,7 @@ func next_animation_selector_dashing_recovery():
 		animated_sprite_2d.flip_h = true # facing left		
 		#animation_player.play("dash_left_recovery_tempo")
 	elif last_dir.y > 0: # if the player was moving towards bottom
-		animated_sprite_2d.play("dash_right_recovery")
+		animated_sprite_2d.play("dash_down_recovery")
 		animated_sprite_2d.flip_h = false # facing right
 		#animation_player.play("dash_right_recovery_tempo")
 	elif last_dir.y < 0: # if the player was moving towards top
@@ -294,10 +305,17 @@ func dash_recovery_state(delta):
 	move_and_slide() # moving the character based on the velocity
 	
 	await animated_sprite_2d.animation_finished # waiting for the animation to finish
+	hurtbox_area_2d.is_invincible = false
 	collision_shape_2d.disabled = false
 	
 	state = MOVING
 
-func _on_sword_area_2d_body_entered(body):
-	if body.is_in_group("Damageable"):
-		print("ish")
+func death_state():
+	hurtbox_area_2d.is_invincible = true
+	collision_shape_2d.disabled = true
+	animated_sprite_2d.play("death")
+	await animated_sprite_2d.animation_finished
+	queue_free()
+
+func _on_stats_component_no_health() -> void:
+	state = DYING
