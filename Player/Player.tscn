@@ -4237,7 +4237,7 @@ MAX_SPEED = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_628dk")
-animation = &"dash_up_recovery"
+animation = &"death"
 
 [node name="SwordArea2D" type="Area2D" parent="AnimatedSprite2D"]
 script = ExtResource("12_6rljm")
