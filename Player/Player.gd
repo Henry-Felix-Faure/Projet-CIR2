@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 # initial variables for moving
-var MAX_SPEED = 100
-var ACCELERATION = 10000
-var FRICTION = 10000
+const MAX_SPEED = 100
+const ACCELERATION = 700
+const FRICTION = 1400
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D # importing the animation sprite
 var last_dir: Vector2 = Vector2.ZERO # Vector2 of the last direction faced for idling animations
