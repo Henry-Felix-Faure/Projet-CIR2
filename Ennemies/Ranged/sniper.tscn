@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Components/auto_aim_bullet.gd" id="1_a0jix"]
 [ext_resource type="Script" path="res://Scripts/Components/move_towards_player_component.gd" id="1_dywhb"]
-[ext_resource type="Texture2D" uid="uid://dwukw42m0pkjh" path="res://Assets/placeholder_texture.png" id="1_mdtme"]
+[ext_resource type="Texture2D" uid="uid://dwukw42m0pkjh" path="res://Assets/Boss/placeholder_texture.png" id="1_mdtme"]
 [ext_resource type="PackedScene" uid="uid://dweermpoujjmq" path="res://Scenes/DetectPlayerAction.tscn" id="2_avl84"]
 [ext_resource type="Script" path="res://Scripts/Components/hurt_component.gd" id="2_yx3l4"]
 [ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="3_u8p6f"]
