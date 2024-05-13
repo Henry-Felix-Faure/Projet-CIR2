@@ -7,6 +7,9 @@ extends CharacterBody2D
 @onready var hurtbox_area_2d: HurtboxComponent = $HurtboxArea2D
 @onready var stats_component: StatsComponent = $StatsComponent
 
+# importing initial stats variables
+var health: int = stats_component.health
+
 # initial variables for moving and animations
 @export var MAX_SPEED: int = 100
 var ACCELERATION: int = 100000000
