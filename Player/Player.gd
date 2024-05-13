@@ -9,8 +9,8 @@ extends CharacterBody2D
 
 # initial variables for moving and animations
 @export var MAX_SPEED: int = 100
-var ACCELERATION: int = 10000
-var FRICTION: int = 10000
+var ACCELERATION: int = 100000000
+var FRICTION: int = 100000000
 var input_vector: Vector2 = Vector2.ZERO # Vector2 of the current input
 var last_input_vector: Vector2 = Vector2.ZERO # Vector2 of the last input
 var last_dir: Vector2 = Vector2(0, 1) # Vector2 of the last direction faced for animations
@@ -20,10 +20,12 @@ var attacks_array: Array = [
 	["atk_down_1", "atk_down_2", "atk_down_3"], 
 	["atk_up_1", "atk_up_2", "atk_up_3"]
 ] # array of array for each 3 attacks of each 4 four directions (left and right are the same)
+var cancel_dash: bool = false
 
 # aiming with mouse
 @export var AIMING_MOUSE: bool # boolean variable to enable / disable aiming for attack with mouse instead of keyboard
 var cursor_pos_from_player: Vector2 # Vector2 to store the difference between cursor position and player position 
+var cursor_pos_attack_array: Array = [] # array of array for each 3 attacks of each 4 four directions (left and right are the same)
 
 # State machine
 var state = MOVING # variable for the current state of the player
@@ -112,21 +114,23 @@ func move_state(delta):
 	input_vector = input_vector.normalized() # we need to normalize the vector because if we move diagonally we will move sqrt(2) pixel instead of 1 pixel
 	
 	if input_vector != Vector2.ZERO: # if we detect an input
-		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
+		velocity = input_vector * MAX_SPEED
+		#velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
 		next_animation_selector_moving() # calling the function to select the right running animations
 	else: # not moving
-		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta) # updating velocity while taking the parameters in consideration (FRICTION)
+		velocity = Vector2.ZERO
+		#velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta) # updating velocity while taking the parameters in consideration (FRICTION)
 		next_animation_selector_idling() # calling the function to select the right idling animations
 	
-	move_and_slide() # moving the character based on the velocity
+	move_and_collide(velocity * delta) # moving the character based on the velocity
 	
 	if Input.is_action_just_pressed("ui_attack"): # if left click is pressed
 		attack_left = 2 # we will perform 1 attack so we can still do 2 more
 		if AIMING_MOUSE:
 			cursor_pos_from_player.x = get_global_mouse_position().x - position.x # compute the difference between cursor position and player position 
 			cursor_pos_from_player.y = get_global_mouse_position().y - position.y
+			cursor_pos_attack_array.append(cursor_pos_from_player)
 		state = ATK_1 # changing the state to first attack ATK_1
-		
 		
 	if Input.is_action_just_pressed("ui_dash"): # if space bar is pressed
 		if input_vector == Vector2.ZERO: # if we were not moving, the last input will be the direction we are facing
@@ -182,7 +186,8 @@ func next_animation_selector_attacking(attack_number: int): # function to decide
 				3:
 					animation_player.play("atk_up_3_tempo")		
 	else:
-		if cursor_pos_from_player.x > 0 and abs(cursor_pos_from_player.x) >= abs(cursor_pos_from_player.y): # if the player was aiming towards right
+		var cursor_pos_used: Vector2 = cursor_pos_attack_array[attack_number-1]		
+		if cursor_pos_used.x > 0 and abs(cursor_pos_used.x) >= abs(cursor_pos_used.y): # if the player was aiming towards right
 			animated_sprite_2d.flip_h = false # facing right
 			animated_sprite_2d.play(attacks_array[0][attack_number-1]) # playing the correct animation of attack (same for the other if/elif)
 			match attack_number: # switch case to play the right tempo for attack
@@ -193,7 +198,7 @@ func next_animation_selector_attacking(attack_number: int): # function to decide
 				3:
 					animation_player.play("atk_right_3_tempo")
 						
-		elif cursor_pos_from_player.x < 0 and abs(cursor_pos_from_player.x) > abs(cursor_pos_from_player.y): # if the player was aiming towards left
+		elif cursor_pos_used.x < 0 and abs(cursor_pos_used.x) > abs(cursor_pos_used.y): # if the player was aiming towards left
 			animated_sprite_2d.flip_h = true # facing right
 			animated_sprite_2d.play(attacks_array[0][attack_number-1]) # playing the correct animation of attack (same for the other if/elif)
 			match attack_number: # switch case to play the right tempo for attack
@@ -204,7 +209,7 @@ func next_animation_selector_attacking(attack_number: int): # function to decide
 				3:
 					animation_player.play("atk_left_3_tempo")
 		
-		elif cursor_pos_from_player.y > 0 and abs(cursor_pos_from_player.y) >= abs(cursor_pos_from_player.x): # if the player was aiming towards bottom
+		elif cursor_pos_used.y > 0 and abs(cursor_pos_used.y) >= abs(cursor_pos_used.x): # if the player was aiming towards bottom
 			animated_sprite_2d.flip_h = false # facing right
 			animated_sprite_2d.play(attacks_array[1][attack_number-1])
 			match attack_number: # switch case to play the right tempo for attack
@@ -216,7 +221,7 @@ func next_animation_selector_attacking(attack_number: int): # function to decide
 					animation_player.play("atk_down_3_tempo")
 
 			
-		elif cursor_pos_from_player.y < 0 and abs(cursor_pos_from_player.y) > abs(cursor_pos_from_player.x): # if the player was moving towards top
+		elif cursor_pos_used.y < 0 and abs(cursor_pos_used.y) > abs(cursor_pos_used.x): # if the player was moving towards top
 			animated_sprite_2d.flip_h = false # facing right
 			animated_sprite_2d.play(attacks_array[2][attack_number-1])
 			match attack_number: # switch case to play the right tempo for attack
@@ -228,23 +233,31 @@ func next_animation_selector_attacking(attack_number: int): # function to decide
 					animation_player.play("atk_up_3_tempo")		
 
 func attack(delta, attack_number: int): # function who is handling the case of attack
+	cancel_dash = false
 	next_animation_selector_attacking(attack_number) # call the function to play the right animation
 	
 	if Input.is_action_just_pressed("ui_attack") and attack_left != 0: # if left click is pressed and we still have attack left
 		attack_left -= 1 # updating the attack_left variable 
-	
+		if AIMING_MOUSE:
+			cursor_pos_from_player.x = get_global_mouse_position().x - position.x # compute the difference between cursor position and player position 
+			cursor_pos_from_player.y = get_global_mouse_position().y - position.y
+			cursor_pos_attack_array.append(cursor_pos_from_player)
+		
 	# this code from move_state() is here because we need to be able to move while certain part of the attack animation
 	input_vector = Vector2.ZERO # resetting the input vector
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") # setting the direction for next move by checking which key is pressed (left or right, or both (not moving))
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up") # setting the direction for next move by checking which key is pressed (top or bottom, or both (not moving))
 	input_vector = input_vector.normalized() # we need to normalize the vector because if we move diagonally we will move sqrt(2) pixel instead of 1 pixel
 	
-	if input_vector != Vector2.ZERO: # if we detect a move to execute
-		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
-	else:
-		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta) # updating velocity while taking the parameters in consideration (FRICTION)
+	if input_vector != Vector2.ZERO: # if we detect an input
+		velocity = input_vector * MAX_SPEED
+		#velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
+		
+	else: # not moving
+		velocity = Vector2.ZERO
+		#velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta) # updating velocity while taking the parameters in consideration (FRICTION)
 	
-	move_and_slide() # moving the character based on the velocity
+	move_and_collide(velocity * delta) # moving the character based on the velocity
 	
 	await animated_sprite_2d.animation_finished # waiting for the animation to finish 
 
@@ -253,7 +266,9 @@ func attack(delta, attack_number: int): # function who is handling the case of a
 	elif (attack_number == 2 and attack_left == 0): # if we just performed the second attack and we have one more to do
 		state = ATK_3 # changing the state variable to the third attack state
 	else: # no attack to perform next
-		attack_left = 3 # resetting the attack_left variable
+		if AIMING_MOUSE:
+			cursor_pos_attack_array = []
+		attack_left = 3 # resetting the atdtack_left variable
 		state = MOVING # state variable is set back to moving
 
 func next_animation_selector_dashing_init():
@@ -276,22 +291,34 @@ func dash_init_state(delta):
 	
 	# the player is moving without any input towards the direction saved by the last_input_vector variable
 	MAX_SPEED = 300 # setting the MAX_SPEED to 300 for the dash period
-	velocity = velocity.move_toward(last_input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
-	move_and_slide() # moving the character based on the velocity
+	velocity = last_input_vector * MAX_SPEED # updating velocity while taking the parameters in consideration (MAX_SPEED)
+	
+	move_and_collide(velocity * delta) # moving the character based on the velocity
+
+	if Input.is_action_just_pressed("ui_attack"): # if left click is pressed
+		attack_left = 2 # we will perform 1 attack so we can still do 2 more
+		if AIMING_MOUSE:
+			cursor_pos_from_player.x = get_global_mouse_position().x - position.x # compute the difference between cursor position and player position 
+			cursor_pos_from_player.y = get_global_mouse_position().y - position.y
+			cursor_pos_attack_array.append(cursor_pos_from_player)
+		cancel_dash = true
 
 	await animated_sprite_2d.animation_finished # waiting for the animation to finish
 		
 	#set_visible(false)
 	#
 	#MAX_SPEED = 300
-	#velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
-	#move_and_slide() # moving the character based on the velocity
+	#velocity = last_input_vector * MAX_SPEED # updating velocity while taking the parameters in consideration (MAX_SPEED)
+	#move_and_collide(velocity * delta) # moving the character based on the velocity
 	#
 	#wait(0.3)
 	#MAX_SPEED = 0
 	#set_visible(true)
 	
-	state = DASHING_RECOVERY # state is set to DASHING_RECOVERY for the second part of the dash
+	if cancel_dash:
+		state = ATK_1 # changing the state to first attack ATK_1
+	else:
+		state = DASHING_RECOVERY # state is set to DASHING_RECOVERY for the second part of the dash
 	
 func next_animation_selector_dashing_recovery():
 	if last_dir.x > 0: # if the player was moving towards right
@@ -312,12 +339,13 @@ func next_animation_selector_dashing_recovery():
 		#animation_player.play("dash_right_recovery_tempo")
 
 func dash_recovery_state(delta):	
+	cancel_dash = false
 	next_animation_selector_dashing_recovery() # calling the function to select the right dashing recovery animations
 	
 	# the player is moving without any input towards the direction saved by the last_input_vector variable
 	MAX_SPEED = 100 # resetting the MAX_SPEED value
-	velocity = velocity.move_toward(last_input_vector * MAX_SPEED, ACCELERATION * delta) # updating velocity while taking the parameters in consideration (MAX_SPEED, ACCELERATION)
-	move_and_slide() # moving the character based on the velocity
+	velocity = last_input_vector * MAX_SPEED # updating velocity while taking the parameters in consideration (MAX_SPEED)
+	move_and_collide(velocity * delta) # moving the character based on the velocity
 	
 	await animated_sprite_2d.animation_finished # waiting for the animation to finish
 	hurtbox_area_2d.is_invincible = false # we re-enable the hurtbox of the player
