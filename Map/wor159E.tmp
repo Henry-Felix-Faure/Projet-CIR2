@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo74rhwwir0tc"]
+
+[ext_resource type="PackedScene" uid="uid://c4c2ltf17oux3" path="res://mob_cac.tscn" id="1_uelwt"]
+[ext_resource type="PackedScene" uid="uid://dybq8fnqd1hks" path="res://joueur.tscn" id="2_k3jvv"]
+
+[node name="World" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("2_k3jvv")]
+unique_name_in_owner = true
+position = Vector2(440, 232)
+
+[node name="Mob_cac" parent="." instance=ExtResource("1_uelwt")]
+position = Vector2(72, 72)
+health = 100
+speed = 100.0
+attack_damage = 20
+attack_range = 50.0

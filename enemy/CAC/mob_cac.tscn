@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4c2ltf17oux3"]
+
+[ext_resource type="Script" path="res://enemy/CAC/mob_cac.gd" id="1_fexvh"]
+[ext_resource type="Texture2D" uid="uid://d01non825e02a" path="res://Assets/Foe/bloque_attaquer.png" id="2_sddgv"]
+[ext_resource type="Texture2D" uid="uid://dojhhcbru6yf5" path="res://Assets/Foe/bloque_avancer.png" id="3_rgvh6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqq8n"]
+size = Vector2(80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wmh0c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sddgv")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rgvh6")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kb2nh"]
+radius = 56.5685
+
+[node name="Mob_cac" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_fexvh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
+visibility_layer = 2
+shape = SubResource("RectangleShape2D_qqq8n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2.14577e-06, -9.53674e-07)
+scale = Vector2(0.34632, 0.34632)
+sprite_frames = SubResource("SpriteFrames_wmh0c")
+animation = &"attack"
+autoplay = "move"
+
+[node name="range" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="range"]
+visibility_layer = 2
+shape = SubResource("CircleShape2D_kb2nh")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
