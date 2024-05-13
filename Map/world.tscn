@@ -1,36 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=2 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
-[ext_resource type="Shader" path="res://Shaders/greyScale.gdshader" id="2_g57qx"]
-[ext_resource type="Shader" path="res://Shaders/chromaticAberration.gdshader" id="2_pe0h0"]
-[ext_resource type="Texture2D" uid="uid://507o8cssabij" path="res://icon.svg" id="4_8d3p7"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uqtw7"]
-shader = ExtResource("2_g57qx")
-shader_parameter/greyScaleIntensity = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ti6v"]
-shader = ExtResource("2_pe0h0")
-shader_parameter/r_displacement = Vector2(30, 0)
-shader_parameter/g_displacement = Vector2(0, 30)
-shader_parameter/b_displacement = Vector2(-30, 0)
 
 [node name="World" type="Node2D"]
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
-position = Vector2(271, 134)
-
-[node name="GreyScale" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_uqtw7")
-position = Vector2(416, 64)
-texture = ExtResource("4_8d3p7")
-
-[node name="barrier" type="Sprite2D" parent="."]
-position = Vector2(414, 136)
-scale = Vector2(1, 0.09375)
-texture = ExtResource("4_8d3p7")
-
-[node name="ChromaticAberration" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_2ti6v")
-position = Vector2(415, 205)
-texture = ExtResource("4_8d3p7")
+position = Vector2(131, 112)
