@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4uu5ql21ay1a"
-path="res://.godot/imported/droide_attack.png-eaf1ed5fa8778fee1d073e252e244b55.ctex"
+uid="uid://5ptexw3amy4m"
+path="res://.godot/imported/bullet_destroy.png-5e5c860202460a9239049b4febfa7ecf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Foe/Droide/droide_attack.png"
-dest_files=["res://.godot/imported/droide_attack.png-eaf1ed5fa8778fee1d073e252e244b55.ctex"]
+source_file="res://Assets/Item/bullet_destroy.png"
+dest_files=["res://.godot/imported/bullet_destroy.png-5e5c860202460a9239049b4febfa7ecf.ctex"]
 
 [params]
 
