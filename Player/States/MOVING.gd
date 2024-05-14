@@ -41,6 +41,9 @@ func Update(_delta:float):
 	if Input.is_action_just_pressed("ui_kill_debug"): # if F2 is pressed / debug tool
 		bob.stats_component.health = 0
 		state_transition.emit(self, "DYING")
+	
+	if Input.is_action_just_pressed("ui_parry"): # if F2 is pressed / debug tool
+		state_transition.emit(self, "PARRYING")
 
 
 func next_animation_selector_moving(): # function to decide which running animations we want to play

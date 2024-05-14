@@ -6,7 +6,6 @@ extends State
 
 func Enter():
 	bob.BASE_SPEED = 100
-	bob.cancel_dash = false
 	next_animation_selector_dashing_recovery() # calling the function to select the right dashing recovery animations
 	
 func Exit():

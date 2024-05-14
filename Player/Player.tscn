@@ -1,20 +1,21 @@
-[gd_scene load_steps=250 format=3 uid="uid://bjvbi4ila7pej"]
+[gd_scene load_steps=258 format=3 uid="uid://bjvbi4ila7pej"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
-[ext_resource type="Texture2D" uid="uid://daditli8t4b0o" path="res://Assets/Bob/attack_down.png" id="2_nf2kd"]
+[ext_resource type="Texture2D" uid="uid://btw84h3atisra" path="res://Assets/Bob/attack_down.png" id="2_nf2kd"]
 [ext_resource type="Texture2D" uid="uid://c6s7ioewsnbkl" path="res://Assets/Bob/attack_right.png" id="2_pm0ku"]
 [ext_resource type="Texture2D" uid="uid://cpxye1b6qu2ck" path="res://Assets/Bob/idle_down_sync.png" id="2_q0uoo"]
-[ext_resource type="Texture2D" uid="uid://esvninvmnkbt" path="res://Assets/Bob/attack_up.png" id="3_m5x25"]
+[ext_resource type="Texture2D" uid="uid://b60mgyopbbg6h" path="res://Assets/Bob/attack_up.png" id="3_m5x25"]
 [ext_resource type="Texture2D" uid="uid://dk2kmy2kfhb0i" path="res://Assets/Bob/idle_right.png" id="4_mm6v5"]
-[ext_resource type="Texture2D" uid="uid://smu1smcdbp1f" path="res://Assets/Bob/run_down.png" id="5_0wwnv"]
+[ext_resource type="Texture2D" uid="uid://jucgtcmm08s4" path="res://Assets/Bob/run_down.png" id="5_0wwnv"]
 [ext_resource type="Texture2D" uid="uid://deu60l1p16f5p" path="res://Assets/Bob/dash_down.png" id="5_f4qrk"]
 [ext_resource type="Texture2D" uid="uid://ch31jbd1j6357" path="res://Assets/Bob/dash_right.png" id="5_ok7kw"]
 [ext_resource type="Texture2D" uid="uid://g00itgjibt6w" path="res://Assets/Bob/death.png" id="6_pe1mh"]
 [ext_resource type="Texture2D" uid="uid://cj4vv5rw13mr4" path="res://Assets/Bob/idle_up.png" id="6_s6a87"]
 [ext_resource type="Texture2D" uid="uid://ddr4i58t543cs" path="res://Assets/Bob/dash_up.png" id="7_6pi2s"]
-[ext_resource type="Texture2D" uid="uid://byueytqwkekkb" path="res://Assets/Bob/run_up.png" id="7_8k6s6"]
-[ext_resource type="Texture2D" uid="uid://0smr2cvx8hbe" path="res://Assets/Bob/run_right.png" id="9_5xmp1"]
+[ext_resource type="Texture2D" uid="uid://dinqaf5m7pbwg" path="res://Assets/Bob/run_up.png" id="7_8k6s6"]
+[ext_resource type="Texture2D" uid="uid://b2rk51x3hrfm5" path="res://Assets/Bob/run_right.png" id="9_5xmp1"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="12_6rljm"]
+[ext_resource type="Texture2D" uid="uid://kwnxoeyacodj" path="res://Assets/Bob/parry_right.png" id="12_g2uh7"]
 [ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="13_xi33h"]
 [ext_resource type="Script" path="res://Scripts/Components/hurt_component.gd" id="14_pk2cn"]
 [ext_resource type="Script" path="res://Scripts/Components/stats_component.gd" id="15_pvxni"]
@@ -24,7 +25,9 @@
 [ext_resource type="Script" path="res://Player/States/DASHING_RECOVERY.gd" id="22_0ed03"]
 [ext_resource type="Script" path="res://Player/States/DYING.gd" id="23_7xgns"]
 [ext_resource type="Script" path="res://Player/States/ATK_1.gd" id="24_bbxjp"]
+[ext_resource type="Script" path="res://Player/States/PARRYING.gd" id="24_j06pe"]
 [ext_resource type="Script" path="res://Player/States/ATK_2.gd" id="25_28jht"]
+[ext_resource type="Script" path="res://Player/States/PARRYING_RECOVERY.gd" id="25_qo5e8"]
 [ext_resource type="Script" path="res://Player/States/ATK_3.gd" id="26_qlor7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j308d"]
@@ -670,6 +673,26 @@ region = Rect2(96, 0, 16, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ggaq"]
 atlas = ExtResource("6_s6a87")
 region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wwd6"]
+atlas = ExtResource("12_g2uh7")
+region = Rect2(0, 0, 26, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uols1"]
+atlas = ExtResource("12_g2uh7")
+region = Rect2(26, 0, 26, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3auuf"]
+atlas = ExtResource("12_g2uh7")
+region = Rect2(52, 0, 26, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l82ae"]
+atlas = ExtResource("12_g2uh7")
+region = Rect2(78, 0, 26, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiaip"]
+atlas = ExtResource("12_g2uh7")
+region = Rect2(104, 0, 26, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pso10"]
 atlas = ExtResource("5_0wwnv")
@@ -1394,6 +1417,31 @@ animations = [{
 "loop": true,
 "name": &"idle_up",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wwd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uols1")
+}],
+"loop": false,
+"name": &"parry_right",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3auuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l82ae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kiaip")
+}],
+"loop": false,
+"name": &"parry_right_recovery",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -4392,7 +4440,7 @@ BASE_SPEED = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_628dk")
-animation = &"atk_down_2"
+animation = &"parry_right"
 
 [node name="SwordArea2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -4454,6 +4502,12 @@ script = ExtResource("21_dpayd")
 
 [node name="DASHING_RECOVERY" type="Node" parent="FSM"]
 script = ExtResource("22_0ed03")
+
+[node name="PARRYING" type="Node" parent="FSM"]
+script = ExtResource("24_j06pe")
+
+[node name="PARRYING_RECOVERY" type="Node" parent="FSM"]
+script = ExtResource("25_qo5e8")
 
 [node name="DYING" type="Node" parent="FSM"]
 script = ExtResource("23_7xgns")

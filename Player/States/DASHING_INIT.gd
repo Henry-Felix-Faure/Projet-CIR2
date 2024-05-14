@@ -27,8 +27,10 @@ func Update(_delta:float):
 			bob.cursor_pos_from_player.x = bob.get_global_mouse_position().x - bob.position.x # compute the difference between cursor position and player position 
 			bob.cursor_pos_from_player.y = bob.get_global_mouse_position().y - bob.position.y
 			bob.cursor_pos_attack_array.append(bob.cursor_pos_from_player)
-		state_transition.emit(self, "ATK_1")
-		bob.cancel_dash = true
+		bob.cancel_dash_attack = true
+	
+	if Input.is_action_just_pressed("ui_parry"): # if F2 is pressed / debug tool
+		bob.cancel_dash_parry = true
 
 	#set_visible(false)
 	#
@@ -42,8 +44,10 @@ func Update(_delta:float):
 	
 
 func animation_finished():
-	if bob.cancel_dash:
+	if bob.cancel_dash_attack:
 		state_transition.emit(self,"ATK_1")
+	elif bob.cancel_dash_parry:
+		state_transition.emit(self, "PARRYING")
 	else:
 		state_transition.emit(self,"DASHING_RECOVERY")
 

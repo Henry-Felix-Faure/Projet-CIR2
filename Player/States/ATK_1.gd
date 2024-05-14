@@ -5,11 +5,15 @@ extends State
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 
 func Enter():
+	if bob.cancel_dash_attack:
+		bob.hurtbox_area_2d.is_invincible = false # disabling the hurtbox of the player
+		bob.collision_shape_2d.disabled = false # disabling the hitbox of the player
+	bob.cancel_dash_attack = false
 	bob.attack_left = 2 # we will perform 1 attack so we can still do 2 more
 	next_animation_selector_attacking() # call the function to play the right animation
 	
 func Exit():
-	bob.cancel_dash = false
+	pass
 	
 func Update(_delta:float):	
 	if Input.is_action_just_pressed("ui_attack") and bob.attack_left != 0: # if left click is pressed and we still have attack left

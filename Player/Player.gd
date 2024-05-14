@@ -14,6 +14,8 @@ extends CharacterBody2D
 @onready var damage: int = 2
 @onready var crit_damage: float = 1.2
 
+var cancel_dash_parry: bool = false
+
 signal critical_hit
 
 # initial variables for moving and animations
@@ -32,7 +34,7 @@ var attacks_array: Array = [
 	["atk_down_1", "atk_down_2", "atk_down_3"], 
 	["atk_up_1", "atk_up_2", "atk_up_3"]
 ] # array of array for each 3 attacks of each 4 four directions (left and right are the same)
-var cancel_dash: bool = false
+var cancel_dash_attack: bool = false
 
 # aiming with mouse
 @export var AIMING_MOUSE: bool # boolean variable to enable / disable aiming for attack with mouse instead of keyboard
@@ -42,5 +44,5 @@ var cursor_pos_attack_array: Array = [] # array of array for each 3 attacks of e
 func _ready():
 	pass
 
-func _physics_process(delta): 
+func _physics_process(_delta): 
 	pass
