@@ -8,9 +8,13 @@ extends Node
 # Grab a hurtbox so we know when we have taken a hiet
 @export var hurtbox_component: HurtboxComponent
 
+signal critical_hit
+
 func _ready() -> void:
 	# Connect the hurt signal on the hurtbox component to an anonymous function
 	# that removes health equal to the damage from the hitbox
-	hurtbox_component.hurt.connect(func(hitbox_component: HitboxComponent):
+	hurtbox_component.hurt.connect(func(hitbox_component: HitboxComponent, crit : bool):
 		stats_component.health -= hitbox_component.damage
+		if crit:
+			critical_hit.emit()
 	)
