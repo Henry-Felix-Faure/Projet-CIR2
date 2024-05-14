@@ -34,6 +34,7 @@ func Update(_delta:float):
 
 
 func animation_finished():
+	animated_sprite_2d.flip_v = false
 	if bob.attack_left <= 1: # if we just performed the first attack and we still have one or two more to do
 		state_transition.emit(self, "ATK_2")
 	else: # no attack to perform next
@@ -85,5 +86,4 @@ func next_animation_selector_attacking():
 			animated_sprite_2d.flip_h = false # facing right
 			animated_sprite_2d.play(bob.attacks_array[2][0])
 			animation_player.play("atk_up_1_tempo")
-	animated_sprite_2d.flip_v = false
 
