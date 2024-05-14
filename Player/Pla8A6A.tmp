@@ -4380,6 +4380,7 @@ collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_v0has")
 MAX_SPEED = 0
+AIMING_MOUSE = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_628dk")

@@ -1,7 +1,7 @@
 extends AnimatedSprite2D
 
 @onready var detect_action_player: Area2D = $DetectActionPlayer
-@onready var player = get_node("../Player")
+@onready var player = get_node("../Bob")
 @onready var ennemies_stats_component: EnnemiesStatsComponent = $EnnemiesStatsComponent
 @onready var timer: Timer = $Timer
 
