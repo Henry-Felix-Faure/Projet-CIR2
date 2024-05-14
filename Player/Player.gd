@@ -6,14 +6,21 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var hurtbox_area_2d: HurtboxComponent = $HurtboxArea2D
 @onready var stats_component: StatsComponent = $StatsComponent
+@onready var sword_area_2d: HitboxComponent = $SwordArea2D
+
 
 # importing initial stats variables
-var health: int = stats_component.health
+@onready var health: int = stats_component.health
+@onready var crit_chance: float = 0.5
+@onready var damage: int = 2
+@onready var crit_damage: float = 1.2
+
+signal critical_hit
 
 # initial variables for moving and animations
 @export var MAX_SPEED: int = 100
-var ACCELERATION: int = 100000000
-var FRICTION: int = 100000000
+#var ACCELERATION: int = 100000000
+#var FRICTION: int = 100000000
 var input_vector: Vector2 = Vector2.ZERO # Vector2 of the current input
 var last_input_vector: Vector2 = Vector2.ZERO # Vector2 of the last input
 var last_dir: Vector2 = Vector2(0, 1) # Vector2 of the last direction faced for animations
@@ -146,6 +153,9 @@ func move_state(delta):
 		stats_component.health = 0
 
 func next_animation_selector_attacking(attack_number: int): # function to decide which attack animations we want to play
+	var is_crit: bool = is_attack_crit()
+	if is_crit:
+		animated_sprite_2d.flip_v = true
 	if not AIMING_MOUSE:
 		if last_dir.x != 0: # if the player was moving towards left or right
 			animated_sprite_2d.play(attacks_array[0][attack_number-1]) # playing the correct animation of attack (same for the other if/elif)
@@ -234,6 +244,19 @@ func next_animation_selector_attacking(attack_number: int): # function to decide
 					animation_player.play("atk_up_2_tempo")
 				3:
 					animation_player.play("atk_up_3_tempo")		
+	animated_sprite_2d.flip_v = false
+
+func is_attack_crit() -> bool:
+	var rd_float: float = randf()
+	print(rd_float)
+	if rd_float <= crit_chance:
+		sword_area_2d.damage = ceil(damage * crit_damage)
+		sword_area_2d.critical = 1
+		return true
+	else:
+		sword_area_2d.damage = damage
+		sword_area_2d.critical = 0
+		return false
 
 func attack(delta, attack_number: int): # function who is handling the case of attack
 	cancel_dash = false
