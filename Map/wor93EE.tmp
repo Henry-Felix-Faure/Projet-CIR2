@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
-[ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="2_oovvc"]
+[ext_resource type="Script" path="res://Map/world.gd" id="1_brrxs"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_brrxs")
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
 position = Vector2(131, 112)
-
-[node name="Level Up Menu" parent="." instance=ExtResource("2_oovvc")]

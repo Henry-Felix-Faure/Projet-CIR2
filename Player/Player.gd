@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var hurtbox_area_2d: HurtboxComponent = $HurtboxArea2D
-@onready var stats_component: StatsComponent = $StatsComponent
+@export var stats_component: StatsComponent
 
 # initial variables for moving and animations
 @export var MAX_SPEED: int = 100
@@ -104,8 +104,7 @@ func _physics_process(delta):
 			death_state()
 
 func move_state(delta):
-	MAX_SPEED = 100 # resetting MAX_SPEED
-	
+	MAX_SPEED = 100  # resetting MAX_SPEED
 	input_vector = Vector2.ZERO # resetting the input vector
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") # setting the direction for the next move by checking which key is pressed (left or right, or both (not moving))
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up") # setting the direction for the next move by checking which key is pressed (top or bottom, or both (not moving))

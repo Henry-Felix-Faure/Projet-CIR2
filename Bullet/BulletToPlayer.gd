@@ -2,7 +2,8 @@ extends Node2D
 
 @onready var visible_on_screen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @export var SPEED : int
-@onready var hitbox_component: HitboxComponent = $HitboxComponent
+@export var hitbox_component: HitboxComponent
+
 
 var damage : int = 2
 
@@ -19,3 +20,5 @@ func _physics_process(delta):
 func _on_hurtbox_entered(_body):
 	queue_free()
 
+func set_layer(mask : int) -> void : 
+	hitbox_component.set_collision_mask_value(mask, true)
