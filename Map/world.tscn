@@ -6,7 +6,7 @@
 [node name="World" type="Node2D"]
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
-position = Vector2(101, 112)
+position = Vector2(144, 123)
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(474, 134)
