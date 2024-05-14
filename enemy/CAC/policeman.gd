@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-var health: int = 100
-var speed: float = 60.0
-var attack_damage: int = 20
-var attackInterval : float = 2.0
+@export var stats: EnnemiesStatsComponent
+
+var speed: float = 30.0
+
 const expScene = preload("res://experience/experience.tscn")
 
 @onready var range: Area2D = $range
@@ -14,10 +14,10 @@ var wait : bool = false
 var in_area : bool = false
 
 func _ready():
-	wait_timer.wait_time = attackInterval
+	var attackInterval = stats.ATK_SPEED
+	wait_timer.wait_time = attackInterval / 50
 	range.body_entered.connect(_on_range_body_entered)
 	range.body_exited.connect(_on_range_body_exited)
-
 
 
 func attack() -> void:
@@ -32,7 +32,11 @@ func _physics_process(delta):
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * speed * delta 
 	move_and_collide(velocity)
-
+	
+	if direction.x < 0:
+		animated_sprite_2d.flip_h = true
+	else:
+		animated_sprite_2d.flip_h = false
 
 func _on_range_body_entered(body):
 	attack()
@@ -40,6 +44,9 @@ func _on_range_body_entered(body):
 	
 func _on_range_body_exited(body):
 	in_area = false
+
+
+
 
 func _on_timer_timeout() -> void:
 	wait = false
