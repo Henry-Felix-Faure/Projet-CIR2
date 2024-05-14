@@ -38,7 +38,6 @@ func Update(_delta:float):
 
 
 func animation_finished():
-	animated_sprite_2d.flip_v = false
 	if bob.attack_left <= 1: # if we just performed the first attack and we still have one or two more to do
 		state_transition.emit(self, "ATK_2")
 	else: # no attack to perform next
@@ -50,8 +49,6 @@ func animation_finished():
 
 func next_animation_selector_attacking():
 	var is_crit: bool = get_parent().is_attack_crit()
-	if is_crit:
-		animated_sprite_2d.flip_v = true
 	if not bob.AIMING_MOUSE:
 		if bob.last_dir.x != 0: # if the player was moving towards left or right
 			animated_sprite_2d.play(bob.attacks_array[0][0]) # playing the correct animation of attack (same for the other if/elif)
