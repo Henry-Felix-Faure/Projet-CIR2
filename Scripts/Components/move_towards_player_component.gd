@@ -1,9 +1,11 @@
 extends AnimatedSprite2D
 
 @onready var detect_action_player: Area2D = $DetectActionPlayer
-@onready var player = get_node("../Player")
+@onready var player = get_node("../Bob")
 @onready var ennemies_stats_component: EnnemiesStatsComponent = $EnnemiesStatsComponent
 @onready var timer: Timer = $Timer
+@onready var sprite = $"."
+@onready var flashTimer = $FlashTimer
 
 var found : bool = false
 
@@ -28,3 +30,13 @@ func player_detected(body : Node2D):
 func player_exited(body : Node2D):
 	await timer.timeout
 	found = false
+
+func flash():
+	sprite.material.set_shader_parameter("flash_modifier",1)
+	flashTimer.start()
+
+func _on_flash_timer_timeout():
+		sprite.material.set_shader_parameter("flash_modifier",0)
+
+func _on_hurt_component_hurted():
+	print("aa")

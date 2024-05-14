@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dru7sk4sgnv57"]
+
+[ext_resource type="Texture2D" uid="uid://d0w8a5n84b5fl" path="res://Assets/Bob/test_dash-removebg-preview.png" id="1_q8i75"]
+
+[sub_resource type="GDScript" id="GDScript_2daqi"]
+script/source = "extends Sprite2D
+
+func _ready():
+	ghosting()
+
+func set_property(tx_pos, tx_scale):
+	position = tx_pos
+	scale = tx_scale
+	
+func ghosting():
+	var tween_fade = get_tree().create_tween()
+	
+	tween_fade.tween_property(self,\"self_modulate\",Color(1,1,1,0),0.75)
+	await tween_fade.finished
+	
+	queue_free()
+"
+
+[node name="Sprite2D" type="Sprite2D"]
+modulate = Color(0.320265, 0.425706, 0.807383, 1)
+show_behind_parent = true
+position = Vector2(47, 45)
+texture = ExtResource("1_q8i75")
+script = SubResource("GDScript_2daqi")

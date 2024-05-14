@@ -1,6 +1,7 @@
-[gd_scene load_steps=244 format=3 uid="uid://bjvbi4ila7pej"]
+[gd_scene load_steps=245 format=3 uid="uid://bjvbi4ila7pej"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
+[ext_resource type="PackedScene" uid="uid://drqw7pklh4xap" path="res://Player/Ghost.tscn" id="2_eajnb"]
 [ext_resource type="Texture2D" uid="uid://btw84h3atisra" path="res://Assets/Bob/attack_down.png" id="2_nf2kd"]
 [ext_resource type="Texture2D" uid="uid://c6s7ioewsnbkl" path="res://Assets/Bob/attack_right.png" id="2_pm0ku"]
 [ext_resource type="Texture2D" uid="uid://cpxye1b6qu2ck" path="res://Assets/Bob/idle_down_sync.png" id="2_q0uoo"]
@@ -4386,11 +4387,12 @@ shader_parameter/b_displacement = Vector2(-3, 0)
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_v0has")
+ghost_node = ExtResource("2_eajnb")
 MAX_SPEED = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_628dk")
-animation = &"idle_down"
+animation = &"dash_down_init"
 
 [node name="SwordArea2D" type="Area2D" parent="."]
 script = ExtResource("12_6rljm")
@@ -4444,5 +4446,10 @@ offset_right = 23.0
 offset_bottom = 23.0
 color = Color(1, 1, 1, 0)
 
+[node name="GhostTimer" type="Timer" parent="."]
+wait_time = 0.15
+autostart = true
+
 [connection signal="body_entered" from="SwordArea2D" to="." method="_on_sword_area_2d_body_entered"]
 [connection signal="no_health" from="StatsComponent" to="." method="_on_stats_component_no_health"]
+[connection signal="timeout" from="GhostTimer" to="." method="_on_ghost_timer_timeout"]

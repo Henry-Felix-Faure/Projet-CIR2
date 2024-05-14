@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=3 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
+[ext_resource type="PackedScene" uid="uid://dyl50b0s58fit" path="res://Ennemies/Ranged/sniper.tscn" id="2_ehke8"]
 
 [node name="World" type="Node2D"]
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
 position = Vector2(131, 112)
+
+[node name="AnimatedSprite2D" parent="." instance=ExtResource("2_ehke8")]
+position = Vector2(385, 137)
