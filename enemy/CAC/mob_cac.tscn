@@ -1,182 +1,57 @@
-[gd_scene load_steps=28 format=3 uid="uid://c4c2ltf17oux3"]
+[gd_scene load_steps=7 format=3 uid="uid://c4c2ltf17oux3"]
 
 [ext_resource type="Script" path="res://enemy/CAC/mob_cac.gd" id="1_fexvh"]
-[ext_resource type="Texture2D" uid="uid://cayprewamy2lk" path="res://Assets/Foe/Mud Guard/attack 1.png" id="2_p7agn"]
-[ext_resource type="Texture2D" uid="uid://cyqmnj0fj6wch" path="res://Assets/Foe/Mud Guard/Run.png" id="3_khawq"]
-[ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="4_8u2dr"]
-[ext_resource type="Script" path="res://Scripts/Components/ennemies_stats_component.gd" id="5_wfks6"]
-[ext_resource type="Script" path="res://Scripts/Components/stats_component.gd" id="6_36v06"]
-[ext_resource type="Script" path="res://Scripts/Components/hurt_component.gd" id="7_hv5gp"]
-[ext_resource type="Script" path="res://Scripts/Components/destroyed_component.gd" id="8_vleux"]
-[ext_resource type="Script" path="res://Scripts/Components/spawn_component.gd" id="9_s563y"]
-[ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="10_oifl4"]
+[ext_resource type="Texture2D" uid="uid://d01non825e02a" path="res://Assets/Foe/bloque_attaquer.png" id="2_sddgv"]
+[ext_resource type="Texture2D" uid="uid://dojhhcbru6yf5" path="res://Assets/Foe/bloque_avancer.png" id="3_rgvh6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qqq8n"]
-size = Vector2(32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t5twf"]
-atlas = ExtResource("2_p7agn")
-region = Rect2(0, 0, 82, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qaxwl"]
-atlas = ExtResource("2_p7agn")
-region = Rect2(0, 23, 82, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_imd4i"]
-atlas = ExtResource("2_p7agn")
-region = Rect2(0, 46, 82, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_14owl"]
-atlas = ExtResource("2_p7agn")
-region = Rect2(0, 69, 82, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g78yf"]
-atlas = ExtResource("2_p7agn")
-region = Rect2(0, 92, 82, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ccmrt"]
-atlas = ExtResource("2_p7agn")
-region = Rect2(0, 115, 82, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hi25f"]
-atlas = ExtResource("2_p7agn")
-region = Rect2(0, 138, 82, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c6p1u"]
-atlas = ExtResource("3_khawq")
-region = Rect2(0, 0, 82, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fssgs"]
-atlas = ExtResource("3_khawq")
-region = Rect2(0, 23, 82, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j1vyi"]
-atlas = ExtResource("3_khawq")
-region = Rect2(0, 46, 82, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dosdp"]
-atlas = ExtResource("3_khawq")
-region = Rect2(0, 69, 82, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ye7b"]
-atlas = ExtResource("3_khawq")
-region = Rect2(0, 92, 82, 23)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8r4ls"]
-atlas = ExtResource("3_khawq")
-region = Rect2(0, 115, 82, 23)
+size = Vector2(80, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wmh0c"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t5twf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qaxwl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_imd4i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_14owl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g78yf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ccmrt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hi25f")
+"texture": ExtResource("2_sddgv")
 }],
 "loop": true,
 "name": &"attack",
-"speed": 15.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c6p1u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fssgs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j1vyi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dosdp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ye7b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8r4ls")
+"texture": ExtResource("3_rgvh6")
 }],
 "loop": true,
 "name": &"move",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohye4"]
-size = Vector2(39, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvrsv"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_kb2nh"]
+radius = 56.5685
 
 [node name="Mob_cac" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_fexvh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 2
+light_mask = 0
 visibility_layer = 2
 shape = SubResource("RectangleShape2D_qqq8n")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(24, 0)
-scale = Vector2(1.17493, 1.5072)
+position = Vector2(-2.14577e-06, -9.53674e-07)
+scale = Vector2(0.34632, 0.34632)
 sprite_frames = SubResource("SpriteFrames_wmh0c")
 animation = &"attack"
-frame_progress = 0.972817
-
-[node name="Timer" type="Timer" parent="."]
+autoplay = "move"
 
 [node name="range" type="Area2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="range"]
-light_mask = 2
-position = Vector2(7.5, 0)
-shape = SubResource("RectangleShape2D_ohye4")
+visibility_layer = 2
+shape = SubResource("CircleShape2D_kb2nh")
 
-[node name="HurtboxComponent" type="Area2D" parent="."]
-collision_mask = 2
-script = ExtResource("4_8u2dr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-shape = SubResource("RectangleShape2D_dvrsv")
-
-[node name="EnnemiesStatsComponent" type="Node" parent="."]
-script = ExtResource("5_wfks6")
-
-[node name="StatsComponent" type="Node" parent="."]
-script = ExtResource("6_36v06")
-
-[node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
-script = ExtResource("7_hv5gp")
-stats_component = NodePath("../StatsComponent")
-hurtbox_component = NodePath("../HurtboxComponent")
-
-[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "stats_component", "destroy_effect_spawner_component")]
-script = ExtResource("8_vleux")
-actor = NodePath("..")
-stats_component = NodePath("../StatsComponent")
-destroy_effect_spawner_component = NodePath("../SpawnComponent")
-
-[node name="SpawnComponent" type="Node2D" parent="."]
-script = ExtResource("9_s563y")
-scene = ExtResource("10_oifl4")
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

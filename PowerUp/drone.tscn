@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://duihbdcecbrl4"]
+
+[ext_resource type="Script" path="res://PowerUp/drone.gd" id="1_j08d6"]
+[ext_resource type="Texture2D" uid="uid://dwukw42m0pkjh" path="res://Assets/placeholder_texture.png" id="1_pnp48"]
+[ext_resource type="Script" path="res://Scripts/Components/spawn_component.gd" id="3_c7o3t"]
+[ext_resource type="PackedScene" uid="uid://erwriagmkvtr" path="res://Bullet/BulletToPlayer.tscn" id="4_sk5ln"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02fq7"]
+atlas = ExtResource("1_pnp48")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pf7ir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02fq7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6wddo"]
+radius = 699.731
+
+[node name="Drone" type="AnimatedSprite2D"]
+position = Vector2(-1.19209e-07, 0)
+scale = Vector2(0.0686157, 0.0625)
+sprite_frames = SubResource("SpriteFrames_pf7ir")
+offset = Vector2(300, 0)
+script = ExtResource("1_j08d6")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(378.922, 16)
+
+[node name="EnnemieDetection" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnnemieDetection"]
+position = Vector2(291.479, 0)
+shape = SubResource("CircleShape2D_6wddo")
+
+[node name="SpawnComponent" type="Node2D" parent="."]
+script = ExtResource("3_c7o3t")
+scene = ExtResource("4_sk5ln")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
