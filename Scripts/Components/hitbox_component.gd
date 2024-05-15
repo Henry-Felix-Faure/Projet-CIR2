@@ -4,7 +4,7 @@ extends Area2D
 
 # Export the damage amount this hitbox deals
 @export var damage = 1.0
-@export var critical = 0
+@export var critical = true
 # Create a signal for when the hitbox hits a hurtbox
 signal hit_hurtbox(hurtbox)
 
@@ -12,7 +12,7 @@ func _ready():
 	# Connect on area entered to our hurtbox entered function
 	area_entered.connect(_on_hurtbox_entered)
 
-func _on_hurtbox_entered(hurtbox, critical):
+func _on_hurtbox_entered(hurtbox):
 	# Make sure the area we are overlapping is a hurtbox
 	if not hurtbox is HurtboxComponent: return
 	# Make sure the hurtbox isn't invincible

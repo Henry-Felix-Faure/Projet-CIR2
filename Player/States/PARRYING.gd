@@ -22,16 +22,40 @@ func animation_finished():
 
 func next_animation_selector_parrying():
 	if bob.last_dir.x > 0: # if the player was moving towards right
-		animated_sprite_2d.play("parry_right") # playing the correct animation (same for the other if/elif)
 		animated_sprite_2d.flip_h = false # facing right
+		match bob.parry_lvl:
+			1:
+				animated_sprite_2d.play("parry_right_1") # playing the correct animation (same for the other if/elif)
+			2:
+				animated_sprite_2d.play("parry_right_2")
+			3:
+				animated_sprite_2d.play("parry_right_3")
 		animation_player.play("parry_right_tempo")
 	elif bob.last_dir.x < 0: # if the player was moving towards left
-		animated_sprite_2d.play("parry_right")
-		animated_sprite_2d.flip_h = true # facing left
+		animated_sprite_2d.flip_h = true # facing right
+		match bob.parry_lvl:
+			1:
+				animated_sprite_2d.play("parry_right_1") # playing the correct animation (same for the other if/elif)
+			2:
+				animated_sprite_2d.play("parry_right_2")
+			3:
+				animated_sprite_2d.play("parry_right_3")
 		animation_player.play("parry_right_tempo")
 	elif bob.last_dir.y > 0: # if the player was moving towards bottom
-		animated_sprite_2d.play("parry_down")
+		match bob.parry_lvl:
+			1:
+				animated_sprite_2d.play("parry_down_1") # playing the correct animation (same for the other if/elif)
+			2:
+				animated_sprite_2d.play("parry_down_2")
+			3:
+				animated_sprite_2d.play("parry_down_3")
 		animation_player.play("parry_down_tempo")
 	elif bob.last_dir.y < 0: # if the player was moving towards top
-		animated_sprite_2d.play("parry_up")
+		match bob.parry_lvl:
+			1:
+				animated_sprite_2d.play("parry_up_1") # playing the correct animation (same for the other if/elif)
+			2:
+				animated_sprite_2d.play("parry_up_2")
+			3:
+				animated_sprite_2d.play("parry_up_3")
 		animation_player.play("parry_up_tempo")
