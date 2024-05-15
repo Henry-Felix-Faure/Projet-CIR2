@@ -5,6 +5,7 @@ extends State
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 
 func Enter():
+	bob.parrying = true
 	if bob.cancel_dash_parry:
 		bob.hurtbox_area_2d.is_invincible = false # disabling the hurtbox of the player
 		bob.collision_shape_2d.disabled = false # disabling the hitbox of the player
@@ -12,7 +13,7 @@ func Enter():
 	next_animation_selector_parrying()
 	
 func Exit():
-	pass
+	bob.parrying = false
 	
 func Update(_delta:float):
 	pass

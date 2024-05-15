@@ -17,5 +17,5 @@ func _physics_process(delta):
 		
 
 func _on_hurtbox_entered(_body):
-	queue_free()
+	pass
 

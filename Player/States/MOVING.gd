@@ -6,12 +6,11 @@ extends State
 
 func Enter():
 	bob.BASE_SPEED = 100
-	pass
 	
 func Exit():
 	pass
 	
-func Update(_delta:float):
+func Update(_delta:float):	
 	bob.input_vector = Vector2.ZERO # resetting the input vector
 	bob.input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") # setting the direction for the next move by checking which key is pressed (left or right, or both (not moving))
 	bob.input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up") # setting the direction for the next move by checking which key is pressed (top or bottom, or both (not moving))

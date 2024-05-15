@@ -11,10 +11,29 @@ extends Node
 signal critical_hit
 
 func _ready() -> void:
+	var player = 0
 	# Connect the hurt signal on the hurtbox component to an anonymous function
 	# that removes health equal to the damage from the hitbox
+	if(get_parent().name == "Bob"):
+		player = get_parent()
+	
 	hurtbox_component.hurt.connect(func(hitbox_component: HitboxComponent, crit : bool):
-		stats_component.health -= hitbox_component.damage
 		if crit:
 			critical_hit.emit()
+		if player and player.parrying:
+			print(player.last_dir, hitbox_component.get_parent().position, player.position)
+			if player.last_dir.x > 0 and (hitbox_component.get_parent().position.x > player.position.x):
+				print("parry right")
+			elif player.last_dir.x < 0 and (hitbox_component.get_parent().position.x < player.position.x):
+				print("parry left")
+			elif player.last_dir.y > 0 and (hitbox_component.get_parent().position.y > player.position.y):
+				print("parry down")
+			elif player.last_dir.y < 0 and (hitbox_component.get_parent().position.y < player.position.y):
+				print("parry up")
+			else:
+				hitbox_component.get_parent().queue_free()
+				stats_component.health -= hitbox_component.damage
+		else:
+			hitbox_component.get_parent().queue_free()
+			stats_component.health -= hitbox_component.damage
 	)

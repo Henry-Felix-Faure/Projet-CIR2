@@ -3309,12 +3309,15 @@ _data = {
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_v0has")
+parry_lvl = 3
 MAX_SPEED = 0
 BASE_SPEED = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_gnar5")
 animation = &"parry_down_recovery"
+frame = 3
+frame_progress = 1.0
 
 [node name="SwordArea2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -3359,7 +3362,7 @@ hurtbox_component = NodePath("../HurtboxArea2D")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("15_pvxni")
-health = 200
+health = 6
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -3396,4 +3399,4 @@ script = ExtResource("25_28jht")
 script = ExtResource("26_qlor7")
 
 [connection signal="body_entered" from="SwordArea2D" to="." method="_on_sword_area_2d_body_entered"]
-[connection signal="no_health" from="StatsComponent" to="." method="_on_stats_component_no_health"]
+[connection signal="no_health" from="StatsComponent" to="FSM" method="_on_stats_component_no_health"]
