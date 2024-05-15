@@ -10,4 +10,6 @@ func _ready() -> void:
 	
 func call_function_with_player(body):
 	if(AttackSpeed.get_time_left() == 0):
-		ComponentFonctionToCallFrom.call_func(body)
+		if body != null:
+			ComponentFonctionToCallFrom.call_func(body)
+		return

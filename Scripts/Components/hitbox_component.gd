@@ -3,7 +3,7 @@ class_name HitboxComponent
 extends Area2D
 
 # Export the damage amount this hitbox deals
-@export var damage = 1.0
+@export var damage: int = 1
 @export var critical = true
 # Create a signal for when the hitbox hits a hurtbox
 signal hit_hurtbox(hurtbox)

@@ -21,7 +21,6 @@ func _ready() -> void:
 		if crit:
 			critical_hit.emit()
 		if player and player.parrying:
-			print(player.last_dir, hitbox_component.get_parent().position, player.position)
 			if player.last_dir.x > 0 and (hitbox_component.get_parent().position.x > player.position.x):
 				print("parry right")
 			elif player.last_dir.x < 0 and (hitbox_component.get_parent().position.x < player.position.x):
@@ -34,6 +33,7 @@ func _ready() -> void:
 				hitbox_component.get_parent().queue_free()
 				stats_component.health -= hitbox_component.damage
 		else:
-			hitbox_component.get_parent().queue_free()
+			if hitbox_component.get_parent().name == "BulletToPlayer":
+				hitbox_component.get_parent().queue_free()
 			stats_component.health -= hitbox_component.damage
 	)
