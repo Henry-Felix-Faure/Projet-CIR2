@@ -33,7 +33,19 @@ func Update(_delta:float):
 			bob.cursor_pos_from_player.x = bob.get_global_mouse_position().x - bob.position.x # compute the difference between cursor position and player position 
 			bob.cursor_pos_from_player.y = bob.get_global_mouse_position().y - bob.position.y
 			bob.cursor_pos_attack_array.append(bob.cursor_pos_from_player)
-		state_transition.emit(self, "ATK_1")
+		else:
+			if bob.input_vector != Vector2.ZERO:
+				if bob.input_vector.x > 0:
+					bob.last_dir_attack_array.append(Vector2(1, 0))
+				elif bob.input_vector.x < 0:
+					bob.last_dir_attack_array.append(Vector2(-1, 0))
+				elif bob.input_vector.y > 0:
+					bob.last_dir_attack_array.append(Vector2(0, 1))
+				elif bob.input_vector.y < 0:
+					bob.last_dir_attack_array.append(Vector2(0, -1))
+			else:
+				bob.last_dir_attack_array.append(Vector2(bob.last_dir.x, bob.last_dir.y))
+			state_transition.emit(self, "ATK_1")
 		
 	if Input.is_action_just_pressed("ui_dash"): # if space bar is pressed
 		state_transition.emit(self, "DASHING_INIT")

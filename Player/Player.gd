@@ -41,6 +41,7 @@ var cancel_dash_attack: bool = false
 @export var AIMING_MOUSE: bool # boolean variable to enable / disable aiming for attack with mouse instead of keyboard
 var cursor_pos_from_player: Vector2 # Vector2 to store the difference between cursor position and player position 
 var cursor_pos_attack_array: Array = [] # array of array for each 3 attacks of each 4 four directions (left and right are the same)
+var last_dir_attack_array: Array = [] # array of array for each 3 attacks of each 4 four directions (left and right are the same)
 
 func _ready():
 	pass
