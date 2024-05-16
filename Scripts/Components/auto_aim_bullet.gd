@@ -11,5 +11,6 @@ func call_func(body : Node2D) -> void:
 	var angle = v.angle()
 	bullet.set_layer(2)
 	bullet.rotation = angle
+	bullet.SPEED = 400
 	bullet.damage = ennemies_stats.DAMMAGE
 	

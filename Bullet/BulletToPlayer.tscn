@@ -54,7 +54,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 15.0
+"speed": 30.0
 }]
 
 [node name="BulletToPlayer" type="Area2D" node_paths=PackedStringArray("hitbox_component")]
@@ -78,4 +78,4 @@ shape = SubResource("RectangleShape2D_mf2ed")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vq1kl")
 autoplay = "default"
-frame_progress = 0.924966
+frame_progress = 0.826032

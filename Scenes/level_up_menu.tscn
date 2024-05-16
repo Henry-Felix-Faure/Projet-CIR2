@@ -77,7 +77,5 @@ script = ExtResource("2_ch84r")
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Choice1" to="." method="_on_choice_1_pressed"]
 [connection signal="toggled" from="PanelContainer/VBoxContainer/Choice1" to="." method="_on_choice_1_toggled"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Choice2" to="." method="_on_choice_1_pressed"]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/Choice2" to="." method="_on_choice_1_toggled"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Choice3" to="." method="_on_choice_1_pressed"]
-[connection signal="toggled" from="PanelContainer/VBoxContainer/Choice3" to="." method="_on_choice_1_toggled"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Choice2" to="." method="_on_choice_2_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Choice3" to="." method="_on_choice_3_pressed"]

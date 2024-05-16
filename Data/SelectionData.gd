@@ -11,27 +11,45 @@ var pathSpeed : Dictionary = {
 		"name": "On va vite ou quoi ?\n\n",
 		"desc": "SpeedBoost",
 		"call": Callable(self,"addSpeed"),
-		"value": 0.2
+		"value": 0.2,
 		},
 	1:{
 		"name" : "On va vite ou quoi ? 2\n\n",
 		"desc": "SpeedBoost",
 		"call": Callable(self,"addSpeed"),
-		"value": 0.2
+		"value": 0.2,
 	}}
 var dronePath : Dictionary = {
 	0: {
 		"name": "On va drone ou quoi ?\n\n",
 		"desc": "DroneBoost",
-		"call": Callable(self,"addSpeed"),
-		"value": 0.2
+		"call": Callable(self,"droneUpgrade"),
+		"value": 0
+		},
+	1: {
+		"name": "On va drone ou quoi ? 2\n\n",
+		"desc": "DroneBoost",
+		"call": Callable(self,"droneUpgrade"),
+		"value": 7
+		},
+	2: {
+		"name": "On va drone ou quoi ? 3\n\n",
+		"desc": "DroneBoost",
+		"call": Callable(self,"droneUpgrade"),
+		"value": 8
+		},
+	3: {
+		"name": "On va drone ou quoi ? 4\n\n",
+		"desc": "DroneBoost",
+		"call": Callable(self,"droneUpgrade"),
+		"value": 10
 		}
 }
 var atkUpPath : Dictionary = {
 	0: {
 		"name": "On va atkUp ou quoi ?\n\n",
 		"desc": "atkUP",
-		"call": Callable(self,"addSpeed"),
+		"call": Callable(self,"addAtk"),
 		"value": 0.2
 		}
 }
@@ -47,7 +65,6 @@ func _GetUpgrade() -> Array:
 	return allPath[indice]
 
 func addSpeed(speed : float):
-	print_debug("AAAAAH")
 	speedUp.emit(speed)
 
 func addAtk(atk : int):
