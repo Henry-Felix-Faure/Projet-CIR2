@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
-[ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
+[ext_resource type="PackedScene" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
 [ext_resource type="Texture2D" uid="uid://507o8cssabij" path="res://icon.svg" id="4_8d3p7"]
 [ext_resource type="PackedScene" uid="uid://dyl50b0s58fit" path="res://Ennemies/Ranged/sniper.tscn" id="5_y8sv3"]
 
