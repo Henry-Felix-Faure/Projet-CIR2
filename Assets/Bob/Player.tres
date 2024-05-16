@@ -1,8 +1,8 @@
 [gd_resource type="SpriteFrames" load_steps=241 format=3 uid="uid://d02qxufqagsab"]
 
-[ext_resource type="Texture2D" uid="uid://daditli8t4b0o" path="res://Assets/Bob/attack_down.png" id="1_mjtx0"]
+[ext_resource type="Texture2D" uid="uid://btw84h3atisra" path="res://Assets/Bob/attack_down.png" id="1_mjtx0"]
 [ext_resource type="Texture2D" uid="uid://c6s7ioewsnbkl" path="res://Assets/Bob/attack_right.png" id="2_re1cr"]
-[ext_resource type="Texture2D" uid="uid://esvninvmnkbt" path="res://Assets/Bob/attack_up.png" id="3_ur1eg"]
+[ext_resource type="Texture2D" uid="uid://b60mgyopbbg6h" path="res://Assets/Bob/attack_up.png" id="3_ur1eg"]
 [ext_resource type="Texture2D" uid="uid://deu60l1p16f5p" path="res://Assets/Bob/dash_down.png" id="4_yh01r"]
 [ext_resource type="Texture2D" uid="uid://ch31jbd1j6357" path="res://Assets/Bob/dash_right.png" id="5_5rw2a"]
 [ext_resource type="Texture2D" uid="uid://ddr4i58t543cs" path="res://Assets/Bob/dash_up.png" id="6_2iygf"]
@@ -13,9 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://kwnxoeyacodj" path="res://Assets/Bob/parry_right.png" id="11_34aex"]
 [ext_resource type="Texture2D" uid="uid://dio7fs81p6e7l" path="res://Assets/Bob/parry_down.png" id="11_vq8j2"]
 [ext_resource type="Texture2D" uid="uid://dpej5sjna18jr" path="res://Assets/Bob/parry_up.png" id="12_gknjn"]
-[ext_resource type="Texture2D" uid="uid://smu1smcdbp1f" path="res://Assets/Bob/run_down.png" id="13_fl52p"]
-[ext_resource type="Texture2D" uid="uid://0smr2cvx8hbe" path="res://Assets/Bob/run_right.png" id="14_3e2eg"]
-[ext_resource type="Texture2D" uid="uid://byueytqwkekkb" path="res://Assets/Bob/run_up.png" id="15_l47r2"]
+[ext_resource type="Texture2D" uid="uid://jucgtcmm08s4" path="res://Assets/Bob/run_down.png" id="13_fl52p"]
+[ext_resource type="Texture2D" uid="uid://b2rk51x3hrfm5" path="res://Assets/Bob/run_right.png" id="14_3e2eg"]
+[ext_resource type="Texture2D" uid="uid://dinqaf5m7pbwg" path="res://Assets/Bob/run_up.png" id="15_l47r2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j308d"]
 atlas = ExtResource("1_mjtx0")
