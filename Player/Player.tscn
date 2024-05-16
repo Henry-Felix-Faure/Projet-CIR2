@@ -1,16 +1,13 @@
-[gd_scene load_steps=251 format=3 uid="uid://bjvbi4ila7pej"]
+[gd_scene load_steps=250 format=3 uid="uid://bjvbi4ila7pej"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
-[ext_resource type="Material" uid="uid://cvkv1eul3ym5a" path="res://Shaders/Material_Gradient.tres" id="2_3a7g5"]
-[ext_resource type="Gradient" uid="uid://xb7hm4p32v7h" path="res://Shaders/Gradient.tres" id="2_8gf6p"]
-[ext_resource type="Texture2D" uid="uid://btw84h3atisra" path="res://Assets/Bob/attack_down.png" id="2_nf2kd"]
+[ext_resource type="Texture2D" uid="uid://daditli8t4b0o" path="res://Assets/Bob/attack_down.png" id="2_nf2kd"]
 [ext_resource type="Texture2D" uid="uid://c6s7ioewsnbkl" path="res://Assets/Bob/attack_right.png" id="2_pm0ku"]
 [ext_resource type="Texture2D" uid="uid://cpxye1b6qu2ck" path="res://Assets/Bob/idle_down_sync.png" id="2_q0uoo"]
 [ext_resource type="Texture2D" uid="uid://esvninvmnkbt" path="res://Assets/Bob/attack_up.png" id="3_m5x25"]
 [ext_resource type="Texture2D" uid="uid://dk2kmy2kfhb0i" path="res://Assets/Bob/idle_right.png" id="4_mm6v5"]
 [ext_resource type="Texture2D" uid="uid://smu1smcdbp1f" path="res://Assets/Bob/run_down.png" id="5_0wwnv"]
 [ext_resource type="Texture2D" uid="uid://deu60l1p16f5p" path="res://Assets/Bob/dash_down.png" id="5_f4qrk"]
-[ext_resource type="Shader" path="res://Shaders/Shield.gdshader" id="5_hg6cj"]
 [ext_resource type="Texture2D" uid="uid://ch31jbd1j6357" path="res://Assets/Bob/dash_right.png" id="5_ok7kw"]
 [ext_resource type="Texture2D" uid="uid://g00itgjibt6w" path="res://Assets/Bob/death.png" id="6_pe1mh"]
 [ext_resource type="Texture2D" uid="uid://cj4vv5rw13mr4" path="res://Assets/Bob/idle_up.png" id="6_s6a87"]
@@ -21,22 +18,6 @@
 [ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="13_xi33h"]
 [ext_resource type="Script" path="res://Scripts/Components/hurt_component.gd" id="14_pk2cn"]
 [ext_resource type="Script" path="res://Scripts/Components/stats_component.gd" id="15_pvxni"]
-[ext_resource type="Shader" path="res://Shaders/chromaticAberration.gdshader" id="19_2gj7p"]
-[ext_resource type="Script" path="res://Player/Line2D.gd" id="20_xp73p"]
-
-[sub_resource type="Environment" id="Environment_r88qo"]
-background_mode = 3
-glow_enabled = true
-glow_blend_mode = 1
-
-[sub_resource type="Curve" id="Curve_giq3o"]
-_data = [Vector2(0, 0.054945), 0.0, 0.0, 0, 0, Vector2(1, 0.175824), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hyyqc"]
-shader = ExtResource("5_hg6cj")
-shader_parameter/radius = null
-shader_parameter/player_pos = null
 [ext_resource type="Script" path="res://Player/States/FSM.gd" id="19_picpn"]
 [ext_resource type="Script" path="res://Player/States/MOVING.gd" id="20_svkj6"]
 [ext_resource type="Script" path="res://Player/States/DASHING_INIT.gd" id="21_dpayd"]
@@ -2919,7 +2900,7 @@ tracks/5/path = NodePath("../SwordArea2D/SwordCS2D_2:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.111111, 0.222222, 1),
+"times": PackedFloat32Array(0, 0.111111, 0.166667, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, false, true, true]
@@ -2931,10 +2912,10 @@ tracks/6/path = NodePath("../SwordArea2D/SwordCS2D_1:shape:radius")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.111111, 0.222222, 0.388889, 0.444444, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.111111, 0.222222, 0.277778, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [5.0, 5.0, 4.0, 4.0, 5.0, 5.0]
+"values": [5.0, 5.0, 4.0, 5.0, 5.0]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -2955,10 +2936,10 @@ tracks/8/path = NodePath("../SwordArea2D/SwordCS2D_1:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.111111, 0.222222, 0.388889, 0.444444, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.111111, 0.222222, 0.277778, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(5, 11), Vector2(5, 11), Vector2(-4, 10), Vector2(-4, 10), Vector2(5, 11), Vector2(5, 11)]
+"values": [Vector2(5, 11), Vector2(5, 11), Vector2(-4, 10), Vector2(5, 11), Vector2(5, 11)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -2967,10 +2948,10 @@ tracks/9/path = NodePath("../SwordArea2D/SwordCS2D_1:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.111111, 0.222222, 0.388889, 0.444444, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.111111, 0.222222, 0.277778, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [1.5708, 1.5708, 1.8326, 1.8326, 1.5708, 1.5708]
+"values": [1.5708, 1.5708, 1.8326, 1.5708, 1.5708]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -4409,26 +4390,8 @@ script = ExtResource("1_v0has")
 MAX_SPEED = 0
 BASE_SPEED = 0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_r88qo")
-
-[node name="Line2D" type="Line2D" parent="."]
-modulate = Color(3, 19, 12, 0.514)
-z_index = -1
-material = ExtResource("2_3a7g5")
-position = Vector2(0, 4)
-points = PackedVector2Array(-69, 4, -2, 0)
-width_curve = SubResource("Curve_giq3o")
-gradient = ExtResource("2_8gf6p")
-script = ExtResource("20_xp73p")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_hyyqc")
 sprite_frames = SubResource("SpriteFrames_628dk")
-animation = &"idle_right"
-
-[node name="SwordArea2D" type="Area2D" parent="."]
-collision_layer = 0
 animation = &"atk_down_2"
 
 [node name="SwordArea2D" type="Area2D" parent="."]
@@ -4504,11 +4467,5 @@ script = ExtResource("25_28jht")
 [node name="ATK_3" type="Node" parent="FSM"]
 script = ExtResource("26_qlor7")
 
-[node name="ShaderDash" type="Timer" parent="."]
-wait_time = 0.165
-one_shot = true
-autostart = true
-
 [connection signal="body_entered" from="SwordArea2D" to="." method="_on_sword_area_2d_body_entered"]
 [connection signal="no_health" from="StatsComponent" to="." method="_on_stats_component_no_health"]
-[connection signal="timeout" from="ShaderDash" to="Line2D" method="_on_shader_dash_timeout"]

@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dyl50b0s58fit"]
+[gd_scene load_steps=16 format=3 uid="uid://dyl50b0s58fit"]
 
 [ext_resource type="Script" path="res://Scripts/Components/auto_aim_bullet.gd" id="1_a0jix"]
 [ext_resource type="Script" path="res://Scripts/Components/move_towards_player_component.gd" id="1_dywhb"]
-[ext_resource type="Shader" path="res://Shaders/flash.gdshader" id="1_i8pwu"]
 [ext_resource type="Texture2D" uid="uid://dwukw42m0pkjh" path="res://Assets/placeholder_texture.png" id="1_mdtme"]
 [ext_resource type="PackedScene" uid="uid://dweermpoujjmq" path="res://Scenes/DetectPlayerAction.tscn" id="2_avl84"]
 [ext_resource type="Script" path="res://Scripts/Components/hurt_component.gd" id="2_yx3l4"]
@@ -12,11 +11,6 @@
 [ext_resource type="Script" path="res://Scripts/Components/stats_component.gd" id="6_hpw6f"]
 [ext_resource type="Script" path="res://Scripts/Components/spawn_component.gd" id="7_v65c7"]
 [ext_resource type="PackedScene" uid="uid://erwriagmkvtr" path="res://Bullet/BulletToPlayer.tscn" id="8_uq4xo"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h0026"]
-shader = ExtResource("1_i8pwu")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gch3x"]
 atlas = ExtResource("1_mdtme")
@@ -39,21 +33,13 @@ radius = 401.354
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7qpi"]
 radius = 5.6666
 
-[node name="Sniper" type="AnimatedSprite2D"]
-z_index = -1
-material = SubResource("ShaderMaterial_h0026")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 scale = Vector2(0.4, 0.425)
 sprite_frames = SubResource("SpriteFrames_gccps")
 script = ExtResource("1_dywhb")
 
-[node name="FlashTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-autostart = true
-
 [node name="DetectActionPlayer" parent="." node_paths=PackedStringArray("ComponentFonctionToCallFrom", "AttackSpeed") instance=ExtResource("2_avl84")]
 collision_layer = 0
-monitorable = false
 ComponentFonctionToCallFrom = NodePath("../AutoAimBullet")
 AttackSpeed = NodePath("../Timer")
 
@@ -91,7 +77,7 @@ SPEED = 50
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("6_hpw6f")
-health = 10
+health = 2
 
 [node name="SpawnComponent" type="Node2D" parent="."]
 script = ExtResource("7_v65c7")
@@ -100,7 +86,3 @@ scene = ExtResource("8_uq4xo")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.92
 one_shot = true
-
-[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
-[connection signal="timeout" from="FlashTimer" to="HurtComponent" method="_on_flash_timer_timeout"]
-[connection signal="hurted" from="HurtComponent" to="." method="_on_hurt_component_hurted"]
