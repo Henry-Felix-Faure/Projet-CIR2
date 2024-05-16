@@ -3,8 +3,10 @@ extends State
 @onready var bob: CharacterBody2D = $"../.."
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var MaLigne = $"../../Line2D"
 
 func Enter():
+	MaLigne.show()
 	if bob.input_vector == Vector2.ZERO: # if we were not moving, the last input will be the direction we are facing
 		bob.last_input_vector = bob.last_dir
 	else:
