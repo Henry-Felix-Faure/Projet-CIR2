@@ -1,8 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4c2ltf17oux3"]
+[gd_scene load_steps=15 format=3 uid="uid://c4c2ltf17oux3"]
 
 [ext_resource type="Script" path="res://enemy/CAC/mob_cac.gd" id="1_fexvh"]
 [ext_resource type="Texture2D" uid="uid://d01non825e02a" path="res://Assets/Foe/bloque_attaquer.png" id="2_sddgv"]
 [ext_resource type="Texture2D" uid="uid://dojhhcbru6yf5" path="res://Assets/Foe/bloque_avancer.png" id="3_rgvh6"]
+[ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="4_8u2dr"]
+[ext_resource type="Script" path="res://Scripts/Components/ennemies_stats_component.gd" id="5_wfks6"]
+[ext_resource type="Script" path="res://Scripts/Components/stats_component.gd" id="6_36v06"]
+[ext_resource type="Script" path="res://Scripts/Components/hurt_component.gd" id="7_hv5gp"]
+[ext_resource type="Script" path="res://Scripts/Components/destroyed_component.gd" id="8_vleux"]
+[ext_resource type="Script" path="res://Scripts/Components/spawn_component.gd" id="9_s563y"]
+[ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="10_oifl4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qqq8n"]
 size = Vector2(80, 80)
@@ -29,6 +36,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_kb2nh"]
 radius = 56.5685
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jj6v0"]
+size = Vector2(80, 80)
+
 [node name="Mob_cac" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_fexvh")
@@ -53,5 +63,34 @@ visibility_layer = 2
 shape = SubResource("CircleShape2D_kb2nh")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "stats_component", "destroy_effect_spawner_component")]
+script = ExtResource("8_vleux")
+actor = NodePath("..")
+stats_component = NodePath("../StatsComponent")
+destroy_effect_spawner_component = NodePath("../SpawnComponent")
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("6_36v06")
+health = 10
+
+[node name="EnnemiesStatsComponent" type="Node" parent="."]
+script = ExtResource("5_wfks6")
+DAMMAGE = 10
+
+[node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
+script = ExtResource("7_hv5gp")
+stats_component = NodePath("../StatsComponent")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+script = ExtResource("4_8u2dr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("RectangleShape2D_jj6v0")
+
+[node name="SpawnComponent" type="Node2D" parent="."]
+script = ExtResource("9_s563y")
+scene = ExtResource("10_oifl4")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
