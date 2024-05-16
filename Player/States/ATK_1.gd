@@ -3,6 +3,8 @@ extends State
 @onready var bob: CharacterBody2D = $"../.."
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var audio_atk_1: AudioStreamPlayer2D = $"../../audio_atk_1"
+
 
 func Enter():
 	if bob.cancel_dash_attack:
@@ -10,6 +12,7 @@ func Enter():
 		bob.collision_shape_2d.disabled = false # disabling the hitbox of the player
 	bob.cancel_dash_attack = false
 	bob.attack_left = 2 # we will perform 1 attack so we can still do 2 more
+	audio_atk_1.play()
 	next_animation_selector_attacking() # call the function to play the right animation
 	
 func Exit():

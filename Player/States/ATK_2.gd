@@ -3,8 +3,11 @@ extends State
 @onready var bob: CharacterBody2D = $"../.."
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var audio_atk_2: AudioStreamPlayer2D = $"../../audio_atk_2"
+
 
 func Enter():
+	audio_atk_2.play()
 	next_animation_selector_attacking() # call the function to play the right animation
 	
 func Exit():

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddr4i58t543cs"
-path="res://.godot/imported/dash_up.png-6865acf6198de3c5f655f4c1113d1e04.ctex"
+uid="uid://d3iaainsqj5wk"
+path="res://.godot/imported/attack.png-2c4b43aadd2448d740d4acc5fa3d0ae4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bob/dash_up.png"
-dest_files=["res://.godot/imported/dash_up.png-6865acf6198de3c5f655f4c1113d1e04.ctex"]
+source_file="res://Assets/Foe/Drone/attack.png"
+dest_files=["res://.godot/imported/attack.png-2c4b43aadd2448d740d4acc5fa3d0ae4.ctex"]
 
 [params]
 

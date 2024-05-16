@@ -4,9 +4,12 @@ extends State
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var MaLigne = $"../../Line2D"
+@onready var audio_dash: AudioStreamPlayer2D = $"../../audio_dash"
+
 
 func Enter():
 	MaLigne.show()
+	audio_dash.play()
 	if bob.input_vector == Vector2.ZERO: # if we were not moving, the last input will be the direction we are facing
 		bob.last_input_vector = bob.last_dir
 	else:

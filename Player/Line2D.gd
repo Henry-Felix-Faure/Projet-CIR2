@@ -11,7 +11,6 @@ var current_color = modulate
 
 func _ready():
 	top_level = true
-	print(current_color)
 	clear_points()
 	
 func _physics_process(delta):

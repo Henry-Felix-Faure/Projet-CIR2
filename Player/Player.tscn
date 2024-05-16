@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bjvbi4ila7pej"]
+[gd_scene load_steps=60 format=3 uid="uid://bjvbi4ila7pej"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
 [ext_resource type="SpriteFrames" uid="uid://d02qxufqagsab" path="res://Assets/Bob/Player.tres" id="2_gnar5"]
@@ -10,13 +10,19 @@
 [ext_resource type="Script" path="res://Scripts/Components/hurt_component.gd" id="14_pk2cn"]
 [ext_resource type="Script" path="res://Scripts/Components/stats_component.gd" id="15_pvxni"]
 [ext_resource type="Script" path="res://Player/States/FSM.gd" id="19_picpn"]
+[ext_resource type="AudioStream" uid="uid://qf6bcyohy7w3" path="res://Audio/Player_sound/dash_2.mp3" id="20_omn7n"]
 [ext_resource type="Script" path="res://Player/States/MOVING.gd" id="20_svkj6"]
 [ext_resource type="Script" path="res://Player/States/DASHING_INIT.gd" id="21_dpayd"]
+[ext_resource type="AudioStream" uid="uid://cctjhuxq3ce6x" path="res://Audio/Player_sound/parry.mp3" id="21_mu3y7"]
 [ext_resource type="Script" path="res://Player/States/DASHING_RECOVERY.gd" id="22_0ed03"]
+[ext_resource type="AudioStream" uid="uid://ddwgp11fwy77g" path="res://Audio/Player_sound/draw_sword.mp3" id="22_tik1o"]
 [ext_resource type="Script" path="res://Player/States/DYING.gd" id="23_7xgns"]
+[ext_resource type="AudioStream" uid="uid://dn8imuf13vo25" path="res://Audio/Player_sound/atk_1.wav" id="23_r1765"]
+[ext_resource type="AudioStream" uid="uid://b7kule2knt833" path="res://Audio/Player_sound/atk_2.wav" id="24_anb8k"]
 [ext_resource type="Script" path="res://Player/States/ATK_1.gd" id="24_bbxjp"]
 [ext_resource type="Script" path="res://Player/States/PARRYING.gd" id="24_j06pe"]
 [ext_resource type="Script" path="res://Player/States/ATK_2.gd" id="25_28jht"]
+[ext_resource type="AudioStream" uid="uid://dkt3a2o4g7ab3" path="res://Audio/Player_sound/atk_3.wav" id="25_mwnb7"]
 [ext_resource type="Script" path="res://Player/States/PARRYING_RECOVERY.gd" id="25_qo5e8"]
 [ext_resource type="Script" path="res://Player/States/ATK_3.gd" id="26_qlor7"]
 
@@ -3421,6 +3427,25 @@ script = ExtResource("26_qlor7")
 wait_time = 0.04
 one_shot = true
 autostart = true
+
+[node name="audio_dash" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -2)
+stream = ExtResource("20_omn7n")
+
+[node name="audio_parry" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_mu3y7")
+
+[node name="audio_draw_sword" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_tik1o")
+
+[node name="audio_atk_1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_r1765")
+
+[node name="audio_atk_2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_anb8k")
+
+[node name="audio_atk_3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("25_mwnb7")
 
 [connection signal="body_entered" from="SwordArea2D" to="." method="_on_sword_area_2d_body_entered"]
 [connection signal="no_health" from="StatsComponent" to="FSM" method="_on_stats_component_no_health"]

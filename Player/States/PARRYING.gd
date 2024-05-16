@@ -3,6 +3,7 @@ extends State
 @onready var bob: CharacterBody2D = $"../.."
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var audio_draw_sword: AudioStreamPlayer2D = $"../../audio_draw_sword"
 
 func Enter():
 	bob.parrying = true
@@ -10,6 +11,7 @@ func Enter():
 		bob.hurtbox_area_2d.is_invincible = false # disabling the hurtbox of the player
 		bob.collision_shape_2d.disabled = false # disabling the hitbox of the player
 	bob.cancel_dash_parry = false
+	audio_draw_sword.play()
 	next_animation_selector_parrying()
 	
 func Exit():
