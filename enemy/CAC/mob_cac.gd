@@ -8,7 +8,7 @@ const expScene = preload("res://experience/experience.tscn")
 
 @onready var range: Area2D = $range
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var player = get_node("/root/World/Bob")
+@onready var player = get_node("/root/World/player")
 @onready var wait_timer: Timer = $Timer
 var wait : bool = false
 var in_area : bool = false
