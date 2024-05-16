@@ -9,5 +9,7 @@ func call_func(body : Node2D) -> void:
 	var r = bullet.rotation
 	var v = player_pos - bullet.global_position
 	var angle = v.angle()
+	bullet.set_layer(2)
 	bullet.rotation = angle
+	bullet.damage = ennemies_stats.DAMMAGE
 	
