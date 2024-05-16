@@ -6,9 +6,6 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var hurtbox_area_2d: HurtboxComponent = $HurtboxArea2D
 @onready var stats_component: StatsComponent = $StatsComponent
-@export var ghost_node : PackedScene
-@onready var ghost_timer = $GhostTimer
-
 
 # initial variables for moving and animations
 @export var MAX_SPEED: int = 100
@@ -47,10 +44,6 @@ func wait(seconds: float) -> void: # custom wait function
 func _ready():
 	pass
 
-func add_ghost():
-	var ghost = ghost_node.instantiate()
-	ghost.set_property(position,$AnimatedSprite2D.scale)
-	get_tree().current_scene.add_child(ghost)
 
 
 func next_animation_selector_moving(): # function to decide which running animations we want to play
@@ -320,8 +313,7 @@ func next_animation_selector_dashing_recovery():
 		animated_sprite_2d.flip_h = false # facing right
 		#animation_player.play("dash_right_recovery_tempo")
 
-func dash_recovery_state(delta):	
-	
+func dash_recovery_state(delta):
 	next_animation_selector_dashing_recovery() # calling the function to select the right dashing recovery animations
 	
 	# the player is moving without any input towards the direction saved by the last_input_vector variable
@@ -343,23 +335,4 @@ func death_state(): # function that handle the death state
 
 func _on_stats_component_no_health() -> void: # if the heatlh of the player drop to or below 0
 	state = DYING # changing the state to DYING
-
-func _on_ghost_timer_timeout():
-	var this_ghost = preload("res://Player/Ghost.tscn").instance()
-	add_child(this_ghost)
-	this_ghost.position = position
-
-	# Récupérer l'instance de SpriteFrames à partir de l'AnimatedSprite2D
-	var sprite_frames = $AnimatedSprite2D.get_sprite_frames()
-	
-	# Vérifier si l'instance de SpriteFrames existe
-	if sprite_frames:
-		# Utiliser la méthode get_frame pour obtenir le cadre actuel de l'animation
-		var frame = sprite_frames.get_frame($AnimatedSprite2D.animation, $AnimatedSprite2D.frame)
-		
-		# Appliquer le cadre à la texture du fantôme
-		this_ghost.texture = frame
-	else:
-		print("SpriteFrames non défini pour AnimatedSprite2D.")
-
 

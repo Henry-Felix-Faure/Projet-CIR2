@@ -39,4 +39,4 @@ func _on_flash_timer_timeout():
 		sprite.material.set_shader_parameter("flash_modifier",0)
 
 func _on_hurt_component_hurted():
-	print("aa")
+	flash()

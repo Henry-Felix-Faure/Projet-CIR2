@@ -58,6 +58,7 @@ animations = [{
 }]
 
 [node name="BulletToPlayer" type="Area2D"]
+collision_layer = 0
 script = ExtResource("1_2dn22")
 SPEED = 100
 
