@@ -12,8 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="9_qvhfe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_11v6f"]
-radius = 9.0
-height = 32.0
+radius = 6.0
+height = 26.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i5bys"]
 atlas = ExtResource("1_vlckk")
@@ -109,8 +109,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6bc6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5bys")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 10.0
 }, {
@@ -144,7 +147,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5tscf"]
@@ -160,22 +163,24 @@ script = ExtResource("1_ep12o")
 stats = NodePath("EnnemiesStatsComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 4)
+position = Vector2(-2, 3)
 shape = SubResource("CapsuleShape2D_11v6f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_6f620")
-animation = &"attack"
-frame = 4
-frame_progress = 0.460071
+animation = &"move"
 metadata/_edit_lock_ = true
 
 [node name="range" type="Area2D" parent="."]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="range"]
+[node name="DetectionR" type="CollisionShape2D" parent="range"]
 position = Vector2(11, 3)
+shape = SubResource("CapsuleShape2D_5tscf")
+
+[node name="DetectionL" type="CollisionShape2D" parent="range"]
+position = Vector2(-13, 3)
 shape = SubResource("CapsuleShape2D_5tscf")
 
 [node name="Timer" type="Timer" parent="."]

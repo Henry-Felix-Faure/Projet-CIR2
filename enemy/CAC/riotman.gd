@@ -29,14 +29,14 @@ func attack() -> void:
 func _physics_process(delta):
 	if(!wait):
 		animated_sprite_2d.play("move")
-	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * speed * delta 
-	move_and_collide(velocity)
-	
-	if direction.x < 0:
-		animated_sprite_2d.flip_h = true
-	else:
-		animated_sprite_2d.flip_h = false
+		var direction = global_position.direction_to(player.global_position)
+		velocity = direction * speed * delta 
+		move_and_collide(velocity)
+		
+		if direction.x < 0:
+			animated_sprite_2d.flip_h = true
+		else:
+			animated_sprite_2d.flip_h = false
 
 func _on_range_body_entered(body):
 	attack()

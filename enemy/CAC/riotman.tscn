@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://enemy/CAC/riotman.gd" id="1_r0p4n"]
 [ext_resource type="Texture2D" uid="uid://cpbfgsthfn6tx" path="res://Assets/Foe/riotman/shieldman_attack.png" id="1_vkffm"]
 [ext_resource type="Texture2D" uid="uid://bjvda2bwghagw" path="res://Assets/Foe/riotman/shieldman_death.png" id="2_scd5i"]
-[ext_resource type="Texture2D" uid="uid://cqaxgh3cdepm4" path="res://Assets/Foe/riotman/shieldman_walk.png" id="3_dg60w"]
 [ext_resource type="Texture2D" uid="uid://n2gxgjfrgi3j" path="res://Assets/Foe/riotman/shieldman_tank.png" id="4_0ipm4"]
+[ext_resource type="Texture2D" uid="uid://cn3udte8jokpq" path="res://Assets/Foe/riotman/shieldman_walk2.png" id="4_uekus"]
 [ext_resource type="Script" path="res://Scripts/Components/hurt_component.gd" id="5_760fy"]
 [ext_resource type="Script" path="res://Scripts/Components/ennemies_stats_component.gd" id="6_nu5oj"]
 [ext_resource type="Script" path="res://Scripts/Components/destroyed_component.gd" id="7_w6k2p"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="11_n7cko"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8wskj"]
+radius = 6.0
+height = 24.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ajhk"]
 atlas = ExtResource("1_vkffm")
@@ -75,28 +77,28 @@ region = Rect2(384, 0, 64, 64)
 atlas = ExtResource("2_scd5i")
 region = Rect2(448, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lrpjb"]
-atlas = ExtResource("3_dg60w")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcv1w"]
+atlas = ExtResource("4_uekus")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ndhb2"]
-atlas = ExtResource("3_dg60w")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fslou"]
+atlas = ExtResource("4_uekus")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6sxhi"]
-atlas = ExtResource("3_dg60w")
+[sub_resource type="AtlasTexture" id="AtlasTexture_urqlm"]
+atlas = ExtResource("4_uekus")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_boxnt"]
-atlas = ExtResource("3_dg60w")
+[sub_resource type="AtlasTexture" id="AtlasTexture_omml4"]
+atlas = ExtResource("4_uekus")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_quw46"]
-atlas = ExtResource("3_dg60w")
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4jrs"]
+atlas = ExtResource("4_uekus")
 region = Rect2(256, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fjb1i"]
-atlas = ExtResource("3_dg60w")
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxu0p"]
+atlas = ExtResource("4_uekus")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y5fyx"]
@@ -147,7 +149,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yth21")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 7.0
 }, {
@@ -182,26 +184,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lrpjb")
+"texture": SubResource("AtlasTexture_rcv1w")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ndhb2")
+"texture": SubResource("AtlasTexture_fslou")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6sxhi")
+"texture": SubResource("AtlasTexture_urqlm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_boxnt")
+"texture": SubResource("AtlasTexture_omml4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_quw46")
+"texture": SubResource("AtlasTexture_x4jrs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fjb1i")
+"texture": SubResource("AtlasTexture_sxu0p")
 }],
 "loop": true,
 "name": &"move",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -235,24 +237,34 @@ height = 44.0
 height = 32.0
 
 [node name="riotman" type="CharacterBody2D" node_paths=PackedStringArray("stats")]
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_r0p4n")
 stats = NodePath("EnnemiesStatsComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_8wskj")
+debug_color = Color(0.946129, 5.48691e-06, 0.589246, 0.42)
+metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_3eb8t")
-animation = &"move"
+animation = &"attack"
+frame = 6
+frame_progress = 1.0
 
 [node name="range" type="Area2D" parent="."]
 collision_mask = 2
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="range"]
 position = Vector2(3, 0)
+shape = SubResource("CapsuleShape2D_dg4rr")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="range"]
+position = Vector2(-3, 0)
 shape = SubResource("CapsuleShape2D_dg4rr")
 
 [node name="Timer" type="Timer" parent="."]
@@ -277,10 +289,12 @@ health = 10
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 script = ExtResource("9_2re8q")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_qstt1")
+metadata/_edit_lock_ = true
 
 [node name="SpawnComponent" type="Node2D" parent="."]
 script = ExtResource("10_suepq")
