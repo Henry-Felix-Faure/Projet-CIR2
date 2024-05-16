@@ -57,10 +57,9 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="BulletToPlayer" type="Area2D" node_paths=PackedStringArray("hitbox_component")]
+[node name="BulletToPlayer" type="Area2D"]
 script = ExtResource("1_2dn22")
 SPEED = 100
-hitbox_component = NodePath("HitboxComponent")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1, 0)
