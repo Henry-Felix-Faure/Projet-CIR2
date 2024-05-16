@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=4 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="PackedScene" uid="uid://dyl50b0s58fit" path="res://Ennemies/Ranged/sniper.tscn" id="3_7ilbe"]
 [ext_resource type="Texture2D" uid="uid://507o8cssabij" path="res://icon.svg" id="4_8d3p7"]
-[ext_resource type="PackedScene" uid="uid://erwriagmkvtr" path="res://Bullet/BulletToPlayer.tscn" id="4_shped"]
 
 [node name="World" type="Node2D"]
 
@@ -33,6 +32,3 @@ texture = ExtResource("4_8d3p7")
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("3_7ilbe")]
 visible = false
 position = Vector2(328, 149)
-
-[node name="BulletToPlayer" parent="." instance=ExtResource("4_shped")]
-position = Vector2(-76, 124)
