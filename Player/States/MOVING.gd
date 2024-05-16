@@ -6,12 +6,11 @@ extends State
 
 func Enter():
 	bob.BASE_SPEED = 100
-	pass
 	
 func Exit():
 	pass
 	
-func Update(_delta:float):
+func Update(_delta:float):	
 	bob.input_vector = Vector2.ZERO # resetting the input vector
 	bob.input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") # setting the direction for the next move by checking which key is pressed (left or right, or both (not moving))
 	bob.input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up") # setting the direction for the next move by checking which key is pressed (top or bottom, or both (not moving))
@@ -33,7 +32,19 @@ func Update(_delta:float):
 			bob.cursor_pos_from_player.x = bob.get_global_mouse_position().x - bob.position.x # compute the difference between cursor position and player position 
 			bob.cursor_pos_from_player.y = bob.get_global_mouse_position().y - bob.position.y
 			bob.cursor_pos_attack_array.append(bob.cursor_pos_from_player)
-		state_transition.emit(self, "ATK_1")
+		else:
+			if bob.input_vector != Vector2.ZERO:
+				if bob.input_vector.x > 0:
+					bob.last_dir_attack_array.append(Vector2(1, 0))
+				elif bob.input_vector.x < 0:
+					bob.last_dir_attack_array.append(Vector2(-1, 0))
+				elif bob.input_vector.y > 0:
+					bob.last_dir_attack_array.append(Vector2(0, 1))
+				elif bob.input_vector.y < 0:
+					bob.last_dir_attack_array.append(Vector2(0, -1))
+			else:
+				bob.last_dir_attack_array.append(Vector2(bob.last_dir.x, bob.last_dir.y))
+			state_transition.emit(self, "ATK_1")
 		
 	if Input.is_action_just_pressed("ui_dash"): # if space bar is pressed
 		state_transition.emit(self, "DASHING_INIT")
@@ -41,6 +52,9 @@ func Update(_delta:float):
 	if Input.is_action_just_pressed("ui_kill_debug"): # if F2 is pressed / debug tool
 		bob.stats_component.health = 0
 		state_transition.emit(self, "DYING")
+	
+	if Input.is_action_just_pressed("ui_parry"): # if F2 is pressed / debug tool
+		state_transition.emit(self, "PARRYING")
 
 
 func next_animation_selector_moving(): # function to decide which running animations we want to play
