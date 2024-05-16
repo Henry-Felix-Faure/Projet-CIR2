@@ -25,6 +25,6 @@ func player_detected(body : Node2D):
 		timer.start()
 		await timer.timeout
 	
-func player_exited(_body : Node2D):
+func player_exited(body : Node2D):
 	await timer.timeout
 	found = false
