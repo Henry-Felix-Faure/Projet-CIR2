@@ -1,29 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
-[ext_resource type="Texture2D" uid="uid://507o8cssabij" path="res://icon.svg" id="4_8d3p7"]
+[ext_resource type="PackedScene" uid="uid://dyl50b0s58fit" path="res://Ennemies/Ranged/sniper.tscn" id="2_ehke8"]
 
 [node name="World" type="Node2D"]
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
-position = Vector2(101, 112)
+self_modulate = Color(2, 2, 2, 1)
+position = Vector2(131, 112)
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(474, 134)
-scale = Vector2(0.109375, 2.09375)
-texture = ExtResource("4_8d3p7")
-
-[node name="Icon2" type="Sprite2D" parent="."]
-position = Vector2(4, 133)
-scale = Vector2(0.109375, 2.09375)
-texture = ExtResource("4_8d3p7")
-
-[node name="Icon3" type="Sprite2D" parent="."]
-position = Vector2(238.154, 6.9297)
-scale = Vector2(3.73196, 0.0948484)
-texture = ExtResource("4_8d3p7")
-
-[node name="Icon4" type="Sprite2D" parent="."]
-position = Vector2(240, 263)
-scale = Vector2(3.73196, 0.0948484)
-texture = ExtResource("4_8d3p7")
+[node name="AnimatedSprite2D" parent="." instance=ExtResource("2_ehke8")]
+position = Vector2(385, 137)
