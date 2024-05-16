@@ -16,6 +16,7 @@ func Enter():
 	
 func Exit():
 	bob.parrying = false
+	bob.explosion_particles.emitting = false
 	
 func Update(_delta:float):
 	pass
