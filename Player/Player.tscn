@@ -4437,7 +4437,7 @@ hurtbox_component = NodePath("../HurtboxArea2D")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("15_pvxni")
-health = 200
+health = 10
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

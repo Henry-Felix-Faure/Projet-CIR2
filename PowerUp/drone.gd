@@ -4,8 +4,6 @@ extends AnimatedSprite2D
 @onready var muzzle: Marker2D = $Muzzle
 @onready var spawn_component: SpawnComponent = $SpawnComponent
 @onready var atks: Timer = $Timer
-@export var dammage: int = 5
-@export var bullet_speed : int = 200
 
 func _ready() -> void: 
 	atks.wait_time = 2
@@ -34,7 +32,6 @@ func shoot(ennemie) -> void :
 	var bullet : Node2D = spawn_component.spawn(muzzle.global_position)
 	var v = ennemie_pos - bullet.global_position
 	var angle = v.angle()
-	bullet.set_layer(1)
 	bullet.rotation = angle
-	bullet.SPEED = bullet_speed
-	bullet.damage = dammage
+	print_debug("CACA")
+	bullet.damage = 10

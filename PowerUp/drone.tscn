@@ -21,7 +21,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6wddo"]
-radius = 1589.85
+radius = 699.731
 
 [node name="Drone" type="AnimatedSprite2D"]
 position = Vector2(-1.19209e-07, 0)
@@ -29,7 +29,6 @@ scale = Vector2(0.0686157, 0.0625)
 sprite_frames = SubResource("SpriteFrames_pf7ir")
 offset = Vector2(300, 0)
 script = ExtResource("1_j08d6")
-bullet_speed = 300
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(378.922, 16)
