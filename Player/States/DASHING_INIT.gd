@@ -22,10 +22,10 @@ func Enter():
 func Exit():
 	pass
 	
-func Update(_delta:float):
+func Update(delta:float):
 	bob.velocity = bob.last_input_vector * bob.DASH_SPEED # updating velocity while taking the parameters in consideration (MAX_SPEED)
 	
-	bob.move_and_collide(bob.velocity * _delta) # moving the character based on the velocity
+	bob.move_and_collide(bob.velocity * delta) # moving the character based on the velocity
 
 	if Input.is_action_just_pressed("ui_attack"): # if left click is pressed
 		if bob.AIMING_MOUSE:

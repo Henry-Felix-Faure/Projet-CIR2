@@ -3322,6 +3322,7 @@ _data = {
 
 [node name="Bob" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_v0has")
 parry_lvl = 3
