@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgc6d2rg78tek"
-path="res://.godot/imported/near-buildings.png-ed06064d02287a6686dc8789e3662f7c.ctex"
+uid="uid://cdyt7larvv8r6"
+path="res://.godot/imported/Button-option.png-1d53330af388bef41cd250b2215b2f35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu/near-buildings.png"
-dest_files=["res://.godot/imported/near-buildings.png-ed06064d02287a6686dc8789e3662f7c.ctex"]
+source_file="res://Assets/Menu/UI/Button-option.png"
+dest_files=["res://.godot/imported/Button-option.png-1d53330af388bef41cd250b2215b2f35.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doo6vc6rb8rvv"
-path="res://.godot/imported/Control.png-e9b4dc14225054b184050f419fd5c7eb.ctex"
+uid="uid://b3gfmim1rbdkv"
+path="res://.godot/imported/far-buildings.png-8db703d42822d496255e7f813a08ad69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu/MenuOption/Control.png"
-dest_files=["res://.godot/imported/Control.png-e9b4dc14225054b184050f419fd5c7eb.ctex"]
+source_file="res://Assets/Menu/Background/far-buildings.png"
+dest_files=["res://.godot/imported/far-buildings.png-8db703d42822d496255e7f813a08ad69.ctex"]
 
 [params]
 

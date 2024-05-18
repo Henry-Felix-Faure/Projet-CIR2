@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b240a7o38ytat"
-path="res://.godot/imported/Board of Directors W00 Book.ttf-c6b932d38850be60f972d757b8b771d4.fontdata"
+path="res://.godot/imported/Board of Directors W00 Book.ttf-078ab4fecc04fc56efdbe9247602b5a9.fontdata"
 
 [deps]
 
-source_file="res://Menu/Board of Directors W00 Book.ttf"
-dest_files=["res://.godot/imported/Board of Directors W00 Book.ttf-c6b932d38850be60f972d757b8b771d4.fontdata"]
+source_file="res://Assets/Font/Board of Directors W00 Book.ttf"
+dest_files=["res://.godot/imported/Board of Directors W00 Book.ttf-078ab4fecc04fc56efdbe9247602b5a9.fontdata"]
 
 [params]
 
