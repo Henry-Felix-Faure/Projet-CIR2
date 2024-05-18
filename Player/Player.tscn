@@ -1,10 +1,12 @@
-[gd_scene load_steps=60 format=3 uid="uid://bjvbi4ila7pej"]
+[gd_scene load_steps=62 format=3 uid="uid://bjvbi4ila7pej"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
 [ext_resource type="SpriteFrames" uid="uid://d02qxufqagsab" path="res://Assets/Bob/Player.tres" id="2_gnar5"]
 [ext_resource type="Curve" uid="uid://cu8njceyrhh4r" path="res://Shaders/Line_Curve.tres" id="2_hf2qm"]
 [ext_resource type="Gradient" uid="uid://xb7hm4p32v7h" path="res://Shaders/Gradient.tres" id="3_vra5h"]
 [ext_resource type="Script" path="res://Player/Line2D.gd" id="4_arnim"]
+[ext_resource type="PackedScene" uid="uid://c3bv63xl4hetp" path="res://Shaders/explosion_particules.tscn" id="6_eoso3"]
+[ext_resource type="Script" path="res://Player/Camera2D.gd" id="10_f7jln"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="12_6rljm"]
 [ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="13_xi33h"]
 [ext_resource type="Script" path="res://Scripts/Components/hurt_component.gd" id="14_pk2cn"]
@@ -13,9 +15,9 @@
 [ext_resource type="AudioStream" uid="uid://qf6bcyohy7w3" path="res://Audio/Player_sound/dash_2.mp3" id="20_omn7n"]
 [ext_resource type="Script" path="res://Player/States/MOVING.gd" id="20_svkj6"]
 [ext_resource type="Script" path="res://Player/States/DASHING_INIT.gd" id="21_dpayd"]
-[ext_resource type="AudioStream" uid="uid://cctjhuxq3ce6x" path="res://Audio/Player_sound/parry.mp3" id="21_mu3y7"]
 [ext_resource type="Script" path="res://Player/States/DASHING_RECOVERY.gd" id="22_0ed03"]
 [ext_resource type="AudioStream" uid="uid://ddwgp11fwy77g" path="res://Audio/Player_sound/draw_sword.mp3" id="22_tik1o"]
+[ext_resource type="AudioStream" uid="uid://cctjhuxq3ce6x" path="res://Audio/Player_sound/parry.mp3" id="23_3puad"]
 [ext_resource type="Script" path="res://Player/States/DYING.gd" id="23_7xgns"]
 [ext_resource type="AudioStream" uid="uid://dn8imuf13vo25" path="res://Audio/Player_sound/atk_1.wav" id="23_r1765"]
 [ext_resource type="AudioStream" uid="uid://b7kule2knt833" path="res://Audio/Player_sound/atk_2.wav" id="24_anb8k"]
@@ -3322,6 +3324,7 @@ _data = {
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_v0has")
+parry_lvl = 3
 MAX_SPEED = 0
 BASE_SPEED = 0
 
@@ -3330,23 +3333,30 @@ environment = SubResource("Environment_mf3nm")
 
 [node name="Line2D" type="Line2D" parent="."]
 modulate = Color(6, 5, 5, 1)
-z_index = -1
 points = PackedVector2Array(-44, 13, 0, 2)
 width_curve = ExtResource("2_hf2qm")
 gradient = ExtResource("3_vra5h")
 script = ExtResource("4_arnim")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = ExtResource("2_gnar5")
-animation = &"parry_down_recovery"
-frame = 3
-frame_progress = 1.0
+animation = &"idle_down"
+
+[node name="CPUParticles2D" parent="." instance=ExtResource("6_eoso3")]
+z_index = 1
+emitting = false
+amount = 30
+spread = 80.0
+scale_amount_max = 5.0
 
 [node name="SwordArea2D" type="Area2D" parent="."]
+z_index = 1
 collision_layer = 2
 script = ExtResource("12_6rljm")
 
 [node name="SwordCS2D_1" type="CollisionShape2D" parent="SwordArea2D"]
+z_index = 1
 position = Vector2(5, 11)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6sj5t")
@@ -3354,6 +3364,7 @@ disabled = true
 debug_color = Color(0.929412, 0.145098, 0.0392157, 0.419608)
 
 [node name="SwordCS2D_2" type="CollisionShape2D" parent="SwordArea2D"]
+z_index = 1
 position = Vector2(14, 2)
 rotation = -0.872665
 shape = SubResource("CapsuleShape2D_trm8p")
@@ -3361,14 +3372,17 @@ disabled = true
 debug_color = Color(0.929412, 0.145098, 0.0392157, 0.419608)
 
 [node name="HurtboxArea2D" type="Area2D" parent="."]
+z_index = 1
 collision_layer = 2
 script = ExtResource("13_xi33h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxArea2D"]
+z_index = 1
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_5xygp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_5xygp")
 
@@ -3389,7 +3403,8 @@ health = 10
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
-position_smoothing_speed = 2.0
+position_smoothing_speed = 4.0
+script = ExtResource("10_f7jln")
 
 [node name="FSM" type="Node" parent="." node_paths=PackedStringArray("initial_state", "animated_sprite2D")]
 script = ExtResource("19_picpn")
@@ -3428,12 +3443,14 @@ wait_time = 0.04
 one_shot = true
 autostart = true
 
+[node name="ShakeTimer" type="Timer" parent="."]
+
 [node name="audio_dash" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, -2)
 stream = ExtResource("20_omn7n")
 
 [node name="audio_parry" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("21_mu3y7")
+stream = ExtResource("23_3puad")
 
 [node name="audio_draw_sword" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("22_tik1o")
@@ -3450,3 +3467,4 @@ stream = ExtResource("25_mwnb7")
 [connection signal="body_entered" from="SwordArea2D" to="." method="_on_sword_area_2d_body_entered"]
 [connection signal="no_health" from="StatsComponent" to="FSM" method="_on_stats_component_no_health"]
 [connection signal="timeout" from="ShaderDash" to="Line2D" method="_on_shader_dash_timeout"]
+[connection signal="timeout" from="ShakeTimer" to="Camera2D" method="_on_timer_timeout"]

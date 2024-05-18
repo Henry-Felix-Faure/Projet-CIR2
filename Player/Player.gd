@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var hurtbox_area_2d: HurtboxComponent = $HurtboxArea2D
 @onready var stats_component: StatsComponent = $StatsComponent
 @onready var sword_area_2d: HitboxComponent = $SwordArea2D
+@onready var explosion_particles: CPUParticles2D = $CPUParticles2D
 
 # importing initial stats variables
 @onready var health: int = stats_component.health
