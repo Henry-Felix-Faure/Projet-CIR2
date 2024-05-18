@@ -38,6 +38,7 @@ var attacks_array: Array = [
 	["atk_up_1", "atk_up_2", "atk_up_3"]
 ] # array of array for each 3 attacks of each 4 four directions (left and right are the same)
 var cancel_dash_attack: bool = false
+var dashing: bool = false
 
 # aiming with mouse
 @export var AIMING_MOUSE: bool # boolean variable to enable / disable aiming for attack with mouse instead of keyboard

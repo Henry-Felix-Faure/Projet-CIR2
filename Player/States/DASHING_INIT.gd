@@ -14,9 +14,7 @@ func Enter():
 		bob.last_input_vector = bob.last_dir
 	else:
 		bob.last_input_vector = bob.input_vector # if we were moving, the last input will be the current input
-	
-	bob.hurtbox_area_2d.is_invincible = true # disabling the hurtbox of the player
-	bob.collision_shape_2d.disabled = true # disabling the hitbox of the player
+	bob.dashing = true
 	next_animation_selector_dashing_init() # calling the function to select the right dashing init animations
 	
 func Exit():

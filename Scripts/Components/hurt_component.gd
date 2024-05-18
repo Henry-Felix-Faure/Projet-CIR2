@@ -37,6 +37,8 @@ func _ready() -> void:
 				stats_component.health -= hitbox_component.damage
 				if hitbox_component.get_parent().name == "BulletToPlayer":
 					hitbox_component.get_parent().queue_free()
+		if player and player.dashing:
+			pass
 		else:
 			stats_component.health -= hitbox_component.damage
 			if hitbox_component.get_parent().name == "BulletToPlayer":
