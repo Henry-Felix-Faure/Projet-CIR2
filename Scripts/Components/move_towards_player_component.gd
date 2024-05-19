@@ -7,6 +7,7 @@ extends AnimatedSprite2D
 
 var found : bool = false
 
+#debug
 func _ready() -> void:
 	detect_action_player.body_entered.connect(player_detected)
 	detect_action_player.body_exited.connect(player_exited)

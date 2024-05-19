@@ -13,7 +13,6 @@ var choice3 : Array
 
 func _ready() -> void:
 	hide()
-	_on_lvl_up()
 	
 func _on_lvl_up():
 	choice1 = level_up_tree._GetUpgrade()
