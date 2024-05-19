@@ -13,7 +13,7 @@ var d_2 : bool = false
 @export var dash_cd : float = 2
 @export var parry_cd : float = 1.5
 @export var atk_speed : float = 1
-@export var parry_duration : float = 1
+@export var parry_lvl : float = 1
 @export var dmg : int = 1
 @export var crit : float = 0
 @export var damage_crit : float = 1.20
@@ -34,12 +34,39 @@ func _ready() -> void:
 		level_up_tree.speedUp.connect(up_speed)
 		level_up_tree.droneUp.connect(up_drone)
 		level_up_tree.atkUp.connect(up_atk)
+		level_up_tree.up_dash_speed.connect(up_dash_speed)
+		level_up_tree.up_dash_cd.connect(up_dash_cd)
+		level_up_tree.up_parry_cd.connect(up_parry_cd)
+		level_up_tree.up_atk_speed.connect(up_atk_speed)
+		level_up_tree.up_parry_lvl.connect(up_parry_lvl)
+		level_up_tree.up_crit.connect(up_crit)
+		level_up_tree.up_damage_crit.connect(up_damage_crit)
+		level_up_tree.up_health.connect(up_health)
+		
 
 func up_speed(speed):
 	speed_up += speed
 	
 func up_atk(atk):
 	dmg += atk
+	
+func up_dash_speed(up):
+	dash_speed += up
+func up_dash_cd(up):
+	dash_cd -= up
+func up_parry_cd(up):
+	parry_cd -= up
+func up_atk_speed(up):
+	atk_speed += up
+func up_parry_lvl(): 
+	parry_lvl +=1
+func up_crit(up):
+	crit += up
+func up_damage_crit(up):
+	damage_crit += up
+func up_health(up):
+	health += up
+	
 func up_drone(indice):
 	match indice:
 		0:	
