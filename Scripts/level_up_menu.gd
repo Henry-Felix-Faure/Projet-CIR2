@@ -29,6 +29,7 @@ func _on_lvl_up():
 		var item = choice[0][choice[1]]
 		button.text = item["name"]
 		button.get_child(0).text = item["desc"]
+		button.get_child(0).resize()
 		button.get_child(1).texture = item["icon"]
 	get_tree().paused = true
 	show()

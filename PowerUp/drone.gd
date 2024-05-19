@@ -50,8 +50,9 @@ func shoot(ennemie) -> void :
 	
 func change_mode(i : String):
 	mode = TYPE[i]
-	print(i)
 	if i == "Sniper":
 		animated_sprite_2d.play("sniper") 
-	if i == "Melee": 
+	elif i == "Melee": 
 		animated_sprite_2d.play("melee")
+	else:
+		animated_sprite_2d.play("normal")
