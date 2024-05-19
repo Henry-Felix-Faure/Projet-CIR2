@@ -129,8 +129,8 @@ func up_drone(indice):
 func create_new_drone():
 	const load = preload("res://PowerUp/drone.tscn")
 	var new_drone = load.instantiate()
-	new_drone.change_mode(drone.TYPE.keys()[drone.mode])
 	get_parent().add_child(new_drone)
+	new_drone.change_mode(drone.TYPE.keys()[drone.mode])
 	new_drone.damage = drone.damage
 	new_drone.bullet_speed = drone.bullet_speed
 	new_drone.speed = drone.speed

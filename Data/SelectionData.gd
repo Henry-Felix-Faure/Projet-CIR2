@@ -54,37 +54,37 @@ const SPEED_UP_3 = preload("res://Assets/PowerUp/speed_up_3.png")
 var allPath : Array
 var pathSpeed : Dictionary = {
 	0: {
-		"name": "On va vite ou quoi ?\n\n",
-		"desc": "SpeedBoost",
+		"name": "Implants d'Achilles\n\n",
+		"desc": "Augmente la vitesse de déplacement",
 		"call": Callable(self,"addSpeed"),
 		"value": 0.2,
 		"icon": SPEED_UP_1
 		},
 	1:{
-		"name" : "On va vite ou quoi ? 2\n\n",
-		"desc": "SpeedBoost",
+		"name" : "Amélioration des implants d'Achilles\n\n",
+		"desc": "Augmente la vitesse de déplacement",
 		"call": Callable(self,"addSpeed"),
 		"value": 0.2,
 		"icon": SPEED_UP_2
 	},
 	2:{
-		"name" : "On va vite ou quoi ? 2\n\n",
-		"desc": "SpeedBoost",
+		"name" : "Amélioration des implants d'Achilles\n\n",
+		"desc": "Augmente la vitesse de déplacement",
 		"call": Callable(self,"addSpeed"),
 		"value": 0.2,
 		"icon": SPEED_UP_3
 	},}
 var dronePath : Dictionary = {
 	0: {
-		"name": "On va drone ou quoi ?\n\n",
-		"desc": "DroneBoost",
+		"name": "Besoins d'un copain ?\n\n",
+		"desc": "Un drone pour t'aider, ca peut être utile !",
 		"call": Callable(self,"droneUpgrade"),
 		"value": 0,
 		"icon": DRONE_NORMAL
 		},
 	1: {
-		"name": "On va drone ou quoi ? 2\n\n",
-		"desc": "DroneBoost",
+		"name": "Etudes d'ingénieurs\n\n",
+		"desc": "Ton drone passe aux choses sérieusess",
 		"call": Callable(self,"droneUpgrade"),
 		"value": 1,
 		"icon": DRONE_NORMAL
@@ -148,22 +148,22 @@ var dronePath : Dictionary = {
 }
 var atkUpPath : Dictionary = {
 	0: {
-		"name": "On va atkUp ou quoi ?\n\n",
-		"desc": "atkUP",
+		"name": "Le bras de Damia\n\n",
+		"desc": "C'est pas encore ca, mais on commence a voir le biceps (attaque +)",
 		"call": Callable(self,"addAtk"),
 		"value": 0.2,
 		"icon" : ATK_UP_1
 		},
 	1: {
-		"name": "On va atkUp ou quoi ?\n\n",
-		"desc": "atkUP",
+		"name": "Le bras d'Edgar\n\n",
+		"desc": "A la t'es BG ! (attaque +)",
 		"call": Callable(self,"addAtk"),
 		"value": 0.2,
 		"icon" : ATK_UP_2
 		},
 	2: {
-		"name": "On va atkUp ou quoi ?\n\n",
-		"desc": "atkUP",
+		"name": "Le bras de Clarence\n\n",
+		"desc": "T'as mangé quoi pour devenir comme ca ? (attaque +)",
 		"call": Callable(self,"addAtk"),
 		"value": 0.2,
 		"icon" : ATK_UP_3
@@ -172,22 +172,22 @@ var atkUpPath : Dictionary = {
 
 var dashSpeedUpPath : Dictionary = {
 	0: {
-		"name": "On va up_dash_speed ou quoi ?\n\n",
-		"desc": "up_dash_speed",
+		"name": "    Boost de puissance des jambes bioniques\n\n",
+		"desc": "Augmente la vitesse du dash",
 		"call": Callable(self,"dash_speed"),
 		"value": 0.2,
 		"icon" : DASH_SPEED_UP_1
 		},
 	1: {
-		"name": "On va up_dash_speed ou quoi ?\n\n",
-		"desc": "up_dash_speed",
+		"name": "    Boost de puissance des jambes bioniques\n\n",
+		"desc": "Augmente la vitesse du dash",
 		"call": Callable(self,"dash_speed"),
 		"value": 0.2,
 		"icon" :  DASH_SPEED_UP_2
 		},
 	2: {
-		"name": "On va up_dash_speed ou quoi ?\n\n",
-		"desc": "up_dash_speed",
+		"name": "    Boost de puissance des jambes bioniques\n\n",
+		"desc": "Augmente la vitesse du dash",
 		"call": Callable(self,"dash_speed"),
 		"value": 0.2,
 		"icon" :  DASH_SPEED_UP_3
@@ -196,22 +196,22 @@ var dashSpeedUpPath : Dictionary = {
 
 var dashCDUpPath: Dictionary = {
 	0: {
-		"name": "On va up_dash_cd ou quoi ?\n\n",
-		"desc": "up_dash_cd",
+		"name": "Installation de condensateurs\n\n",
+		"desc": "Réduit le temps de recharge du dash",
 		"call": Callable(self,"dash_cd"),
 		"value": 0.2,
 		"icon" : DASH_COOLDOWN_1
 		},
 	1: {
-		"name": "On va up_dash_cd ou quoi ?\n\n",
-		"desc": "up_dash_cd",
+		"name": "Installation de batteries\n\n",
+		"desc": "Réduit le temps de recharge du dash",
 		"call": Callable(self,"dash_cd"),
 		"value": 0.2,
 		"icon" :  DASH_COOLDOWN_2
 		},
 	2: {
-		"name": "On va up_dash_cd ou quoi ?\n\n",
-		"desc": "up_dash_speed",
+		"name": "Installation de volants d'inertie\n\n",
+		"desc": "Réduit le temps de recharge du dash",
 		"call": Callable(self,"dash_cd"),
 		"value": 0.2,
 		"icon" :  DASH_COOLDOWN_3
@@ -268,22 +268,22 @@ var atkSpeedUpPath: Dictionary = {
 
 var parryUpPath: Dictionary = {
 	0: {
-		"name": "On va up_parry_lvl ou quoi ?\n\n",
-		"desc": "up_atk_speed",
+		"name": "Acuité visuelle de 10/10\n\n",
+		"desc": "Augmente la durée du parry",
 		"call": Callable(self,"parry_lvl"),
 		"value": 0.2,
 		"icon" : PARRY_UP_1
 		},
 	1: {
-		"name": "On va up_parry_lvl ou quoi ?\n\n",
-		"desc": "up_parry_lvl",
+		"name": "Yeux d'aigle\n\n",
+		"desc": "Augmente la durée du parry",
 		"call": Callable(self,"parry_lvl"),
 		"value": 0.2,
 		"icon" :  PARRY_UP_2
 		},
 	2: {
-		"name": "On va up_parry_lvl ou quoi ?\n\n",
-		"desc": "up_parry_lvl",
+		"name": "Yeux cybérnétique\n\n",
+		"desc": "Augmente la durée du parry",
 		"call": Callable(self,"parry_lvl"),
 		"value": 0.2,
 		"icon" :  PARRY_UP_3
@@ -341,22 +341,22 @@ var damageCritUpPath: Dictionary = {
 
 var healthUpPath: Dictionary = {
 	0: {
-		"name": "On va up_health ou quoi ?\n\n",
-		"desc": "up_health ",
+		"name": "Installation du défibrilateur\n\n",
+		"desc": "Augmente la santé maximum",
 		"call": Callable(self,"health"),
 		"value": 0.2,
 		"icon" : HEALTH_UP_1
 		},
 	1: {
-		"name": "On va up_health ou quoi ?\n\n",
-		"desc": "up_health",
+		"name": "Pompe cardiaque\n\n",
+		"desc": "Augmente la santé maximum",
 		"call": Callable(self,"health"),
 		"value": 0.2,
 		"icon" :  HEALTH_UP_2
 		},
 	2: {
-		"name": "On va up_health ou quoi ?\n\n",
-		"desc": "up_health",
+		"name": "Coeur artificiel\n\n",
+		"desc": "Augmente la santé maximum",
 		"call": Callable(self,"health"),
 		"value": 0.2,
 		"icon" :  HEALTH_UP_3
