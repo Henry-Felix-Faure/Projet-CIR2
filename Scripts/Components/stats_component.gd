@@ -2,11 +2,25 @@
 class_name StatsComponent
 extends Node
 
+signal health_changed() # Emit when the health value has changed
+signal no_health() # Emit when there is no health left
+signal lvl_up()
+
 @onready var level_up_menu: Control = get_node("../../MenuLayer/Level Up Menu")
+
+@export var xp_lvl_up : int = 10
+@export var xp : int = 0 : 
+	set(value):
+		xp = value
+		if xp == xp_lvl_up: 
+			xp_lvl_up = xp_lvl_up * 1.25
+			xp = 0
+			level_up_menu._on_lvl_up()
 
 var drone
 var d_1 : bool = false
 var d_2 : bool = false
+
 # Create the health variable and connect a setter
 @export var speed_up : float = 1
 @export var dash_speed: float = 1
@@ -25,12 +39,11 @@ var d_2 : bool = false
 		# Signal out when health is at 0
 		if health <= 0: no_health.emit()
 # Create our signals for health
-signal health_changed() # Emit when the health value has changed
-signal no_health() # Emit when there is no health left
+
 
 func _ready() -> void:
-	var level_up_tree : LevelUpTree = level_up_menu.level_up_tree
 	if(get_parent().name == "Bob"):
+		var level_up_tree : LevelUpTree = level_up_menu.level_up_tree
 		level_up_tree.speedUp.connect(up_speed)
 		level_up_tree.droneUp.connect(up_drone)
 		level_up_tree.atkUp.connect(up_atk)
@@ -130,5 +143,4 @@ func create_new_drone():
 		d_2 = true
 	else:
 		new_drone.rotation_degrees = drone.rotation_degrees - 90
-		
-	
+
