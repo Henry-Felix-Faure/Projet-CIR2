@@ -30,26 +30,27 @@ func _on_lvl_up():
 		var item = choice[0][choice[1]]
 		button.text = item["name"]
 		button.get_child(0).text = item["desc"]
+		button.get_child(1).texture = item["icon"]
 	get_tree().paused = true
 	show()
 
 func _on_choice_1_pressed() -> void:
 	var item = choice1[0][choice1[1]]
-	item["call"].call(item["value"])
+	item["call"].call(item["value"], choice1, choice1[1])
 	choice1[1] += 1
 	get_tree().paused = false
 	hide()
 
 func _on_choice_2_pressed() -> void:
 	var item = choice2[0][choice2[1]]
-	item["call"].call(item["value"])
+	item["call"].call(item["value"], choice2, choice2[1])
 	get_tree().paused = false
 	choice2[1] += 1
 	hide()
 	
 func _on_choice_3_pressed() -> void:
 	var item = choice3[0][choice3[1]]
-	item["call"].call(item["value"])
+	item["call"].call(item["value"], choice3, choice3[1])
 	choice3[1] += 1
 	get_tree().paused = false
 	hide()

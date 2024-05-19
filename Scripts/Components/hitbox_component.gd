@@ -7,7 +7,6 @@ extends Area2D
 @export var critical = true
 # Create a signal for when the hitbox hits a hurtbox
 signal hit_hurtbox(hurtbox)
-
 func _ready():
 	# Connect on area entered to our hurtbox entered function
 	area_entered.connect(_on_hurtbox_entered)
