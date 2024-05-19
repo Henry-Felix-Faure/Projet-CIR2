@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=6 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
 [ext_resource type="PackedScene" uid="uid://clpew421t3e52" path="res://Map/Tilemap.tscn" id="2_41lkg"]
 [ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
-[ext_resource type="PackedScene" uid="uid://erwriagmkvtr" path="res://Bullet/BulletToPlayer.tscn" id="4_shped"]
 [ext_resource type="PackedScene" uid="uid://dyl50b0s58fit" path="res://Ennemies/Ranged/sniper.tscn" id="5_y8sv3"]
 
 [node name="World" type="Node2D"]
@@ -21,6 +20,3 @@ position = Vector2(144, 123)
 
 [node name="Sniper" parent="." instance=ExtResource("5_y8sv3")]
 visible = false
-
-[node name="BulletToPlayer" parent="." instance=ExtResource("4_shped")]
-position = Vector2(-15, 115)
