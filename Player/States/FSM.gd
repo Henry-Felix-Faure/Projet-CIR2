@@ -56,9 +56,6 @@ func is_attack_crit() -> bool:
 
 func wait(seconds: float) -> void: # custom wait function
 	await get_tree().create_timer(seconds).timeout
-	
-
-
 
 func _on_stats_component_no_health() -> void:
 	change_state(current_state, "DYING")

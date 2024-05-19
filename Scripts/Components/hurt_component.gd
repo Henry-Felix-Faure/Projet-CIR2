@@ -10,15 +10,28 @@ extends Node
 
 signal critical_hit
 
+func shader_wait(seconds: float, entity) -> void: # custom wait function
+	await get_tree().create_timer(seconds).timeout
+	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("r_displacement", Vector2(0, 0))
+	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("g_displacement", Vector2(0, 0))
+	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("b_displacement", Vector2(0, 0))
+
 func _ready() -> void:
 	var player = 0
+	var entity = 0
 	# Connect the hurt signal on the hurtbox component to an anonymous function
 	# that removes health equal to the damage from the hitbox
 	if(get_parent().name == "Bob"):
 		player = get_parent()
+	else:
+		entity = get_parent()
 	
 	hurtbox_component.hurt.connect(func(hitbox_component: HitboxComponent, crit : bool):
 		if crit:
+			#entity.get_node("AnimatedSprite2D").material.set_shader_parameter("r_displacement", Vector2(10, 0))
+			#entity.get_node("AnimatedSprite2D").material.set_shader_parameter("g_displacement", Vector2(0, 10))
+			#entity.get_node("AnimatedSprite2D").material.set_shader_parameter("b_displacement", Vector2(-10, 0))
+			#shader_wait(0.2, entity)
 			critical_hit.emit()
 		if player and player.parrying:
 			if player.last_dir.x > 0 and (hitbox_component.get_parent().position.x > player.position.x):

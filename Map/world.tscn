@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
 [ext_resource type="PackedScene" uid="uid://clpew421t3e52" path="res://Map/Tilemap.tscn" id="2_41lkg"]
 [ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
-[ext_resource type="PackedScene" uid="uid://dyl50b0s58fit" path="res://Ennemies/Ranged/sniper.tscn" id="5_y8sv3"]
+[ext_resource type="PackedScene" uid="uid://bnmrqlcon1iha" path="res://enemy/CAC/riotman.tscn" id="6_2nofr"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_u1x4u")
@@ -18,5 +18,5 @@ position = Vector2(144, 123)
 
 [node name="Level Up Menu" parent="MenuLayer" instance=ExtResource("3_8lbtx")]
 
-[node name="Sniper" parent="." instance=ExtResource("5_y8sv3")]
-visible = false
+[node name="riotman" parent="." instance=ExtResource("6_2nofr")]
+position = Vector2(-22, 102)
