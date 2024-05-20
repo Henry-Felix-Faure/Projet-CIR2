@@ -12,9 +12,8 @@ signal critical_hit
 
 func shader_wait(seconds: float, entity) -> void: # custom wait function
 	await get_tree().create_timer(seconds).timeout
-	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("r_displacement", Vector2(0, 0))
-	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("g_displacement", Vector2(0, 0))
-	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("b_displacement", Vector2(0, 0))
+	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_power", float(0.0))
+	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_color_rate", float(0.0))
 
 func _ready() -> void:
 	var player = 0
@@ -28,10 +27,9 @@ func _ready() -> void:
 	
 	hurtbox_component.hurt.connect(func(hitbox_component: HitboxComponent, crit : bool):
 		if crit:
-			#entity.get_node("AnimatedSprite2D").material.set_shader_parameter("r_displacement", Vector2(10, 0))
-			#entity.get_node("AnimatedSprite2D").material.set_shader_parameter("g_displacement", Vector2(0, 10))
-			#entity.get_node("AnimatedSprite2D").material.set_shader_parameter("b_displacement", Vector2(-10, 0))
-			#shader_wait(0.2, entity)
+			entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_power", float(0.03))
+			entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_color_rate", float(0.02))
+			shader_wait(0.1, entity)
 			critical_hit.emit()
 		if player and player.parrying:
 			if player.last_dir.x > 0 and (hitbox_component.get_parent().position.x > player.position.x):
