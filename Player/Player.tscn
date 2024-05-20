@@ -3324,6 +3324,7 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 motion_mode = 1
+wall_min_slide_angle = 1.5708
 script = ExtResource("1_v0has")
 parry_lvl = 3
 MAX_SPEED = 0
