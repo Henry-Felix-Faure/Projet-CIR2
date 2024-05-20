@@ -50,9 +50,9 @@ text = "Amélioration 1
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Choice1"]
 layout_mode = 0
 offset_left = 64.0
-offset_top = 29.0
+offset_top = 27.0
 offset_right = 411.0
-offset_bottom = 52.0
+offset_bottom = 50.0
 text = "Subtitle"
 label_settings = SubResource("LabelSettings_d0316")
 autowrap_mode = 2
@@ -105,6 +105,7 @@ offset_right = 414.0
 offset_bottom = 52.0
 text = "Subtitle"
 label_settings = SubResource("LabelSettings_qqeum")
+clip_text = true
 script = ExtResource("3_r2ax7")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/Choice3"]

@@ -1,4 +1,4 @@
-extends AnimatedSprite2D
+extends Node2D
 
 @onready var ennemie_detection: Area2D = $EnnemieDetection
 @onready var muzzle: Marker2D = $Muzzle
@@ -7,6 +7,7 @@ extends AnimatedSprite2D
 @export var damage: int = 5
 @export var bullet_speed : int = 200
 @export var speed : int = 1
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 enum TYPE {Normal = 1, Sniper = 1, Turret = 1, Melee = 0}
 @export var mode : TYPE = TYPE.Normal
@@ -15,10 +16,11 @@ enum TYPE {Normal = 1, Sniper = 1, Turret = 1, Melee = 0}
 func _ready() -> void: 
 	atks.wait_time = 2
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	rotation_degrees += speed
-	print(mode)
+	animated_sprite_2d.rotation_degrees =  - rotation_degrees
 	if(mode == 1):
 		var enemies_in_range = ennemie_detection.get_overlapping_areas()
 		if enemies_in_range.size() > 0 and atks.is_stopped():
@@ -48,3 +50,9 @@ func shoot(ennemie) -> void :
 	
 func change_mode(i : String):
 	mode = TYPE[i]
+	if i == "Sniper":
+		animated_sprite_2d.play("sniper") 
+	elif i == "Melee": 
+		animated_sprite_2d.play("melee")
+	else:
+		animated_sprite_2d.play("normal")
