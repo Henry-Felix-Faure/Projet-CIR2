@@ -4,7 +4,7 @@ extends Area2D
 
 # Export the damage amount this hitbox deals
 @export var damage: int = 1
-@export var critical = true
+@export var critical = false
 # Create a signal for when the hitbox hits a hurtbox
 signal hit_hurtbox(hurtbox)
 

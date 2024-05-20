@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=7 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
 [ext_resource type="PackedScene" uid="uid://clpew421t3e52" path="res://Map/Tilemap.tscn" id="2_41lkg"]
 [ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
 [ext_resource type="PackedScene" uid="uid://b0u1xks6d8yqu" path="res://Menu/MenuDrone/drone_menu.tscn" id="5_b6i78"]
+[ext_resource type="PackedScene" uid="uid://erwriagmkvtr" path="res://Bullet/BulletToPlayer.tscn" id="6_t10s1"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_u1x4u")
@@ -26,3 +27,6 @@ position = Vector2(144, 123)
 [node name="DroneLayer" type="CanvasLayer" parent="."]
 
 [node name="DroneMenu" parent="DroneLayer" groups=["DroneMenu"] instance=ExtResource("5_b6i78")]
+
+[node name="BulletToPlayer" parent="." instance=ExtResource("6_t10s1")]
+position = Vector2(-6, 119)
