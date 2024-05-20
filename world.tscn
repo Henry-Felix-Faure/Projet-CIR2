@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw3kjkptr53e3"]
+
+[ext_resource type="Script" path="res://Map/world.gd" id="1_nolif"]
+[ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="2_tafcu"]
+[ext_resource type="Texture2D" uid="uid://507o8cssabij" path="res://icon.svg" id="3_qr8ha"]
+[ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="4_1s1wh"]
+[ext_resource type="PackedScene" uid="uid://dyl50b0s58fit" path="res://Ennemies/Ranged/sniper.tscn" id="5_s86ci"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_nolif")
+
+[node name="Bob" parent="." instance=ExtResource("2_tafcu")]
+position = Vector2(144, 123)
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(474, 134)
+scale = Vector2(0.109375, 2.09375)
+texture = ExtResource("3_qr8ha")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(4, 133)
+scale = Vector2(0.109375, 2.09375)
+texture = ExtResource("3_qr8ha")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(238.154, 6.9297)
+scale = Vector2(3.73196, 0.0948484)
+texture = ExtResource("3_qr8ha")
+
+[node name="Icon4" type="Sprite2D" parent="."]
+position = Vector2(240, 263)
+scale = Vector2(3.73196, 0.0948484)
+texture = ExtResource("3_qr8ha")
+
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+
+[node name="Level Up Menu" parent="MenuLayer" instance=ExtResource("4_1s1wh")]
+
+[node name="Sniper" parent="." instance=ExtResource("5_s86ci")]
