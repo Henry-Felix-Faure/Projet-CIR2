@@ -1,30 +1,14 @@
-[gd_scene load_steps=22 format=3 uid="uid://688q4ci84lgj"]
+[gd_scene load_steps=15 format=3 uid="uid://688q4ci84lgj"]
 
-[ext_resource type="Shader" path="res://Shaders/Glitch.gdshader" id="1_sg8lt"]
 [ext_resource type="Script" path="res://Menu/MenuStart/MenuStart.gd" id="1_v211p"]
-[ext_resource type="Texture2D" uid="uid://cs48gmg2mq1v3" path="res://Assets/Menu/UI/Button-play.png" id="2_mm6gy"]
-[ext_resource type="Texture2D" uid="uid://de5kcvuqytf2e" path="res://Assets/Menu/UI/Button-quit.png" id="2_y7w4i"]
-[ext_resource type="Theme" uid="uid://lwwfnaubkr2e" path="res://Shaders/Bouton_Menu.tres" id="3_4shu0"]
-[ext_resource type="Texture2D" uid="uid://cdyt7larvv8r6" path="res://Assets/Menu/UI/Button-option.png" id="3_610aj"]
+[ext_resource type="Texture2D" uid="uid://cs48gmg2mq1v3" path="res://Menu/MenuStart/Button-play.png" id="2_mm6gy"]
+[ext_resource type="Texture2D" uid="uid://de5kcvuqytf2e" path="res://Menu/MenuStart/Button-quit.png" id="2_y7w4i"]
+[ext_resource type="Texture2D" uid="uid://cdyt7larvv8r6" path="res://Menu/MenuStart/Button-option.png" id="3_610aj"]
 [ext_resource type="PackedScene" uid="uid://blwdirn7ooaiu" path="res://Menu/MenuStart/parallax_background2.tscn" id="4_70owb"]
 [ext_resource type="Script" path="res://Menu/MenuOption/Video.gd" id="5_sx7g5"]
 [ext_resource type="Script" path="res://Menu/MenuOption/Audio.gd" id="6_x54ip"]
-[ext_resource type="Texture2D" uid="uid://j4fsjnsm1b2y" path="res://Assets/Menu/UI/Video.png" id="7_i78cc"]
-[ext_resource type="Texture2D" uid="uid://dbyhkeled7g6x" path="res://Assets/Menu/UI/Audio.png" id="8_gfxr0"]
-[ext_resource type="Texture2D" uid="uid://doo6vc6rb8rvv" path="res://Assets/Menu/UI/Control.png" id="9_3dsef"]
-[ext_resource type="FontFile" uid="uid://b240a7o38ytat" path="res://Assets/Font/Board of Directors W00 Book.ttf" id="9_bxix4"]
 [ext_resource type="Shader" path="res://Shaders/CRT.gdshader" id="9_cota3"]
 [ext_resource type="PackedScene" uid="uid://bmiycgei73x8h" path="res://Menu/MenuOption/button.tscn" id="9_j2pqy"]
-[ext_resource type="Texture2D" uid="uid://cxsxsrck4xdvf" path="res://Assets/Menu/UI/Back.png" id="10_tp2fv"]
-[ext_resource type="Script" path="res://Menu/MenuOption/Play.gd" id="17_n325j"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_crclc"]
-shader = ExtResource("1_sg8lt")
-shader_parameter/shake_power = 0.03
-shader_parameter/shake_rate = 0.2
-shader_parameter/shake_speed = 5.0
-shader_parameter/shake_block_size = 30.5
-shader_parameter/shake_color_rate = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3iv2b"]
 shader = ExtResource("9_cota3")
@@ -32,11 +16,17 @@ shader = ExtResource("9_cota3")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_arwyt"]
 modulate_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t21qi"]
+modulate_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_d11pm"]
+Button/styles/focus = SubResource("StyleBoxTexture_arwyt")
+Button/styles/pressed = SubResource("StyleBoxTexture_t21qi")
+
 [sub_resource type="Theme" id="Theme_elhk3"]
 Button/styles/focus = SubResource("StyleBoxTexture_arwyt")
 
 [node name="MenuStart" type="Control"]
-material = SubResource("ShaderMaterial_crclc")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,9 +53,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -69.0
+offset_left = -59.0
 offset_top = -33.5
-offset_right = 199.0
+offset_right = 209.0
 offset_bottom = 139.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -78,13 +68,12 @@ size_flags_vertical = 4
 
 [node name="play" type="Button" parent="test/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_4shu0")
+theme = SubResource("Theme_d11pm")
 icon = ExtResource("2_mm6gy")
 flat = true
 
 [node name="option" type="Button" parent="test/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_4shu0")
 icon = ExtResource("3_610aj")
 flat = true
 
@@ -114,31 +103,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -53.0
-offset_top = -60.0
-offset_right = 155.0
-offset_bottom = 182.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
 
 [node name="Video" type="Button" parent="Option/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_4shu0")
-icon = ExtResource("7_i78cc")
-flat = true
+text = "Video"
 
 [node name="Audio" type="Button" parent="Option/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_4shu0")
-icon = ExtResource("8_gfxr0")
-flat = true
+text = "Audio"
 
 [node name="Controle" type="Button" parent="Option/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_4shu0")
-icon = ExtResource("9_3dsef")
-flat = true
+text = "Control"
 
 [node name="BackOpt" type="Button" parent="Option"]
 layout_mode = 1
@@ -147,16 +129,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -42.0
-offset_top = -34.0
-offset_right = 166.0
-offset_bottom = 44.0
+offset_left = -22.5
+offset_top = -31.0
+offset_right = 22.5
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.4, 0.4)
-theme = ExtResource("3_4shu0")
-icon = ExtResource("10_tp2fv")
-flat = true
+text = "Back"
 
 [node name="Audio" type="Control" parent="."]
 unique_name_in_owner = true
@@ -177,9 +155,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -93.5
-offset_top = -34.5
+offset_top = -31.0
 offset_right = 93.5
-offset_bottom = 34.5
+offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -190,37 +168,24 @@ size_flags_vertical = 0
 
 [node name="Master" type="Label" parent="Audio/HBoxContainer/Labels"]
 layout_mode = 2
-size_flags_horizontal = 5
-theme_override_fonts/font = ExtResource("9_bxix4")
-theme_override_font_sizes/font_size = 0
+theme_override_font_sizes/font_size = 13
 text = "Master"
-horizontal_alignment = 1
-vertical_alignment = 3
 
 [node name="Music" type="Label" parent="Audio/HBoxContainer/Labels"]
 layout_mode = 2
-size_flags_horizontal = 5
-theme_override_fonts/font = ExtResource("9_bxix4")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 13
 text = "Music"
-horizontal_alignment = 1
-vertical_alignment = 3
 
 [node name="Sound FX" type="Label" parent="Audio/HBoxContainer/Labels"]
 layout_mode = 2
-size_flags_horizontal = 5
-theme_override_fonts/font = ExtResource("9_bxix4")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 13
 text = "Sound FX"
-horizontal_alignment = 1
-vertical_alignment = 3
 
 [node name="Slider" type="VBoxContainer" parent="Audio/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_constants/separation = 10
+theme_override_constants/separation = 7
 
 [node name="Master" type="HSlider" parent="Audio/HBoxContainer/Slider"]
 layout_mode = 2
@@ -244,16 +209,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -42.0
-offset_top = -34.0
-offset_right = 166.0
-offset_bottom = 44.0
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.4, 0.4)
-theme = ExtResource("3_4shu0")
-icon = ExtResource("10_tp2fv")
-flat = true
+text = "Back"
 
 [node name="Video" type="Control" parent="."]
 unique_name_in_owner = true
@@ -285,20 +246,14 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Video/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_bxix4")
-theme_override_font_sizes/font_size = 19
 text = "Fullscreen"
 
 [node name="Label2" type="Label" parent="Video/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_bxix4")
-theme_override_font_sizes/font_size = 19
 text = "Borderless"
 
 [node name="Label3" type="Label" parent="Video/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_bxix4")
-theme_override_font_sizes/font_size = 19
 text = "Vsync"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Video/HBoxContainer"]
@@ -312,7 +267,6 @@ layout_mode = 2
 
 [node name="vSYNC" type="OptionButton" parent="Video/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_bxix4")
 item_count = 4
 selected = 1
 popup/item_0/text = "Disabled"
@@ -331,16 +285,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -42.0
-offset_top = -34.0
-offset_right = 166.0
-offset_bottom = 44.0
+offset_left = -22.5
+offset_top = -31.0
+offset_right = 22.5
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.4, 0.4)
-theme = ExtResource("3_4shu0")
-icon = ExtResource("10_tp2fv")
-flat = true
+text = "Back"
 
 [node name="Control" type="Control" parent="."]
 unique_name_in_owner = true
@@ -372,29 +322,21 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("9_bxix4")
-theme_override_font_sizes/font_size = 17
 text = "Up"
 
 [node name="Label2" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("9_bxix4")
-theme_override_font_sizes/font_size = 17
 text = "Down"
 
 [node name="Label3" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("9_bxix4")
-theme_override_font_sizes/font_size = 17
 text = "Left"
 
 [node name="Label4" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-theme_override_fonts/font = ExtResource("9_bxix4")
-theme_override_font_sizes/font_size = 17
 text = "Right"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Control/HBoxContainer"]
@@ -427,126 +369,19 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -42.0
-offset_top = -34.0
-offset_right = 166.0
-offset_bottom = 44.0
+offset_left = -22.5
+offset_top = -31.0
+offset_right = 22.5
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.4, 0.4)
-theme = ExtResource("3_4shu0")
-icon = ExtResource("10_tp2fv")
-flat = true
+text = "Back"
 
-[node name="Play" type="Control" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("17_n325j")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Play"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -33.5
-offset_top = -21.5
-offset_right = 33.5
-offset_bottom = 21.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="LineEdit" type="LineEdit" parent="Play/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("9_bxix4")
-placeholder_text = "Votre pseudo"
-alignment = 1
-expand_to_text_length = true
-flat = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Play"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -65.0
-offset_top = 9.0
-offset_right = 146.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Solo" type="Button" parent="Play/HBoxContainer"]
-layout_mode = 2
-text = "Solo"
-
-[node name="Multijoueur" type="Button" parent="Play/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Multijoueur"
-
-[node name="Multi" type="Control" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Multi"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 19.0
-offset_top = -24.0
-offset_right = 104.0
-offset_bottom = 42.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Multi/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Multi/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Entrer le code"
-
-[node name="LineEdit" type="LineEdit" parent="Multi/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Multi"]
-layout_mode = 0
-offset_left = 98.0
-offset_top = 118.0
-offset_right = 230.0
-offset_bottom = 158.0
-
-[node name="Button" type="Button" parent="Multi/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lancer un lobby"
-flat = true
-
-[connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/option" to="." method="_on_option_pressed"]
 [connection signal="toggled" from="test/VBoxContainer/option" to="." method="_on_option_toggled"]
-[connection signal="pressed" from="test/VBoxContainer/quit" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="test/VBoxContainer/quit" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Option/VBoxContainer/Video" to="." method="_on_video_pressed"]
 [connection signal="pressed" from="Option/VBoxContainer/Video" to="Option" method="_on_video_pressed"]
 [connection signal="pressed" from="Option/VBoxContainer/Audio" to="." method="_on_audio_pressed"]
@@ -565,8 +400,3 @@ flat = true
 [connection signal="item_selected" from="Video/HBoxContainer/VBoxContainer2/vSYNC" to="Video" method="_on_v_sync_item_selected"]
 [connection signal="pressed" from="Video/BackVdo" to="." method="_on_back_vdo_pressed"]
 [connection signal="pressed" from="Control/ButtonKey" to="." method="_on_button_key_pressed"]
-[connection signal="text_changed" from="Play/VBoxContainer/LineEdit" to="Play" method="_on_line_edit_text_changed"]
-[connection signal="text_submitted" from="Play/VBoxContainer/LineEdit" to="Play" method="_on_line_edit_text_submitted"]
-[connection signal="pressed" from="Play/HBoxContainer/Solo" to="Play" method="_on_solo_pressed"]
-[connection signal="pressed" from="Play/HBoxContainer/Multijoueur" to="." method="_on_multijoueur_pressed"]
-[connection signal="pressed" from="Play/HBoxContainer/Multijoueur" to="Play" method="_on_multijoueur_pressed"]
