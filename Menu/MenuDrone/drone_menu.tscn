@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0u1xks6d8yqu"]
+
+[ext_resource type="Script" path="res://Menu/MenuDrone/drone_menu.gd" id="1_fjay7"]
+[ext_resource type="Texture2D" uid="uid://dmtwxmr35ttt0" path="res://Assets/Drones/drone_sniper.png" id="2_23f53"]
+[ext_resource type="Texture2D" uid="uid://nw7irvhyy71s" path="res://Assets/PowerUp/drone_normal.png" id="3_s27ko"]
+[ext_resource type="Texture2D" uid="uid://bo6vv8qrtblms" path="res://Assets/Drones/ico_drone_melee.png" id="4_y15rs"]
+
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_62o3m"]
+
+[node name="DroneMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fjay7")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 448.0
+offset_bottom = 256.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Which drone do you want ? "
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Choice1" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sniper Drone
+
+"
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Choice1"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 29.0
+offset_right = 124.0
+offset_bottom = 52.0
+text = "Subtitle"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/Choice1"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 56.0
+offset_bottom = 45.0
+texture = ExtResource("2_23f53")
+
+[node name="Choice2" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Turet Drone
+
+"
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Choice2"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 27.0
+offset_right = 124.0
+offset_bottom = 50.0
+text = "Subtitle"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/Choice2"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 56.0
+offset_bottom = 45.0
+texture = ExtResource("3_s27ko")
+
+[node name="Choice3" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Melee Drone
+
+"
+icon = SubResource("ViewportTexture_62o3m")
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Choice3"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 25.0
+offset_right = 124.0
+offset_bottom = 48.0
+text = "Subtitle"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/Choice3"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 48.0
+offset_bottom = 40.0
+texture = ExtResource("4_y15rs")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Choice1" to="." method="_on_choice_1_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Choice2" to="." method="_on_choice_2_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Choice3" to="." method="_on_choice_3_pressed"]

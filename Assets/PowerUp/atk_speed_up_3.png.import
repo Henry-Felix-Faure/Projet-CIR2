@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7k8grasrp5ed"
-path="res://.godot/imported/sun.png-c46e23e43bd91dc643de238bf603c528.ctex"
+uid="uid://jymyas7ee5ha"
+path="res://.godot/imported/atk_speed_up_3.png-b6ae30162abf9e704b7dc0993879be9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu/sun.png"
-dest_files=["res://.godot/imported/sun.png-c46e23e43bd91dc643de238bf603c528.ctex"]
+source_file="res://Assets/PowerUp/atk_speed_up_3.png"
+dest_files=["res://.godot/imported/atk_speed_up_3.png-b6ae30162abf9e704b7dc0993879be9f.ctex"]
 
 [params]
 

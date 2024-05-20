@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hs4bo5xeqpbd"
-path="res://.godot/imported/sky.png-1252f81fe3ecb9ff115969bfb37d8d4f.ctex"
+uid="uid://ceel38gfc84s1"
+path="res://.godot/imported/health_up_3.png-f7060f046142608da014c9d49cc96e05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu/sky.png"
-dest_files=["res://.godot/imported/sky.png-1252f81fe3ecb9ff115969bfb37d8d4f.ctex"]
+source_file="res://Assets/PowerUp/health_up_3.png"
+dest_files=["res://.godot/imported/health_up_3.png-f7060f046142608da014c9d49cc96e05.ctex"]
 
 [params]
 

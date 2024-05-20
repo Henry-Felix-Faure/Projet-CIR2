@@ -19,8 +19,7 @@ func Update(_delta:float):
 	
 	
 func animation_finished():
-	bob.hurtbox_area_2d.is_invincible = false # we re-enable the hurtbox of the player
-	bob.collision_shape_2d.disabled = false # we re-enable the hitbox of the player
+	bob.dashing = false
 	state_transition.emit(self, "MOVING")
 
 func next_animation_selector_dashing_recovery():

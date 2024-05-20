@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs48gmg2mq1v3"
-path="res://.godot/imported/Button-play.png-4cd34bd0f099130eb3bb43f95e1ba4b3.ctex"
+uid="uid://bj61kepeqq6x6"
+path="res://.godot/imported/parry_up_2.png-0738fb9c48091c8edb4637a160431b4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu/MenuStart/Button-play.png"
-dest_files=["res://.godot/imported/Button-play.png-4cd34bd0f099130eb3bb43f95e1ba4b3.ctex"]
+source_file="res://Assets/PowerUp/parry_up_2.png"
+dest_files=["res://.godot/imported/parry_up_2.png-0738fb9c48091c8edb4637a160431b4c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgc6d2rg78tek"
-path="res://.godot/imported/near-buildings.png-ed06064d02287a6686dc8789e3662f7c.ctex"
+uid="uid://dbyhkeled7g6x"
+path="res://.godot/imported/Audio.png-49e62885bbeec7e7a492891a6758d980.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu/near-buildings.png"
-dest_files=["res://.godot/imported/near-buildings.png-ed06064d02287a6686dc8789e3662f7c.ctex"]
+source_file="res://Assets/Menu/UI/Audio.png"
+dest_files=["res://.godot/imported/Audio.png-49e62885bbeec7e7a492891a6758d980.ctex"]
 
 [params]
 

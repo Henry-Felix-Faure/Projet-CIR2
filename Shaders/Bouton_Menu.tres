@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b0nu3vprfidrs"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_arwyt"]
+modulate_color = Color(0, 0, 0, 1)
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxTexture_arwyt")

@@ -2,18 +2,32 @@
 class_name StatsComponent
 extends Node
 
+signal health_changed() # Emit when the health value has changed
+signal no_health() # Emit when there is no health left
+signal lvl_up()
+
 @onready var level_up_menu: Control = get_node("../../MenuLayer/Level Up Menu")
+
+@export var xp_lvl_up : int = 10
+@export var xp : int = 0 : 
+	set(value):
+		xp = value
+		if xp == xp_lvl_up: 
+			xp_lvl_up = xp_lvl_up * 1.25
+			xp = 0
+			level_up_menu._on_lvl_up()
 
 var drone
 var d_1 : bool = false
 var d_2 : bool = false
+
 # Create the health variable and connect a setter
 @export var speed_up : float = 1
 @export var dash_speed: float = 1
 @export var dash_cd : float = 2
 @export var parry_cd : float = 1.5
 @export var atk_speed : float = 1
-@export var parry_duration : float = 1
+@export var parry_lvl : float = 1
 @export var dmg : int = 1
 @export var crit : float = 0
 @export var damage_crit : float = 1.20
@@ -25,21 +39,47 @@ var d_2 : bool = false
 		# Signal out when health is at 0
 		if health <= 0: no_health.emit()
 # Create our signals for health
-signal health_changed() # Emit when the health value has changed
-signal no_health() # Emit when there is no health left
+
 
 func _ready() -> void:
-	var level_up_tree : LevelUpTree = level_up_menu.level_up_tree
 	if(get_parent().name == "Bob"):
+		var level_up_tree : LevelUpTree = level_up_menu.level_up_tree
 		level_up_tree.speedUp.connect(up_speed)
 		level_up_tree.droneUp.connect(up_drone)
 		level_up_tree.atkUp.connect(up_atk)
+		level_up_tree.up_dash_speed.connect(up_dash_speed)
+		level_up_tree.up_dash_cd.connect(up_dash_cd)
+		level_up_tree.up_parry_cd.connect(up_parry_cd)
+		level_up_tree.up_atk_speed.connect(up_atk_speed)
+		level_up_tree.up_parry_lvl.connect(up_parry_lvl)
+		level_up_tree.up_crit.connect(up_crit)
+		level_up_tree.up_damage_crit.connect(up_damage_crit)
+		level_up_tree.up_health.connect(up_health)
+		
 
 func up_speed(speed):
 	speed_up += speed
 	
 func up_atk(atk):
 	dmg += atk
+	
+func up_dash_speed(up):
+	dash_speed += up
+func up_dash_cd(up):
+	dash_cd -= up
+func up_parry_cd(up):
+	parry_cd -= up
+func up_atk_speed(up):
+	atk_speed += up
+func up_parry_lvl(): 
+	parry_lvl +=1
+func up_crit(up):
+	crit += up
+func up_damage_crit(up):
+	damage_crit += up
+func up_health(up):
+	health += up
+	
 func up_drone(indice):
 	match indice:
 		0:	
@@ -89,8 +129,8 @@ func up_drone(indice):
 func create_new_drone():
 	const load = preload("res://PowerUp/drone.tscn")
 	var new_drone = load.instantiate()
-	new_drone.change_mode(drone.TYPE.keys()[drone.mode])
 	get_parent().add_child(new_drone)
+	new_drone.change_mode(drone.TYPE.keys()[drone.mode])
 	new_drone.damage = drone.damage
 	new_drone.bullet_speed = drone.bullet_speed
 	new_drone.speed = drone.speed
@@ -103,5 +143,4 @@ func create_new_drone():
 		d_2 = true
 	else:
 		new_drone.rotation_degrees = drone.rotation_degrees - 90
-		
-	
+

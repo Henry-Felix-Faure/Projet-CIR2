@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyfvm0f8d21jf"
-path="res://.godot/imported/map_clarence.png-c7e0eceabcefdbf12ac754f098327c9c.ctex"
+uid="uid://b7up5pxfcvwg3"
+path="res://.godot/imported/crit_up_1.png-12f54d85ee17611816c2229e8e8ea4ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Map/map_clarence.png"
-dest_files=["res://.godot/imported/map_clarence.png-c7e0eceabcefdbf12ac754f098327c9c.ctex"]
+source_file="res://Assets/PowerUp/crit_up_1.png"
+dest_files=["res://.godot/imported/crit_up_1.png-12f54d85ee17611816c2229e8e8ea4ab.ctex"]
 
 [params]
 

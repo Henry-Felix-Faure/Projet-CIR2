@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de5kcvuqytf2e"
-path="res://.godot/imported/Button-quit.png-3e69eb53a577945cf7a211b65a88c9e7.ctex"
+uid="uid://nw7irvhyy71s"
+path="res://.godot/imported/drone_normal.png-dc6b94a8237ea1690ae6615ef78784d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu/MenuStart/Button-quit.png"
-dest_files=["res://.godot/imported/Button-quit.png-3e69eb53a577945cf7a211b65a88c9e7.ctex"]
+source_file="res://Assets/PowerUp/drone_normal.png"
+dest_files=["res://.godot/imported/drone_normal.png-dc6b94a8237ea1690ae6615ef78784d2.ctex"]
 
 [params]
 

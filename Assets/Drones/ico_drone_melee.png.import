@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3gfmim1rbdkv"
-path="res://.godot/imported/far-buildings.png-b80f46ba699b20a4bb3eac8981122566.ctex"
+uid="uid://bo6vv8qrtblms"
+path="res://.godot/imported/ico_drone_melee.png-d9215218a364e890ab7302e7eee41637.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu/far-buildings.png"
-dest_files=["res://.godot/imported/far-buildings.png-b80f46ba699b20a4bb3eac8981122566.ctex"]
+source_file="res://Assets/Drones/ico_drone_melee.png"
+dest_files=["res://.godot/imported/ico_drone_melee.png-d9215218a364e890ab7302e7eee41637.ctex"]
 
 [params]
 
