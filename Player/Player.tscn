@@ -3400,6 +3400,7 @@ hurtbox_component = NodePath("../HurtboxArea2D")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("15_pvxni")
+parry_lvl = 2.0
 health = 10
 
 [node name="Camera2D" type="Camera2D" parent="."]
