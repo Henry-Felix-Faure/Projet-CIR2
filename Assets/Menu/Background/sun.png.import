@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgc6d2rg78tek"
-path="res://.godot/imported/near-buildings.png-ed06064d02287a6686dc8789e3662f7c.ctex"
+uid="uid://b7k8grasrp5ed"
+path="res://.godot/imported/sun.png-64ea93c872400fc8bc071394df8ffd71.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menu/near-buildings.png"
-dest_files=["res://.godot/imported/near-buildings.png-ed06064d02287a6686dc8789e3662f7c.ctex"]
+source_file="res://Assets/Menu/Background/sun.png"
+dest_files=["res://.godot/imported/sun.png-64ea93c872400fc8bc071394df8ffd71.ctex"]
 
 [params]
 
