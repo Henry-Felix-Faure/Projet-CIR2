@@ -34,16 +34,16 @@ func _ready() -> void:
 		if player and player.parrying:
 			if player.last_dir.x > 0 and (hitbox_component.get_parent().position.x > player.position.x):
 				player.explosion_particles.position = Vector2(8,0)
-				successful_parry(player, player.parry_lvl)
+				successful_parry(player, hitbox_component)
 			elif player.last_dir.x < 0 and (hitbox_component.get_parent().position.x < player.position.x):
 				player.explosion_particles.position = Vector2(-8,0)
-				successful_parry(player, player.parry_lvl)
+				successful_parry(player, hitbox_component)
 			elif player.last_dir.y > 0 and (hitbox_component.get_parent().position.y > player.position.y):
 				player.explosion_particles.position = Vector2(0,-7)
-				successful_parry(player, player.parry_lvl)
+				successful_parry(player, hitbox_component)
 			elif player.last_dir.y < 0 and (hitbox_component.get_parent().position.y < player.position.y):
 				player.explosion_particles.position = Vector2(0,-11)
-				successful_parry(player, player.parry_lvl)
+				successful_parry(player, hitbox_component)
 			else:
 				stats_component.health -= hitbox_component.damage
 				if hitbox_component.get_parent().name == "BulletToPlayer":
@@ -56,8 +56,22 @@ func _ready() -> void:
 				hitbox_component.get_parent().queue_free()
 	)
 
-func successful_parry(player, parry_lvl: int):
+func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent):
 	player.get_node("audio_parry").play()
 	player.explosion_particles.direction = player.last_dir
 	player.explosion_particles.emitting = true
 	player.get_node("Camera2D").shake(0.2, 3)
+	var parry_lvl: int = stats_component.parry_lvl
+	match parry_lvl:
+		1:
+			if hitbox_component.get_parent().name == "BulletToPlayer":
+				hitbox_component.get_parent().get_node("AnimatedSprite2D").play("destroy")
+				await hitbox_component.get_parent().get_node("AnimatedSprite2D").animation_finished
+				hitbox_component.get_parent().queue_free()
+		2:
+			if hitbox_component.get_parent().name == "BulletToPlayer":
+				hitbox_component.get_parent().rotation += PI/2	
+		3:
+			if hitbox_component.get_parent().name == "BulletToPlayer":
+				hitbox_component.get_parent().rotation += PI
+		

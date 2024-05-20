@@ -53,7 +53,7 @@ func Update(_delta:float):
 		bob.stats_component.health = 0
 		state_transition.emit(self, "DYING")
 	
-	if Input.is_action_just_pressed("ui_parry"): # if F2 is pressed / debug tool
+	if Input.is_action_just_pressed("ui_parry"): # if right click is pressed
 		state_transition.emit(self, "PARRYING")
 
 

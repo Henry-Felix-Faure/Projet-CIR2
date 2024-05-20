@@ -15,8 +15,8 @@ extends CharacterBody2D
 @onready var damage: int = 2
 @onready var crit_damage: float = 1.2
 
+
 var cancel_dash_parry: bool = false
-@export var parry_lvl: int = 1
 var parrying: bool = false
 
 signal critical_hit

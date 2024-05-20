@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://erwriagmkvtr"]
+[gd_scene load_steps=20 format=3 uid="uid://erwriagmkvtr"]
 
 [ext_resource type="Script" path="res://Bullet/BulletToPlayer.gd" id="1_2dn22"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="2_5clnb"]
-[ext_resource type="Texture2D" uid="uid://cxua6yy3xngp7" path="res://Assets/Item/bullet1.png" id="3_bw6jx"]
+[ext_resource type="Texture2D" uid="uid://eq2rcr1pvkrk" path="res://Assets/Item/bullet1.png" id="3_bw6jx"]
+[ext_resource type="Texture2D" uid="uid://5ptexw3amy4m" path="res://Assets/Item/bullet_destroy.png" id="4_o0pl6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mf2ed"]
 size = Vector2(10, 5)
@@ -31,6 +32,34 @@ region = Rect2(100, 0, 25, 14)
 atlas = ExtResource("3_bw6jx")
 region = Rect2(125, 0, 25, 14)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrb1h"]
+atlas = ExtResource("4_o0pl6")
+region = Rect2(0, 0, 25, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxaw6"]
+atlas = ExtResource("4_o0pl6")
+region = Rect2(25, 0, 25, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7koa4"]
+atlas = ExtResource("4_o0pl6")
+region = Rect2(50, 0, 25, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rpoe"]
+atlas = ExtResource("4_o0pl6")
+region = Rect2(75, 0, 25, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc804"]
+atlas = ExtResource("4_o0pl6")
+region = Rect2(100, 0, 25, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rhfu"]
+atlas = ExtResource("4_o0pl6")
+region = Rect2(125, 0, 25, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x40tw"]
+atlas = ExtResource("4_o0pl6")
+region = Rect2(150, 0, 25, 14)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_vq1kl"]
 animations = [{
 "frames": [{
@@ -55,6 +84,32 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrb1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxaw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7koa4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rpoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tc804")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rhfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x40tw")
+}],
+"loop": false,
+"name": &"destroy",
+"speed": 20.0
 }]
 
 [node name="BulletToPlayer" type="Area2D"]
@@ -76,5 +131,5 @@ shape = SubResource("RectangleShape2D_mf2ed")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vq1kl")
+animation = &"destroy"
 autoplay = "default"
-frame_progress = 0.826032
