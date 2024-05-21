@@ -10,19 +10,19 @@
 [node name="World" type="Node2D"]
 script = ExtResource("1_u1x4u")
 
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+
+[node name="Level Up Menu" parent="MenuLayer" instance=ExtResource("3_8lbtx")]
+
+[node name="DroneLayer" type="CanvasLayer" parent="MenuLayer"]
+
+[node name="DroneMenu" parent="MenuLayer/DroneLayer" groups=["DroneMenu"] instance=ExtResource("5_b6i78")]
+
 [node name="Leapfrogger_map" parent="." instance=ExtResource("2_mp1s5")]
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
 position = Vector2(-220, 91)
 wall_min_slide_angle = 0.261799
-
-[node name="MenuLayer" type="CanvasLayer" parent="."]
-
-[node name="Level Up Menu" parent="MenuLayer" instance=ExtResource("3_8lbtx")]
-
-[node name="DroneLayer" type="CanvasLayer" parent="."]
-
-[node name="DroneMenu" parent="DroneLayer" groups=["DroneMenu"] instance=ExtResource("5_b6i78")]
 
 [node name="BulletToPlayer" parent="." instance=ExtResource("6_x1cpn")]
 position = Vector2(-83, 50)

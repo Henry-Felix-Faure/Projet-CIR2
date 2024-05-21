@@ -46,3 +46,9 @@ func _on_button_key_pressed():
 
 func _on_multijoueur_pressed():
 	show_and_hide(%Multi, %Play)
+
+func _on_btn_solo_pressed():
+	show_and_hide(%test, %Play)
+
+func _on_btn_multi_pressed():
+	show_and_hide(%Play, %Multi)
