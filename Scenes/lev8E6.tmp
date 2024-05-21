@@ -1,0 +1,124 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6xywh2icv6a"]
+
+[ext_resource type="Script" path="res://Scripts/level_up_menu.gd" id="1_jlasa"]
+[ext_resource type="Script" path="res://Data/SelectionData.gd" id="2_ch84r"]
+[ext_resource type="Texture2D" uid="uid://dmtwxmr35ttt0" path="res://Assets/Drones/drone_sniper.png" id="2_tgc08"]
+[ext_resource type="Script" path="res://Scenes/LabelSize.gd" id="3_r2ax7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d0316"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5n1eb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qqeum"]
+
+[node name="Level Up Menu" type="Control" node_paths=PackedStringArray("level_up_tree")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jlasa")
+level_up_tree = NodePath("LevelUpTree")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 448.0
+offset_bottom = 256.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Choose your power up ! "
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Choice1" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Amélioration 1
+
+"
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Choice1"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 27.0
+offset_right = 411.0
+offset_bottom = 50.0
+text = "Subtitle"
+label_settings = SubResource("LabelSettings_d0316")
+autowrap_mode = 2
+script = ExtResource("3_r2ax7")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/Choice1"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 56.0
+offset_bottom = 45.0
+texture = ExtResource("2_tgc08")
+
+[node name="Choice2" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Amélioration 1
+
+"
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Choice2"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 27.0
+offset_right = 414.0
+offset_bottom = 52.0
+text = "Subtitle"
+label_settings = SubResource("LabelSettings_5n1eb")
+clip_text = true
+script = ExtResource("3_r2ax7")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/Choice2"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 56.0
+offset_bottom = 45.0
+texture = ExtResource("2_tgc08")
+
+[node name="Choice3" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Amélioration 1
+
+"
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Choice3"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 27.0
+offset_right = 414.0
+offset_bottom = 52.0
+text = "Subtitle"
+label_settings = SubResource("LabelSettings_qqeum")
+clip_text = true
+script = ExtResource("3_r2ax7")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/Choice3"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 56.0
+offset_bottom = 45.0
+texture = ExtResource("2_tgc08")
+
+[node name="LevelUpTree" type="Node" parent="."]
+script = ExtResource("2_ch84r")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Choice1" to="." method="_on_choice_1_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Choice2" to="." method="_on_choice_2_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Choice3" to="." method="_on_choice_3_pressed"]

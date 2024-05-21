@@ -1,45 +1,29 @@
 [gd_scene load_steps=7 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
-[ext_resource type="Texture2D" uid="uid://507o8cssabij" path="res://icon.svg" id="4_8d3p7"]
-[ext_resource type="PackedScene" uid="uid://fyuphs1cbrxh" path="res://enemy/CAC/kamikaze_robot.tscn" id="4_857ob"]
-[ext_resource type="PackedScene" uid="uid://4o2ksvge2e5y" path="res://enemy/CAC/robot.tscn" id="4_eu0n4"]
-[ext_resource type="PackedScene" uid="uid://bnmrqlcon1iha" path="res://enemy/CAC/riotman.tscn" id="5_1xbxk"]
-[ext_resource type="PackedScene" uid="uid://b5361lhis2keq" path="res://enemy/CAC/policeman.tscn" id="6_cblgi"]
+[ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
+[ext_resource type="PackedScene" uid="uid://cxn4xmmsx44km" path="res://Map/leapfrogger_map.tscn" id="2_mp1s5"]
+[ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
+[ext_resource type="PackedScene" uid="uid://b0u1xks6d8yqu" path="res://Menu/MenuDrone/drone_menu.tscn" id="5_b6i78"]
+[ext_resource type="PackedScene" uid="uid://erwriagmkvtr" path="res://Bullet/BulletToPlayer.tscn" id="6_x1cpn"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_u1x4u")
+
+[node name="Leapfrogger_map" parent="." instance=ExtResource("2_mp1s5")]
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
-position = Vector2(101, 112)
+position = Vector2(-220, 91)
+wall_min_slide_angle = 0.261799
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(474, 134)
-scale = Vector2(0.109375, 2.09375)
-texture = ExtResource("4_8d3p7")
+[node name="MenuLayer" type="CanvasLayer" parent="."]
 
-[node name="Icon2" type="Sprite2D" parent="."]
-position = Vector2(4, 133)
-scale = Vector2(0.109375, 2.09375)
-texture = ExtResource("4_8d3p7")
+[node name="Level Up Menu" parent="MenuLayer" instance=ExtResource("3_8lbtx")]
 
-[node name="Icon3" type="Sprite2D" parent="."]
-position = Vector2(238.154, 6.9297)
-scale = Vector2(3.73196, 0.0948484)
-texture = ExtResource("4_8d3p7")
+[node name="DroneLayer" type="CanvasLayer" parent="."]
 
-[node name="Icon4" type="Sprite2D" parent="."]
-position = Vector2(240, 263)
-scale = Vector2(3.73196, 0.0948484)
-texture = ExtResource("4_8d3p7")
+[node name="DroneMenu" parent="DroneLayer" groups=["DroneMenu"] instance=ExtResource("5_b6i78")]
 
-[node name="Kamikaze_robot10" parent="." instance=ExtResource("4_857ob")]
-position = Vector2(-333, 214)
-
-[node name="Robot" parent="." instance=ExtResource("4_eu0n4")]
-position = Vector2(411, 185)
-
-[node name="riotman" parent="." instance=ExtResource("5_1xbxk")]
-position = Vector2(380, 94)
-
-[node name="policeman" parent="." instance=ExtResource("6_cblgi")]
-position = Vector2(278, 208)
+[node name="BulletToPlayer" parent="." instance=ExtResource("6_x1cpn")]
+position = Vector2(-83, 50)
+rotation = -3.36849

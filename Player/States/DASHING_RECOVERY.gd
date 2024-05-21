@@ -3,13 +3,14 @@ extends State
 @onready var bob: CharacterBody2D = $"../.."
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var MaLigne = $"../../Line2D"
 
 func Enter():
 	bob.BASE_SPEED = 100
-	bob.cancel_dash = false
 	next_animation_selector_dashing_recovery() # calling the function to select the right dashing recovery animations
 	
 func Exit():
+	MaLigne.start_fade_out()
 	pass
 	
 func Update(_delta:float):
@@ -18,8 +19,7 @@ func Update(_delta:float):
 	
 	
 func animation_finished():
-	bob.hurtbox_area_2d.is_invincible = false # we re-enable the hurtbox of the player
-	bob.collision_shape_2d.disabled = false # we re-enable the hitbox of the player
+	bob.dashing = false
 	state_transition.emit(self, "MOVING")
 
 func next_animation_selector_dashing_recovery():

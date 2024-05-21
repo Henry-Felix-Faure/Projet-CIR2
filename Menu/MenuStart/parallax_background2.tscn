@@ -1,9 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://blwdirn7ooaiu"]
+[gd_scene load_steps=8 format=3 uid="uid://blwdirn7ooaiu"]
 
-[ext_resource type="Texture2D" uid="uid://b7k8grasrp5ed" path="res://Menu/sun.png" id="2_aop6v"]
-[ext_resource type="Texture2D" uid="uid://b3gfmim1rbdkv" path="res://Menu/far-buildings.png" id="3_fbe5f"]
-[ext_resource type="Texture2D" uid="uid://dgc6d2rg78tek" path="res://Menu/near-buildings.png" id="5_5r154"]
-[ext_resource type="Texture2D" uid="uid://hs4bo5xeqpbd" path="res://Menu/sky.png" id="5_veauy"]
+[ext_resource type="Shader" path="res://Shaders/Glitch.gdshader" id="1_25khl"]
+[ext_resource type="Texture2D" uid="uid://b7k8grasrp5ed" path="res://Assets/Menu/Background/sun.png" id="2_aop6v"]
+[ext_resource type="Texture2D" uid="uid://b3gfmim1rbdkv" path="res://Assets/Menu/Background/far-buildings.png" id="3_fbe5f"]
+[ext_resource type="Texture2D" uid="uid://dgc6d2rg78tek" path="res://Assets/Menu/Background/near-buildings.png" id="5_5r154"]
+[ext_resource type="Texture2D" uid="uid://hs4bo5xeqpbd" path="res://Assets/Menu/Background/sky.png" id="5_veauy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mn0d1"]
+shader = ExtResource("1_25khl")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0cosm"]
+shader = ExtResource("1_25khl")
+shader_parameter/shake_power = 0.02
+shader_parameter/shake_rate = 0.099
+shader_parameter/shake_speed = 4.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 metadata/_edit_horizontal_guides_ = [128.0]
@@ -11,35 +28,42 @@ metadata/_edit_vertical_guides_ = [256.0]
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
 z_index = 3
+material = SubResource("ShaderMaterial_mn0d1")
 motion_scale = Vector2(0.01, 0.01)
 motion_mirroring = Vector2(524, 1920)
 
 [node name="Sky" type="Sprite2D" parent="ParallaxLayer4"]
+material = SubResource("ShaderMaterial_0cosm")
 position = Vector2(40, 128)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("5_veauy")
 
 [node name="Sky2" type="Sprite2D" parent="ParallaxLayer4"]
+material = SubResource("ShaderMaterial_0cosm")
 position = Vector2(128, 128)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("5_veauy")
 
 [node name="Sky3" type="Sprite2D" parent="ParallaxLayer4"]
+material = SubResource("ShaderMaterial_0cosm")
 position = Vector2(216, 128)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("5_veauy")
 
 [node name="Sky4" type="Sprite2D" parent="ParallaxLayer4"]
+material = SubResource("ShaderMaterial_0cosm")
 position = Vector2(300, 128)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("5_veauy")
 
 [node name="Sky5" type="Sprite2D" parent="ParallaxLayer4"]
+material = SubResource("ShaderMaterial_0cosm")
 position = Vector2(388, 128)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("5_veauy")
 
 [node name="Sky6" type="Sprite2D" parent="ParallaxLayer4"]
+material = SubResource("ShaderMaterial_0cosm")
 position = Vector2(476, 128)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("5_veauy")

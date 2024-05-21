@@ -8,7 +8,7 @@ extends State
 
 func Enter():
 	hurtbox_area_2d.is_invincible = true # disabling the hurtbox of the player
-	collision_shape_2d.disabled = true # disabling the hitbox of the player
+	collision_shape_2d.set_deferred("disabled", true) # disabling the hitbox of the player
 	animated_sprite_2d.play("death") # playing the death animation
 	await animated_sprite_2d.animation_finished # waiting for the animation to finish
 	bob.queue_free() # deleting the player from the scene
@@ -18,4 +18,3 @@ func Exit():
 	
 func Update(_delta:float):
 	pass
-
