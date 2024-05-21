@@ -13,7 +13,7 @@ script = ExtResource("1_u1x4u")
 [node name="Leapfrogger_map" parent="." instance=ExtResource("2_mp1s5")]
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
-position = Vector2(-169, -19)
+position = Vector2(-220, 91)
 wall_min_slide_angle = 0.261799
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
@@ -25,5 +25,5 @@ wall_min_slide_angle = 0.261799
 [node name="DroneMenu" parent="DroneLayer" groups=["DroneMenu"] instance=ExtResource("5_b6i78")]
 
 [node name="BulletToPlayer" parent="." instance=ExtResource("6_x1cpn")]
-position = Vector2(-38, -119)
-rotation = 2.4487
+position = Vector2(-83, 50)
+rotation = -3.36849

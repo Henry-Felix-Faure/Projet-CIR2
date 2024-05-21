@@ -70,27 +70,12 @@ func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent
 				await bullet.get_node("AnimatedSprite2D").animation_finished
 				bullet.queue_free()
 			2:
-				if player.last_dir.x > 0:
-					print(bullet.rotation)
-					if (bullet.rotation > PI and bullet.rotation <= (3.0*PI)/2.0) or (bullet.rotation > -PI and bullet.rotation <= (-PI)/2.0):
-						bullet.rotation += PI/2.0
-					else:
-						bullet.rotation -= PI/2.0
-				elif player.last_dir.x < 0:
-					if (bullet.rotation > 0.0 and bullet.rotation <= PI/2.0) or (bullet.rotation > (-2.0)*PI and bullet.rotation <= (-3.0*PI)/2.0):
-						bullet.rotation += PI/2.0
-					else:
-						bullet.rotation -= PI/2.0
-				elif player.last_dir.y > 0:
-					if (bullet.rotation > (3.0*PI)/2.0 and bullet.rotation <= 2*PI) or (bullet.rotation < 0.0 and bullet.rotation >= (-PI)/2.0):
-						bullet.rotation += PI/2.0
-					else:
-						bullet.rotation -= PI/2.0
-				elif player.last_dir.y < 0:
-					if (bullet.rotation > (-3.0*PI)/2.0 and bullet.rotation <= -PI) or (bullet.rotation < PI and bullet.rotation >= PI/2.0):
-						bullet.rotation += PI/2.0
-					else:
-						bullet.rotation -= PI/2.0
+				if player.last_dir.x:
+					bullet.rotation = bullet.rotation * (-1.0) + PI
+					
+				else:
+					bullet.rotation = (bullet.rotation - PI * player.last_dir.y) * (-1.0) + PI
+					
 			3:
 				bullet.rotation += PI
 		
