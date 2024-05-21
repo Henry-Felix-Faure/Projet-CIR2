@@ -77,7 +77,6 @@ SPEED = 50
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("6_hpw6f")
-health = 10
 
 [node name="SpawnComponent" type="Node2D" parent="."]
 script = ExtResource("7_v65c7")

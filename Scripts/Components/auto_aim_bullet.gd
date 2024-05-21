@@ -9,9 +9,9 @@ func call_func(body : Node2D) -> void:
 	var bullet : Node2D = spawn_component.spawn(get_parent().global_position)
 	var v = player_pos - bullet.global_position
 	var angle = v.angle()
-	bullet.hitbox_component.set_collision_layer_value(3, true)
-	bullet.hitbox_component.set_collision_mask_value(2, true)
+	bullet.get_node("HitboxComponent").set_collision_layer_value(3, true)
+	bullet.get_node("HitboxComponent").set_collision_mask_value(2, true)
 	bullet.rotation = angle
-	bullet.SPEED = 400
+	bullet.SPEED = 200
 	bullet.damage = ennemies_stats.DAMMAGE
 	

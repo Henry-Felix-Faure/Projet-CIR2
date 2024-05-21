@@ -43,7 +43,7 @@ func shoot(ennemie) -> void :
 	var bullet : Node2D = spawn_component.spawn(muzzle.global_position)
 	var v = ennemie_pos - bullet.global_position
 	var angle = v.angle()
-	bullet.hitbox_component.set_collision_mask_value(3, true)
+	bullet.get_node("HitboxComponent").set_collision_mask_value(3, true)
 	bullet.rotation = angle
 	bullet.SPEED = bullet_speed
 	bullet.damage = damage
