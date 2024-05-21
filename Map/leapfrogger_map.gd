@@ -8,7 +8,7 @@ var cardinal_dir_area = ["Area_north", "Area_west", "Area_east", "Area_south"]
 var current_world_tile = null
 var current_area = null
 
-@onready var pathfinding: Node2D = $Pathfinding
+#@onready var pathfinding: Node2D = $Pathfinding
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +19,7 @@ func _process(delta):
 
 
 func move_areas(dir: String):
-	var grid_pos
+	#var grid_pos
 	match dir:
 		"N":
 			for area_name in cardinal_dir_area:

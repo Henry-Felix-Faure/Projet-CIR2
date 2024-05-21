@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Bullet/BulletToPlayer.gd" id="1_2dn22"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="2_5clnb"]
 [ext_resource type="Texture2D" uid="uid://eq2rcr1pvkrk" path="res://Assets/Item/bullet1.png" id="3_bw6jx"]
-[ext_resource type="Texture2D" uid="uid://5ptexw3amy4m" path="res://Assets/Item/bullet_destroy.png" id="4_o0pl6"]
+[ext_resource type="Texture2D" uid="uid://erawwehm4v37" path="res://Assets/Item/bullet_destroy.png" id="4_o0pl6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mf2ed"]
 size = Vector2(10, 5)
@@ -113,6 +113,8 @@ animations = [{
 }]
 
 [node name="BulletToPlayer" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_2dn22")
 SPEED = 100
 
@@ -122,7 +124,7 @@ scale = Vector2(1.1, 1)
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 0
 script = ExtResource("2_5clnb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]

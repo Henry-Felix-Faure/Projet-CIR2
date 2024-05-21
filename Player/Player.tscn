@@ -3321,7 +3321,7 @@ _data = {
 }
 
 [node name="Bob" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 10
 collision_mask = 5
 motion_mode = 1
 wall_min_slide_angle = 1.5708
@@ -3353,7 +3353,8 @@ scale_amount_max = 5.0
 
 [node name="SwordArea2D" type="Area2D" parent="."]
 z_index = 1
-collision_layer = 2
+collision_layer = 10
+collision_mask = 5
 script = ExtResource("12_6rljm")
 
 [node name="SwordCS2D_1" type="CollisionShape2D" parent="SwordArea2D"]
@@ -3374,7 +3375,8 @@ debug_color = Color(0.929412, 0.145098, 0.0392157, 0.419608)
 
 [node name="HurtboxArea2D" type="Area2D" parent="."]
 z_index = 1
-collision_layer = 2
+collision_layer = 10
+collision_mask = 5
 script = ExtResource("13_xi33h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxArea2D"]

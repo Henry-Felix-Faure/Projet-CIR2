@@ -77,4 +77,8 @@ func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent
 					bullet.rotation = (bullet.rotation - PI * player.last_dir.y) * (-1.0) + PI
 			3:
 				bullet.rotation += PI
+	
+		bullet.hitbox_component.set_collision_layer_value(3, false)
+		bullet.hitbox_component.set_collision_mask_value(2, false)
+		bullet.hitbox_component.set_collision_mask_value(3, true)
 		
