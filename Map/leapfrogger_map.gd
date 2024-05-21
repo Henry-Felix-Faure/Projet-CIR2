@@ -8,6 +8,8 @@ var cardinal_dir_area = ["Area_north", "Area_west", "Area_east", "Area_south"]
 var current_world_tile = null
 var current_area = null
 
+@onready var pathfinding: Node2D = $Pathfinding
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -17,6 +19,7 @@ func _process(delta):
 
 
 func move_areas(dir: String):
+	var grid_pos
 	match dir:
 		"N":
 			for area_name in cardinal_dir_area:
@@ -34,7 +37,6 @@ func move_areas(dir: String):
 			for area_name in cardinal_dir_area:
 				current_area = get_node(area_name)
 				current_area.position.y += world_tile_size * tile_size
-
 
 func _on_area_north_body_entered(body):
 	if body.name == "Bob":

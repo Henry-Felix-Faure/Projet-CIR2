@@ -61,6 +61,7 @@ func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent
 	player.explosion_particles.direction = player.last_dir
 	player.explosion_particles.emitting = true
 	player.get_node("Camera2D").shake(0.2, 3)
+	
 	if hitbox_component.get_parent().name == "BulletToPlayer":
 		var bullet = hitbox_component.get_parent()
 		var parry_lvl: int = stats_component.parry_lvl
@@ -72,10 +73,8 @@ func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent
 			2:
 				if player.last_dir.x:
 					bullet.rotation = bullet.rotation * (-1.0) + PI
-					
 				else:
 					bullet.rotation = (bullet.rotation - PI * player.last_dir.y) * (-1.0) + PI
-					
 			3:
 				bullet.rotation += PI
 		

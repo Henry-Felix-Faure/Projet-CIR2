@@ -24,7 +24,7 @@ func next_animation_selector_parrying_recovery():
 	elif bob.last_dir.x < 0: # if the player was moving towards left
 		animated_sprite_2d.play("parry_right_recovery")
 		animated_sprite_2d.flip_h = true # facing left
-		animation_player.play("parry_right_recovery_tempo")
+		animation_player.play("parry_left_recovery_tempo")
 	elif bob.last_dir.y > 0: # if the player was moving towards bottom
 		animated_sprite_2d.play("parry_down_recovery")
 		animation_player.play("parry_down_recovery_tempo")

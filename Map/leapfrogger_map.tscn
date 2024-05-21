@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://cxn4xmmsx44km"]
+[gd_scene load_steps=31 format=3 uid="uid://cxn4xmmsx44km"]
 
 [ext_resource type="Script" path="res://Map/leapfrogger_map.gd" id="1_l5nds"]
 [ext_resource type="Shader" path="res://Shaders/greyScale_self.gdshader" id="1_uojdx"]
 [ext_resource type="Texture2D" uid="uid://1ew05vppcr2p" path="res://Assets/Tileset/Tileset.png" id="2_7d52s"]
+[ext_resource type="Script" path="res://Map/Pathfinding.gd" id="4_dyrkj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_86m7j"]
 shader = ExtResource("1_uojdx")
@@ -569,6 +570,14 @@ collision_mask = 2
 position = Vector2(0, 1088)
 shape = SubResource("RectangleShape2D_i8ikt")
 debug_color = Color(0, 0.65098, 0.129412, 0.419608)
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+default_color = Color(1, 0, 0, 1)
+
+[node name="Pathfinding" type="Node2D" parent="."]
+visible = false
+script = ExtResource("4_dyrkj")
 
 [connection signal="body_entered" from="Area_north" to="." method="_on_area_north_body_entered"]
 [connection signal="body_entered" from="Area_west" to="." method="_on_area_west_body_entered"]

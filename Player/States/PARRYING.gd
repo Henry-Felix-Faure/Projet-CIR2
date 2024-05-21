@@ -46,7 +46,7 @@ func next_animation_selector_parrying():
 				animated_sprite_2d.play("parry_right_2")
 			3:
 				animated_sprite_2d.play("parry_right_3")
-		animation_player.play("parry_right_tempo")
+		animation_player.play("parry_left_tempo")
 	elif bob.last_dir.y > 0: # if the player was moving towards bottom
 		match parry_lvl:
 			1:
