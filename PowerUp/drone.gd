@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	rotation_degrees += speed
 	animated_sprite_2d.rotation_degrees =  - rotation_degrees
 	if(mode == 1):
@@ -43,6 +43,8 @@ func shoot(ennemie) -> void :
 	var bullet : Node2D = spawn_component.spawn(muzzle.global_position)
 	var v = ennemie_pos - bullet.global_position
 	var angle = v.angle()
+	bullet.get_node("HitboxComponent").set_collision_layer_value(3, false)
+	bullet.get_node("HitboxComponent").set_collision_mask_value(2, false)
 	bullet.get_node("HitboxComponent").set_collision_mask_value(3, true)
 	bullet.rotation = angle
 	bullet.SPEED = bullet_speed

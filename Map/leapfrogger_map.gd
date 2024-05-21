@@ -14,7 +14,7 @@ var current_area = null
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 

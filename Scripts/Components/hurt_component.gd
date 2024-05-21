@@ -8,14 +8,21 @@ extends Node
 # Grab a hurtbox so we know when we have taken a hiet
 @export var hurtbox_component: HurtboxComponent
 
-signal critical_hit
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../AnimatedSprite2D"
 
-func shader_wait(seconds: float, entity) -> void: # custom wait function
-	await get_tree().create_timer(seconds).timeout
-	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_power", float(0.0))
-	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_color_rate", float(0.0))
+signal critical_hit
+@onready var flash_timer = Timer.new()
+@onready var glitch_timer = Timer.new()
 
 func _ready() -> void:
+	flash_timer.wait_time = 0.12
+	add_child(flash_timer)
+	flash_timer.timeout.connect(_on_flash_timer_timeout)
+	flash_timer.one_shot = true
+	glitch_timer.wait_time = 0.12
+	add_child(glitch_timer)
+	glitch_timer.timeout.connect(_on_glitch_timer_timeout)
+	glitch_timer.one_shot = true
 	var player = 0
 	var entity = 0
 	# Connect the hurt signal on the hurtbox component to an anonymous function
@@ -26,12 +33,10 @@ func _ready() -> void:
 		entity = get_parent()
 	
 	hurtbox_component.hurt.connect(func(hitbox_component: HitboxComponent, crit : bool):
-		if crit:
-			entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_power", float(0.03))
-			entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_color_rate", float(0.02))
-			shader_wait(0.1, entity)
+		if player and crit:
+			glitch(entity)
 			critical_hit.emit()
-		if player and player.parrying:
+		elif player and player.parrying:
 			if player.last_dir.x > 0 and (hitbox_component.get_parent().position.x > player.position.x):
 				player.explosion_particles.position = Vector2(8,0)
 				successful_parry(player, hitbox_component)
@@ -51,9 +56,15 @@ func _ready() -> void:
 		elif player and player.dashing:
 			pass
 		else:
+			#print(hitbox_component.get_parent().name)
+			#if hitbox_component.get_parent().name == "@Area2D@2": # pb w/ sniper
+				#hitbox_component.get_parent().queue_free()
+				#return
 			stats_component.health -= hitbox_component.damage
 			if hitbox_component.get_parent().name == "BulletToPlayer":
 				hitbox_component.get_parent().queue_free()
+				return
+			flash()
 	)
 
 func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent):
@@ -81,4 +92,22 @@ func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent
 		bullet.hitbox_component.set_collision_layer_value(3, false)
 		bullet.hitbox_component.set_collision_mask_value(2, false)
 		bullet.hitbox_component.set_collision_mask_value(3, true)
-		
+
+
+func glitch(entity):
+	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("is_flash",0)
+	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_power", float(0.04))
+	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_color_rate", float(0.02))
+	glitch_timer.start()
+
+func flash():
+	animated_sprite_2d.material.set_shader_parameter("flash_modifier",1)
+	flash_timer.start()
+
+func _on_flash_timer_timeout() -> void:
+	animated_sprite_2d.material.set_shader_parameter("flash_modifier",0)
+
+func _on_glitch_timer_timeout() -> void:
+	animated_sprite_2d.material.set_shader_parameter("shake_power", float(0.0))
+	animated_sprite_2d.material.set_shader_parameter("shake_color_rate", float(0.0))
+	animated_sprite_2d.material.set_shader_parameter("is_flash",1)

@@ -4,7 +4,7 @@ extends Node2D
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_key_pressed(KEY_1):
 		level_up_menu._on_lvl_up()
 	

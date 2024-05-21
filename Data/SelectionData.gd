@@ -390,7 +390,7 @@ func addAtk(atk : int, choice : Array , choice_i : int):
 	atkUp.emit(atk)
 	if  choice_i== 2: allPath.remove_at(allPath.find(choice, 0))
 	
-func droneUpgrade(lvl : int, choice : Array = [], choice_i : int = 0):
+func droneUpgrade(lvl : int, choice : Array = [], _choice_i : int = 0):
 	if lvl == 1:
 		drone_menu.show_drone_menu()
 		return

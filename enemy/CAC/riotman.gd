@@ -38,11 +38,11 @@ func _physics_process(delta):
 		else:
 			animated_sprite_2d.flip_h = false
 
-func _on_range_body_entered(body):
+func _on_range_body_entered(_body):
 	attack()
 	in_area = true
 	
-func _on_range_body_exited(body):
+func _on_range_body_exited(_body):
 	in_area = false
 
 
