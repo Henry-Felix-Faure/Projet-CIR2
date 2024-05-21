@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bnmrqlcon1iha"]
+[gd_scene load_steps=47 format=3 uid="uid://bnmrqlcon1iha"]
 
 [ext_resource type="Script" path="res://enemy/CAC/riotman.gd" id="1_r0p4n"]
 [ext_resource type="Texture2D" uid="uid://cpbfgsthfn6tx" path="res://Assets/Foe/riotman/shieldman_attack.png" id="1_vkffm"]
@@ -12,10 +12,13 @@
 [ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="9_2re8q"]
 [ext_resource type="Script" path="res://Scripts/Components/spawn_component.gd" id="10_suepq"]
 [ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="11_n7cko"]
+[ext_resource type="AudioStream" uid="uid://d33i4p5cwee2h" path="res://Audio/Mob_sound/riotman/attack_riotman_1.wav" id="14_ds7n4"]
+[ext_resource type="AudioStream" uid="uid://dajvsu8skkwy8" path="res://Audio/Mob_sound/riotman/attack_riotman_2.wav" id="15_r2bjc"]
+[ext_resource type="AudioStream" uid="uid://bfa427b4fh6cx" path="res://Audio/Mob_sound/riotman/attack_riotman_3.wav" id="16_hvf5q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8wskj"]
-radius = 6.0
-height = 24.0
+radius = 5.0
+height = 20.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ajhk"]
 atlas = ExtResource("1_vkffm")
@@ -245,7 +248,6 @@ stats = NodePath("EnnemiesStatsComponent")
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_8wskj")
 debug_color = Color(0.946129, 5.48691e-06, 0.589246, 0.42)
-metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
@@ -253,17 +255,17 @@ sprite_frames = SubResource("SpriteFrames_3eb8t")
 animation = &"attack"
 frame = 6
 frame_progress = 1.0
+metadata/_edit_lock_ = true
 
 [node name="range" type="Area2D" parent="."]
 collision_mask = 2
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="range"]
+[node name="DetectionR" type="CollisionShape2D" parent="range"]
 position = Vector2(3, 0)
 shape = SubResource("CapsuleShape2D_dg4rr")
-metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="range"]
+[node name="DetectionL" type="CollisionShape2D" parent="range"]
 position = Vector2(-3, 0)
 shape = SubResource("CapsuleShape2D_dg4rr")
 
@@ -299,5 +301,17 @@ metadata/_edit_lock_ = true
 [node name="SpawnComponent" type="Node2D" parent="."]
 script = ExtResource("10_suepq")
 scene = ExtResource("11_n7cko")
+
+[node name="atk_1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_ds7n4")
+volume_db = -20.271
+
+[node name="atk_2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_r2bjc")
+volume_db = -23.797
+
+[node name="atk_3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_hvf5q")
+volume_db = -23.797
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

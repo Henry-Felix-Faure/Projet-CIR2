@@ -376,8 +376,8 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
 
-[connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/option" to="." method="_on_option_pressed"]
 [connection signal="toggled" from="test/VBoxContainer/option" to="." method="_on_option_toggled"]
 [connection signal="pressed" from="test/VBoxContainer/quit" to="." method="_on_quit_pressed"]

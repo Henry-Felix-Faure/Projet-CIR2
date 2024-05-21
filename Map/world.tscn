@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=7 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="Texture2D" uid="uid://507o8cssabij" path="res://icon.svg" id="4_8d3p7"]
+[ext_resource type="PackedScene" uid="uid://fyuphs1cbrxh" path="res://enemy/CAC/kamikaze_robot.tscn" id="4_857ob"]
+[ext_resource type="PackedScene" uid="uid://4o2ksvge2e5y" path="res://enemy/CAC/robot.tscn" id="4_eu0n4"]
+[ext_resource type="PackedScene" uid="uid://bnmrqlcon1iha" path="res://enemy/CAC/riotman.tscn" id="5_1xbxk"]
+[ext_resource type="PackedScene" uid="uid://b5361lhis2keq" path="res://enemy/CAC/policeman.tscn" id="6_cblgi"]
 
 [node name="World" type="Node2D"]
 
@@ -27,3 +31,15 @@ texture = ExtResource("4_8d3p7")
 position = Vector2(240, 263)
 scale = Vector2(3.73196, 0.0948484)
 texture = ExtResource("4_8d3p7")
+
+[node name="Kamikaze_robot10" parent="." instance=ExtResource("4_857ob")]
+position = Vector2(-333, 214)
+
+[node name="Robot" parent="." instance=ExtResource("4_eu0n4")]
+position = Vector2(411, 185)
+
+[node name="riotman" parent="." instance=ExtResource("5_1xbxk")]
+position = Vector2(380, 94)
+
+[node name="policeman" parent="." instance=ExtResource("6_cblgi")]
+position = Vector2(278, 208)

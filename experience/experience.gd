@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var nb_exp: float = 50.0
-var bonus_ramassage: bool = true
+var bonus_ramassage: bool = true 
 
 @onready var animation: AnimatedSprite2D = $anim_xp
 @onready var player = get_node("/root/World/Bob")

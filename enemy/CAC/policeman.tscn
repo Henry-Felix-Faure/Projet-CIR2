@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b5361lhis2keq"]
+[gd_scene load_steps=33 format=3 uid="uid://b5361lhis2keq"]
 
 [ext_resource type="Script" path="res://enemy/CAC/policeman.gd" id="1_ep12o"]
 [ext_resource type="Texture2D" uid="uid://cvvtjekhpn407" path="res://Assets/Foe/policeman/policeman_attack.png" id="1_vlckk"]
@@ -10,10 +10,11 @@
 [ext_resource type="Script" path="res://Scripts/Components/spawn_component.gd" id="7_vdcvc"]
 [ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="8_psded"]
 [ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="9_qvhfe"]
+[ext_resource type="AudioStream" uid="uid://dx62q1hdok5tu" path="res://Audio/Mob_sound/shotgun.wav" id="11_1tsay"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_11v6f"]
-radius = 6.0
-height = 26.0
+radius = 5.0
+height = 22.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i5bys"]
 atlas = ExtResource("1_vlckk")
@@ -213,5 +214,9 @@ script = ExtResource("8_psded")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(-1, 4)
 shape = SubResource("CapsuleShape2D_44vdk")
+
+[node name="shotgun" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_1tsay")
+volume_db = -22.459
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
