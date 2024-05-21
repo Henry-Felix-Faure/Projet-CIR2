@@ -4,6 +4,7 @@ extends State
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var audio_draw_sword: AudioStreamPlayer2D = $"../../audio_draw_sword"
+@onready var stats_component = $"../../StatsComponent"
 
 func Enter():
 	bob.parrying = true
@@ -25,9 +26,10 @@ func animation_finished():
 	state_transition.emit(self, "PARRYING_RECOVERY")
 
 func next_animation_selector_parrying():
+	var parry_lvl: int = stats_component.parry_lvl
 	if bob.last_dir.x > 0: # if the player was moving towards right
 		animated_sprite_2d.flip_h = false # facing right
-		match bob.parry_lvl:
+		match parry_lvl:
 			1:
 				animated_sprite_2d.play("parry_right_1") # playing the correct animation (same for the other if/elif)
 			2:
@@ -37,7 +39,7 @@ func next_animation_selector_parrying():
 		animation_player.play("parry_right_tempo")
 	elif bob.last_dir.x < 0: # if the player was moving towards left
 		animated_sprite_2d.flip_h = true # facing right
-		match bob.parry_lvl:
+		match parry_lvl:
 			1:
 				animated_sprite_2d.play("parry_right_1") # playing the correct animation (same for the other if/elif)
 			2:
@@ -46,7 +48,7 @@ func next_animation_selector_parrying():
 				animated_sprite_2d.play("parry_right_3")
 		animation_player.play("parry_right_tempo")
 	elif bob.last_dir.y > 0: # if the player was moving towards bottom
-		match bob.parry_lvl:
+		match parry_lvl:
 			1:
 				animated_sprite_2d.play("parry_down_1") # playing the correct animation (same for the other if/elif)
 			2:
@@ -55,7 +57,7 @@ func next_animation_selector_parrying():
 				animated_sprite_2d.play("parry_down_3")
 		animation_player.play("parry_down_tempo")
 	elif bob.last_dir.y < 0: # if the player was moving towards top
-		match bob.parry_lvl:
+		match parry_lvl:
 			1:
 				animated_sprite_2d.play("parry_up_1") # playing the correct animation (same for the other if/elif)
 			2:
