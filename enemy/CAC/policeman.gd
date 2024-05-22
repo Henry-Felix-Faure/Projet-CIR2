@@ -6,12 +6,15 @@ var speed: float = 30.0
 
 const expScene = preload("res://experience/experience.tscn")
 
+@onready var shotgun: AudioStreamPlayer2D = $shotgun
+
 @onready var detection_r: CollisionShape2D = $range/DetectionR
 @onready var detection_l: CollisionShape2D = $range/DetectionL
 @onready var range: Area2D = $range
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player = get_node("/root/World/Bob")
 @onready var wait_timer: Timer = $Timer
+
 var wait : bool = false
 var in_area : bool = false
 
@@ -23,9 +26,14 @@ func _ready():
 
 
 func attack() -> void:
+	shotgun.play()
 	animated_sprite_2d.play("attack")
-	wait_timer.start()
-	wait = true	
+	wait = true
+	await animated_sprite_2d.animation_finished
+	if in_area:
+		wait_timer.start()
+	else:
+		wait = false
 
 
 func _physics_process(delta):

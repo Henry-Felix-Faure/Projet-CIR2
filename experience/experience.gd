@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var nb_exp: float = 50.0
-var bonus_ramassage: bool = true
+var bonus_ramassage: bool = false 
 
 @onready var animation: AnimatedSprite2D = $anim_xp
 @onready var player = get_node("/root/World/Bob")
@@ -20,7 +20,7 @@ func _on_range_body_entered(_body) -> void:
 	die()
 
 func die() -> void:
-	player.get_child(6).xp += nb_exp
+	player.get_child(9).xp += nb_exp
 	queue_free()
 
 func _physics_process(delta):

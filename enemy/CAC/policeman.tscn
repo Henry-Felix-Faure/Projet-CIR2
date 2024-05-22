@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://b5361lhis2keq"]
+[gd_scene load_steps=35 format=3 uid="uid://b5361lhis2keq"]
 
 [ext_resource type="Script" path="res://enemy/CAC/policeman.gd" id="1_ep12o"]
 [ext_resource type="Texture2D" uid="uid://cvvtjekhpn407" path="res://Assets/Foe/policeman/policeman_attack.png" id="1_vlckk"]
+[ext_resource type="Shader" path="res://Shaders/ennemy_shader.gdshader" id="2_3gwr0"]
 [ext_resource type="Texture2D" uid="uid://ba6seqityqaej" path="res://Assets/Foe/policeman/policeman_walk.png" id="2_xp3g8"]
 [ext_resource type="Script" path="res://Scripts/Components/stats_component.gd" id="3_jerbp"]
 [ext_resource type="Script" path="res://Scripts/Components/hurt_component.gd" id="4_5v3yc"]
@@ -10,10 +11,23 @@
 [ext_resource type="Script" path="res://Scripts/Components/spawn_component.gd" id="7_vdcvc"]
 [ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="8_psded"]
 [ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="9_qvhfe"]
+[ext_resource type="AudioStream" uid="uid://dx62q1hdok5tu" path="res://Audio/Mob_sound/shotgun.wav" id="11_1tsay"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_11v6f"]
-radius = 6.0
-height = 26.0
+radius = 5.0
+height = 22.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t3v5l"]
+resource_local_to_scene = true
+shader = ExtResource("2_3gwr0")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+shader_parameter/shake_power = 0.0
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.0
+shader_parameter/is_flash = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i5bys"]
 atlas = ExtResource("1_vlckk")
@@ -158,6 +172,7 @@ height = 42.0
 height = 32.0
 
 [node name="policeman" type="CharacterBody2D" node_paths=PackedStringArray("stats")]
+collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_ep12o")
 stats = NodePath("EnnemiesStatsComponent")
@@ -167,12 +182,14 @@ position = Vector2(-2, 3)
 shape = SubResource("CapsuleShape2D_11v6f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_t3v5l")
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_6f620")
 animation = &"move"
 metadata/_edit_lock_ = true
 
 [node name="range" type="Area2D" parent="."]
+collision_layer = 4
 collision_mask = 2
 
 [node name="DetectionR" type="CollisionShape2D" parent="range"]
@@ -208,10 +225,16 @@ script = ExtResource("7_vdcvc")
 scene = ExtResource("9_qvhfe")
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("8_psded")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(-1, 4)
 shape = SubResource("CapsuleShape2D_44vdk")
+
+[node name="shotgun" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_1tsay")
+volume_db = -22.459
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
