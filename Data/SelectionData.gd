@@ -271,21 +271,21 @@ var parryUpPath: Dictionary = {
 		"name": "Acuité visuelle de 10/10\n\n",
 		"desc": "Augmente la durée du parry",
 		"call": Callable(self,"parry_lvl"),
-		"value": 0.2,
+		"value": 1,
 		"icon" : PARRY_UP_1
 		},
 	1: {
 		"name": "Yeux d'aigle\n\n",
 		"desc": "Augmente la durée du parry",
 		"call": Callable(self,"parry_lvl"),
-		"value": 0.2,
+		"value": 1,
 		"icon" :  PARRY_UP_2
 		},
 	2: {
 		"name": "Yeux cybérnétique\n\n",
 		"desc": "Augmente la durée du parry",
 		"call": Callable(self,"parry_lvl"),
-		"value": 0.2,
+		"value": 1,
 		"icon" :  PARRY_UP_3
 		}
 }
