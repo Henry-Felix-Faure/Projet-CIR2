@@ -18,9 +18,9 @@ func _process(delta):
 func player_detected(body : Node2D):
 	found = true
 	while(found):
+		detect_action_player.call_function_with_player(body)
 		var time : float = 3 - (ennemies_stats_component.ATK_SPEED * pow(10, -1))
 		timer.wait_time = time
-		detect_action_player.call_function_with_player(body)
 		timer.start()
 		await timer.timeout
 	

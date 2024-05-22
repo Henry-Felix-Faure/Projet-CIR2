@@ -13,7 +13,7 @@ signal up_crit
 signal up_damage_crit
 signal up_health
 
-@onready var drone_menu = get_parent().get_parent().get_node("DroneMenu")
+@onready var drone_menu = get_parent().get_parent().get_child(0)
 
 const ATK_SPEED_UP_1 = preload("res://Assets/PowerUp/atk_speed_up_1.png")
 const ATK_SPEED_UP_2 = preload("res://Assets/PowerUp/atk_speed_up_2.png")

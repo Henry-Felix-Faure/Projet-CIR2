@@ -23,9 +23,9 @@ func _ready() -> void:
 	timer_state.wait_time = 120
 	
 	
-	bank_mob["robot"] = 100
+	bank_mob["robot"] = 0
 	bank_mob["police"] = 0
-	bank_mob["kamikaze"] = 0
+	bank_mob["kamikaze"] = 100
 	bank_mob["riotman"] = 0
 	bank_mob["mob4"] = 0
 	bank_mob["mob5"] = 0

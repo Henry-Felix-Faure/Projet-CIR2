@@ -3402,7 +3402,8 @@ hurtbox_component = NodePath("../HurtboxArea2D")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("15_pvxni")
-parry_lvl = 2.0
+parry_lvl = 3.0
+health = 100
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true

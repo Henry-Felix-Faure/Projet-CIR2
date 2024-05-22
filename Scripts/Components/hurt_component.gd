@@ -32,6 +32,7 @@ func _ready() -> void:
 		entity = get_parent()
 	
 	hurtbox_component.hurt.connect(func(hitbox_component: HitboxComponent, crit : bool):
+		print(hitbox_component.get_parent().name)
 		if crit:
 			glitch(entity)
 			critical_hit.emit()
@@ -55,15 +56,12 @@ func _ready() -> void:
 		elif player and player.dashing:
 			pass
 		else:
-			#print(hitbox_component.get_parent().name)
-			#if hitbox_component.get_parent().name == "@Area2D@2": # pb w/ sniper
-				#hitbox_component.get_parent().queue_free()
-				#return
+			if not(player):
+				flash()
 			stats_component.health -= hitbox_component.damage
-			if hitbox_component.get_parent().name == "BulletToPlayer":
+			if hitbox_component.get_parent().name == "BulletToPlayer" or stats_component.health <= 0:
 				hitbox_component.get_parent().queue_free()
 				return
-			flash()
 	)
 
 func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent):
@@ -108,7 +106,6 @@ func _on_flash_timer_timeout() -> void:
 	animated_sprite_2d.material.set_shader_parameter("flash_modifier",0)
 
 func _on_glitch_timer_timeout() -> void:
-	print('finie caca')
 	animated_sprite_2d.material.set_shader_parameter("shake_power", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("shake_color_rate", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("is_flash",1)

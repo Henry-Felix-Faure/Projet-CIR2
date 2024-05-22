@@ -118,6 +118,7 @@ texture = ExtResource("2_tgc08")
 [node name="LevelUpTree" type="Node" parent="."]
 script = ExtResource("2_ch84r")
 
+[connection signal="drone_ready" from="." to="LevelUpTree" method="_on_level_up_menu_drone_ready"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Choice1" to="." method="_on_choice_1_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Choice2" to="." method="_on_choice_2_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Choice3" to="." method="_on_choice_3_pressed"]
