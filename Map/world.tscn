@@ -19,8 +19,8 @@ script = ExtResource("1_u1x4u")
 [node name="Leapfrogger_map" parent="." instance=ExtResource("2_mp1s5")]
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
-position = Vector2(-740, -59)
+position = Vector2(-404, 177)
 wall_min_slide_angle = 0.261799
 
 [node name="policeman" parent="." instance=ExtResource("6_bjkie")]
-position = Vector2(-657, -61)
+position = Vector2(-196, 474)

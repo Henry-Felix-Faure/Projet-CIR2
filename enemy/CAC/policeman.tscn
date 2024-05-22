@@ -204,7 +204,6 @@ shape = SubResource("CapsuleShape2D_5tscf")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("3_jerbp")
-health = 100
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
 script = ExtResource("4_5v3yc")
