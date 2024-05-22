@@ -25,18 +25,17 @@ func _ready() -> void:
 	glitch_timer.one_shot = true
 	var player = 0
 	var entity = 0
-	# Connect the hurt signal on the hurtbox component to an anonymous function
-	# that removes health equal to the damage from the hitbox
+
 	if(get_parent().name == "Bob"):
 		player = get_parent()
 	else:
 		entity = get_parent()
 	
 	hurtbox_component.hurt.connect(func(hitbox_component: HitboxComponent, crit : bool):
-		if player and crit:
+		if crit:
 			glitch(entity)
 			critical_hit.emit()
-		elif player and player.parrying:
+		if player and player.parrying:
 			if player.last_dir.x > 0 and (hitbox_component.get_parent().position.x > player.position.x):
 				player.explosion_particles.position = Vector2(8,0)
 				successful_parry(player, hitbox_component)
@@ -96,8 +95,9 @@ func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent
 
 func glitch(entity):
 	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("is_flash",0)
+	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_rate", float(1.0))
 	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_power", float(0.04))
-	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_color_rate", float(0.02))
+	entity.get_node("AnimatedSprite2D").material.set_shader_parameter("shake_color_rate", float(0.01))
 	glitch_timer.start()
 
 func flash():
@@ -108,6 +108,7 @@ func _on_flash_timer_timeout() -> void:
 	animated_sprite_2d.material.set_shader_parameter("flash_modifier",0)
 
 func _on_glitch_timer_timeout() -> void:
+	print('finie caca')
 	animated_sprite_2d.material.set_shader_parameter("shake_power", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("shake_color_rate", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("is_flash",1)

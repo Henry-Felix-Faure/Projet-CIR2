@@ -40,7 +40,7 @@ func animation_finished():
 	
 
 func next_animation_selector_attacking():
-	#	var is_crit: bool = get_parent().is_attack_crit()
+	var _is_crit: bool = get_parent().is_attack_crit()
 	if not bob.AIMING_MOUSE:
 		if bob.last_dir_attack_array[2].x != 0: # if the player was moving towards left or right
 			animated_sprite_2d.play(bob.attacks_array[0][2]) # playing the correct animation of attack (same for the other if/elif)

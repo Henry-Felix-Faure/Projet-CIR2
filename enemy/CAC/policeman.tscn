@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b5361lhis2keq"]
+[gd_scene load_steps=35 format=3 uid="uid://dmbihu4ni6jsk"]
 
 [ext_resource type="Script" path="res://enemy/CAC/policeman.gd" id="1_ep12o"]
 [ext_resource type="Texture2D" uid="uid://cvvtjekhpn407" path="res://Assets/Foe/policeman/policeman_attack.png" id="1_vlckk"]
@@ -22,12 +22,12 @@ resource_local_to_scene = true
 shader = ExtResource("2_3gwr0")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
-shader_parameter/shake_power = 0.0
-shader_parameter/shake_rate = 0.2
+shader_parameter/shake_power = 0.04
+shader_parameter/shake_rate = 0.0
 shader_parameter/shake_speed = 5.0
 shader_parameter/shake_block_size = 30.5
-shader_parameter/shake_color_rate = 0.0
-shader_parameter/is_flash = 1
+shader_parameter/shake_color_rate = 0.02
+shader_parameter/is_flash = 0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i5bys"]
 atlas = ExtResource("1_vlckk")
@@ -204,7 +204,7 @@ shape = SubResource("CapsuleShape2D_5tscf")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("3_jerbp")
-health = 10
+health = 100
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
 script = ExtResource("4_5v3yc")

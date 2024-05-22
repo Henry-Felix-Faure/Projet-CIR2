@@ -4,6 +4,7 @@ signal choosen
 
 
 func _ready() -> void:
+	add_to_group("DroneMenu")
 	hide()
 
 func show_drone_menu():

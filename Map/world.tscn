@@ -5,10 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://cxn4xmmsx44km" path="res://Map/leapfrogger_map.tscn" id="2_mp1s5"]
 [ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
 [ext_resource type="PackedScene" uid="uid://b0u1xks6d8yqu" path="res://Menu/MenuDrone/drone_menu.tscn" id="5_b6i78"]
-[ext_resource type="PackedScene" uid="uid://dyl50b0s58fit" path="res://Ennemies/Ranged/sniper.tscn" id="6_b1vot"]
+[ext_resource type="PackedScene" uid="uid://dmbihu4ni6jsk" path="res://enemy/CAC/policeman.tscn" id="6_bjkie"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_u1x4u")
+
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+
+[node name="DroneMenu" parent="MenuLayer" instance=ExtResource("5_b6i78")]
+
+[node name="Level Up Menu" parent="MenuLayer" instance=ExtResource("3_8lbtx")]
 
 [node name="Leapfrogger_map" parent="." instance=ExtResource("2_mp1s5")]
 
@@ -16,13 +22,5 @@ script = ExtResource("1_u1x4u")
 position = Vector2(-740, -59)
 wall_min_slide_angle = 0.261799
 
-[node name="MenuLayer" type="CanvasLayer" parent="."]
-
-[node name="Level Up Menu" parent="MenuLayer" instance=ExtResource("3_8lbtx")]
-
-[node name="DroneLayer" type="CanvasLayer" parent="."]
-
-[node name="DroneMenu" parent="DroneLayer" groups=["DroneMenu"] instance=ExtResource("5_b6i78")]
-
-[node name="Sniper" parent="." instance=ExtResource("6_b1vot")]
-position = Vector2(-485, -55)
+[node name="policeman" parent="." instance=ExtResource("6_bjkie")]
+position = Vector2(-657, -61)

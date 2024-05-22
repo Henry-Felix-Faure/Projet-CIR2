@@ -31,7 +31,7 @@ var d_2 : bool = false
 @export var dmg : int = 1
 @export var crit : float = 0
 @export var damage_crit : float = 1.20
-@export var health: int = 1:
+@export var health: int = 10:
 	set(value):
 		health = value
 		# Signal out that the health has changed

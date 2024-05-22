@@ -11,7 +11,7 @@ extends CharacterBody2D
 
 # importing initial stats variables
 @onready var health: int = stats_component.health
-@onready var crit_chance: float = 1.0
+@onready var crit_chance: float = 0.5
 @onready var damage: int = 2
 @onready var crit_damage: float = 1.2
 
