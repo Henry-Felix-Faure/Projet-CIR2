@@ -32,7 +32,6 @@ func _ready() -> void:
 		entity = get_parent()
 	
 	hurtbox_component.hurt.connect(func(hitbox_component: HitboxComponent, crit : bool):
-		print(hitbox_component.get_parent().name)
 		if crit:
 			glitch(entity)
 			critical_hit.emit()
@@ -59,7 +58,7 @@ func _ready() -> void:
 			if not(player):
 				flash()
 			stats_component.health -= hitbox_component.damage
-			if hitbox_component.get_parent().name == "BulletToPlayer" or stats_component.health <= 0:
+			if hitbox_component.get_parent().name == "BulletToPlayer":
 				hitbox_component.get_parent().queue_free()
 				return
 	)

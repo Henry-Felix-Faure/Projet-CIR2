@@ -10,7 +10,7 @@ extends State
 #@onready var path_line = leapfrogger_map.get_node("Line2D")
 
 func Enter():
-	bob.BASE_SPEED = 100
+	pass
 	
 func Exit():
 	pass

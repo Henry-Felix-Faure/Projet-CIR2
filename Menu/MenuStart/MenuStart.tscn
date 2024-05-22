@@ -591,6 +591,7 @@ flat = true
 stream = ExtResource("18_xdp7s")
 volume_db = -17.627
 autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_play_pressed"]

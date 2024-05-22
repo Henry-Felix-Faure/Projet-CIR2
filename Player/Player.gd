@@ -11,9 +11,9 @@ extends CharacterBody2D
 
 # importing initial stats variables
 @onready var health: int = stats_component.health
-@onready var crit_chance: float = 0.5
-@onready var damage: int = 2
-@onready var crit_damage: float = 1.2
+@onready var crit_chance: float = stats_component.crit
+@onready var damage: int = stats_component.dmg
+@onready var crit_damage: float = stats_component.damage_crit
 
 
 var cancel_dash_parry: bool = false
@@ -21,10 +21,10 @@ var parrying: bool = false
 
 signal critical_hit
 
-# initial variables for moving and animations
-@export var MAX_SPEED: int = 1000
-@export var BASE_SPEED: int = 100
-const DASH_SPEED: int = 300
+
+@onready var MAX_SPEED: int = 1000
+@onready var BASE_SPEED: int = stats_component.speed_up
+@onready var DASH_SPEED: int = stats_component.dash_speed
 
 #var ACCELERATION: int = 100000000
 #var FRICTION: int = 100000000

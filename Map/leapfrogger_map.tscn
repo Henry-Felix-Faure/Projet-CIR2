@@ -8,6 +8,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_86m7j"]
 shader = ExtResource("1_uojdx")
 shader_parameter/greyScaleIntensity = 0.8
+shader_parameter/use_grayscale = true
+shader_parameter/shift_color = Color(0.564706, 0.333333, 0.494118, 1)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_c0wct"]
 tile_data = PackedInt32Array(65536, 65536, 1, 131072, 65536, 1, 196608, 65536, 1, 1, 65536, 1, 65537, 65536, 1, 131073, 65536, 1, 196609, 65536, 1, 262145, 65536, 1, 327681, 65536, 1, 393217, 65536, 1, 65538, 65536, 1, 131074, 65536, 1, 196610, 65536, 1, 262146, 65536, 1, 327682, 65536, 1, 393218, 65536, 1, 131075, 65536, 1, 196611, 65536, 1, 262147, 65536, 1, 327683, 65536, 1, 393219, 65536, 1, 458755, 65536, 1, 196612, 65536, 1, 262148, 65536, 1, 327684, 65536, 1, 393220, 65536, 1, 458756, 65536, 1, 262149, 65536, 1, 327685, 65536, 1, 393221, 65536, 1)

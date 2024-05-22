@@ -22,8 +22,8 @@ var d_1 : bool = false
 var d_2 : bool = false
 
 # Create the health variable and connect a setter
-@export var speed_up : float = 1
-@export var dash_speed: float = 1
+@export var speed_up : int = 1
+@export var dash_speed: int = 1
 @export var dash_cd : float = 2
 @export var parry_cd : float = 1.5
 @export var atk_speed : float = 1
