@@ -57,21 +57,21 @@ var pathSpeed : Dictionary = {
 		"name": "Implants d'Achilles\n\n",
 		"desc": "Augmente la vitesse de déplacement",
 		"call": Callable(self,"addSpeed"),
-		"value": 0.2,
+		"value": 10,
 		"icon": SPEED_UP_1
 		},
 	1:{
 		"name" : "Amélioration des implants d'Achilles\n\n",
 		"desc": "Augmente la vitesse de déplacement",
 		"call": Callable(self,"addSpeed"),
-		"value": 0.2,
+		"value": 10,
 		"icon": SPEED_UP_2
 	},
 	2:{
 		"name" : "Amélioration des implants d'Achilles\n\n",
 		"desc": "Augmente la vitesse de déplacement",
 		"call": Callable(self,"addSpeed"),
-		"value": 0.2,
+		"value": 20,
 		"icon": SPEED_UP_3
 	},}
 var dronePath : Dictionary = {
@@ -151,21 +151,21 @@ var atkUpPath : Dictionary = {
 		"name": "Le bras de Damia\n\n",
 		"desc": "C'est pas encore ca, mais on commence a voir le biceps (attaque +)",
 		"call": Callable(self,"addAtk"),
-		"value": 0.2,
+		"value": 1,
 		"icon" : ATK_UP_1
 		},
 	1: {
 		"name": "Le bras d'Edgar\n\n",
 		"desc": "A la t'es BG ! (attaque +)",
 		"call": Callable(self,"addAtk"),
-		"value": 0.2,
+		"value": 1,
 		"icon" : ATK_UP_2
 		},
 	2: {
 		"name": "Le bras de Clarence\n\n",
 		"desc": "T'as mangé quoi pour devenir comme ca ? (attaque +)",
 		"call": Callable(self,"addAtk"),
-		"value": 0.2,
+		"value": 5,
 		"icon" : ATK_UP_3
 		}
 }
@@ -175,21 +175,21 @@ var dashSpeedUpPath : Dictionary = {
 		"name": "    Boost de puissance des jambes bioniques\n\n",
 		"desc": "Augmente la vitesse du dash",
 		"call": Callable(self,"dash_speed"),
-		"value": 0.2,
+		"value": 20,
 		"icon" : DASH_SPEED_UP_1
 		},
 	1: {
 		"name": "    Boost de puissance des jambes bioniques\n\n",
 		"desc": "Augmente la vitesse du dash",
 		"call": Callable(self,"dash_speed"),
-		"value": 0.2,
+		"value": 20,
 		"icon" :  DASH_SPEED_UP_2
 		},
 	2: {
 		"name": "    Boost de puissance des jambes bioniques\n\n",
 		"desc": "Augmente la vitesse du dash",
 		"call": Callable(self,"dash_speed"),
-		"value": 0.2,
+		"value": 20,
 		"icon" :  DASH_SPEED_UP_3
 		}
 }
@@ -199,21 +199,21 @@ var dashCDUpPath: Dictionary = {
 		"name": "Installation de condensateurs\n\n",
 		"desc": "Réduit le temps de recharge du dash",
 		"call": Callable(self,"dash_cd"),
-		"value": 0.2,
+		"value": 0,
 		"icon" : DASH_COOLDOWN_1
 		},
 	1: {
 		"name": "Installation de batteries\n\n",
 		"desc": "Réduit le temps de recharge du dash",
 		"call": Callable(self,"dash_cd"),
-		"value": 0.2,
+		"value": 0,
 		"icon" :  DASH_COOLDOWN_2
 		},
 	2: {
 		"name": "Installation de volants d'inertie\n\n",
 		"desc": "Réduit le temps de recharge du dash",
 		"call": Callable(self,"dash_cd"),
-		"value": 0.2,
+		"value": 0,
 		"icon" :  DASH_COOLDOWN_3
 		}
 }
@@ -223,21 +223,21 @@ var parryCDUpPath: Dictionary = {
 		"name": "On va up_parry_cd ou quoi ?\n\n",
 		"desc": "up_parry_cd",
 		"call": Callable(self,"parry_cd"),
-		"value": 0.2,
+		"value": 0,
 		"icon" : PARRY_COOLDOWN_1
 		},
 	1: {
 		"name": "On va up_parry_cd ou quoi ?\n\n",
 		"desc": "up_parry_cd",
 		"call": Callable(self,"parry_cd"),
-		"value": 0.2,
+		"value": 0,
 		"icon" :  PARRY_COOLDOWN_2
 		},
 	2: {
 		"name": "On va up_parry_cd ou quoi ?\n\n",
 		"desc": "up_parry_cd",
 		"call": Callable(self,"parry_cd"),
-		"value": 0.2,
+		"value": 0,
 		"icon" :  PARRY_COOLDOWN_3
 		}
 }

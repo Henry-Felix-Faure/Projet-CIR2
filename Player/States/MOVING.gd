@@ -16,7 +16,6 @@ func Exit():
 	pass
 	
 func Update(_delta:float):
-
 	#path_line.points = PackedVector2Array(pathfinding.astar_grid.get_point_path(bob.position/pathfinding.cell_size, Vector2i(0,0)))
 
 	bob.input_vector = Vector2.ZERO # resetting the input vector

@@ -7,6 +7,8 @@ signal no_health() # Emit when there is no health left
 signal lvl_up()
 
 @onready var level_up_menu: Control = get_node("../../MenuLayer/Level Up Menu")
+signal stat_changed
+
 
 @export var xp_lvl_up : int = 10
 @export var xp : int = 0 : 
@@ -59,26 +61,36 @@ func _ready() -> void:
 
 func up_speed(speed):
 	speed_up += speed
+	stat_changed.emit()
 	
 func up_atk(atk):
 	dmg += atk
+	stat_changed.emit()
 	
 func up_dash_speed(up):
 	dash_speed += up
+	stat_changed.emit()
 func up_dash_cd(up):
 	dash_cd -= up
+	stat_changed.emit()
 func up_parry_cd(up):
 	parry_cd -= up
+	stat_changed.emit()
 func up_atk_speed(up):
 	atk_speed += up
+	stat_changed.emit()
 func up_parry_lvl(): 
 	parry_lvl +=1
+	stat_changed.emit()
 func up_crit(up):
 	crit += up
+	stat_changed.emit()
 func up_damage_crit(up):
 	damage_crit += up
+	stat_changed.emit()
 func up_health(up):
 	health += up
+	stat_changed.emit()
 	
 func up_drone(indice):
 	match indice:

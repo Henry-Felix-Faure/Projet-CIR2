@@ -1,0 +1,24 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cdu81bo53812n"]
+
+[ext_resource type="Texture2D" uid="uid://dwdfo4gyepjip" path="res://Assets/Menu/Background/button_lvlUp.png" id="1_lr4cv"]
+[ext_resource type="FontFile" uid="uid://b240a7o38ytat" path="res://Assets/Font/Board of Directors W00 Book.ttf" id="2_h6cy6"]
+[ext_resource type="Texture2D" uid="uid://cfih1ov0tqfhd" path="res://Assets/Menu/UI/button_lvlUp3.png" id="2_uya8j"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wo7ol"]
+texture = ExtResource("1_lr4cv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_81plm"]
+texture = ExtResource("2_uya8j")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3u5og"]
+texture = ExtResource("2_uya8j")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xsxeh"]
+texture = ExtResource("2_uya8j")
+
+[resource]
+/styles/panel = SubResource("StyleBoxTexture_wo7ol")
+Button/fonts/font = ExtResource("2_h6cy6")
+Button/styles/hover = SubResource("StyleBoxTexture_81plm")
+Button/styles/normal = SubResource("StyleBoxTexture_3u5og")
+Button/styles/pressed = SubResource("StyleBoxTexture_xsxeh")

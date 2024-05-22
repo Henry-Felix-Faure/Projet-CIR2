@@ -47,7 +47,15 @@ var cursor_pos_attack_array: Array = [] # array of array for each 3 attacks of e
 var last_dir_attack_array: Array = [] # array of array for each 3 attacks of each 4 four directions (left and right are the same)
 
 func _ready():
-	pass
+	stats_component.stat_changed.connect(update_stats)
 
 func _physics_process(_delta): 
 	pass
+
+func update_stats():
+	BASE_SPEED = stats_component.speed_up
+	DASH_SPEED = stats_component.dash_speed
+	health = stats_component.health
+	crit_chance = stats_component.crit
+	damage = stats_component.dmg
+	crit_damage = stats_component.damage_crit
