@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ce7g2f8p3cwkg"
+path="res://.godot/imported/tik tak.wav-1cd02081bb2780d272e5b34f36622e13.sample"
+
+[deps]
+
+source_file="res://Audio/Mob_sound/kamikaze/tik tak.wav"
+dest_files=["res://.godot/imported/tik tak.wav-1cd02081bb2780d272e5b34f36622e13.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

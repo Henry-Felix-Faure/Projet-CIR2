@@ -1,10 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://688q4ci84lgj"]
+[gd_scene load_steps=23 format=3 uid="uid://688q4ci84lgj"]
 
 [ext_resource type="Shader" path="res://Shaders/Glitch.gdshader" id="1_sg8lt"]
 [ext_resource type="Script" path="res://Menu/MenuStart/MenuStart.gd" id="1_v211p"]
 [ext_resource type="Texture2D" uid="uid://cs48gmg2mq1v3" path="res://Assets/Menu/UI/Button-play.png" id="2_mm6gy"]
 [ext_resource type="Texture2D" uid="uid://de5kcvuqytf2e" path="res://Assets/Menu/UI/Button-quit.png" id="2_y7w4i"]
-[ext_resource type="Theme" uid="uid://b0nu3vprfidrs" path="res://Shaders/Bouton_Menu.tres" id="3_4shu0"]
+[ext_resource type="Theme" uid="uid://bff41fslpnilp" path="res://Shaders/Bouton_Menu.tres" id="3_4shu0"]
 [ext_resource type="Texture2D" uid="uid://cdyt7larvv8r6" path="res://Assets/Menu/UI/Button-option.png" id="3_610aj"]
 [ext_resource type="PackedScene" uid="uid://blwdirn7ooaiu" path="res://Menu/MenuStart/parallax_background2.tscn" id="4_70owb"]
 [ext_resource type="Script" path="res://Menu/MenuOption/Video.gd" id="5_sx7g5"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bmiycgei73x8h" path="res://Menu/MenuOption/button.tscn" id="9_j2pqy"]
 [ext_resource type="Texture2D" uid="uid://cxsxsrck4xdvf" path="res://Assets/Menu/UI/Back.png" id="10_tp2fv"]
 [ext_resource type="Script" path="res://Menu/MenuOption/Play.gd" id="17_n325j"]
+[ext_resource type="AudioStream" uid="uid://ck1x1qgc5ks6b" path="res://Audio/background/start_menu.mp3" id="18_xdp7s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_crclc"]
 shader = ExtResource("1_sg8lt")
@@ -541,12 +542,17 @@ size_flags_horizontal = 3
 text = "Lancer un lobby"
 flat = true
 
-[connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_play_pressed"]
+[node name="start_menu" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_xdp7s")
+volume_db = -17.627
+autoplay = true
+
 [connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/option" to="." method="_on_option_pressed"]
 [connection signal="toggled" from="test/VBoxContainer/option" to="." method="_on_option_toggled"]
-[connection signal="pressed" from="test/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/quit" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="test/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Option/VBoxContainer/Video" to="." method="_on_video_pressed"]
 [connection signal="pressed" from="Option/VBoxContainer/Video" to="Option" method="_on_video_pressed"]
 [connection signal="pressed" from="Option/VBoxContainer/Audio" to="." method="_on_audio_pressed"]

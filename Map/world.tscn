@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=9 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
-[ext_resource type="PackedScene" uid="uid://cxn4xmmsx44km" path="res://Map/leapfrogger_map.tscn" id="2_mp1s5"]
-[ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
+[ext_resource type="PackedScene" path="res://Map/leapfrogger_map.tscn" id="2_mp1s5"]
+[ext_resource type="PackedScene" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
+[ext_resource type="PackedScene" uid="uid://cj6o401qrracu" path="res://Spawn/spawn_zone.tscn" id="4_fks6r"]
 [ext_resource type="PackedScene" uid="uid://b0u1xks6d8yqu" path="res://Menu/MenuDrone/drone_menu.tscn" id="5_b6i78"]
 [ext_resource type="PackedScene" uid="uid://erwriagmkvtr" path="res://Bullet/BulletToPlayer.tscn" id="6_x1cpn"]
+[ext_resource type="AudioStream" uid="uid://dg27i8k1r7ujk" path="res://Audio/background/game.mp3" id="11_vdbrf"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_u1x4u")
@@ -16,9 +18,12 @@ script = ExtResource("1_u1x4u")
 position = Vector2(-220, 91)
 wall_min_slide_angle = 0.261799
 
+[node name="spawn_zone" parent="Bob" instance=ExtResource("4_fks6r")]
+
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 
 [node name="Level Up Menu" parent="MenuLayer" instance=ExtResource("3_8lbtx")]
+metadata/_edit_lock_ = true
 
 [node name="DroneLayer" type="CanvasLayer" parent="."]
 
@@ -27,3 +32,8 @@ wall_min_slide_angle = 0.261799
 [node name="BulletToPlayer" parent="." instance=ExtResource("6_x1cpn")]
 position = Vector2(-83, 50)
 rotation = -3.36849
+
+[node name="background" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_vdbrf")
+volume_db = -0.881
+autoplay = true
