@@ -53,11 +53,14 @@ func animation_finished():
 	if bob.attack_left == 0: # if we just performed the first attack and we still have one or two more to do
 		state_transition.emit(self, "ATK_3")
 	else: # no attack to perform next
+		animated_sprite_2d.speed_scale = 1.0
+		animation_player.speed_scale = 1.0
 		if bob.AIMING_MOUSE:
 			bob.cursor_pos_attack_array = []
 		else:
 			bob.last_dir_attack_array = []
 		bob.attack_left = 3 # resetting the atdtack_left variable
+		bob.BASE_SPEED = bob.stats_component.speed_up
 		state_transition.emit(self, "MOVING")
 	
 

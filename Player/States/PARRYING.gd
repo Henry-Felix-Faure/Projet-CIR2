@@ -26,7 +26,7 @@ func animation_finished():
 	state_transition.emit(self, "PARRYING_RECOVERY")
 
 func next_animation_selector_parrying():
-	var parry_lvl: int = stats_component.parry_lvl
+	var parry_lvl: int = bob.parry_lvl
 	if bob.last_dir.x > 0: # if the player was moving towards right
 		animated_sprite_2d.flip_h = false # facing right
 		match parry_lvl:

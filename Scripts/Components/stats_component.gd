@@ -25,15 +25,15 @@ var d_2 : bool = false
 
 # Create the health variable and connect a setter
 @export var speed_up : int = 1
-@export var dash_speed: int = 1
-@export var dash_cd : float = 2
-@export var parry_cd : float = 1.5
-@export var atk_speed : float = 1
-@export var parry_lvl : float = 1
+@export var dash_speed: int = 300
+@export var dash_cd : float = 5.0
+@export var parry_cd : float = 3.0
+@export var atk_speed : float = 1.0
+@export var parry_lvl : int = 1
 @export var dmg : int = 1
-@export var crit : float = 0
-@export var damage_crit : float = 1.20
-@export var health: int = 10:
+@export var crit_chance : float = 0.0
+@export var damage_crit : float = 1.2
+@export var health: int = 20:
 	set(value):
 		health = value
 		# Signal out that the health has changed
@@ -54,7 +54,7 @@ func _ready() -> void:
 		level_up_tree.up_parry_cd.connect(up_parry_cd)
 		level_up_tree.up_atk_speed.connect(up_atk_speed)
 		level_up_tree.up_parry_lvl.connect(up_parry_lvl)
-		level_up_tree.up_crit.connect(up_crit)
+		level_up_tree.up_crit_chance.connect(up_crit_chance)
 		level_up_tree.up_damage_crit.connect(up_damage_crit)
 		level_up_tree.up_health.connect(up_health)
 		
@@ -70,24 +70,31 @@ func up_atk(atk):
 func up_dash_speed(up):
 	dash_speed += up
 	stat_changed.emit()
+	
 func up_dash_cd(up):
 	dash_cd -= up
 	stat_changed.emit()
+	
 func up_parry_cd(up):
 	parry_cd -= up
 	stat_changed.emit()
+	
 func up_atk_speed(up):
 	atk_speed += up
 	stat_changed.emit()
+	
 func up_parry_lvl(): 
 	parry_lvl +=1
 	stat_changed.emit()
-func up_crit(up):
-	crit += up
+	
+func up_crit_chance(up):
+	crit_chance += up
 	stat_changed.emit()
+	
 func up_damage_crit(up):
 	damage_crit += up
 	stat_changed.emit()
+	
 func up_health(up):
 	health += up
 	stat_changed.emit()

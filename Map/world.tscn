@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=7 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
 [ext_resource type="PackedScene" uid="uid://cxn4xmmsx44km" path="res://Map/leapfrogger_map.tscn" id="2_mp1s5"]
 [ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
 [ext_resource type="PackedScene" uid="uid://b0u1xks6d8yqu" path="res://Menu/MenuDrone/drone_menu.tscn" id="5_b6i78"]
+[ext_resource type="PackedScene" uid="uid://c68wgflxvw0qg" path="res://debug_tool_stats.tscn" id="6_bh5pn"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_u1x4u")
@@ -20,3 +21,5 @@ script = ExtResource("1_u1x4u")
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
 position = Vector2(-404, 177)
 wall_min_slide_angle = 0.261799
+
+[node name="debug_tool_stats" parent="." instance=ExtResource("6_bh5pn")]

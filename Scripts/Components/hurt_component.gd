@@ -71,7 +71,7 @@ func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent
 	
 	if hitbox_component.get_parent().name == "BulletToPlayer":
 		var bullet = hitbox_component.get_parent()
-		var parry_lvl: int = stats_component.parry_lvl
+		var parry_lvl: int = player.parry_lvl
 		match parry_lvl:
 			1:
 				bullet.get_node("AnimatedSprite2D").play("destroy")
