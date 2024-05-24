@@ -10,9 +10,9 @@ extends CharacterBody2D
 @onready var explosion_particles: CPUParticles2D = $CPUParticles2D
 @onready var dash_timer: Timer = $Dash_cd
 @onready var parry_timer: Timer = $Parry_cd
+@onready var atk_1_cd: Timer = $ATK_1_cd
 @onready var dash_cd_indicator: Control = get_parent().get_node("UI").get_node("dash_cd_indicator")
 @onready var parry_cd_indicator: Control = get_parent().get_node("UI").get_node("parry_cd_indicator")
-
 
 # importing initial stats variables
 @onready var max_health: int = stats_component.health

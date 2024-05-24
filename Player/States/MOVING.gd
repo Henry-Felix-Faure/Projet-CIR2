@@ -34,7 +34,7 @@ func Update(_delta:float):
 	
 	bob.move_and_collide(bob.velocity * _delta) # moving the character based on the velocity
 	
-	if Input.is_action_just_pressed("ui_attack"): # if left click is pressed
+	if Input.is_action_just_pressed("ui_attack") and bob.atk_1_cd.is_stopped(): # if left click is pressed
 		if bob.AIMING_MOUSE:
 			bob.cursor_pos_from_player.x = bob.get_global_mouse_position().x - bob.position.x # compute the difference between cursor position and player position 
 			bob.cursor_pos_from_player.y = bob.get_global_mouse_position().y - bob.position.y
@@ -51,6 +51,7 @@ func Update(_delta:float):
 					bob.last_dir_attack_array.append(Vector2(0, -1))
 			else:
 				bob.last_dir_attack_array.append(Vector2(bob.last_dir.x, bob.last_dir.y))
+			bob.atk_1_cd.start()
 			state_transition.emit(self, "ATK_1")
 		
 	if Input.is_action_just_pressed("ui_dash") and bob.dash_timer.is_stopped(): # if space bar is pressed

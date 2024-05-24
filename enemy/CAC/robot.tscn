@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://4o2ksvge2e5y"]
+[gd_scene load_steps=30 format=3 uid="uid://cu78uv46u4rh4"]
 
 [ext_resource type="Script" path="res://enemy/CAC/robot.gd" id="1_i0ghq"]
 [ext_resource type="Texture2D" uid="uid://cqm4oqsjve1du" path="res://Assets/Foe/bot/bot_attack.png" id="2_71kf2"]
