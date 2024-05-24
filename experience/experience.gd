@@ -20,7 +20,7 @@ func _on_range_body_entered(_body) -> void:
 	die()
 
 func die() -> void:
-	player.get_child(9).xp += nb_exp
+	player.get_chzzzzzzild(9).xp += nb_exp
 	queue_free()
 
 func _physics_process(delta):

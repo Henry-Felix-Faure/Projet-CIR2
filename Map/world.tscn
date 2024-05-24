@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=9 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
@@ -6,20 +6,41 @@
 [ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
 [ext_resource type="PackedScene" uid="uid://b0u1xks6d8yqu" path="res://Menu/MenuDrone/drone_menu.tscn" id="5_b6i78"]
 [ext_resource type="PackedScene" uid="uid://c68wgflxvw0qg" path="res://debug_tool_stats.tscn" id="6_bh5pn"]
+[ext_resource type="PackedScene" uid="uid://6g1jtr7nkh5t" path="res://Assets/PowerUp/dash_cd_indicator.tscn" id="7_hwn58"]
+[ext_resource type="PackedScene" uid="uid://y0xbmrlqowhj" path="res://Assets/PowerUp/parry_cd_indicator.tscn" id="8_pl083"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_u1x4u")
+
+[node name="Leapfrogger_map" parent="." instance=ExtResource("2_mp1s5")]
+
+[node name="debug_tool_stats" parent="." instance=ExtResource("6_bh5pn")]
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 
 [node name="DroneMenu" parent="MenuLayer" instance=ExtResource("5_b6i78")]
 
-[node name="Level Up Menu" parent="MenuLayer" instance=ExtResource("3_8lbtx")]
-
-[node name="Leapfrogger_map" parent="." instance=ExtResource("2_mp1s5")]
+[node name="Level Up Menu" parent="MenuLayer" node_paths=PackedStringArray("UI") instance=ExtResource("3_8lbtx")]
+UI = NodePath("../../UI")
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
 position = Vector2(-404, 177)
 wall_min_slide_angle = 0.261799
 
-[node name="debug_tool_stats" parent="." instance=ExtResource("6_bh5pn")]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="dash_cd_indicator" parent="UI" node_paths=PackedStringArray("bob") instance=ExtResource("7_hwn58")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+bob = NodePath("../../Bob")
+
+[node name="parry_cd_indicator" parent="UI" node_paths=PackedStringArray("bob") instance=ExtResource("8_pl083")]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+grow_horizontal = 1
+bob = NodePath("../../Bob")

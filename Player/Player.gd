@@ -8,6 +8,11 @@ extends CharacterBody2D
 @onready var stats_component: StatsComponent = $StatsComponent
 @onready var sword_area_2d: HitboxComponent = $SwordArea2D
 @onready var explosion_particles: CPUParticles2D = $CPUParticles2D
+@onready var dash_timer: Timer = $Dash_cd
+@onready var parry_timer: Timer = $Parry_cd
+@onready var dash_cd_indicator: Control = get_parent().get_node("UI").get_node("dash_cd_indicator")
+@onready var parry_cd_indicator: Control = get_parent().get_node("UI").get_node("parry_cd_indicator")
+
 
 # importing initial stats variables
 @onready var health: int = stats_component.health
@@ -51,6 +56,8 @@ var last_dir_attack_array: Array = [] # array of array for each 3 attacks of eac
 @onready var stats_array: Dictionary = {"base speed" : BASE_SPEED, "dash speed" : DASH_SPEED, "dash cd" : dash_cd, "parry cd" : parry_cd, "atk speed" : atk_speed, "parry lvl" : parry_lvl, "dmg" : damage, "crit chance" : crit_chance, "dmg crit" : crit_damage, "health" : health}
 
 func _ready():
+	dash_timer.wait_time = dash_cd
+	parry_timer.wait_time = parry_cd
 	stats_component.stat_changed.connect(update_stats)
 
 func _physics_process(_delta): 
@@ -67,4 +74,8 @@ func update_stats():
 	crit_chance = stats_component.crit_chance
 	crit_damage = stats_component.damage_crit
 	health = stats_component.health
+	dash_timer.wait_time = dash_cd
+	parry_timer.wait_time = parry_cd
+	dash_cd_indicator.progress_bar.max_value = dash_cd
+	parry_cd_indicator.progress_bar.max_value = parry_cd
 	stats_array = {"base speed" : BASE_SPEED, "dash speed" : DASH_SPEED, "dash cd" : dash_cd, "parry cd" : parry_cd, "atk speed" : atk_speed, "parry lvl" : parry_lvl, "dmg" : damage, "crit chance" : crit_chance, "dmg crit" : crit_damage, "health" : health}

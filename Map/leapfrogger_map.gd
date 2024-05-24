@@ -17,7 +17,6 @@ func _ready():
 func _process(_delta):
 	pass
 
-
 func move_areas(dir: String):
 	#var grid_pos
 	match dir:
