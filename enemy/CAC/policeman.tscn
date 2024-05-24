@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b5361lhis2keq"]
+[gd_scene load_steps=35 format=3 uid="uid://dmbihu4ni6jsk"]
 
 [ext_resource type="Script" path="res://enemy/CAC/policeman.gd" id="1_ep12o"]
 [ext_resource type="Shader" path="res://Shaders/ennemy_shader.gdshader" id="2_3gwr0"]
@@ -202,6 +202,7 @@ shape = SubResource("CapsuleShape2D_5tscf")
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("3_jerbp")
 health = 5
+xp_dropped = 3
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
 script = ExtResource("4_5v3yc")

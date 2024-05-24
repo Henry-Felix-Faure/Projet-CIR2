@@ -106,5 +106,6 @@ func _on_flash_timer_timeout() -> void:
 
 func _on_glitch_timer_timeout() -> void:
 	animated_sprite_2d.material.set_shader_parameter("shake_power", float(0.0))
+	animated_sprite_2d.material.set_shader_parameter("shake_rate", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("shake_color_rate", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("is_flash",1)

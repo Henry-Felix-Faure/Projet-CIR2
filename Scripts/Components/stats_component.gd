@@ -15,8 +15,8 @@ signal stat_changed
 	set(value):
 		xp = value
 		if xp >= xp_lvl_up: 
-			xp_lvl_up = round(xp_lvl_up * 1.25)
 			xp = xp - xp_lvl_up
+			xp_lvl_up = round(xp_lvl_up * 1.25)
 			level_up_menu._on_lvl_up()
 			
 		stat_changed.emit()

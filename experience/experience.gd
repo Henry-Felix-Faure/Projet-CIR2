@@ -11,9 +11,9 @@ var bonus_ramassage: bool = false
 @onready var range_exp: Area2D = $range_exp
 
 func _ready() -> void:
-	if nb_exp < 30 :
+	if nb_exp < 2 :
 		animation.play("exp1")
-	elif nb_exp >= 30 and nb_exp < 60:
+	elif nb_exp >= 2 and nb_exp < 5:
 		animation.play("exp2")
 	else:
 		animation.play("exp3")
