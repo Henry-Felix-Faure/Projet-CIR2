@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cycxwxq63lh6q"
-path="res://.godot/imported/droide_attack.png-eaf1ed5fa8778fee1d073e252e244b55.ctex"
+uid="uid://c3d4p14163oxl"
+path="res://.godot/imported/riotman_walk.png-012d8199d78f2fbfc7de67ebc8afbec2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Foe/Droide/droide_attack.png"
-dest_files=["res://.godot/imported/droide_attack.png-eaf1ed5fa8778fee1d073e252e244b55.ctex"]
+source_file="res://Assets/Foe/riotman_v2/riotman_walk.png"
+dest_files=["res://.godot/imported/riotman_walk.png-012d8199d78f2fbfc7de67ebc8afbec2.ctex"]
 
 [params]
 

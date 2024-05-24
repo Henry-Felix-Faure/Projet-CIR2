@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq64jnjyt64xl"
-path="res://.godot/imported/droide_hurt.png-92112dd918779d594991e76fc04c50a8.ctex"
+uid="uid://b7sxfwfdct3yp"
+path="res://.godot/imported/riotman_attack.png-50c3c4471e67212cd0ec47e9c033eb58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Foe/Droide/droide_hurt.png"
-dest_files=["res://.godot/imported/droide_hurt.png-92112dd918779d594991e76fc04c50a8.ctex"]
+source_file="res://Assets/Foe/riotman_v2/riotman_attack.png"
+dest_files=["res://.godot/imported/riotman_attack.png-50c3c4471e67212cd0ec47e9c033eb58.ctex"]
 
 [params]
 

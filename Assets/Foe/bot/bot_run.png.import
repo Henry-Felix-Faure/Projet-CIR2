@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lplr2ow2ccbw"
-path="res://.godot/imported/droide_attaque.png-4e2a71a14cb87d79e2690ea1a6cc4858.ctex"
+uid="uid://ifhecsftvu3l"
+path="res://.godot/imported/bot_run.png-09dea5f326be45d41ddd17d83ff5679c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Foe/Droide/droide_attaque.png"
-dest_files=["res://.godot/imported/droide_attaque.png-4e2a71a14cb87d79e2690ea1a6cc4858.ctex"]
+source_file="res://Assets/Foe/bot/bot_run.png"
+dest_files=["res://.godot/imported/bot_run.png-09dea5f326be45d41ddd17d83ff5679c.ctex"]
 
 [params]
 
