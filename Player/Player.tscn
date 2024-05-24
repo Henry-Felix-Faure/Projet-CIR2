@@ -3404,6 +3404,7 @@ hurtbox_component = NodePath("../HurtboxArea2D")
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("15_pvxni")
 speed_up = 100
+atk_speed = 1.4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
@@ -3448,6 +3449,12 @@ one_shot = true
 autostart = true
 
 [node name="ShakeTimer" type="Timer" parent="."]
+
+[node name="Dash_cd" type="Timer" parent="."]
+one_shot = true
+
+[node name="Parry_cd" type="Timer" parent="."]
+one_shot = true
 
 [node name="audio_dash" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, -2)

@@ -5,6 +5,8 @@ extends Control
 @onready var choice_2: Button = $PanelContainer/VBoxContainer/Choice2
 @onready var choice_3: Button = $PanelContainer/VBoxContainer/Choice3
 
+@export var UI: CanvasLayer
+
 @onready var all_buttons : Array = [choice_1, choice_2, choice_3]
 var choice1 : Array
 var choice2 : Array
@@ -33,6 +35,7 @@ func _on_lvl_up():
 		button.get_child(0).resize()
 		button.get_child(1).texture = item["icon"]
 	get_tree().paused = true
+	UI.visible = false
 	show()
 
 func _on_choice_1_pressed() -> void:
@@ -40,6 +43,7 @@ func _on_choice_1_pressed() -> void:
 	item["call"].call(item["value"], choice1, choice1[1])
 	choice1[1] += 1
 	get_tree().paused = false
+	UI.visible = true
 	hide()
 
 func _on_choice_2_pressed() -> void:
@@ -47,6 +51,7 @@ func _on_choice_2_pressed() -> void:
 	item["call"].call(item["value"], choice2, choice2[1])
 	get_tree().paused = false
 	choice2[1] += 1
+	UI.visible = true
 	hide()
 	
 func _on_choice_3_pressed() -> void:
@@ -54,4 +59,5 @@ func _on_choice_3_pressed() -> void:
 	item["call"].call(item["value"], choice3, choice3[1])
 	choice3[1] += 1
 	get_tree().paused = false
+	UI.visible = true
 	hide()

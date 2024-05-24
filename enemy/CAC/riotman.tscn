@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bnmrqlcon1iha"]
+[gd_scene load_steps=39 format=3 uid="uid://c53j373kdc44i"]
 
 [ext_resource type="Script" path="res://enemy/CAC/riotman.gd" id="1_r0p4n"]
 [ext_resource type="Texture2D" uid="uid://b7sxfwfdct3yp" path="res://Assets/Foe/riotman_v2/riotman_attack.png" id="2_cngwd"]

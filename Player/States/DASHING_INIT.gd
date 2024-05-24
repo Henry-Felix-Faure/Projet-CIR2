@@ -8,6 +8,7 @@ extends State
 
 
 func Enter():
+	bob.dash_timer.start()
 	bob.set_collision_mask_value(3, false)
 	MaLigne.show()
 	audio_dash.play()
@@ -45,7 +46,7 @@ func Update(delta:float):
 				bob.last_dir_attack_array.append(Vector2(bob.last_dir.x, bob.last_dir.y))
 		bob.cancel_dash_attack = true
 	
-	if Input.is_action_just_pressed("ui_parry"): # if F2 is pressed / debug tool
+	if Input.is_action_just_pressed("ui_parry") and bob.parry_timer.is_stopped(): # if right click is pressed
 		bob.cancel_dash_parry = true
 
 	#set_visible(false)

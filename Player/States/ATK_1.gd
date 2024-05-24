@@ -5,9 +5,11 @@ extends State
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var audio_atk_1: AudioStreamPlayer2D = $"../../audio_atk_1"
 @onready var stats_component: StatsComponent = $"../../StatsComponent"
+@onready var MaLigne = $"../../Line2D"
 
 
 func Enter():
+	MaLigne.start_fade_out()
 	if bob.cancel_dash_attack:
 		bob.hurtbox_area_2d.is_invincible = false # disabling the hurtbox of the player
 		bob.collision_shape_2d.disabled = false # disabling the hitbox of the player
