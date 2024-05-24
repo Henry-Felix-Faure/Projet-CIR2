@@ -9,7 +9,7 @@ const expScene = preload("res://experience/experience.tscn")
 @onready var tik_tak: AudioStreamPlayer2D = $"tik tak"
 @onready var explosion_sound: AudioStreamPlayer2D = $explosion_sound
 
-
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var range: Area2D = $range
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player = get_node("/root/World/Bob")
@@ -37,6 +37,7 @@ func cooldown() -> void:
 	
 func explose() -> void:
 	if (!explose_now):
+		collision_shape_2d.disabled = true
 		explose_now = true
 		explosion_sound.play()
 		animated_sprite_2d.play("explosion")

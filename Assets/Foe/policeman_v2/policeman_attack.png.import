@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcm7b38r4uw32"
-path="res://.godot/imported/droide_idle.png-8be541b7e04edb5f1224dad7c938b4cc.ctex"
+uid="uid://c1msm7hb4qwdv"
+path="res://.godot/imported/policeman_attack.png-2de0660bb5c629a189f7de2e7bfd3a52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Foe/Droide/droide_idle.png"
-dest_files=["res://.godot/imported/droide_idle.png-8be541b7e04edb5f1224dad7c938b4cc.ctex"]
+source_file="res://Assets/Foe/policeman_v2/policeman_attack.png"
+dest_files=["res://.godot/imported/policeman_attack.png-2de0660bb5c629a189f7de2e7bfd3a52.ctex"]
 
 [params]
 
