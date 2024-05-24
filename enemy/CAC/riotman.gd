@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var stats: EnnemiesStatsComponent
+@export var hurtbox_component: HurtboxComponent
 
 var speed: float = 30.0
 
@@ -27,6 +28,7 @@ func _ready():
 	wait_timer.wait_time = attackInterval / 50
 	range.body_entered.connect(_on_range_body_entered)
 	range.body_exited.connect(_on_range_body_exited)
+	hurtbox_component.hurt.connect(_hurt)
 
 
 func attack() -> void:
@@ -71,6 +73,10 @@ func _on_range_body_entered(_body):
 func _on_range_body_exited(_body):
 	in_area = false
 
+func _hurt() -> void:
+	print("hurt")
+	animated_sprite_2d.stop()
+	wait = false
 
 func _on_timer_timeout() -> void:
 	wait = false

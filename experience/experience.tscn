@@ -135,7 +135,6 @@ radius = 2.0
 radius = 2.0
 
 [node name="experience" type="CharacterBody2D"]
-z_index = -1
 collision_mask = 2
 script = ExtResource("1_c66hd")
 

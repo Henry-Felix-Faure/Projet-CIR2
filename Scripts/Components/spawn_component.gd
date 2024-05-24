@@ -1,6 +1,7 @@
 # Give the component a class name so it can be instanced as a custom node
 class_name SpawnComponent
 extends Node2D
+@onready var stats_component: StatsComponent = $"../StatsComponent"
 
 # Export the dependencies for this component
 # The scene we want to spawn
@@ -18,6 +19,10 @@ func spawn(global_spawn_position: Vector2 = global_position, parent: Node = get_
 	# Update the global position of the instance.
 	# (This must be done after adding it as a child)
 	instance.global_position = global_spawn_position
+	
 	# Return the instance in case we want to perform any other operations
 	# on it after instancing it.
+	if instance is XP:
+		instance.nb_exp = StatsComponent.xp
+	
 	return instance
