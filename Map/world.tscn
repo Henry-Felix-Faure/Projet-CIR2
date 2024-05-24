@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=8 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b0u1xks6d8yqu" path="res://Menu/MenuDrone/drone_menu.tscn" id="5_b6i78"]
 [ext_resource type="PackedScene" uid="uid://c68wgflxvw0qg" path="res://debug_tool_stats.tscn" id="6_bh5pn"]
 [ext_resource type="PackedScene" uid="uid://cxk4ps7si3fyw" path="res://Menu/MenuPause/MenuPause.tscn" id="7_fa4h2"]
-[ext_resource type="PackedScene" uid="uid://c80b3eolghp1g" path="res://Player/healthBar.tscn" id="8_7wxqy"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_u1x4u")
@@ -33,8 +32,3 @@ visible = false
 z_index = 11
 size_flags_horizontal = 4
 size_flags_vertical = 4
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-
-[node name="HealthBar" parent="CanvasLayer2" node_paths=PackedStringArray("player") instance=ExtResource("8_7wxqy")]
-player = NodePath("../../Bob")

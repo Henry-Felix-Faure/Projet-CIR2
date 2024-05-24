@@ -4,7 +4,6 @@ extends Control
 @onready var texture_progress_bar = $TextureProgressBar
 
 func _ready():
-	print('CACAAAA')
 	print(player.health)
 	player.stats_component.health_changed.connect(update)
 	update()

@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hbb7j")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="TextureProgressBarxp" type="TextureProgressBar" parent="."]
 offset_right = 128.0
 offset_bottom = 40.0
 max_value = 20.0
