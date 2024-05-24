@@ -14,10 +14,12 @@ signal stat_changed
 @export var xp : int = 0 : 
 	set(value):
 		xp = value
-		if xp == xp_lvl_up: 
-			xp_lvl_up = xp_lvl_up * 1.25
-			xp = 0
+		if xp >= xp_lvl_up: 
+			xp_lvl_up = round(xp_lvl_up * 1.25)
+			xp = xp - xp_lvl_up
 			level_up_menu._on_lvl_up()
+			
+		stat_changed.emit()
 
 var drone
 var d_1 : bool = false
@@ -40,6 +42,8 @@ var d_2 : bool = false
 		health_changed.emit()
 		# Signal out when health is at 0
 		if health <= 0: no_health.emit()
+		stat_changed.emit()
+@export var xp_dropped: int = 1
 # Create our signals for health
 
 
