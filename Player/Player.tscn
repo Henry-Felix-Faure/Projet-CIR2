@@ -3456,6 +3456,10 @@ one_shot = true
 [node name="Parry_cd" type="Timer" parent="."]
 one_shot = true
 
+[node name="ATK_1_cd" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
 [node name="audio_dash" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, -2)
 stream = ExtResource("20_omn7n")
