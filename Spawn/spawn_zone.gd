@@ -18,9 +18,9 @@ var etat_now = 0
 
 func _ready() -> void:
 	timer_spawn.timeout.connect(_spawn_mob)
-	#timer_state.timeout.connect(change_etat)
+	timer_state.timeout.connect(change_etat)
 	timer_spawn.wait_time = 5
-	timer_state.wait_time = 120
+	timer_state.wait_time = 10
 	
 	
 	bank_mob["robot"] = 100
@@ -45,7 +45,6 @@ func _ready() -> void:
 func _spawn_mob() -> void:
 	var mob_spawn = ""
 	var mob_choose = choose_mob()
-	print("je fais spawn : ",mob_choose)
 	match mob_choose:
 		"robot":
 			mob_spawn = robot.instantiate()
@@ -59,7 +58,6 @@ func _spawn_mob() -> void:
 	
 	var random_spawn = randi() % 4
 	var rect = 0
-	print("zone : ", random_spawn)
 	match random_spawn:
 		0:
 			rect = spawn_top.get_global_rect()
@@ -86,7 +84,7 @@ func choose_mob(spawn_rate = bank_mob):
 
 
 func change_etat() -> void:
-	var idx = 0
+	var idx = -1
 	for cle in bank_mob:
 		bank_mob[cle] = etat[etat_now][idx]
 		idx += 1

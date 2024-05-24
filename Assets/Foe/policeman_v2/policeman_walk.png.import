@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crgadmqdvesh6"
-path="res://.godot/imported/droide_walk.png-0bbdef697c82650b8a56b356229ad81b.ctex"
+uid="uid://ige1fdc7cnhw"
+path="res://.godot/imported/policeman_walk.png-7ffebdb8815f5a4f24629171afc34860.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Foe/Droide/droide_walk.png"
-dest_files=["res://.godot/imported/droide_walk.png-0bbdef697c82650b8a56b356229ad81b.ctex"]
+source_file="res://Assets/Foe/policeman_v2/policeman_walk.png"
+dest_files=["res://.godot/imported/policeman_walk.png-7ffebdb8815f5a4f24629171afc34860.ctex"]
 
 [params]
 

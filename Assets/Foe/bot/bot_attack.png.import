@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhphl2j85ggqf"
-path="res://.godot/imported/attaque for hitbox.png-8cbb6a22915e5ae0e3b9ac31821e1e52.ctex"
+uid="uid://cqm4oqsjve1du"
+path="res://.godot/imported/bot_attack.png-24fe6c503b73d9525b4f89e5ddbd8174.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Foe/Droide/attaque for hitbox.png"
-dest_files=["res://.godot/imported/attaque for hitbox.png-8cbb6a22915e5ae0e3b9ac31821e1e52.ctex"]
+source_file="res://Assets/Foe/bot/bot_attack.png"
+dest_files=["res://.godot/imported/bot_attack.png-24fe6c503b73d9525b4f89e5ddbd8174.ctex"]
 
 [params]
 
