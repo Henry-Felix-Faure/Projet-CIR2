@@ -27,6 +27,7 @@ extends CharacterBody2D
 @onready var xp: int = stats_component.xp
 @onready var xp_lvl_up: int = stats_component.xp_lvl_up
 
+
 var cancel_dash_parry: bool = false
 var parrying: bool = false
 
