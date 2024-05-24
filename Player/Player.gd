@@ -19,6 +19,7 @@ extends CharacterBody2D
 @onready var atk_speed: float = stats_component.atk_speed
 @onready var parry_lvl: int = stats_component.parry_lvl
 
+
 var cancel_dash_parry: bool = false
 var parrying: bool = false
 
