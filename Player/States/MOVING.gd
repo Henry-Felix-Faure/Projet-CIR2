@@ -53,10 +53,10 @@ func Update(_delta:float):
 				bob.last_dir_attack_array.append(Vector2(bob.last_dir.x, bob.last_dir.y))
 			state_transition.emit(self, "ATK_1")
 		
-	if Input.is_action_just_pressed("ui_dash"): # if space bar is pressed
+	if Input.is_action_just_pressed("ui_dash") and bob.dash_timer.is_stopped(): # if space bar is pressed
 		state_transition.emit(self, "DASHING_INIT")
 	
-	if Input.is_action_just_pressed("ui_parry"): # if right click is pressed
+	if Input.is_action_just_pressed("ui_parry") and bob.parry_timer.is_stopped(): # if right click is pressed
 		state_transition.emit(self, "PARRYING")
 	
 	if Input.is_action_just_pressed("ui_kill_debug"): # if F2 is pressed / debug tool

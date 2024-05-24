@@ -5,8 +5,11 @@ extends State
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var audio_draw_sword: AudioStreamPlayer2D = $"../../audio_draw_sword"
 @onready var stats_component = $"../../StatsComponent"
+@onready var MaLigne = $"../../Line2D"
 
 func Enter():
+	MaLigne.start_fade_out()
+	bob.parry_timer.start()
 	bob.parrying = true
 	if bob.cancel_dash_parry:
 		bob.hurtbox_area_2d.is_invincible = false # disabling the hurtbox of the player

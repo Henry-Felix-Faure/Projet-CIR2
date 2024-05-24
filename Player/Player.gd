@@ -8,9 +8,15 @@ extends CharacterBody2D
 @onready var stats_component: StatsComponent = $StatsComponent
 @onready var sword_area_2d: HitboxComponent = $SwordArea2D
 @onready var explosion_particles: CPUParticles2D = $CPUParticles2D
+@onready var dash_timer: Timer = $Dash_cd
+@onready var parry_timer: Timer = $Parry_cd
+@onready var dash_cd_indicator: Control = get_parent().get_node("UI").get_node("dash_cd_indicator")
+@onready var parry_cd_indicator: Control = get_parent().get_node("UI").get_node("parry_cd_indicator")
+
 
 # importing initial stats variables
-@onready var health: int = stats_component.health
+@onready var max_health: int = stats_component.health
+@onready var health: int = max_health
 @onready var crit_chance: float = stats_component.crit_chance
 @onready var damage: int = stats_component.dmg
 @onready var crit_damage: float = stats_component.damage_crit
@@ -18,6 +24,8 @@ extends CharacterBody2D
 @onready var parry_cd: float = stats_component.parry_cd
 @onready var atk_speed: float = stats_component.atk_speed
 @onready var parry_lvl: int = stats_component.parry_lvl
+@onready var xp: int = stats_component.xp
+@onready var xp_lvl_up: int = stats_component.xp_lvl_up
 
 
 var cancel_dash_parry: bool = false
@@ -49,9 +57,11 @@ var cursor_pos_from_player: Vector2 # Vector2 to store the difference between cu
 var cursor_pos_attack_array: Array = [] # array of array for each 3 attacks of each 4 four directions (left and right are the same)
 var last_dir_attack_array: Array = [] # array of array for each 3 attacks of each 4 four directions (left and right are the same)
 
-@onready var stats_array: Dictionary = {"base speed" : BASE_SPEED, "dash speed" : DASH_SPEED, "dash cd" : dash_cd, "parry cd" : parry_cd, "atk speed" : atk_speed, "parry lvl" : parry_lvl, "dmg" : damage, "crit chance" : crit_chance, "dmg crit" : crit_damage, "health" : health}
+@onready var stats_array: Dictionary = {"base speed" : BASE_SPEED, "dash speed" : DASH_SPEED, "dash cd" : dash_cd, "parry cd" : parry_cd, "atk speed" : atk_speed, "parry lvl" : parry_lvl, "dmg" : damage, "crit chance" : crit_chance, "dmg crit" : crit_damage, "health" : health, "max health" : max_health, "xp" : xp, "xp_lvl_up" : xp_lvl_up}
 
 func _ready():
+	dash_timer.wait_time = dash_cd
+	parry_timer.wait_time = parry_cd
 	stats_component.stat_changed.connect(update_stats)
 
 func _physics_process(_delta): 
@@ -67,5 +77,11 @@ func update_stats():
 	damage = stats_component.dmg
 	crit_chance = stats_component.crit_chance
 	crit_damage = stats_component.damage_crit
-	health = stats_component.health
-	stats_array = {"base speed" : BASE_SPEED, "dash speed" : DASH_SPEED, "dash cd" : dash_cd, "parry cd" : parry_cd, "atk speed" : atk_speed, "parry lvl" : parry_lvl, "dmg" : damage, "crit chance" : crit_chance, "dmg crit" : crit_damage, "health" : health}
+	max_health = stats_component.health
+	xp = stats_component.xp
+	xp_lvl_up = stats_component.xp_lvl_up
+	dash_timer.wait_time = dash_cd
+	parry_timer.wait_time = parry_cd
+	dash_cd_indicator.progress_bar.max_value = dash_cd
+	parry_cd_indicator.progress_bar.max_value = parry_cd
+	stats_array = {"base speed" : BASE_SPEED, "dash speed" : DASH_SPEED, "dash cd" : dash_cd, "parry cd" : parry_cd, "atk speed" : atk_speed, "parry lvl" : parry_lvl, "dmg" : damage, "crit chance" : crit_chance, "dmg crit" : crit_damage, "health" : health, "max health" : max_health, "xp" : xp, "xp_lvl_up" : xp_lvl_up}
