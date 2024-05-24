@@ -16,12 +16,16 @@ const expScene = preload("res://experience/experience.tscn")
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player = get_node("/root/World/Bob")
 @onready var wait_timer: Timer = $Timer
-
+@onready var attack_l: CollisionShape2D = $HitboxComponent/AttackL
+@onready var attack_r: CollisionShape2D = $HitboxComponent/AttackR
 
 var wait : bool = false
 var in_area : bool = false
+var direction : Vector2
 
 func _ready():
+	attack_l.set_deferred("disabled", true)
+	attack_r.set_deferred("disabled", true)
 	var attackInterval = stats.ATK_SPEED
 	wait_timer.wait_time = attackInterval / 50
 	hurtbox_component.hurt.connect(_hurt)
@@ -30,10 +34,16 @@ func _ready():
 
 
 func attack() -> void:
+	if direction.x > 0:
+		attack_r.set_deferred("disabled", false)
+	else:
+		attack_l.set_deferred("disabled", false)
 	knife.play()
 	animated_sprite_2d.play("attack")
 	wait = true
 	await animated_sprite_2d.animation_finished
+	attack_l.set_deferred("disabled", true)
+	attack_r.set_deferred("disabled", true)
 	if in_area:
 		wait_timer.start()
 	else:
@@ -42,7 +52,7 @@ func attack() -> void:
 func _physics_process(delta):
 	if(!wait):
 		animated_sprite_2d.play("move")
-		var direction = global_position.direction_to(player.global_position)
+		direction = global_position.direction_to(player.global_position)
 		velocity = direction * speed * delta 
 		move_and_collide(velocity)
 	

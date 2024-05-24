@@ -14,6 +14,8 @@ const expScene = preload("res://experience/experience.tscn")
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player = get_node("/root/World/Bob")
 @onready var timer_cooldown: Timer = $Timer2
+@onready var attack_explo: CollisionShape2D = $HitboxComponent/attack_explo
+
 
 
 var explosion : bool = false
@@ -22,6 +24,7 @@ var explose_now : bool = false
 
 
 func _ready():
+	attack_explo.set_deferred("disabled", true)
 	range.body_entered.connect(_on_range_body_entered)
 	range.body_exited.connect(_on_range_body_exited)
 
@@ -37,6 +40,7 @@ func cooldown() -> void:
 	
 func explose() -> void:
 	if (!explose_now):
+		attack_explo.set_deferred("disabled", false)
 		speed = 0.0
 		collision_shape_2d.disabled = true
 		explose_now = true

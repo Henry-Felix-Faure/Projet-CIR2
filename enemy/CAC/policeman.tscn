@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b5361lhis2keq"]
+[gd_scene load_steps=37 format=3 uid="uid://b5361lhis2keq"]
 
 [ext_resource type="Script" path="res://enemy/CAC/policeman.gd" id="1_ep12o"]
 [ext_resource type="Shader" path="res://Shaders/ennemy_shader.gdshader" id="2_3gwr0"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="8_psded"]
 [ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="9_qvhfe"]
 [ext_resource type="AudioStream" uid="uid://dx62q1hdok5tu" path="res://Audio/Mob_sound/shotgun.wav" id="11_1tsay"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="13_igp8l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_11v6f"]
 radius = 5.0
@@ -163,10 +164,13 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5tscf"]
 radius = 13.0
-height = 42.0
+height = 28.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_44vdk"]
 height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qyxne"]
+height = 26.0
 
 [node name="policeman" type="CharacterBody2D" node_paths=PackedStringArray("stats")]
 collision_layer = 4
@@ -183,6 +187,7 @@ material = SubResource("ShaderMaterial_t3v5l")
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_6f620")
 animation = &"attack"
+frame = 4
 metadata/_edit_lock_ = true
 
 [node name="range" type="Area2D" parent="."]
@@ -190,18 +195,19 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="DetectionR" type="CollisionShape2D" parent="range"]
-position = Vector2(11, 3)
+position = Vector2(13, 0)
 shape = SubResource("CapsuleShape2D_5tscf")
 
 [node name="DetectionL" type="CollisionShape2D" parent="range"]
-position = Vector2(-13, 3)
+position = Vector2(-13, 0)
 shape = SubResource("CapsuleShape2D_5tscf")
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("3_jerbp")
-health = 5
+health = 8
+xp_dropped = 3
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
 script = ExtResource("4_5v3yc")
@@ -233,5 +239,22 @@ shape = SubResource("CapsuleShape2D_44vdk")
 [node name="shotgun" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_1tsay")
 volume_db = -22.459
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("13_igp8l")
+
+[node name="AttackL" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-19, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qyxne")
+debug_color = Color(1, 0.0431373, 0.231373, 0.109804)
+
+[node name="AttackR" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(19, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qyxne")
+debug_color = Color(1, 0.0431373, 0.231373, 0.109804)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

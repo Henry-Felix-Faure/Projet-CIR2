@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var hurtbox_component: HurtboxComponent
 
 var speed: float = 30.0
+var direction : Vector2
 
 const expScene = preload("res://experience/experience.tscn")
 
@@ -18,12 +19,16 @@ const expScene = preload("res://experience/experience.tscn")
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player = get_node("/root/World/Bob")
 @onready var wait_timer: Timer = $Timer
+@onready var attack_l: CollisionShape2D = $HitboxComponent/AttackL
+@onready var attack_r: CollisionShape2D = $HitboxComponent/AttackR
 
 var wait : bool = false
 var in_area : bool = false
 var walk_time : bool = true
 
 func _ready():
+	attack_l.set_deferred("disabled", true)
+	attack_r.set_deferred("disabled", true)
 	var attackInterval = stats.ATK_SPEED
 	wait_timer.wait_time = attackInterval / 50
 	range.body_entered.connect(_on_range_body_entered)
@@ -32,6 +37,10 @@ func _ready():
 
 
 func attack() -> void:
+	if direction.x > 0:
+		attack_r.set_deferred("disabled", false)
+	else:
+		attack_l.set_deferred("disabled", false)
 	var nb_random = randi() % 3 + 1
 	animated_sprite_2d.play("attack")
 	match nb_random:
@@ -43,6 +52,8 @@ func attack() -> void:
 			atk_3.play()
 	wait = true
 	await animated_sprite_2d.animation_finished
+	attack_l.set_deferred("disabled", true)
+	attack_r.set_deferred("disabled", true)
 	if in_area:
 		wait_timer.start()
 	else:
@@ -52,7 +63,7 @@ func attack() -> void:
 func _physics_process(delta):
 	if(!wait):
 		animated_sprite_2d.play("move")
-		var direction = global_position.direction_to(player.global_position)
+		direction = global_position.direction_to(player.global_position)
 		velocity = direction * speed * delta 
 		move_and_collide(velocity)
 	
@@ -74,7 +85,6 @@ func _on_range_body_exited(_body):
 	in_area = false
 
 func _hurt() -> void:
-	print("hurt")
 	animated_sprite_2d.stop()
 	wait = false
 
