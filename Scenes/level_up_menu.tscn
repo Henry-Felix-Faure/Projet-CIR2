@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Data/SelectionData.gd" id="2_ch84r"]
 [ext_resource type="Texture2D" uid="uid://dmtwxmr35ttt0" path="res://Assets/Drones/drone_sniper.png" id="2_tgc08"]
 [ext_resource type="Texture2D" uid="uid://d4ldj1t153brp" path="res://Assets/Menu/UI/background_lvlUp.png" id="2_x7d8d"]
-[ext_resource type="Theme" path="res://level_up_menu.tres" id="3_8ho2k"]
+[ext_resource type="Theme" uid="uid://50iviqkumbty" path="res://level_up_menu.tres" id="3_8ho2k"]
 [ext_resource type="Script" path="res://Scenes/LabelSize.gd" id="3_r2ax7"]
 [ext_resource type="FontFile" uid="uid://b240a7o38ytat" path="res://Assets/Font/Board of Directors W00 Book.ttf" id="4_3hsiw"]
 [ext_resource type="Theme" uid="uid://cdu81bo53812n" path="res://lvlUpButton.tres" id="6_qlrry"]
