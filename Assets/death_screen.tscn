@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bdlfvmia8m3fh"]
+
+[node name="Death Screen" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(480, 270)
+offset_left = -240.0
+offset_top = -135.0
+offset_right = 240.0
+offset_bottom = 135.0
+color = Color(0.0509804, 0.0509804, 0.0509804, 1)

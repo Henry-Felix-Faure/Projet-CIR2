@@ -186,6 +186,7 @@ position = Vector2(53.3333, 8.77193)
 
 [node name="EnnemieDetection" type="Area2D" parent="."]
 collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnnemieDetection"]
 position = Vector2(146.667, 2.84217e-14)

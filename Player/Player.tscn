@@ -1,11 +1,12 @@
-[gd_scene load_steps=62 format=3 uid="uid://bjvbi4ila7pej"]
+[gd_scene load_steps=63 format=3 uid="uid://bjvbi4ila7pej"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
-[ext_resource type="SpriteFrames" uid="uid://dld47ipx71i0a" path="res://Assets/Bob/Player.tres" id="2_gnar5"]
-[ext_resource type="Curve" path="res://Shaders/Line_Curve.tres" id="2_hf2qm"]
-[ext_resource type="Gradient" path="res://Shaders/Gradient.tres" id="3_vra5h"]
+[ext_resource type="SpriteFrames" uid="uid://d02qxufqagsab" path="res://Assets/Bob/Player.tres" id="2_gnar5"]
+[ext_resource type="Curve" uid="uid://cu8njceyrhh4r" path="res://Shaders/Line_Curve.tres" id="2_hf2qm"]
+[ext_resource type="Gradient" uid="uid://xb7hm4p32v7h" path="res://Shaders/Gradient.tres" id="3_vra5h"]
 [ext_resource type="Script" path="res://Player/Line2D.gd" id="4_arnim"]
-[ext_resource type="PackedScene" path="res://Shaders/explosion_particules.tscn" id="6_eoso3"]
+[ext_resource type="PackedScene" uid="uid://cj6o401qrracu" path="res://Spawn/spawn_zone.tscn" id="5_ts6ny"]
+[ext_resource type="PackedScene" uid="uid://c3bv63xl4hetp" path="res://Shaders/explosion_particules.tscn" id="6_eoso3"]
 [ext_resource type="Script" path="res://Player/Camera2D.gd" id="10_f7jln"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="12_6rljm"]
 [ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="13_xi33h"]
@@ -17,7 +18,7 @@
 [ext_resource type="Script" path="res://Player/States/DASHING_INIT.gd" id="21_dpayd"]
 [ext_resource type="Script" path="res://Player/States/DASHING_RECOVERY.gd" id="22_0ed03"]
 [ext_resource type="AudioStream" uid="uid://ddwgp11fwy77g" path="res://Audio/Player_sound/draw_sword.mp3" id="22_tik1o"]
-[ext_resource type="AudioStream" uid="uid://cctjhuxq3ce6x" path="res://Audio/Player_sound/Parry.mp3" id="23_3puad"]
+[ext_resource type="AudioStream" uid="uid://cctjhuxq3ce6x" path="res://Audio/Player_sound/parry.mp3" id="23_3puad"]
 [ext_resource type="Script" path="res://Player/States/DYING.gd" id="23_7xgns"]
 [ext_resource type="AudioStream" uid="uid://dn8imuf13vo25" path="res://Audio/Player_sound/atk_1.wav" id="23_r1765"]
 [ext_resource type="AudioStream" uid="uid://b7kule2knt833" path="res://Audio/Player_sound/atk_2.wav" id="24_anb8k"]
@@ -433,10 +434,10 @@ tracks/0/path = NodePath("..:BASE_SPEED")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.333333),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [100, 0]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -985,10 +986,10 @@ tracks/0/path = NodePath("..:BASE_SPEED")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.333333),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [100, 0]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1537,10 +1538,10 @@ tracks/0/path = NodePath("..:BASE_SPEED")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.333333),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [100, 0]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -2089,10 +2090,10 @@ tracks/0/path = NodePath("..:BASE_SPEED")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.333333),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [100, 0]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -3321,13 +3322,11 @@ _data = {
 }
 
 [node name="Bob" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 10
 collision_mask = 5
 motion_mode = 1
 wall_min_slide_angle = 1.5708
 script = ExtResource("1_v0has")
-MAX_SPEED = 0
-BASE_SPEED = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mf3nm")
@@ -3338,6 +3337,8 @@ points = PackedVector2Array(-44, 13, 0, 2)
 width_curve = ExtResource("2_hf2qm")
 gradient = ExtResource("3_vra5h")
 script = ExtResource("4_arnim")
+
+[node name="spawn_zone" parent="." instance=ExtResource("5_ts6ny")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -3353,7 +3354,8 @@ scale_amount_max = 5.0
 
 [node name="SwordArea2D" type="Area2D" parent="."]
 z_index = 1
-collision_layer = 2
+collision_layer = 10
+collision_mask = 5
 script = ExtResource("12_6rljm")
 
 [node name="SwordCS2D_1" type="CollisionShape2D" parent="SwordArea2D"]
@@ -3374,7 +3376,8 @@ debug_color = Color(0.929412, 0.145098, 0.0392157, 0.419608)
 
 [node name="HurtboxArea2D" type="Area2D" parent="."]
 z_index = 1
-collision_layer = 2
+collision_layer = 10
+collision_mask = 5
 script = ExtResource("13_xi33h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxArea2D"]
@@ -3400,8 +3403,7 @@ hurtbox_component = NodePath("../HurtboxArea2D")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("15_pvxni")
-parry_lvl = 2.0
-health = 10
+speed_up = 100
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true

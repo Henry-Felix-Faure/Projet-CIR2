@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://fyuphs1cbrxh"]
+[gd_scene load_steps=83 format=3 uid="uid://blkivxgf1phl0"]
 
 [ext_resource type="Texture2D" uid="uid://bj4pw4oxa2re2" path="res://Assets/Foe/Kamikaze/explosion.png" id="1_2cqnp"]
 [ext_resource type="Script" path="res://enemy/CAC/kamikaze_robot.gd" id="1_nwkhh"]
@@ -17,7 +17,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_3loyc"]
 radius = 5.09902
 
-[sub_resource type="Shader" id="Shader_ptg88"]
+[sub_resource type="Shader" id="Shader_u1lrr"]
 code = "shader_type canvas_item;
 
 // flash uniforms
@@ -26,7 +26,7 @@ uniform float flash_modifier: hint_range(0.0, 1.0)=1;
 
 // glitch uniforms
 uniform float shake_power = 0.0;
-uniform float shake_rate : hint_range( 0.0, 1.0 ) = 0.2;
+uniform float shake_rate : hint_range( 0.0, 1.0 ) = 0;
 uniform float shake_speed = 5.0;
 uniform float shake_block_size = 30.5;
 uniform float shake_color_rate : hint_range( 0.0, 1.0 ) = 0.0;
@@ -76,7 +76,7 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hhmf4"]
-shader = SubResource("Shader_ptg88")
+shader = SubResource("Shader_u1lrr")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 shader_parameter/shake_power = 0.03

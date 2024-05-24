@@ -6,7 +6,7 @@ uniform float flash_modifier: hint_range(0.0, 1.0)=1;
 
 // glitch uniforms
 uniform float shake_power = 0.0;
-uniform float shake_rate : hint_range( 0.0, 1.0 ) = 0.01;
+uniform float shake_rate : hint_range( 0.0, 1.0 ) = 0;
 uniform float shake_speed = 5.0;
 uniform float shake_block_size = 30.5;
 uniform float shake_color_rate : hint_range( 0.0, 1.0 ) = 0.0;

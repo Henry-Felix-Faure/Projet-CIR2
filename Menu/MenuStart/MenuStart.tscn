@@ -1,10 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://688q4ci84lgj"]
+[gd_scene load_steps=26 format=3 uid="uid://688q4ci84lgj"]
 
 [ext_resource type="Shader" path="res://Shaders/Glitch.gdshader" id="1_sg8lt"]
 [ext_resource type="Script" path="res://Menu/MenuStart/MenuStart.gd" id="1_v211p"]
 [ext_resource type="Texture2D" uid="uid://cs48gmg2mq1v3" path="res://Assets/Menu/UI/Button-play.png" id="2_mm6gy"]
 [ext_resource type="Texture2D" uid="uid://de5kcvuqytf2e" path="res://Assets/Menu/UI/Button-quit.png" id="2_y7w4i"]
-[ext_resource type="Theme" uid="uid://bff41fslpnilp" path="res://Shaders/Bouton_Menu.tres" id="3_4shu0"]
+[ext_resource type="Theme" uid="uid://b0nu3vprfidrs" path="res://Shaders/Bouton_Menu.tres" id="3_4shu0"]
 [ext_resource type="Texture2D" uid="uid://cdyt7larvv8r6" path="res://Assets/Menu/UI/Button-option.png" id="3_610aj"]
 [ext_resource type="PackedScene" uid="uid://blwdirn7ooaiu" path="res://Menu/MenuStart/parallax_background2.tscn" id="4_70owb"]
 [ext_resource type="Script" path="res://Menu/MenuOption/Video.gd" id="5_sx7g5"]
@@ -17,7 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://bmiycgei73x8h" path="res://Menu/MenuOption/button.tscn" id="9_j2pqy"]
 [ext_resource type="Texture2D" uid="uid://cxsxsrck4xdvf" path="res://Assets/Menu/UI/Back.png" id="10_tp2fv"]
 [ext_resource type="Script" path="res://Menu/MenuOption/Play.gd" id="17_n325j"]
+[ext_resource type="Texture2D" uid="uid://wtvakd083t0l" path="res://Assets/Menu/UI/Button-solo.png" id="18_e1s0p"]
 [ext_resource type="AudioStream" uid="uid://ck1x1qgc5ks6b" path="res://Audio/background/start_menu.mp3" id="18_xdp7s"]
+[ext_resource type="Texture2D" uid="uid://dejtoe2pioca3" path="res://Assets/Menu/UI/Button-multijoueur.png" id="19_m21j1"]
+[ext_resource type="Texture2D" uid="uid://dlp7eqyxiwxun" path="res://Assets/Menu/UI/Heberger.png" id="20_6lm7i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_crclc"]
 shader = ExtResource("1_sg8lt")
@@ -450,6 +453,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("17_n325j")
 
+[node name="BtnSolo" type="Button" parent="Play"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = -35.0
+offset_right = 167.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+icon = ExtResource("10_tp2fv")
+flat = true
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Play"]
 layout_mode = 1
 anchors_preset = 8
@@ -469,6 +489,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("9_bxix4")
 placeholder_text = "Votre pseudo"
 alignment = 1
+max_length = 16
 expand_to_text_length = true
 flat = true
 
@@ -479,21 +500,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -65.0
-offset_top = 9.0
-offset_right = 146.0
-offset_bottom = 94.0
+offset_left = -136.0
+offset_top = 14.0
+offset_right = 404.0
+offset_bottom = 99.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 
 [node name="Solo" type="Button" parent="Play/HBoxContainer"]
 layout_mode = 2
-text = "Solo"
+icon = ExtResource("18_e1s0p")
+flat = true
 
 [node name="Multijoueur" type="Button" parent="Play/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Multijoueur"
+icon = ExtResource("19_m21j1")
+flat = true
 
 [node name="Multi" type="Control" parent="."]
 unique_name_in_owner = true
@@ -524,28 +548,50 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Multi/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("9_bxix4")
 text = "Entrer le code"
 
 [node name="LineEdit" type="LineEdit" parent="Multi/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+placeholder_text = "Code PIN"
+max_length = 4
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Multi"]
 layout_mode = 0
-offset_left = 98.0
-offset_top = 118.0
-offset_right = 230.0
-offset_bottom = 158.0
+offset_left = 127.0
+offset_top = 121.0
+offset_right = 335.0
+offset_bottom = 199.0
+scale = Vector2(0.5, 0.5)
 
 [node name="Button" type="Button" parent="Multi/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Lancer un lobby"
+icon = ExtResource("20_6lm7i")
+flat = true
+
+[node name="BtnMulti" type="Button" parent="Multi"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = -35.0
+offset_right = 167.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+icon = ExtResource("10_tp2fv")
 flat = true
 
 [node name="start_menu" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_xdp7s")
 volume_db = -17.627
 autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_play_pressed"]
@@ -571,8 +617,10 @@ autoplay = true
 [connection signal="item_selected" from="Video/HBoxContainer/VBoxContainer2/vSYNC" to="Video" method="_on_v_sync_item_selected"]
 [connection signal="pressed" from="Video/BackVdo" to="." method="_on_back_vdo_pressed"]
 [connection signal="pressed" from="Control/ButtonKey" to="." method="_on_button_key_pressed"]
+[connection signal="pressed" from="Play/BtnSolo" to="." method="_on_btn_solo_pressed"]
 [connection signal="text_changed" from="Play/VBoxContainer/LineEdit" to="Play" method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="Play/VBoxContainer/LineEdit" to="Play" method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="Play/HBoxContainer/Solo" to="Play" method="_on_solo_pressed"]
 [connection signal="pressed" from="Play/HBoxContainer/Multijoueur" to="." method="_on_multijoueur_pressed"]
 [connection signal="pressed" from="Play/HBoxContainer/Multijoueur" to="Play" method="_on_multijoueur_pressed"]
+[connection signal="pressed" from="Multi/BtnMulti" to="." method="_on_btn_multi_pressed"]

@@ -9,11 +9,11 @@ signal up_dash_cd
 signal up_parry_cd
 signal up_atk_speed
 signal up_parry_lvl
-signal up_crit
+signal up_crit_chance
 signal up_damage_crit
 signal up_health
 
-@onready var drone_menu = get_tree().get_nodes_in_group("DroneMenu")[0]
+@onready var drone_menu = get_parent().get_parent().get_child(0)
 
 const ATK_SPEED_UP_1 = preload("res://Assets/PowerUp/atk_speed_up_1.png")
 const ATK_SPEED_UP_2 = preload("res://Assets/PowerUp/atk_speed_up_2.png")
@@ -57,21 +57,21 @@ var pathSpeed : Dictionary = {
 		"name": "Implants d'Achilles\n\n",
 		"desc": "Augmente la vitesse de déplacement",
 		"call": Callable(self,"addSpeed"),
-		"value": 0.2,
+		"value": 10,
 		"icon": SPEED_UP_1
 		},
 	1:{
 		"name" : "Amélioration des implants d'Achilles\n\n",
 		"desc": "Augmente la vitesse de déplacement",
 		"call": Callable(self,"addSpeed"),
-		"value": 0.2,
+		"value": 10,
 		"icon": SPEED_UP_2
 	},
 	2:{
 		"name" : "Amélioration des implants d'Achilles\n\n",
 		"desc": "Augmente la vitesse de déplacement",
 		"call": Callable(self,"addSpeed"),
-		"value": 0.2,
+		"value": 20,
 		"icon": SPEED_UP_3
 	},}
 var dronePath : Dictionary = {
@@ -151,21 +151,21 @@ var atkUpPath : Dictionary = {
 		"name": "Le bras de Damia\n\n",
 		"desc": "C'est pas encore ca, mais on commence a voir le biceps (attaque +)",
 		"call": Callable(self,"addAtk"),
-		"value": 0.2,
+		"value": 1,
 		"icon" : ATK_UP_1
 		},
 	1: {
 		"name": "Le bras d'Edgar\n\n",
 		"desc": "A la t'es BG ! (attaque +)",
 		"call": Callable(self,"addAtk"),
-		"value": 0.2,
+		"value": 1,
 		"icon" : ATK_UP_2
 		},
 	2: {
 		"name": "Le bras de Clarence\n\n",
 		"desc": "T'as mangé quoi pour devenir comme ca ? (attaque +)",
 		"call": Callable(self,"addAtk"),
-		"value": 0.2,
+		"value": 2,
 		"icon" : ATK_UP_3
 		}
 }
@@ -175,21 +175,21 @@ var dashSpeedUpPath : Dictionary = {
 		"name": "    Boost de puissance des jambes bioniques\n\n",
 		"desc": "Augmente la vitesse du dash",
 		"call": Callable(self,"dash_speed"),
-		"value": 0.2,
+		"value": 20,
 		"icon" : DASH_SPEED_UP_1
 		},
 	1: {
 		"name": "    Boost de puissance des jambes bioniques\n\n",
 		"desc": "Augmente la vitesse du dash",
 		"call": Callable(self,"dash_speed"),
-		"value": 0.2,
+		"value": 20,
 		"icon" :  DASH_SPEED_UP_2
 		},
 	2: {
 		"name": "    Boost de puissance des jambes bioniques\n\n",
 		"desc": "Augmente la vitesse du dash",
 		"call": Callable(self,"dash_speed"),
-		"value": 0.2,
+		"value": 20,
 		"icon" :  DASH_SPEED_UP_3
 		}
 }
@@ -199,21 +199,21 @@ var dashCDUpPath: Dictionary = {
 		"name": "Installation de condensateurs\n\n",
 		"desc": "Réduit le temps de recharge du dash",
 		"call": Callable(self,"dash_cd"),
-		"value": 0.2,
+		"value": 1.0,
 		"icon" : DASH_COOLDOWN_1
 		},
 	1: {
 		"name": "Installation de batteries\n\n",
 		"desc": "Réduit le temps de recharge du dash",
 		"call": Callable(self,"dash_cd"),
-		"value": 0.2,
+		"value": 1.0,
 		"icon" :  DASH_COOLDOWN_2
 		},
 	2: {
 		"name": "Installation de volants d'inertie\n\n",
 		"desc": "Réduit le temps de recharge du dash",
 		"call": Callable(self,"dash_cd"),
-		"value": 0.2,
+		"value": 2.0,
 		"icon" :  DASH_COOLDOWN_3
 		}
 }
@@ -223,21 +223,21 @@ var parryCDUpPath: Dictionary = {
 		"name": "On va up_parry_cd ou quoi ?\n\n",
 		"desc": "up_parry_cd",
 		"call": Callable(self,"parry_cd"),
-		"value": 0.2,
+		"value": 0.5,
 		"icon" : PARRY_COOLDOWN_1
 		},
 	1: {
 		"name": "On va up_parry_cd ou quoi ?\n\n",
 		"desc": "up_parry_cd",
 		"call": Callable(self,"parry_cd"),
-		"value": 0.2,
+		"value": 0.5,
 		"icon" :  PARRY_COOLDOWN_2
 		},
 	2: {
 		"name": "On va up_parry_cd ou quoi ?\n\n",
 		"desc": "up_parry_cd",
 		"call": Callable(self,"parry_cd"),
-		"value": 0.2,
+		"value": 1.0,
 		"icon" :  PARRY_COOLDOWN_3
 		}
 }
@@ -271,21 +271,14 @@ var parryUpPath: Dictionary = {
 		"name": "Acuité visuelle de 10/10\n\n",
 		"desc": "Augmente la durée du parry",
 		"call": Callable(self,"parry_lvl"),
-		"value": 0.2,
-		"icon" : PARRY_UP_1
+		"value": 1,
+		"icon" : PARRY_UP_2
 		},
 	1: {
-		"name": "Yeux d'aigle\n\n",
-		"desc": "Augmente la durée du parry",
-		"call": Callable(self,"parry_lvl"),
-		"value": 0.2,
-		"icon" :  PARRY_UP_2
-		},
-	2: {
 		"name": "Yeux cybérnétique\n\n",
 		"desc": "Augmente la durée du parry",
 		"call": Callable(self,"parry_lvl"),
-		"value": 0.2,
+		"value": 1,
 		"icon" :  PARRY_UP_3
 		}
 }
@@ -293,23 +286,23 @@ var parryUpPath: Dictionary = {
 
 var critUpPath: Dictionary = {
 	0: {
-		"name": "On va up_crit ou quoi ?\n\n",
-		"desc": "up_crit",
-		"call": Callable(self,"crit"),
+		"name": "On va up_crit_chance ou quoi ?\n\n",
+		"desc": "up_crit_chance",
+		"call": Callable(self,"crit_chance"),
 		"value": 0.2,
 		"icon" : CRIT_RATE_UP_1
 		},
 	1: {
-		"name": "On va up_crit ou quoi ?\n\n",
-		"desc": "up_crit",
-		"call": Callable(self,"crit"),
+		"name": "On va up_crit_chance ou quoi ?\n\n",
+		"desc": "up_crit_chance",
+		"call": Callable(self,"crit_chance"),
 		"value": 0.2,
 		"icon" :  CRIT_RATE_UP_2
 		},
 	2: {
-		"name": "On va up_crit ou quoi ?\n\n",
-		"desc": "up_crit",
-		"call": Callable(self,"crit"),
+		"name": "On va up_crit_chance ou quoi ?\n\n",
+		"desc": "up_crit_chance",
+		"call": Callable(self,"crit_chance"),
 		"value": 0.2,
 		"icon" :  CRIT_RATE_UP_3
 		}
@@ -320,14 +313,14 @@ var damageCritUpPath: Dictionary = {
 		"name": "On va up_damage_crit ou quoi ?\n\n",
 		"desc": "up_damage_crit",
 		"call": Callable(self,"damage_crit"),
-		"value": 0.2,
+		"value": 0.3,
 		"icon" : CRIT_UP_1
 		},
 	1: {
 		"name": "On va up_damage_crit ou quoi ?\n\n",
 		"desc": "up_damage_crit",
 		"call": Callable(self,"damage_crit"),
-		"value": 0.2,
+		"value": 0.3,
 		"icon" :  CRIT_UP_2
 		},
 	2: {
@@ -344,21 +337,21 @@ var healthUpPath: Dictionary = {
 		"name": "Installation du défibrilateur\n\n",
 		"desc": "Augmente la santé maximum",
 		"call": Callable(self,"health"),
-		"value": 0.2,
+		"value": 5,
 		"icon" : HEALTH_UP_1
 		},
 	1: {
 		"name": "Pompe cardiaque\n\n",
 		"desc": "Augmente la santé maximum",
 		"call": Callable(self,"health"),
-		"value": 0.2,
+		"value": 10,
 		"icon" :  HEALTH_UP_2
 		},
 	2: {
 		"name": "Coeur artificiel\n\n",
 		"desc": "Augmente la santé maximum",
 		"call": Callable(self,"health"),
-		"value": 0.2,
+		"value": 15,
 		"icon" :  HEALTH_UP_3
 		}
 }
@@ -384,13 +377,13 @@ func _GetUpgrade() -> Array:
 
 func addSpeed(speed : float, choice : Array, choice_i : int):
 	speedUp.emit(speed)
-	if  choice_i== 2: allPath.remove_at(allPath.find(choice, 0))
+	if  choice_i == 2: allPath.remove_at(allPath.find(choice, 0))
 	
 func addAtk(atk : int, choice : Array , choice_i : int):
 	atkUp.emit(atk)
 	if  choice_i== 2: allPath.remove_at(allPath.find(choice, 0))
 	
-func droneUpgrade(lvl : int, choice : Array = [], choice_i : int = 0):
+func droneUpgrade(lvl : int, choice : Array = [], _choice_i : int = 0):
 	if lvl == 1:
 		drone_menu.show_drone_menu()
 		return
@@ -404,30 +397,32 @@ func drone_mode(mode):
 	
 func dash_speed(up, choice : Array, choice_i : int):
 	up_dash_speed.emit(up)
-	if  choice_i== 2: allPath.remove_at(allPath.find(choice, 0))
+	if choice_i == 2: allPath.remove_at(allPath.find(choice, 0))
 	
 func dash_cd(up, choice : Array, choice_i : int):
 	up_dash_cd.emit(up)
-	if  choice_i== 2: allPath.remove_at(allPath.find(choice, 0))
+	if choice_i == 2: allPath.remove_at(allPath.find(choice, 0))
 	
 func parry_cd(up, choice : Array, choice_i: int):
 	up_parry_cd.emit(up)
-	if  choice_i== 2: allPath.remove_at(allPath.find(choice, 0))
+	if choice_i == 2: allPath.remove_at(allPath.find(choice, 0))
 	
 func atk_speed(up, choice : Array, choice_i: int):
 	up_atk_speed.emit(up)
-	if  choice_i== 2: allPath.remove_at(allPath.find(choice, 0))
+	if choice_i == 2: allPath.remove_at(allPath.find(choice, 0))
+	
 func parry_lvl(_up, choice : Array, choice_i: int):
 	up_parry_lvl.emit()
-	if  choice_i== 2: allPath.remove_at(allPath.find(choice, 0))
-func crit(up, choice : Array, choice_i: int):
-	up_crit.emit(up)
-	if  choice_i== 2: allPath.remove_at(allPath.find(choice, 0))
+	if choice_i == 1: allPath.remove_at(allPath.find(choice, 0))
+	
+func crit_chance(up, choice : Array, choice_i: int):
+	up_crit_chance.emit(up)
+	if choice_i == 2: allPath.remove_at(allPath.find(choice, 0))
 	
 func damage_crit(up, choice : Array, choice_i: int):
 	up_damage_crit.emit(up)
-	if  choice_i== 2: allPath.remove_at(allPath.find(choice, 0))
+	if choice_i == 2: allPath.remove_at(allPath.find(choice, 0))
 
 func health(up, choice : Array, choice_i: int):
 	up_health.emit(up)
-	if  choice_i== 2: allPath.remove_at(allPath.find(choice, 0))
+	if choice_i == 2: allPath.remove_at(allPath.find(choice, 0))

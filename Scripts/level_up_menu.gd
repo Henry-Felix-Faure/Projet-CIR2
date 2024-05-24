@@ -6,10 +6,11 @@ extends Control
 @onready var choice_3: Button = $PanelContainer/VBoxContainer/Choice3
 
 @onready var all_buttons : Array = [choice_1, choice_2, choice_3]
-
 var choice1 : Array
 var choice2 : Array
 var choice3 : Array
+
+signal drone_ready
 
 func _ready() -> void:
 	hide()

@@ -1,12 +1,15 @@
-[gd_scene load_steps=30 format=3 uid="uid://cxn4xmmsx44km"]
+[gd_scene load_steps=31 format=3 uid="uid://cxn4xmmsx44km"]
 
 [ext_resource type="Script" path="res://Map/leapfrogger_map.gd" id="1_l5nds"]
 [ext_resource type="Shader" path="res://Shaders/greyScale_self.gdshader" id="1_uojdx"]
 [ext_resource type="Texture2D" uid="uid://1ew05vppcr2p" path="res://Assets/Tileset/Tileset.png" id="2_7d52s"]
+[ext_resource type="Script" path="res://Map/Pathfinding.gd" id="4_dyrkj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_86m7j"]
 shader = ExtResource("1_uojdx")
 shader_parameter/greyScaleIntensity = 0.8
+shader_parameter/use_grayscale = true
+shader_parameter/shift_color = Color(0.564706, 0.333333, 0.494118, 1)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_c0wct"]
 tile_data = PackedInt32Array(65536, 65536, 1, 131072, 65536, 1, 196608, 65536, 1, 1, 65536, 1, 65537, 65536, 1, 131073, 65536, 1, 196609, 65536, 1, 262145, 65536, 1, 327681, 65536, 1, 393217, 65536, 1, 65538, 65536, 1, 131074, 65536, 1, 196610, 65536, 1, 262146, 65536, 1, 327682, 65536, 1, 393218, 65536, 1, 131075, 65536, 1, 196611, 65536, 1, 262147, 65536, 1, 327683, 65536, 1, 393219, 65536, 1, 458755, 65536, 1, 196612, 65536, 1, 262148, 65536, 1, 327684, 65536, 1, 393220, 65536, 1, 458756, 65536, 1, 262149, 65536, 1, 327685, 65536, 1, 393221, 65536, 1)
@@ -539,7 +542,7 @@ layer_3/name = "Details"
 layer_3/tile_data = PackedInt32Array(5505058, 786432, 0, 5898274, 786432, 0, 4325411, 786432, 0, 4653091, 786432, 0, 5046307, 786432, 0, 5439524, 786432, 0, 5963812, 786432, 0, 3473445, 786432, 0, 4915237, 786432, 0, 2883623, 786432, 0, 5505064, 786432, 0, 4063273, 786432, 0, 4587562, 786432, 0, 3014699, 786432, 0, 5242924, 786432, 0, 3538990, 786432, 0, 2752559, 786432, 0, 3080239, 786432, 0, 3538991, 786432, 0, 6488111, 786432, 0, 6357040, 786432, 0, 4653106, 786432, 0, 5767220, 786432, 0, 6488116, 786432, 0, 6357045, 786432, 0, 5636151, 786432, 0, 3342393, 786432, 0, 4325436, 786432, 0, 4849724, 786432, 0, 6029372, 786432, 0, 4063293, 786432, 0, 4259901, 786432, 0, 2555966, 786432, 0, 4587582, 786432, 0, 5767230, 786432, 0, 5832766, 786432, 0, 2490431, 786432, 0, 4259903, 786432, 0, 5374015, 786432, 0, 5767231, 786432, 0, 6029376, 786432, 0, 4128833, 786432, 0, 5767233, 786432, 0, 2359362, 786432, 0, 5636162, 786432, 0, 2359364, 786432, 0, 2687044, 786432, 0, 6094916, 786432, 0, 3997765, 786432, 0, 2818119, 786432, 0, 2687048, 786432, 0, 3407944, 786432, 0, 5242953, 786432, 0, 4653133, 786432, 0, 2359374, 786432, 0, 3211342, 786432, 0, 3866702, 786432, 0, 5898318, 786432, 0, 5177423, 786432, 0, 3670096, 786432, 0, 3670097, 786432, 0, 5505106, 786432, 0, 4587603, 786432, 0, 5242963, 786432, 0, 6226003, 786432, 0, 3080276, 786432, 0, 3735637, 786432, 0, 3801174, 786432, 0, 5767255, 786432, 0, 3211353, 786432, 0, 3473497, 786432, 0, 3604569, 786432, 0, 3539034, 786432, 0, 5439578, 786432, 0, 6488154, 786432, 0, 2555995, 786432, 0, 4587611, 786432, 0, 4653147, 786432, 0, 5701723, 786432, 0, 2293853, 786432, 0, 2818141, 786432, 0, 4063325, 786432, 0, 2621534, 786432, 0, 6094942, 786432, 0, 4391007, 786432, 0, 4587615, 786432, 0, 6226015, 786432, 0, 3342434, 786432, 0, 5570658, 786432, 0, 5636195, 786432, 0, 6488163, 786432, 0, 5308485, 458752, 0, 5177413, 458752, 0, 5046341, 458752, 0, 5111878, 589824, 1342177284)
 
 [node name="Area_north" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_north"]
 position = Vector2(0, -1088)
@@ -547,7 +550,7 @@ shape = SubResource("RectangleShape2D_75v6t")
 debug_color = Color(0, 0.65098, 0.129412, 0.419608)
 
 [node name="Area_west" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_west"]
 position = Vector2(-1088, 0)
@@ -555,7 +558,7 @@ shape = SubResource("RectangleShape2D_wog8f")
 debug_color = Color(0, 0.65098, 0.129412, 0.419608)
 
 [node name="Area_east" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_east"]
 position = Vector2(1088, 0)
@@ -563,12 +566,20 @@ shape = SubResource("RectangleShape2D_5iyde")
 debug_color = Color(0, 0.65098, 0.129412, 0.419608)
 
 [node name="Area_south" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_south"]
 position = Vector2(0, 1088)
 shape = SubResource("RectangleShape2D_i8ikt")
 debug_color = Color(0, 0.65098, 0.129412, 0.419608)
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+default_color = Color(1, 0, 0, 1)
+
+[node name="Pathfinding" type="Node2D" parent="."]
+visible = false
+script = ExtResource("4_dyrkj")
 
 [connection signal="body_entered" from="Area_north" to="." method="_on_area_north_body_entered"]
 [connection signal="body_entered" from="Area_west" to="." method="_on_area_west_body_entered"]

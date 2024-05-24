@@ -16,7 +16,7 @@ func _ready() -> void:
 		animation.play("exp3")
 	range_exp.body_entered.connect(_on_range_body_entered)
 
-func _on_range_body_entered(body) -> void:
+func _on_range_body_entered(_body) -> void:
 	die()
 
 func die() -> void:

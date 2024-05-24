@@ -4,6 +4,7 @@ extends State
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var audio_atk_1: AudioStreamPlayer2D = $"../../audio_atk_1"
+@onready var stats_component: StatsComponent = $"../../StatsComponent"
 
 
 func Enter():
@@ -54,18 +55,24 @@ func Update(_delta:float):
 
 func animation_finished():
 	if bob.attack_left <= 1: # if we just performed the first attack and we still have one or two more to do
+		bob.BASE_SPEED = bob.stats_component.speed_up
 		state_transition.emit(self, "ATK_2")
 	else: # no attack to perform next
+		animated_sprite_2d.speed_scale = 1.0
+		animation_player.speed_scale = 1.0
 		if bob.AIMING_MOUSE:
 			bob.cursor_pos_attack_array = []
 		else:
 			bob.last_dir_attack_array = []
-		bob.attack_left = 3 # resetting the atdtack_left variable
+		bob.attack_left = 3 # resetting the attack_left variable
+		bob.BASE_SPEED = bob.stats_component.speed_up
 		state_transition.emit(self, "MOVING")
 	
 
 func next_animation_selector_attacking():
-	var is_crit: bool = get_parent().is_attack_crit()
+	var _is_crit: bool = get_parent().is_attack_crit()
+	animated_sprite_2d.speed_scale = bob.atk_speed
+	animation_player.speed_scale = bob.atk_speed
 	if not bob.AIMING_MOUSE:
 		if bob.last_dir_attack_array[0].x != 0: # if the player was moving towards left or right
 			animated_sprite_2d.play(bob.attacks_array[0][0]) # playing the correct animation of attack (same for the other if/elif)

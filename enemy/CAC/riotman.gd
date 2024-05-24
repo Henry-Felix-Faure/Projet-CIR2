@@ -64,11 +64,11 @@ func _physics_process(delta):
 			detection_r.disabled = false
 			detection_l.disabled = true
 
-func _on_range_body_entered(body):
+func _on_range_body_entered(_body):
 	attack()
 	in_area = true
 	
-func _on_range_body_exited(body):
+func _on_range_body_exited(_body):
 	in_area = false
 
 
