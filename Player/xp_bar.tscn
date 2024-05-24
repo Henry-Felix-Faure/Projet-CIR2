@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://yxt5nqjnf364"]
+
+[ext_resource type="Script" path="res://Player/xp_bar.gd" id="1_hbb7j"]
+[ext_resource type="Texture2D" uid="uid://crevaugteqaay" path="res://Player/hud_bar_xp.png" id="1_lipen"]
+[ext_resource type="Texture2D" uid="uid://ds4xjr5icsupr" path="res://Player/xp_progress_bar.png" id="2_c2ul1"]
+
+[node name="xp_bar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hbb7j")
+
+[node name="TextureProgressBarxp" type="TextureProgressBar" parent="."]
+offset_right = 128.0
+offset_bottom = 40.0
+max_value = 20.0
+texture_under = ExtResource("1_lipen")
+texture_progress = ExtResource("2_c2ul1")
