@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
 @export var stats: EnnemiesStatsComponent
+@export var hurtbox_component: HurtboxComponent
 
 var speed: float = 30.0
 
 const expScene = preload("res://experience/experience.tscn")
 
 @onready var knife: AudioStreamPlayer2D = $knife
+
 
 @onready var detection_r: CollisionShape2D = $range/DetectionR
 @onready var detection_l: CollisionShape2D = $range/DetectionL
@@ -22,6 +24,7 @@ var in_area : bool = false
 func _ready():
 	var attackInterval = stats.ATK_SPEED
 	wait_timer.wait_time = attackInterval / 50
+	hurtbox_component.hurt.connect(_hurt)
 	range.body_entered.connect(_on_range_body_entered)
 	range.body_exited.connect(_on_range_body_exited)
 
@@ -60,7 +63,8 @@ func _on_range_body_entered(body):
 func _on_range_body_exited(body):
 	in_area = false
 	
-
+func _hurt() -> void:
+	wait = false
 
 func _on_timer_timeout() -> void:
 	wait = false

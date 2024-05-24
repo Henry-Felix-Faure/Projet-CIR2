@@ -240,11 +240,12 @@ height = 44.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qstt1"]
 height = 32.0
 
-[node name="riotman" type="CharacterBody2D" node_paths=PackedStringArray("stats")]
+[node name="riotman" type="CharacterBody2D" node_paths=PackedStringArray("stats", "hurtbox_component")]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_r0p4n")
 stats = NodePath("EnnemiesStatsComponent")
+hurtbox_component = NodePath("HurtboxComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

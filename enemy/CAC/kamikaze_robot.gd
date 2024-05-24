@@ -37,6 +37,7 @@ func cooldown() -> void:
 	
 func explose() -> void:
 	if (!explose_now):
+		speed = 0.0
 		collision_shape_2d.disabled = true
 		explose_now = true
 		explosion_sound.play()
