@@ -22,7 +22,7 @@ func spawn(global_spawn_position: Vector2 = global_position, parent: Node = get_
 	
 	# Return the instance in case we want to perform any other operations
 	# on it after instancing it.
-	if instance is XP:
-		instance.nb_exp = StatsComponent.xp
+	#if instance is XP:
+		#instance.nb_exp = StatsComponent.xp
 	
 	return instance

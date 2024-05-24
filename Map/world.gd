@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var level_up_menu: Control = $"MenuLayer/Level Up Menu"
 @onready var bob: CharacterBody2D = $Bob
-@onready var pause = $CanvasLayer/MenuPause
+@onready var pause = $PauseLayer/MenuPause
 
 func pauseMenu():
 	if Global.paused:
