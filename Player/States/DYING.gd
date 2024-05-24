@@ -9,7 +9,9 @@ extends State
 @onready var world: Node2D = bob.get_parent()
 @onready var death_screen = preload("res://Assets/death_screen.tscn")
 
-func Enter():	
+func Enter():
+	animated_sprite_2d.speed_scale = 1
+	animation_player.speed_scale = 1
 	hurtbox_area_2d.is_invincible = true # disabling the hurtbox of the player
 	collision_shape_2d.set_deferred("disabled", true) # disabling the hitbox of the player
 	animated_sprite_2d.play("death") # playing the death animation

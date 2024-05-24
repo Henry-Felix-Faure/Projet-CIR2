@@ -72,9 +72,6 @@ func _on_range_body_entered(_body):
 func _on_range_body_exited(_body):
 	in_area = false
 
-
-
-
 func _on_timer_timeout() -> void:
 	wait = false
 	if in_area:

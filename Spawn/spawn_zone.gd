@@ -23,7 +23,7 @@ func _ready() -> void:
 	timer_spawn.wait_time = 8
 	timer_state.wait_time = 60
 	
-	etat = [[0,0,100,0,0,0],
+	etat = [[20,20,20,40,0,0],
 	[60,35,5,0,0,0],
 	[34,44,20,2,0,0],
 	[20,35,35,10,0,0],
