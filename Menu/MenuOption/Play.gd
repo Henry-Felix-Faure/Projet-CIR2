@@ -12,7 +12,7 @@ func _ready():
 
 
 func _on_solo_pressed():
-	get_tree().change_scene_to_file("res://world.tscn")
+	get_tree().change_scene_to_file("res://Map/world.tscn")
 
 
 func _on_line_edit_text_submitted(_new_text):

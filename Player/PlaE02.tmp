@@ -434,10 +434,10 @@ tracks/0/path = NodePath("..:BASE_SPEED")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.333333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
+"values": [100, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -986,10 +986,10 @@ tracks/0/path = NodePath("..:BASE_SPEED")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.333333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
+"values": [100, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1538,10 +1538,10 @@ tracks/0/path = NodePath("..:BASE_SPEED")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.333333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
+"values": [100, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -2090,10 +2090,10 @@ tracks/0/path = NodePath("..:BASE_SPEED")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.333333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
+"values": [100, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -3343,7 +3343,7 @@ script = ExtResource("4_arnim")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
 sprite_frames = ExtResource("2_gnar5")
-animation = &"idle_down"
+animation = &"death"
 
 [node name="CPUParticles2D" parent="." instance=ExtResource("6_eoso3")]
 z_index = 1
@@ -3404,6 +3404,10 @@ hurtbox_component = NodePath("../HurtboxArea2D")
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("15_pvxni")
 speed_up = 100
+dash_speed = 300
+parry_lvl = 3.0
+crit = 0.2
+health = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true

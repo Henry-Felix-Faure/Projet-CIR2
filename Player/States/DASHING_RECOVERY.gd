@@ -10,6 +10,7 @@ func Enter():
 	next_animation_selector_dashing_recovery() # calling the function to select the right dashing recovery animations
 	
 func Exit():
+	bob.set_collision_mask_value(3, true)
 	MaLigne.start_fade_out()
 	pass
 	

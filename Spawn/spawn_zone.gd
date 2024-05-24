@@ -12,7 +12,7 @@ const police = preload("res://enemy/CAC/policeman.tscn")
 const robot = preload("res://enemy/CAC/robot.tscn")
 const kamikaze = preload("res://enemy/CAC/kamikaze_robot.tscn")
 
-var bank_mob = {}
+@export var bank_mob = {"robot": 0, "police": 0, "kamikaze": 0, "riotman": 0}
 var etat = []
 var etat_now = 0 
 
@@ -21,15 +21,6 @@ func _ready() -> void:
 	#timer_state.timeout.connect(change_etat)
 	timer_spawn.wait_time = 5
 	timer_state.wait_time = 120
-	
-	
-	bank_mob["robot"] = 100
-	bank_mob["police"] = 0
-	bank_mob["kamikaze"] = 0
-	bank_mob["riotman"] = 0
-	bank_mob["mob4"] = 0
-	bank_mob["mob5"] = 0
-	bank_mob["mob6"] = 0
 	
 	etat = [[80,18,2,0,0,0],
 	[60,35,5,0,0,0],
@@ -45,7 +36,7 @@ func _ready() -> void:
 func _spawn_mob() -> void:
 	var mob_spawn = ""
 	var mob_choose = choose_mob()
-	print("je fais spawn : ",mob_choose)
+	#print("je fais spawn : ",mob_choose)
 	match mob_choose:
 		"robot":
 			mob_spawn = robot.instantiate()
@@ -59,7 +50,7 @@ func _spawn_mob() -> void:
 	
 	var random_spawn = randi() % 4
 	var rect = 0
-	print("zone : ", random_spawn)
+	#print("zone : ", random_spawn)
 	match random_spawn:
 		0:
 			rect = spawn_top.get_global_rect()

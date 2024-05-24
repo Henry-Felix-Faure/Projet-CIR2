@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=241 format=3 uid="uid://dld47ipx71i0a"]
+[gd_resource type="SpriteFrames" load_steps=241 format=3 uid="uid://d02qxufqagsab"]
 
 [ext_resource type="Texture2D" uid="uid://btw84h3atisra" path="res://Assets/Bob/attack_down.png" id="1_mjtx0"]
 [ext_resource type="Texture2D" uid="uid://c6s7ioewsnbkl" path="res://Assets/Bob/attack_right.png" id="2_re1cr"]
@@ -1407,10 +1407,22 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uukey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uukey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uukey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uukey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uukey")
 }],
 "loop": false,
 "name": &"death",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,

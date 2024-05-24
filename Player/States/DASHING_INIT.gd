@@ -8,6 +8,7 @@ extends State
 
 
 func Enter():
+	bob.set_collision_mask_value(3, false)
 	MaLigne.show()
 	audio_dash.play()
 	if bob.input_vector == Vector2.ZERO: # if we were not moving, the last input will be the direction we are facing

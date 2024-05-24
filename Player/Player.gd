@@ -11,20 +11,22 @@ extends CharacterBody2D
 
 # importing initial stats variables
 @onready var health: int = stats_component.health
-@onready var crit_chance: float = 1.0
-@onready var damage: int = 2
-@onready var crit_damage: float = 1.2
-
+@onready var crit_chance: float = stats_component.crit_chance
+@onready var damage: int = stats_component.dmg
+@onready var crit_damage: float = stats_component.damage_crit
+@onready var dash_cd: float = stats_component.dash_cd
+@onready var parry_cd: float = stats_component.parry_cd
+@onready var atk_speed: float = stats_component.atk_speed
+@onready var parry_lvl: int = stats_component.parry_lvl
 
 var cancel_dash_parry: bool = false
 var parrying: bool = false
 
 signal critical_hit
 
-# initial variables for moving and animations
-@export var MAX_SPEED: int = 1000
-@export var BASE_SPEED: int = 100
-const DASH_SPEED: int = 300
+#@onready var MAX_SPEED: int = 1000
+@onready var BASE_SPEED: int = stats_component.speed_up
+@onready var DASH_SPEED: int = stats_component.dash_speed
 
 #var ACCELERATION: int = 100000000
 #var FRICTION: int = 100000000
@@ -46,8 +48,23 @@ var cursor_pos_from_player: Vector2 # Vector2 to store the difference between cu
 var cursor_pos_attack_array: Array = [] # array of array for each 3 attacks of each 4 four directions (left and right are the same)
 var last_dir_attack_array: Array = [] # array of array for each 3 attacks of each 4 four directions (left and right are the same)
 
+@onready var stats_array: Dictionary = {"base speed" : BASE_SPEED, "dash speed" : DASH_SPEED, "dash cd" : dash_cd, "parry cd" : parry_cd, "atk speed" : atk_speed, "parry lvl" : parry_lvl, "dmg" : damage, "crit chance" : crit_chance, "dmg crit" : crit_damage, "health" : health}
+
 func _ready():
-	pass
+	stats_component.stat_changed.connect(update_stats)
 
 func _physics_process(_delta): 
 	pass
+
+func update_stats():
+	BASE_SPEED = stats_component.speed_up
+	DASH_SPEED = stats_component.dash_speed
+	dash_cd = stats_component.dash_cd
+	parry_cd = stats_component.parry_cd
+	atk_speed = stats_component.atk_speed
+	parry_lvl = stats_component.parry_lvl
+	damage = stats_component.dmg
+	crit_chance = stats_component.crit_chance
+	crit_damage = stats_component.damage_crit
+	health = stats_component.health
+	stats_array = {"base speed" : BASE_SPEED, "dash speed" : DASH_SPEED, "dash cd" : dash_cd, "parry cd" : parry_cd, "atk speed" : atk_speed, "parry lvl" : parry_lvl, "dmg" : damage, "crit chance" : crit_chance, "dmg crit" : crit_damage, "health" : health}

@@ -1,10 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://688q4ci84lgj"]
+[gd_scene load_steps=26 format=3 uid="uid://688q4ci84lgj"]
 
 [ext_resource type="Shader" path="res://Shaders/Glitch.gdshader" id="1_sg8lt"]
 [ext_resource type="Script" path="res://Menu/MenuStart/MenuStart.gd" id="1_v211p"]
 [ext_resource type="Texture2D" uid="uid://cs48gmg2mq1v3" path="res://Assets/Menu/UI/Button-play.png" id="2_mm6gy"]
 [ext_resource type="Texture2D" uid="uid://de5kcvuqytf2e" path="res://Assets/Menu/UI/Button-quit.png" id="2_y7w4i"]
-[ext_resource type="Theme" uid="uid://bff41fslpnilp" path="res://Shaders/Bouton_Menu.tres" id="3_4shu0"]
+[ext_resource type="Theme" uid="uid://b0nu3vprfidrs" path="res://Shaders/Bouton_Menu.tres" id="3_4shu0"]
 [ext_resource type="Texture2D" uid="uid://cdyt7larvv8r6" path="res://Assets/Menu/UI/Button-option.png" id="3_610aj"]
 [ext_resource type="PackedScene" uid="uid://blwdirn7ooaiu" path="res://Menu/MenuStart/parallax_background2.tscn" id="4_70owb"]
 [ext_resource type="Script" path="res://Menu/MenuOption/Video.gd" id="5_sx7g5"]
@@ -18,9 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://cxsxsrck4xdvf" path="res://Assets/Menu/UI/Back.png" id="10_tp2fv"]
 [ext_resource type="Script" path="res://Menu/MenuOption/Play.gd" id="17_n325j"]
 [ext_resource type="Texture2D" uid="uid://wtvakd083t0l" path="res://Assets/Menu/UI/Button-solo.png" id="18_e1s0p"]
+[ext_resource type="AudioStream" uid="uid://ck1x1qgc5ks6b" path="res://Audio/background/start_menu.mp3" id="18_xdp7s"]
 [ext_resource type="Texture2D" uid="uid://dejtoe2pioca3" path="res://Assets/Menu/UI/Button-multijoueur.png" id="19_m21j1"]
 [ext_resource type="Texture2D" uid="uid://dlp7eqyxiwxun" path="res://Assets/Menu/UI/Heberger.png" id="20_6lm7i"]
-[ext_resource type="AudioStream" uid="uid://ck1x1qgc5ks6b" path="res://Audio/background/start_menu.mp3" id="18_xdp7s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_crclc"]
 shader = ExtResource("1_sg8lt")
@@ -61,7 +61,6 @@ color = Color(1, 1, 1, 0)
 
 [node name="test" type="MarginContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -445,6 +444,7 @@ flat = true
 
 [node name="Play" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -591,6 +591,7 @@ flat = true
 stream = ExtResource("18_xdp7s")
 volume_db = -17.627
 autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_play_pressed"]
