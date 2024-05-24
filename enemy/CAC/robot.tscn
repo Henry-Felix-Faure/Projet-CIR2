@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cu78uv46u4rh4"]
+[gd_scene load_steps=32 format=3 uid="uid://4o2ksvge2e5y"]
 
 [ext_resource type="Script" path="res://enemy/CAC/robot.gd" id="1_i0ghq"]
 [ext_resource type="Texture2D" uid="uid://cqm4oqsjve1du" path="res://Assets/Foe/bot/bot_attack.png" id="2_71kf2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/spawn_component.gd" id="9_40xle"]
 [ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="10_wylpb"]
 [ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="11_iqbm8"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="12_hgxkp"]
 [ext_resource type="AudioStream" uid="uid://cff2ruc7bfedg" path="res://Audio/Mob_sound/Robot/knife_cut_v2.wav" id="12_yxsno"]
 
 [sub_resource type="Shader" id="Shader_yq23s"]
@@ -178,15 +179,18 @@ height = 22.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kdkho"]
 radius = 13.0
-height = 40.0
+height = 26.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcyql"]
 radius = 13.0
-height = 40.0
+height = 26.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hwtus"]
 radius = 8.0
 height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7gmjw"]
+radius = 7.0
 
 [node name="Robot" type="CharacterBody2D" node_paths=PackedStringArray("stats", "hurtbox_component")]
 collision_layer = 4
@@ -199,7 +203,8 @@ hurtbox_component = NodePath("HurtboxComponent")
 material = SubResource("ShaderMaterial_0v5yw")
 position = Vector2(2, -4)
 sprite_frames = SubResource("SpriteFrames_8vywj")
-animation = &"move"
+animation = &"attack"
+frame = 3
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -254,5 +259,22 @@ shape = SubResource("CapsuleShape2D_hwtus")
 [node name="knife" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_yxsno")
 volume_db = 8.814
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("12_hgxkp")
+
+[node name="AttackL" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-15, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7gmjw")
+debug_color = Color(1, 0.0431373, 0.231373, 0.109804)
+
+[node name="AttackR" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(15, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7gmjw")
+debug_color = Color(1, 0.0431373, 0.231373, 0.109804)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

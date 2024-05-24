@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://fyuphs1cbrxh"]
+[gd_scene load_steps=85 format=3 uid="uid://fyuphs1cbrxh"]
 
 [ext_resource type="Texture2D" uid="uid://bj4pw4oxa2re2" path="res://Assets/Foe/Kamikaze/explosion.png" id="1_2cqnp"]
 [ext_resource type="Script" path="res://enemy/CAC/kamikaze_robot.gd" id="1_nwkhh"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="9_w7f0o"]
 [ext_resource type="AudioStream" uid="uid://5mop61j86ett" path="res://Audio/Mob_sound/kamikaze/tik tak_v2.wav" id="12_brg5g"]
 [ext_resource type="AudioStream" uid="uid://4lne4rr2r6qj" path="res://Audio/Mob_sound/kamikaze/explosion_v3.wav" id="13_pghch"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="14_teswn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3loyc"]
 radius = 5.09902
@@ -551,6 +552,9 @@ radius = 14.0357
 [sub_resource type="CircleShape2D" id="CircleShape2D_won1p"]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8i8ot"]
+radius = 14.0357
+
 [node name="Kamikaze_robot" type="CharacterBody2D" node_paths=PackedStringArray("stats")]
 collision_layer = 4
 collision_mask = 2
@@ -590,7 +594,9 @@ hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("7_aa0tu")
+dmg = 3
 health = 4
+xp_dropped = 2
 
 [node name="SpawnComponent" type="Node2D" parent="."]
 script = ExtResource("8_frlq8")
@@ -613,5 +619,15 @@ stream = ExtResource("12_brg5g")
 [node name="explosion_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_pghch")
 volume_db = -10.061
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("14_teswn")
+damage = 3
+
+[node name="attack_explo" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_8i8ot")
+debug_color = Color(1, 0.0431373, 0.231373, 0.109804)
 
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

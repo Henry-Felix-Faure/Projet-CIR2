@@ -1,10 +1,11 @@
-[gd_scene load_steps=39 format=3 uid="uid://c53j373kdc44i"]
+[gd_scene load_steps=42 format=3 uid="uid://bnmrqlcon1iha"]
 
 [ext_resource type="Script" path="res://enemy/CAC/riotman.gd" id="1_r0p4n"]
 [ext_resource type="Texture2D" uid="uid://b7sxfwfdct3yp" path="res://Assets/Foe/riotman_v2/riotman_attack.png" id="2_cngwd"]
 [ext_resource type="Texture2D" uid="uid://c3d4p14163oxl" path="res://Assets/Foe/riotman_v2/riotman_walk.png" id="3_bpuqj"]
 [ext_resource type="Texture2D" uid="uid://n2gxgjfrgi3j" path="res://Assets/Foe/riotman/shieldman_tank.png" id="4_0ipm4"]
 [ext_resource type="Script" path="res://Scripts/Components/hurt_component.gd" id="5_760fy"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="5_xkfup"]
 [ext_resource type="Script" path="res://Scripts/Components/ennemies_stats_component.gd" id="6_nu5oj"]
 [ext_resource type="Script" path="res://Scripts/Components/destroyed_component.gd" id="7_w6k2p"]
 [ext_resource type="Script" path="res://Scripts/Components/stats_component.gd" id="8_353lc"]
@@ -234,11 +235,19 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dg4rr"]
-radius = 11.0
-height = 44.0
+radius = 9.0
+height = 26.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qstt1"]
 height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p3vg2"]
+radius = 6.0
+height = 28.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q8l0g"]
+radius = 6.0
+height = 28.0
 
 [node name="riotman" type="CharacterBody2D" node_paths=PackedStringArray("stats", "hurtbox_component")]
 collision_layer = 4
@@ -256,7 +265,8 @@ debug_color = Color(0.946129, 5.48691e-06, 0.589246, 0.42)
 material = SubResource("ShaderMaterial_wbtw6")
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_3eb8t")
-animation = &"move"
+animation = &"attack"
+frame = 3
 metadata/_edit_lock_ = true
 
 [node name="range" type="Area2D" parent="."]
@@ -319,5 +329,20 @@ volume_db = -23.797
 [node name="atk_3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_hvf5q")
 volume_db = -23.797
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("5_xkfup")
+
+[node name="AttackL" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-6, 0)
+shape = SubResource("CapsuleShape2D_p3vg2")
+debug_color = Color(1, 0.0431373, 0.231373, 0.109804)
+
+[node name="AttackR" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(6, 0)
+shape = SubResource("CapsuleShape2D_q8l0g")
+debug_color = Color(1, 0.0431373, 0.231373, 0.109804)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

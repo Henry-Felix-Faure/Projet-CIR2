@@ -23,7 +23,7 @@ func _ready() -> void:
 	timer_spawn.wait_time = 8
 	timer_state.wait_time = 60
 	
-	etat = [[80,18,2,0,0,0],
+	etat = [[0,0,100,0,0,0],
 	[60,35,5,0,0,0],
 	[34,44,20,2,0,0],
 	[20,35,35,10,0,0],
@@ -65,11 +65,9 @@ func _spawn_mob() -> void:
 	var mob_y = randf_range(rect.position.y, rect.end.y)
 	mob_spawn.position = Vector2(mob_x, mob_y)
 	if etat_now == 5 and etat_now == 10:
-		print("je mets en pause les mobs chef")
+		pass
 	else :
-		print("je spawn")
 		get_parent().get_parent().add_child(mob_spawn)
-	print("timing de spawn : ", timer_spawn.wait_time)
 	
 func choose_mob(spawn_rate = bank_mob):
 	var random_nb = randf_range(1,100)
@@ -85,15 +83,12 @@ func change_etat() -> void:
 	if etat_now < 10:
 		timer_spawn.wait_time -= 0.5
 		if etat_now == 5 :
-			print("weeesh le boss")
+			pass
 		var idx = 0
 		for cle in bank_mob:
-			print(cle, " : ", bank_mob[cle])
 			bank_mob[cle] = etat[etat_now][idx]
 			if idx >= 5:
 				pass
 			else:
 				idx += 1
 		etat_now += 1
-		print("je passe état : ", etat_now)
-		print("j'était état : ", etat_now - 1)

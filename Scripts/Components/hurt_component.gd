@@ -31,7 +31,7 @@ func _ready() -> void:
 	else:
 		entity = get_parent()
 	
-	hurtbox_component.hurt.connect(func(hitbox_component: HitboxComponent, crit : bool):
+	hurtbox_component.hurt.connect(func(hitbox_component: HitboxComponent, crit : bool = false):
 		if crit:
 			glitch(entity)
 			critical_hit.emit()
