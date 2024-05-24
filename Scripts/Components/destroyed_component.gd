@@ -2,6 +2,8 @@
 class_name DestroyedComponent
 extends Node
 
+@onready var animated_sprite_2d: AnimatedSprite2D = get_parent().get_node("AnimatedSprite2D")
+
 # Export the actor this component will operate on
 @export var actor: Node2D
 
@@ -18,4 +20,10 @@ func _ready() -> void:
 func destroy() -> void:
 	# create an effect (from the spawner component) and free the actor
 	destroy_effect_spawner_component.spawn(actor.global_position)
+	
+	animated_sprite_2d.material.set_shader_parameter("shake_power", float(0.0))
+	animated_sprite_2d.material.set_shader_parameter("shake_rate", float(0.0))
+	animated_sprite_2d.material.set_shader_parameter("shake_color_rate", float(0.0))
+	animated_sprite_2d.material.set_shader_parameter("flash_modifier",0)
+	
 	actor.queue_free()

@@ -1,7 +1,7 @@
 class_name XP
 extends CharacterBody2D
 
-var nb_exp: float = 0.0
+var nb_exp: float = 50.0
 var bonus_ramassage: bool = false 
 
 
@@ -11,7 +11,6 @@ var bonus_ramassage: bool = false
 @onready var range_exp: Area2D = $range_exp
 
 func _ready() -> void:
-	print(nb_exp)
 	if nb_exp < 2 :
 		animation.play("exp1")
 	elif nb_exp >= 2 and nb_exp < 5:
