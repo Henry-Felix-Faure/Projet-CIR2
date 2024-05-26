@@ -13,12 +13,11 @@ signal stat_changed
 @export var xp_lvl_up : int = 10
 @export var xp : int = 0 : 
 	set(value):
-		xp = value
+		xp += value
 		if xp >= xp_lvl_up: 
 			xp = xp - xp_lvl_up
 			xp_lvl_up = round(xp_lvl_up * 1.25)
 			level_up_menu._on_lvl_up()
-			
 		stat_changed.emit()
 
 var drone
@@ -35,7 +34,8 @@ var d_2 : bool = false
 @export var dmg : int = 1
 @export var crit_chance : float = 0.0
 @export var damage_crit : float = 1.2
-@export var health: int = 20:
+@export var max_health : int = 20
+@export var health : int = max_health:
 	set(value):
 		health = value
 		# Signal out that the health has changed
@@ -60,7 +60,7 @@ func _ready() -> void:
 		level_up_tree.up_parry_lvl.connect(up_parry_lvl)
 		level_up_tree.up_crit_chance.connect(up_crit_chance)
 		level_up_tree.up_damage_crit.connect(up_damage_crit)
-		level_up_tree.up_health.connect(up_health)
+		level_up_tree.up_max_health.connect(up_max_health)
 		
 
 func up_speed(speed):
@@ -99,8 +99,8 @@ func up_damage_crit(up):
 	damage_crit += up
 	stat_changed.emit()
 	
-func up_health(up):
-	health += up
+func up_max_health(up):
+	max_health += up
 	stat_changed.emit()
 	
 func up_drone(indice):
