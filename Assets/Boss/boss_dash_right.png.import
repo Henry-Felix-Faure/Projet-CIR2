@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6s7ioewsnbkl"
-path="res://.godot/imported/attack_right.png-fd294791a0a0bbb9a712c2351ce86e25.ctex"
+uid="uid://bt6sntolai6jf"
+path="res://.godot/imported/boss_dash_right.png-06a6e4df843798bffafee25a73e1db1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/bob/attack_right.png"
-dest_files=["res://.godot/imported/attack_right.png-fd294791a0a0bbb9a712c2351ce86e25.ctex"]
+source_file="res://Assets/Boss/boss_dash_right.png"
+dest_files=["res://.godot/imported/boss_dash_right.png-06a6e4df843798bffafee25a73e1db1d.ctex"]
 
 [params]
 

@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://bbhow7tnssngl"]
+
+[ext_resource type="Script" path="res://Boss/boss_bullet.gd" id="1_b2i7t"]
+[ext_resource type="Texture2D" uid="uid://dqjx7qb5q4euq" path="res://Assets/Boss/boss_bullet.png" id="1_glp56"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="2_kf41o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4nyb"]
+atlas = ExtResource("1_glp56")
+region = Rect2(0, 0, 29, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e3rw"]
+atlas = ExtResource("1_glp56")
+region = Rect2(29, 0, 29, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knqk4"]
+atlas = ExtResource("1_glp56")
+region = Rect2(58, 0, 29, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qux86"]
+atlas = ExtResource("1_glp56")
+region = Rect2(87, 0, 29, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn5oa"]
+atlas = ExtResource("1_glp56")
+region = Rect2(116, 0, 29, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qipr"]
+atlas = ExtResource("1_glp56")
+region = Rect2(145, 0, 29, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hkxjn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4nyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e3rw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knqk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qux86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kn5oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qipr")
+}],
+"loop": true,
+"name": &"turning",
+"speed": 20.0
+}]
+
+[node name="BossBullet" type="AnimatedSprite2D"]
+scale = Vector2(0.637931, 1)
+sprite_frames = SubResource("SpriteFrames_hkxjn")
+animation = &"turning"
+autoplay = "turning"
+frame_progress = 0.0320509
+script = ExtResource("1_b2i7t")
+SPEED = 100
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(4.76837e-07, 6.77626e-21)
+scale = Vector2(1.25, 0.2)
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("2_kf41o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
