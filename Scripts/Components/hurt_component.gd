@@ -5,7 +5,7 @@ extends Node
 # Grab the stats so we can alter the health
 @export var stats_component: StatsComponent
 
-# Grab a hurtbox so we know when we have taken a hiet
+# Grab a hurtbox so we know when we have taken a hit
 @export var hurtbox_component: HurtboxComponent
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../AnimatedSprite2D"
@@ -57,10 +57,17 @@ func _ready() -> void:
 		else:
 			if not(player):
 				flash()
-			stats_component.health -= hitbox_component.damage
+			if (hitbox_component.get_parent().name == "Robot" or hitbox_component.get_parent().name == "policeman" or hitbox_component.get_parent().name == "riotman"):
+				if not(hitbox_component.get_parent().has_input_dmg):
+					stats_component.health -= hitbox_component.damage
+					hitbox_component.get_parent().has_input_dmg = true
+					return
+				else:
+					return
 			if hitbox_component.get_parent().name == "BulletToPlayer":
 				hitbox_component.get_parent().queue_free()
 				return
+			stats_component.health -= hitbox_component.damage
 	)
 
 func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent):

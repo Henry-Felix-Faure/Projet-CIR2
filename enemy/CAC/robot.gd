@@ -35,7 +35,6 @@ func _ready():
 
 
 func attack() -> void:
-	has_input_dmg = false
 	if direction.x > 0:
 		attack_r.set_deferred("disabled", false)
 	else:
@@ -69,6 +68,8 @@ func _physics_process(delta):
 			detection_l.disabled = true
 
 func _on_range_body_entered(body):
+	if animated_sprite_2d.animation == "move":
+		has_input_dmg = false
 	attack()
 	in_area = true
 	

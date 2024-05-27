@@ -17,7 +17,7 @@ const expScene = preload("res://experience/experience.tscn")
 @onready var attack_l: CollisionShape2D = $HitboxComponent/AttackL
 @onready var attack_r: CollisionShape2D = $HitboxComponent/AttackR
 
-
+@onready var has_input_dmg: bool = false
 var wait : bool = false
 var in_area : bool = false
 var direction : Vector2
@@ -66,6 +66,8 @@ func _physics_process(delta):
 			detection_l.disabled = true
 
 func _on_range_body_entered(_body):
+	if animated_sprite_2d.animation == "move":
+		has_input_dmg = false
 	attack()
 	in_area = true
 	
