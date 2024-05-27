@@ -7,7 +7,7 @@ var knives : Array
 var x = [-25, 25, 25 ,-25]
 var y = [0, 0, 20, 20]
 func Enter():
-	knives = []
+	knives.clear()
 	player = atilla.get_parent().get_node("Bob")
 	animated_sprite_2d.play("atk_left")
 	for i in range(4):
@@ -20,7 +20,7 @@ func Enter():
 func Update(_delta):
 	if animated_sprite_2d.frame == 13:
 		for knife in knives:
-			var v = player.global_position - knife.global_position
+			var v  = player.global_position - knife.global_position
 			var angle = v.angle()
 			knife.rotation = angle
 			knife.SPEED = 500

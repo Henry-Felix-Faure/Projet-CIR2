@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://b7tnfff6rrpj1"]
+[gd_scene load_steps=100 format=3 uid="uid://b7tnfff6rrpj1"]
 
 [ext_resource type="Shader" path="res://Shaders/ennemy_shader.gdshader" id="1_cndwr"]
 [ext_resource type="Texture2D" uid="uid://b6dtsgkyr0smj" path="res://Assets/Boss/boss_shock_wave.png" id="1_nq511"]
@@ -19,6 +19,8 @@
 [ext_resource type="Script" path="res://Boss/Recovery.gd" id="14_n2hvn"]
 [ext_resource type="Script" path="res://Boss/Dash_Atk.gd" id="14_wfvna"]
 [ext_resource type="Script" path="res://Boss/Recovery_AOE.gd" id="15_rtebr"]
+[ext_resource type="Script" path="res://Boss/Dash_Out.gd" id="18_r00if"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="21_28jae"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nkymx"]
 resource_local_to_scene = true
@@ -415,7 +417,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"atk_left",
-"speed": 8.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -561,8 +563,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ia7l4"]
-radius = 6.0
-height = 24.0
+radius = 12.0
+height = 38.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2f2ui"]
 radius = 27.0
@@ -570,12 +572,28 @@ radius = 27.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_763ql"]
 radius = 166.508
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sraq7"]
-radius = 257.752
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sb3ym"]
+radius = 42.9981
+height = 108.017
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l10yq"]
+radius = 3.59097
+height = 27.1701
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ienhs"]
+radius = 6.0
 
 [node name="Atilla" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_v2mmk")
+
+[node name="Atk_cd" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AOE_cd" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_nkymx")
@@ -589,6 +607,7 @@ shape = SubResource("CapsuleShape2D_ia7l4")
 debug_color = Color(0.772549, 0, 0.415686, 0.419608)
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
+collision_mask = 0
 script = ExtResource("9_13s6l")
 
 [node name="HurtCollision" type="CollisionShape2D" parent="HurtboxComponent"]
@@ -618,9 +637,8 @@ script = ExtResource("14_n2hvn")
 [node name="Recovery_AOE" type="Node" parent="StateMachine"]
 script = ExtResource("15_rtebr")
 
-[node name="AOE_cd" type="Timer" parent="StateMachine"]
-
-[node name="Timer" type="Timer" parent="StateMachine"]
+[node name="Dash_Out" type="Node" parent="StateMachine"]
+script = ExtResource("18_r00if")
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
 script = ExtResource("12_6xvi8")
@@ -629,23 +647,20 @@ hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("13_ctsu4")
-health = 10
 
 [node name="DetectionPlayer" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionPlayer"]
+[node name="DetectShape" type="CollisionShape2D" parent="DetectionPlayer"]
 shape = SubResource("CircleShape2D_2f2ui")
 debug_color = Color(0.87451, 0, 0.835294, 0.419608)
 
 [node name="DetectionPlayerATK" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionPlayerATK"]
+[node name="DetectATKShape" type="CollisionShape2D" parent="DetectionPlayerATK"]
 shape = SubResource("CircleShape2D_763ql")
 debug_color = Color(0.294118, 0.631373, 0, 0.419608)
 
@@ -657,14 +672,54 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_2f2ui")
 debug_color = Color(0.87451, 0, 0.835294, 0.419608)
 
-[node name="DetectionPlayerTooFar" type="Area2D" parent="."]
-visible = false
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(9.5, 6)
+scale = Vector2(10, 8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionPlayerTooFar"]
-shape = SubResource("CircleShape2D_sraq7")
+[node name="Hitboxes" type="Node2D" parent="."]
 
+[node name="HitboxAoe" type="Area2D" parent="Hitboxes"]
+collision_mask = 2
+script = ExtResource("21_28jae")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/HitboxAoe"]
+position = Vector2(9.53674e-07, -1)
+rotation = 1.58482
+shape = SubResource("CapsuleShape2D_sb3ym")
+disabled = true
+
+[node name="HitboxHand" type="Area2D" parent="Hitboxes"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("21_28jae")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/HitboxHand"]
+position = Vector2(21, -5)
+rotation = -0.677968
+shape = SubResource("CapsuleShape2D_l10yq")
+disabled = true
+debug_color = Color(0.568627, 0.52549, 0.501961, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitboxes/HitboxHand"]
+position = Vector2(5, -10)
+shape = SubResource("CircleShape2D_ienhs")
+disabled = true
+
+[node name="DashOutTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="FullRecovery" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[connection signal="timeout" from="Atk_cd" to="." method="_on_atk_cd_timeout"]
+[connection signal="timeout" from="AOE_cd" to="." method="_on_aoe_cd_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine" method="_on_animation_finished"]
 [connection signal="body_entered" from="DetectionPlayer" to="StateMachine/Move" method="_on_detection_player_body_entered"]
 [connection signal="body_entered" from="DetectionPlayerATK" to="StateMachine/Move" method="_on_detection_player_atk_body_entered"]
 [connection signal="body_exited" from="DetectionPlayerATK" to="StateMachine/Move" method="_on_detection_player_atk_body_exited"]
 [connection signal="body_entered" from="DetectPlayer2" to="StateMachine/Dash_Atk" method="_on_detect_player_2_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="StateMachine/Move" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="DashOutTimer" to="StateMachine/Dash_Out" method="_on_dash_out_timer_timeout"]
+[connection signal="timeout" from="FullRecovery" to="." method="_on_full_recovery_timeout"]

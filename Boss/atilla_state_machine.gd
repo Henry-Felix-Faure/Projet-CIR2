@@ -6,10 +6,11 @@ var current_state : State
 
 @onready var atilla: CharacterBody2D = $".."
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../AnimatedSprite2D"
+@onready var aoe_cd: Timer = $"../AOE_cd"
+@onready var atk_cd: Timer = $"../Atk_cd"
 
 
 func _ready():
-	
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
