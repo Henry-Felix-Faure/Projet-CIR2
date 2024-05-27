@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://y0xbmrlqowhj" path="res://Assets/PowerUp/parry_cd_indicator.tscn" id="8_pl083"]
 [ext_resource type="PackedScene" uid="uid://c4jpkcxsynto7" path="res://Player/healthBar.tscn" id="9_62nuh"]
 [ext_resource type="PackedScene" uid="uid://ccpe88qjia0d" path="res://Player/xp_bar.tscn" id="10_djw0c"]
-[ext_resource type="PackedScene" uid="uid://bpg4avgcs5qud" path="res://enemy/sniper_body.tscn" id="13_df6qj"]
+[ext_resource type="PackedScene" uid="uid://b7tnfff6rrpj1" path="res://Boss/atilla.tscn" id="13_4lqct"]
 [ext_resource type="AudioStream" uid="uid://dg27i8k1r7ujk" path="res://Audio/background/game.mp3" id="14_iup0j"]
 
 [node name="World" type="Node2D"]
@@ -22,7 +22,6 @@ script = ExtResource("1_u1x4u")
 [node name="debug_tool_stats" parent="." instance=ExtResource("6_bh5pn")]
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="DroneMenu" parent="MenuLayer" instance=ExtResource("5_b6i78")]
 
@@ -85,5 +84,5 @@ offset_bottom = -2.0
 stream = ExtResource("14_iup0j")
 autoplay = true
 
-[node name="Sniper_body" parent="." instance=ExtResource("13_df6qj")]
-position = Vector2(-182, 77)
+[node name="Atilla" parent="." instance=ExtResource("13_4lqct")]
+position = Vector2(-147, 86)

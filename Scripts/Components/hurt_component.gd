@@ -32,6 +32,7 @@ func _ready() -> void:
 		entity = get_parent()
 	
 	hurtbox_component.hurt.connect(func(hitbox_component: HitboxComponent, crit : bool = false):
+		print(hitbox_component.get_parent().name, " -> ", hurtbox_component.get_parent().name)
 		if crit:
 			glitch(entity)
 			critical_hit.emit()
@@ -50,7 +51,7 @@ func _ready() -> void:
 				successful_parry(player, hitbox_component)
 			else:
 				stats_component.health -= hitbox_component.damage
-				if hitbox_component.get_parent().name == "BulletToPlayer":
+				if hitbox_component.get_parent().name == "BulletToPlayer" or hitbox_component.get_parent().name == "BossBullet":
 					hitbox_component.get_parent().queue_free()
 		elif player and player.dashing:
 			pass
@@ -64,8 +65,14 @@ func _ready() -> void:
 				else:
 					return
 			if hitbox_component.get_parent().name == "BulletToPlayer":
+				stats_component.health -= hitbox_component.damage
 				hitbox_component.get_parent().queue_free()
 				return
+			if hitbox_component.get_parent().name == "BossBullet":
+				stats_component.health -= hitbox_component.damage
+				if not(hitbox_component.get_parent().turning):
+					hitbox_component.get_parent().queue_free()
+				
 			stats_component.health -= hitbox_component.damage
 	)
 
@@ -75,7 +82,7 @@ func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent
 	player.explosion_particles.emitting = true
 	player.get_node("Camera2D").shake(0.2, 3)
 	
-	if hitbox_component.get_parent().name == "BulletToPlayer":
+	if hitbox_component.get_parent().name == "BulletToPlayer" or hitbox_component.get_parent().name == "BossBullet":
 		var bullet = hitbox_component.get_parent()
 		var parry_lvl: int = player.parry_lvl
 		match parry_lvl:
