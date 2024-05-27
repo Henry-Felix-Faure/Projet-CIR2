@@ -36,7 +36,7 @@ func _ready() -> void:
 		if crit:
 			glitch(entity)
 			critical_hit.emit()
-		if player and player.parrying and hitbox_component.get_parent().name != "kamikaze":
+		if player and player.parrying:
 			if not(hitbox_component.get_parent() is boss_bullet):
 				if player.last_dir.x > 0 and (hitbox_component.get_parent().position.x > player.position.x):
 					player.explosion_particles.position = Vector2(8,0)
@@ -53,7 +53,7 @@ func _ready() -> void:
 				else:
 					flash()
 					stats_component.health -= hitbox_component.damage
-					if hitbox_component.get_parent().name == "BulletToPlayer":
+					if hitbox_component.get_parent() is bullet_to_player:
 						hitbox_component.get_parent().queue_free()
 			else:
 				var boss: CharacterBody2D= player.get_parent().get_node("Atilla")
@@ -74,7 +74,7 @@ func _ready() -> void:
 			pass
 		else:
 			flash()
-			if hitbox_component.get_parent().name == "BulletToPlayer":
+			if hitbox_component.get_parent() is bullet_to_player:
 				stats_component.health -= hitbox_component.damage
 				hitbox_component.get_parent().queue_free()
 				return
@@ -90,7 +90,7 @@ func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent
 	player.explosion_particles.direction = player.last_dir
 	player.explosion_particles.emitting = true
 	player.get_node("Camera2D").shake(0.2, 3)
-	if hitbox_component.get_parent().name == "BulletToPlayer" or hitbox_component.get_parent() is boss_bullet:
+	if hitbox_component.get_parent() is bullet_to_player or hitbox_component.get_parent() is boss_bullet:
 		var bullet = hitbox_component.get_parent()
 		var parry_lvl: int = player.parry_lvl
 		match parry_lvl:

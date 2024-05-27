@@ -348,3 +348,4 @@ shape = SubResource("CapsuleShape2D_q8l0g")
 debug_color = Color(1, 0.0431373, 0.231373, 0.109804)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="health_changed" from="StatsComponent" to="." method="_on_stats_component_health_changed"]

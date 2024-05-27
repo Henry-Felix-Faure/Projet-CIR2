@@ -20,6 +20,8 @@ const expScene = preload("res://experience/experience.tscn")
 var wait : bool = false
 var in_area : bool = false
 var direction : Vector2
+var just_cancelled : bool = false
+var timer : Timer
 
 func _ready():
 	attack_l.set_deferred("disabled", true)
@@ -28,7 +30,11 @@ func _ready():
 	wait_timer.wait_time = attackInterval / 50
 	range.body_entered.connect(_on_range_body_entered)
 	range.body_exited.connect(_on_range_body_exited)
-
+	timer = Timer.new()
+	timer.one_shot = true
+	timer.wait_time = 0.5
+	timer.timeout.connect(cancel_remove)
+	add_child(timer)
 
 func attack() -> void:
 	shotgun.play()
@@ -48,9 +54,12 @@ func _physics_process(delta):
 		attack_l.set_deferred("disabled", true)
 		attack_r.set_deferred("disabled", true)
 		animated_sprite_2d.play("move")
-		direction = global_position.direction_to(player.global_position)
-		velocity = direction * speed * delta 
-		move_and_collide(velocity)
+		if not(just_cancelled):
+			direction = global_position.direction_to(player.global_position)
+			velocity = direction * speed * delta 
+			move_and_collide(velocity)
+		else:
+			animated_sprite_2d.frame = 0
 	
 		if direction.x < 0:
 			animated_sprite_2d.flip_h = true
@@ -79,3 +88,11 @@ func _on_timer_timeout() -> void:
 	wait = false
 	if in_area:
 		attack()
+
+func _on_stats_component_health_changed() -> void:
+	timer.start(0.5)
+	just_cancelled = true
+	wait = false
+
+func cancel_remove():
+	just_cancelled = false
