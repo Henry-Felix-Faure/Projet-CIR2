@@ -90,57 +90,57 @@ var dronePath : Dictionary = {
 		"icon": DRONE_NORMAL
 		},
 	2: {
-		"name": "On va drone ou quoi ? 3\n\n",
-		"desc": "DroneBoost",
+		"name": "Amélioration du drone\n\n",
+		"desc": "Boost tes kop1",
 		"call": Callable(self,"droneUpgrade"),
 		"value": 2,
 		"icon": DRONE_NORMAL
 		},
 	3: {
-		"name": "On va drone ou quoi ? 4\n\n",
-		"desc": "DroneBoost",
+		"name": "Amélioration du drone\n\n",
+		"desc": "Boost tes kop1",
 		"call": Callable(self,"droneUpgrade"),
 		"value": 3,
 		"icon": DRONE_NORMAL
 		},
 	4: {
-		"name": "On va drone ou quoi ? 2\n\n",
-		"desc": "DroneBoost",
+		"name": "Amélioration du drone\n\n",
+		"desc": "Boost tes kop1",
 		"call": Callable(self,"droneUpgrade"),
 		"value": 4,
 		"icon": DRONE_NORMAL
 		},
 	5: {
-		"name": "On va drone ou quoi ? 3\n\n",
-		"desc": "DroneBoost",
+		"name": "Amélioration du drone\n\n",
+		"desc": "Boost tes kop1",
 		"call": Callable(self,"droneUpgrade"),
 		"value": 5,
 		"icon": DRONE_NORMAL
 		},
 	6: {
-		"name": "On va drone ou quoi ? 4\n\n",
-		"desc": "DroneBoost",
+		"name": "Amélioration du drone\n\n",
+		"desc": "Boost tes kop1",
 		"call": Callable(self,"droneUpgrade"),
 		"value": 6,
 		"icon": DRONE_NORMAL
 		},
 	7: {
-		"name": "On va drone ou quoi ? 2\n\n",
-		"desc": "DroneBoost",
+		"name": "Amélioration du drone\n\n",
+		"desc": "Boost tes kop1",
 		"call": Callable(self,"droneUpgrade"),
 		"value": 7,
 		"icon": DRONE_NORMAL
 		},
 	8: {
-		"name": "On va drone ou quoi ? 3\n\n",
-		"desc": "DroneBoost",
+		"name": "Amélioration du drone\n\n",
+		"desc": "Boost tes kop1",
 		"call": Callable(self,"droneUpgrade"),
 		"value": 8,
 		"icon": DRONE_NORMAL
 		},
 	9: {
-		"name": "On va drone ou quoi ? 4\n\n",
-		"desc": "DroneBoost",
+		"name": "Amélioration du drone\n\n",
+		"desc": "Boost tes kop1",
 		"call": Callable(self,"droneUpgrade"),
 		"value": 10,
 		"icon": DRONE_NORMAL
@@ -220,22 +220,22 @@ var dashCDUpPath: Dictionary = {
 
 var parryCDUpPath: Dictionary = {
 	0: {
-		"name": "On va up_parry_cd ou quoi ?\n\n",
-		"desc": "up_parry_cd",
+		"name": "Accordeur de réflexes\n\n",
+		"desc": "Réduit le temps de recharge entre 2 parrade",
 		"call": Callable(self,"parry_cd"),
 		"value": 0.5,
 		"icon" : PARRY_COOLDOWN_1
 		},
 	1: {
-		"name": "On va up_parry_cd ou quoi ?\n\n",
-		"desc": "up_parry_cd",
+		"name": "Accélérateur synaptique\n\n",
+		"desc": "Réduit le temps de recharge entre 2 parrade",
 		"call": Callable(self,"parry_cd"),
 		"value": 0.5,
 		"icon" :  PARRY_COOLDOWN_2
 		},
 	2: {
-		"name": "On va up_parry_cd ou quoi ?\n\n",
-		"desc": "up_parry_cd",
+		"name": "Kerenzikov\n\n",
+		"desc": "Réduit le temps de recharge entre 2 parrade",
 		"call": Callable(self,"parry_cd"),
 		"value": 1.0,
 		"icon" :  PARRY_COOLDOWN_3
@@ -244,22 +244,22 @@ var parryCDUpPath: Dictionary = {
 
 var atkSpeedUpPath: Dictionary = {
 	0: {
-		"name": "On va up_atk_speed ou quoi ?\n\n",
-		"desc": "up_atk_speed",
+		"name": "Coprocesseur balistique\n\n",
+		"desc": "Augmente la vitesse d'attaque",
 		"call": Callable(self,"atk_speed"),
 		"value": 0.2,
 		"icon" : ATK_SPEED_UP_1
 		},
 	1: {
-		"name": "On va up_atk_speed ou quoi ?\n\n",
-		"desc": "up_atk_speed",
+		"name": "Liaison intelligente\n\n",
+		"desc": "Augmente la vitesse d'attaque",
 		"call": Callable(self,"atk_speed"),
 		"value": 0.2,
 		"icon" :  ATK_SPEED_UP_2
 		},
 	2: {
-		"name": "On va up_atk_speed ou quoi ?\n\n",
-		"desc": "up_atk_speed",
+		"name": "Proto lame-mantis\n\n",
+		"desc": "Augmente la vitesse d'attaque",
 		"call": Callable(self,"atk_speed"),
 		"value": 0.2,
 		"icon" :  ATK_SPEED_UP_3
@@ -286,22 +286,22 @@ var parryUpPath: Dictionary = {
 
 var critUpPath: Dictionary = {
 	0: {
-		"name": "On va up_crit_chance ou quoi ?\n\n",
-		"desc": "up_crit_chance",
+		"name": "Critarésiste\n\n",
+		"desc": "Augmente les chances de coup critique",
 		"call": Callable(self,"crit_chance"),
 		"value": 0.2,
 		"icon" : CRIT_RATE_UP_1
 		},
 	1: {
-		"name": "On va up_crit_chance ou quoi ?\n\n",
-		"desc": "up_crit_chance",
+		"name": "Éditeur critabolique\n\n",
+		"desc": "Augmente les chances de coup critique",
 		"call": Callable(self,"crit_chance"),
 		"value": 0.2,
 		"icon" :  CRIT_RATE_UP_2
 		},
 	2: {
-		"name": "On va up_crit_chance ou quoi ?\n\n",
-		"desc": "up_crit_chance",
+		"name": "Décharge critique\n\n",
+		"desc": "Augmente les chances de coup critique",
 		"call": Callable(self,"crit_chance"),
 		"value": 0.2,
 		"icon" :  CRIT_RATE_UP_3
@@ -310,22 +310,22 @@ var critUpPath: Dictionary = {
 
 var damageCritUpPath: Dictionary = {
 	0: {
-		"name": "On va up_damage_crit ou quoi ?\n\n",
-		"desc": "up_damage_crit",
+		"name": "Amélioration du système limbique\n\n",
+		"desc": "Augmentation des dégats des coups critiques",
 		"call": Callable(self,"damage_crit"),
 		"value": 0.3,
 		"icon" : CRIT_UP_1
 		},
 	1: {
-		"name": "On va up_damage_crit ou quoi ?\n\n",
-		"desc": "up_damage_crit",
+		"name": "Boost de mémoire critique\n\n",
+		"desc": "Augmentation des dégats des coups critiques",
 		"call": Callable(self,"damage_crit"),
 		"value": 0.3,
 		"icon" :  CRIT_UP_2
 		},
 	2: {
-		"name": "On va up_damage_crit ou quoi ?\n\n",
-		"desc": "up_damage_crit",
+		"name": "Noyau critronique\n\n",
+		"desc": "Augmentation des dégats des coups critiques",
 		"call": Callable(self,"damage_crit"),
 		"value": 0.2,
 		"icon" :  CRIT_UP_3
@@ -358,22 +358,22 @@ var maxHealthUpPath: Dictionary = {
 
 var RegenUpPath: Dictionary = {
 	0: {
-		"name": "Regen\n\n",
-		"desc": "regen",
+		"name": "Bioconducteur\n\n",
+		"desc": "Augmente la vitesse de régéneration",
 		"call": Callable(self,"regen_up"),
 		"value": 5,
 		"icon" : REGEN_UP_1
 		},
 	1: {
-		"name": "Regen\n\n",
-		"desc": "regen",
+		"name": "Circuit de rétroaction\n\n",
+		"desc": "Augmente la vitesse de régéneration",
 		"call": Callable(self,"regen_up"),
 		"value": 10,
 		"icon" :  REGEN_UP_2
 		},
 	2: {
-		"name": "Regen\n\n",
-		"desc": "regen",
+		"name": "Pompe sanguine\n\n",
+		"desc": "Augmente la vitesse de régéneration",
 		"call": Callable(self,"regen_up"),
 		"value": 15,
 		"icon" :  REGEN_UP_3
