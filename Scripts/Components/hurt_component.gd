@@ -78,7 +78,7 @@ func _ready() -> void:
 				stats_component.health -= hitbox_component.damage
 				hitbox_component.get_parent().queue_free()
 				return
-			if  hitbox_component.get_parent() is boss_bullet:
+			if  hitbox_component.get_parent() is boss_bullet and player:
 				stats_component.health -= hitbox_component.damage
 				player.blood_particles.emitting = true
 				return

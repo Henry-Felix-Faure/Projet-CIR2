@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=17 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
@@ -14,6 +14,7 @@
 [ext_resource type="FontFile" uid="uid://b240a7o38ytat" path="res://Assets/Font/Board of Directors W00 Book.ttf" id="11_0wmhu"]
 [ext_resource type="Script" path="res://Map/KillCount.gd" id="12_vhp55"]
 [ext_resource type="AudioStream" uid="uid://dg27i8k1r7ujk" path="res://Audio/background/game.mp3" id="14_iup0j"]
+[ext_resource type="PackedScene" uid="uid://b7tnfff6rrpj1" path="res://Boss/atilla.tscn" id="15_gppyq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rcvjg"]
 font = ExtResource("11_0wmhu")
@@ -33,7 +34,7 @@ script = ExtResource("1_u1x4u")
 UI = NodePath("../../UI")
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
-position = Vector2(236, -22)
+position = Vector2(240, -31)
 wall_min_slide_angle = 0.261799
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -98,3 +99,5 @@ offset_bottom = -2.0
 [node name="sound_game" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_iup0j")
 autoplay = true
+
+[node name="Atilla" parent="." instance=ExtResource("15_gppyq")]

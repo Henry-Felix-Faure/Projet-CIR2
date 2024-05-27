@@ -28,10 +28,10 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ECHAP"):
 		pauseMenu()
 	
-	if not boss_here and search_boss():
+	if not boss_here and search_boss() and bob.health > 0:
 		sound_game.stop()
 		boss_here = true
-	elif boss_here and not search_boss():
+	elif boss_here and not search_boss() and bob.health > 0:
 		sound_game.play(0.0 )
 		boss_here = false
 

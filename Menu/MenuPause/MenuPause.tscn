@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxk4ps7si3fyw"]
+[gd_scene load_steps=6 format=3 uid="uid://cxk4ps7si3fyw"]
 
 [ext_resource type="Script" path="res://Menu/MenuPause/MenuPause.gd" id="1_gerf5"]
-[ext_resource type="Theme" uid="uid://b0nu3vprfidrs" path="res://Shaders/Bouton_Menu.tres" id="1_wrggs"]
 [ext_resource type="Shader" path="res://Shaders/flou.gdshader" id="2_h0dua"]
 [ext_resource type="Texture2D" uid="uid://b0ulko25ri8sa" path="res://Assets/Menu/UI/Button-reprendre.png" id="2_wn7u5"]
 [ext_resource type="Texture2D" uid="uid://de5kcvuqytf2e" path="res://Assets/Menu/UI/Button-quit.png" id="3_t776k"]
@@ -43,13 +42,11 @@ size_flags_vertical = 4
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_wrggs")
 icon = ExtResource("2_wn7u5")
 flat = true
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_wrggs")
 icon = ExtResource("3_t776k")
 flat = true
 

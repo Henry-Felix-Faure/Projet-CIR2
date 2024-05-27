@@ -5,6 +5,14 @@ var rotation_speed = 0.3
 var direction = Vector2(-1, 0)
 
 @onready var parallax = %ParallaxBackground2
+@onready var play = $test/VBoxContainer/play
+@onready var back_opt = $Option/BackOpt
+@onready var back_odio = $Audio/BackOdio
+@onready var back_vdo = $Video/BackVdo
+@onready var back_ctrl = $Control/ButtonKey
+
+func _ready():
+	play.grab_focus()
 
 func _process(delta):
 	parallax.scroll_offset += direction * speed * delta
@@ -12,6 +20,16 @@ func _process(delta):
 func show_and_hide(first, second):
 	first.show()
 	second.hide()
+	if first == $test:
+		play.grab_focus() 
+	elif first == $Option:
+		back_opt.grab_focus()
+	elif first == $Audio:
+		back_odio.grab_focus()
+	elif first == $Video:
+		back_vdo.grab_focus()
+	elif first == $Control:
+		back_ctrl.grab_focus()
 	#direction = direction.rotated(rotation_speed * delta)
 
 func _on_play_pressed():

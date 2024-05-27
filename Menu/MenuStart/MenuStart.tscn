@@ -1,12 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://688q4ci84lgj"]
+[gd_scene load_steps=24 format=3 uid="uid://688q4ci84lgj"]
 
 [ext_resource type="Shader" path="res://Shaders/Glitch.gdshader" id="1_sg8lt"]
 [ext_resource type="Script" path="res://Menu/MenuStart/MenuStart.gd" id="1_v211p"]
 [ext_resource type="Texture2D" uid="uid://cs48gmg2mq1v3" path="res://Assets/Menu/UI/Button-play.png" id="2_mm6gy"]
 [ext_resource type="Texture2D" uid="uid://de5kcvuqytf2e" path="res://Assets/Menu/UI/Button-quit.png" id="2_y7w4i"]
-[ext_resource type="Theme" uid="uid://b0nu3vprfidrs" path="res://Shaders/Bouton_Menu.tres" id="3_4shu0"]
 [ext_resource type="Texture2D" uid="uid://cdyt7larvv8r6" path="res://Assets/Menu/UI/Button-option.png" id="3_610aj"]
 [ext_resource type="PackedScene" uid="uid://blwdirn7ooaiu" path="res://Menu/MenuStart/parallax_background2.tscn" id="4_70owb"]
+[ext_resource type="FontFile" uid="uid://c1bmvajv8ivma" path="res://Assets/Font/Crang.ttf" id="4_pec8h"]
 [ext_resource type="Script" path="res://Menu/MenuOption/Video.gd" id="5_sx7g5"]
 [ext_resource type="Script" path="res://Menu/MenuOption/Audio.gd" id="6_x54ip"]
 [ext_resource type="Texture2D" uid="uid://j4fsjnsm1b2y" path="res://Assets/Menu/UI/Video.png" id="7_i78cc"]
@@ -33,12 +33,6 @@ shader_parameter/shake_color_rate = 0.01
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3iv2b"]
 shader = ExtResource("9_cota3")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_arwyt"]
-modulate_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Theme" id="Theme_elhk3"]
-Button/styles/focus = SubResource("StyleBoxTexture_arwyt")
-
 [node name="MenuStart" type="Control"]
 material = SubResource("ShaderMaterial_crclc")
 layout_mode = 3
@@ -58,6 +52,20 @@ layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
 color = Color(1, 1, 1, 0)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.5
+offset_top = 34.0
+offset_right = 118.5
+offset_bottom = 67.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_pec8h")
+theme_override_font_sizes/font_size = 32
+text = "Do Not Fade"
 
 [node name="test" type="MarginContainer" parent="."]
 unique_name_in_owner = true
@@ -82,19 +90,16 @@ size_flags_vertical = 4
 
 [node name="play" type="Button" parent="test/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_4shu0")
 icon = ExtResource("2_mm6gy")
 flat = true
 
 [node name="option" type="Button" parent="test/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_4shu0")
 icon = ExtResource("3_610aj")
 flat = true
 
 [node name="quit" type="Button" parent="test/VBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_elhk3")
 icon = ExtResource("2_y7w4i")
 flat = true
 
@@ -128,19 +133,16 @@ scale = Vector2(0.5, 0.5)
 
 [node name="Video" type="Button" parent="Option/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_4shu0")
 icon = ExtResource("7_i78cc")
 flat = true
 
 [node name="Audio" type="Button" parent="Option/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_4shu0")
 icon = ExtResource("8_gfxr0")
 flat = true
 
 [node name="Controle" type="Button" parent="Option/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_4shu0")
 icon = ExtResource("9_3dsef")
 flat = true
 
@@ -158,7 +160,6 @@ offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.4, 0.4)
-theme = ExtResource("3_4shu0")
 icon = ExtResource("10_tp2fv")
 flat = true
 
@@ -255,7 +256,6 @@ offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.4, 0.4)
-theme = ExtResource("3_4shu0")
 icon = ExtResource("10_tp2fv")
 flat = true
 
@@ -342,7 +342,6 @@ offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.4, 0.4)
-theme = ExtResource("3_4shu0")
 icon = ExtResource("10_tp2fv")
 flat = true
 
@@ -438,7 +437,6 @@ offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.4, 0.4)
-theme = ExtResource("3_4shu0")
 icon = ExtResource("10_tp2fv")
 flat = true
 

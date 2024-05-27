@@ -23,8 +23,8 @@ var etat_now = 0
 func _ready() -> void:
 	timer_spawn.timeout.connect(_spawn_mob)
 	timer_state.timeout.connect(change_etat)
-	timer_spawn.wait_time = 5
-	timer_state.wait_time = 180
+	timer_spawn.wait_time = 4
+	timer_state.wait_time = 30
 	
 	etat = [[20,20,20,20,20],
 	[60,35,5,0,0],
