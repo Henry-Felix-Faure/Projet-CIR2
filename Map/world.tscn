@@ -85,4 +85,4 @@ stream = ExtResource("14_iup0j")
 autoplay = true
 
 [node name="Atilla" parent="." instance=ExtResource("13_4lqct")]
-position = Vector2(-147, 86)
+position = Vector2(-148, 68)

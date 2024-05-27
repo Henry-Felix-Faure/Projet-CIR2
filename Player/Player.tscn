@@ -1,10 +1,11 @@
-[gd_scene load_steps=65 format=3 uid="uid://bjvbi4ila7pej"]
+[gd_scene load_steps=66 format=3 uid="uid://bjvbi4ila7pej"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
 [ext_resource type="SpriteFrames" uid="uid://d02qxufqagsab" path="res://Assets/Bob/Player.tres" id="2_gnar5"]
 [ext_resource type="Curve" uid="uid://cu8njceyrhh4r" path="res://Shaders/Line_Curve.tres" id="2_hf2qm"]
 [ext_resource type="Gradient" uid="uid://xb7hm4p32v7h" path="res://Shaders/Gradient.tres" id="3_vra5h"]
 [ext_resource type="Script" path="res://Player/Line2D.gd" id="4_arnim"]
+[ext_resource type="PackedScene" uid="uid://cj6o401qrracu" path="res://Spawn/spawn_zone.tscn" id="5_ts6ny"]
 [ext_resource type="PackedScene" uid="uid://c3bv63xl4hetp" path="res://Shaders/explosion_particules.tscn" id="6_eoso3"]
 [ext_resource type="Script" path="res://Player/Camera2D.gd" id="10_f7jln"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="12_6rljm"]
@@ -3416,6 +3417,8 @@ material = SubResource("ShaderMaterial_khdnv")
 sprite_frames = ExtResource("2_gnar5")
 animation = &"idle_down"
 
+[node name="spawn_zone" parent="." instance=ExtResource("5_ts6ny")]
+
 [node name="BloodParticles" type="CPUParticles2D" parent="."]
 z_index = 1
 emitting = false
@@ -3490,9 +3493,7 @@ hurtbox_component = NodePath("../HurtboxArea2D")
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("15_pvxni")
 speed_up = 100
-parry_cd = 0.01
 atk_speed = 1.4
-parry_lvl = 3
 max_health = 1000
 
 [node name="Camera2D" type="Camera2D" parent="."]
