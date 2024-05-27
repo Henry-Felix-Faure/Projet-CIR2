@@ -4,6 +4,9 @@ extends Node2D
 @onready var bob: CharacterBody2D = $Bob
 @onready var pause = $PauseLayer/MenuPause
 
+func _ready() -> void:
+	Global.kill_count = 0
+
 func pauseMenu():
 	if Global.paused:
 		get_tree().paused = false
@@ -11,7 +14,6 @@ func pauseMenu():
 	else:
 		get_tree().paused = true
 		pause.show()
-
 	Global.paused = !Global.paused
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

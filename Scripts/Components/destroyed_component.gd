@@ -27,5 +27,5 @@ func destroy() -> void:
 	animated_sprite_2d.material.set_shader_parameter("shake_rate", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("shake_color_rate", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("flash_modifier",0)
-	
+	Global.kill_count += 1
 	actor.queue_free()
