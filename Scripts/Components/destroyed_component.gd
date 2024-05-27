@@ -18,9 +18,11 @@ func _ready() -> void:
 	stats_component.no_health.connect(destroy)
 
 func destroy() -> void:
+	if actor.name == "AnimatedSprite2D":
+		actor = actor.get_parent()
+	
 	# create an effect (from the spawner component) and free the actor
 	destroy_effect_spawner_component.spawn(actor.global_position)
-	
 	animated_sprite_2d.material.set_shader_parameter("shake_power", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("shake_rate", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("shake_color_rate", float(0.0))

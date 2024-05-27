@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c80b3eolghp1g"]
+[gd_scene load_steps=4 format=3 uid="uid://c4jpkcxsynto7"]
 
 [ext_resource type="Script" path="res://Player/healthBar.gd" id="1_ec700"]
 [ext_resource type="Texture2D" uid="uid://dneykaewfcgdw" path="res://Player/hud_bar_health.png" id="1_vjt3v"]
@@ -9,13 +9,8 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ec700")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
-offset_right = 4.0
-offset_bottom = 27.0
-value = 20.0
-
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
 offset_right = 128.0
 offset_bottom = 40.0
 max_value = 20.0

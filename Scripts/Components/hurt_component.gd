@@ -35,7 +35,7 @@ func _ready() -> void:
 		if crit:
 			glitch(entity)
 			critical_hit.emit()
-		if player and player.parrying:
+		if player and player.parrying and hitbox_component.get_parent().name != "kamikaze":
 			if player.last_dir.x > 0 and (hitbox_component.get_parent().position.x > player.position.x):
 				player.explosion_particles.position = Vector2(8,0)
 				successful_parry(player, hitbox_component)
