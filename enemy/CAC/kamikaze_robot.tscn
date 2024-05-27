@@ -615,10 +615,12 @@ wait_time = 0.7
 
 [node name="tik tak" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_brg5g")
+bus = &"SFX"
 
 [node name="explosion_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_pghch")
 volume_db = -10.061
+bus = &"SFX"
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_layer = 4

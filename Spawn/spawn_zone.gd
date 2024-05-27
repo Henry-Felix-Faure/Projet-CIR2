@@ -11,6 +11,7 @@ const riotman = preload("res://enemy/CAC/riotman.tscn")
 const police = preload("res://enemy/CAC/policeman.tscn")
 const robot = preload("res://enemy/CAC/robot.tscn")
 const kamikaze = preload("res://enemy/CAC/kamikaze_robot.tscn")
+const boss = preload("res://Boss/atilla.tscn")
 
 var bank_mob = {"robot": 100, "police": 0, "kamikaze": 0, "riotman": 0}
 
@@ -20,18 +21,18 @@ var etat_now = 0
 func _ready() -> void:
 	timer_spawn.timeout.connect(_spawn_mob)
 	timer_state.timeout.connect(change_etat)
-	timer_spawn.wait_time = 8
+	timer_spawn.wait_time = 6
 	timer_state.wait_time = 60
 	
-	etat = [[0,0,100,0,0,0],
-	[60,35,5,0,0,0],
-	[34,44,20,2,0,0],
-	[20,35,35,10,0,0],
-	[0,18,60,20,0,0],
-	[0,18,60,20,0,0],
-	[0,0,44,44,0,0],
-	[0,0,15,50,0,0],
-	[0,0,0,20,0,0]]
+	etat = [[80,18,2,0,0],
+	[60,35,5,0,0],
+	[34,44,20,2,0],
+	[20,35,35,10,0],
+	[0,18,60,20,2],
+	[0,18,60,20,2],
+	[0,0,44,44,10],
+	[0,0,15,50,20],
+	[0,0,10,35,55]]
 
 
 
@@ -65,7 +66,8 @@ func _spawn_mob() -> void:
 	var mob_y = randf_range(rect.position.y, rect.end.y)
 	mob_spawn.position = Vector2(mob_x, mob_y)
 	if etat_now == 5 and etat_now == 10:
-		pass
+		mob_spawn = boss.instantiate()
+		get_parent().get_parent().add_child(mob_spawn)
 	else :
 		get_parent().get_parent().add_child(mob_spawn)
 	
