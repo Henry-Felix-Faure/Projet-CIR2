@@ -206,7 +206,6 @@ shape = SubResource("CapsuleShape2D_5tscf")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("3_jerbp")
-health = 8
 xp_dropped = 3
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
@@ -239,7 +238,6 @@ shape = SubResource("CapsuleShape2D_44vdk")
 [node name="shotgun" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_1tsay")
 volume_db = -22.459
-bus = &"SFX"
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_layer = 4

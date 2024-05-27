@@ -17,7 +17,6 @@ const expScene = preload("res://experience/experience.tscn")
 @onready var attack_l: CollisionShape2D = $HitboxComponent/AttackL
 @onready var attack_r: CollisionShape2D = $HitboxComponent/AttackR
 
-@onready var has_input_dmg: bool = false
 var wait : bool = false
 var in_area : bool = false
 var direction : Vector2
@@ -32,17 +31,13 @@ func _ready():
 
 
 func attack() -> void:
-	if direction.x > 0:
-		attack_r.set_deferred("disabled", false)
-	else:
-		attack_l.set_deferred("disabled", false)
 	shotgun.play()
 	animated_sprite_2d.play("attack")
 	wait = true
 	await animated_sprite_2d.animation_finished
-	attack_l.set_deferred("disabled", true)
-	attack_r.set_deferred("disabled", true)
 	if in_area:
+		attack_l.set_deferred("disabled", true)
+		attack_r.set_deferred("disabled", true)
 		wait_timer.start()
 	else:
 		wait = false
@@ -50,6 +45,8 @@ func attack() -> void:
 
 func _physics_process(delta):
 	if(!wait):
+		attack_l.set_deferred("disabled", true)
+		attack_r.set_deferred("disabled", true)
 		animated_sprite_2d.play("move")
 		direction = global_position.direction_to(player.global_position)
 		velocity = direction * speed * delta 
@@ -64,10 +61,14 @@ func _physics_process(delta):
 			animated_sprite_2d.flip_h = false
 			detection_r.disabled = false
 			detection_l.disabled = true
+	else:
+		if animated_sprite_2d.frame == 4:
+			if direction.x > 0:
+				attack_r.set_deferred("disabled", false)
+			else:
+				attack_l.set_deferred("disabled", false)
 
 func _on_range_body_entered(_body):
-	if animated_sprite_2d.animation == "move":
-		has_input_dmg = false
 	attack()
 	in_area = true
 	

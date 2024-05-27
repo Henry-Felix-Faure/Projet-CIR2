@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://b7tnfff6rrpj1"]
+[gd_scene load_steps=108 format=3 uid="uid://b7tnfff6rrpj1"]
 
 [ext_resource type="Shader" path="res://Shaders/ennemy_shader.gdshader" id="1_cndwr"]
 [ext_resource type="Texture2D" uid="uid://b6dtsgkyr0smj" path="res://Assets/Boss/boss_shock_wave.png" id="1_nq511"]
@@ -21,10 +21,14 @@
 [ext_resource type="Script" path="res://Boss/Recovery_AOE.gd" id="15_rtebr"]
 [ext_resource type="Script" path="res://Boss/Dash_Out.gd" id="18_r00if"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="21_28jae"]
-[ext_resource type="AudioStream" uid="uid://bdfkekmjkk1gj" path="res://Audio/Mob_sound/Boss/attack_boss_aoe.wav" id="22_2pf0v"]
+[ext_resource type="Script" path="res://Scripts/Components/destroyed_component.gd" id="21_cielc"]
 [ext_resource type="AudioStream" uid="uid://roy46i6p2r7h" path="res://Audio/Mob_sound/Boss/4 cuts.wav" id="23_22xom"]
+[ext_resource type="AudioStream" uid="uid://fcxvmhaynu31" path="res://Audio/Mob_sound/Boss/aoe_v2.wav" id="23_n3npd"]
 [ext_resource type="AudioStream" uid="uid://d14lv657f0258" path="res://Audio/Mob_sound/Boss/dash_boss.wav" id="24_i8uxw"]
 [ext_resource type="AudioStream" uid="uid://dtb3cwtgfr4k1" path="res://Audio/Mob_sound/Boss/cling.wav" id="25_lbs7f"]
+[ext_resource type="Script" path="res://Scripts/Components/spawn_component.gd" id="27_srfy4"]
+[ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="28_r51xa"]
+[ext_resource type="AudioStream" uid="uid://0ux7txrqv7ge" path="res://Audio/background/musique_boss.mp3" id="29_r6mxm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nkymx"]
 resource_local_to_scene = true
@@ -588,6 +592,8 @@ height = 27.1701
 radius = 6.0
 
 [node name="Atilla" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_v2mmk")
 
@@ -611,6 +617,7 @@ shape = SubResource("CapsuleShape2D_ia7l4")
 debug_color = Color(0.772549, 0, 0.415686, 0.419608)
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 4
 collision_mask = 0
 script = ExtResource("9_13s6l")
 
@@ -651,7 +658,14 @@ hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("13_ctsu4")
-max_health = 1
+max_health = 10
+xp_dropped = 10
+
+[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "stats_component", "destroy_effect_spawner_component")]
+script = ExtResource("21_cielc")
+actor = NodePath("..")
+stats_component = NodePath("../StatsComponent")
+destroy_effect_spawner_component = NodePath("../SpawnComponent")
 
 [node name="DetectionPlayer" type="Area2D" parent="."]
 collision_layer = 0
@@ -685,6 +699,7 @@ scale = Vector2(10, 8)
 [node name="Hitboxes" type="Node2D" parent="."]
 
 [node name="HitboxAoe" type="Area2D" parent="Hitboxes"]
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("21_28jae")
 
@@ -720,8 +735,8 @@ wait_time = 0.8
 one_shot = true
 
 [node name="attack_aoe" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("22_2pf0v")
-volume_db = -10.0
+stream = ExtResource("23_n3npd")
+volume_db = -5.0
 bus = &"SFX"
 
 [node name="attack_cut" type="AudioStreamPlayer2D" parent="."]
@@ -731,11 +746,21 @@ bus = &"SFX"
 
 [node name="dash_boss" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("24_i8uxw")
+volume_db = 5.0
 bus = &"SFX"
 
 [node name="cling" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("25_lbs7f")
-volume_db = -20.271
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="SpawnComponent" type="Node2D" parent="."]
+script = ExtResource("27_srfy4")
+scene = ExtResource("28_r51xa")
+
+[node name="musique_background" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("29_r6mxm")
+autoplay = true
 
 [connection signal="timeout" from="Atk_cd" to="." method="_on_atk_cd_timeout"]
 [connection signal="timeout" from="AOE_cd" to="." method="_on_aoe_cd_timeout"]

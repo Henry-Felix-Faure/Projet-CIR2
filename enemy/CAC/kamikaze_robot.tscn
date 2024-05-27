@@ -595,7 +595,6 @@ hurtbox_component = NodePath("../HurtboxComponent")
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("7_aa0tu")
 dmg = 3
-health = 4
 xp_dropped = 2
 
 [node name="SpawnComponent" type="Node2D" parent="."]
@@ -615,11 +614,12 @@ wait_time = 0.7
 
 [node name="tik tak" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_brg5g")
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="explosion_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_pghch")
-volume_db = -10.061
+volume_db = -15.0
 bus = &"SFX"
 
 [node name="HitboxComponent" type="Area2D" parent="."]

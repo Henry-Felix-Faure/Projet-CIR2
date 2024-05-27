@@ -204,7 +204,7 @@ material = SubResource("ShaderMaterial_0v5yw")
 position = Vector2(2, -4)
 sprite_frames = SubResource("SpriteFrames_8vywj")
 animation = &"attack"
-frame = 3
+frame = 4
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -257,7 +257,8 @@ shape = SubResource("CapsuleShape2D_hwtus")
 
 [node name="knife" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_yxsno")
-volume_db = 8.814
+volume_db = 15.0
+bus = &"SFX"
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_layer = 4

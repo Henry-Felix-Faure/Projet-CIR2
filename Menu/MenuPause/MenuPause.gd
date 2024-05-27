@@ -1,7 +1,9 @@
 extends Control
 
 @onready var main = $"../../"
+@onready var button: Button = $MarginContainer/VBoxContainer/Button
 
+	
 func _on_button_pressed():
 	main.pauseMenu()
 

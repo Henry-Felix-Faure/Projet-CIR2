@@ -10,9 +10,10 @@ var is_aoe_cd = false
 var is_atk_cd = false
 var is_full_recovery = false
 
+
 func _ready():
 	var scene = preload("res://Boss/boss_bar.tscn").instantiate()
-	scene.Boss = self
+	scene.boss = self
 	get_parent().get_node("UI").add_child(scene)
 
 func _on_atk_cd_timeout() -> void:

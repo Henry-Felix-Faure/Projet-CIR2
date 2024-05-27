@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bpg4avgcs5qud"]
+[gd_scene load_steps=58 format=3 uid="uid://bpg4avgcs5qud"]
 
 [ext_resource type="Script" path="res://Scripts/Components/move_towards_player_component.gd" id="1_mixs2"]
 [ext_resource type="Shader" path="res://Shaders/ennemy_shader.gdshader" id="2_6gps2"]
@@ -14,7 +14,9 @@
 [ext_resource type="Script" path="res://Scripts/Components/ennemies_stats_component.gd" id="12_q3o1j"]
 [ext_resource type="Script" path="res://Scripts/Components/stats_component.gd" id="13_wma2f"]
 [ext_resource type="Script" path="res://Scripts/Components/spawn_component.gd" id="14_iek81"]
+[ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="15_7f6qj"]
 [ext_resource type="PackedScene" uid="uid://erwriagmkvtr" path="res://Bullet/BulletToPlayer.tscn" id="15_l0kh8"]
+[ext_resource type="AudioStream" uid="uid://l6fc1iinefqj" path="res://Audio/Mob_sound/laser-gun.wav" id="16_ji432"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fjsm7"]
 resource_local_to_scene = true
@@ -359,7 +361,7 @@ hurtbox_component = NodePath("../HurtboxComponent")
 script = ExtResource("11_3j0h2")
 actor = NodePath("../AnimatedSprite2D")
 stats_component = NodePath("../StatsComponent")
-destroy_effect_spawner_component = NodePath("../SpawnComponent")
+destroy_effect_spawner_component = NodePath("../SpawnComponentExperience")
 
 [node name="EnnemiesStatsComponent" type="Node" parent="."]
 script = ExtResource("12_q3o1j")
@@ -370,11 +372,19 @@ SPEED = 50
 script = ExtResource("13_wma2f")
 max_health = 5
 
-[node name="SpawnComponent" type="Node2D" parent="."]
+[node name="SpawnComponentExperience" type="Node2D" parent="."]
 scale = Vector2(0.871875, 0.926367)
 script = ExtResource("14_iek81")
-scene = ExtResource("15_l0kh8")
+scene = ExtResource("15_7f6qj")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.92
 one_shot = true
+
+[node name="lasergun" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_ji432")
+volume_db = -10.0
+
+[node name="SpawnComponent" type="Node2D" parent="."]
+script = ExtResource("14_iek81")
+scene = ExtResource("15_l0kh8")

@@ -5,7 +5,14 @@ extends State
 var player : CharacterBody2D
 var move_y
 var timer
+
+@onready var detect_shape: CollisionShape2D = $"../../DetectionPlayer/DetectShape"
+@onready var detect_atk_shape: CollisionShape2D = $"../../DetectionPlayerATK/DetectATKShape"
+
+
 func Enter():
+	detect_shape.disabled = false
+	detect_atk_shape.disabled = false
 	animated_sprite_2d.play("idle")
 	player = atilla.get_parent().get_node("Bob")
 	var rand = RandomNumberGenerator.new()
@@ -18,6 +25,8 @@ func Enter():
 	timer.timeout.connect(launch_atk)
 	
 func Exit():
+	detect_shape.disabled = true
+	detect_atk_shape.disabled = true
 	timer.queue_free()
 	
 func Update(delta:float):
@@ -51,7 +60,7 @@ func _on_detection_player_atk_body_exited(_body: Node2D) -> void:
 	state_transition.emit(self, "Atk")
 
 func launch_atk():
-	if randf_range(0,1) > 0.75:
+	if randf_range(0,1) > 0.50:
 				state_transition.emit(self, "Atk")
 	else:
 		state_transition.emit(self, "Dash_Atk")

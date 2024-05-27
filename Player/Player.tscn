@@ -3553,26 +3553,32 @@ one_shot = true
 [node name="audio_dash" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, -2)
 stream = ExtResource("20_omn7n")
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="audio_parry" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("23_3puad")
+volume_db = -20.0
 bus = &"SFX"
 
 [node name="audio_draw_sword" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("22_tik1o")
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="audio_atk_1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("23_r1765")
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="audio_atk_2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("24_anb8k")
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="audio_atk_3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("25_mwnb7")
+volume_db = -10.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="SwordArea2D" to="." method="_on_sword_area_2d_body_entered"]

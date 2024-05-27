@@ -74,13 +74,6 @@ func _ready() -> void:
 			pass
 		else:
 			flash()
-			if (hitbox_component.get_parent().name == "Robot" or hitbox_component.get_parent().name == "policeman" or hitbox_component.get_parent().name == "riotman"):
-				if not(hitbox_component.get_parent().has_input_dmg):
-					stats_component.health -= hitbox_component.damage
-					hitbox_component.get_parent().has_input_dmg = true
-					return
-				else:
-					return
 			if hitbox_component.get_parent().name == "BulletToPlayer":
 				stats_component.health -= hitbox_component.damage
 				hitbox_component.get_parent().queue_free()

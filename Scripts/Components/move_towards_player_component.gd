@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var ennemies_stats_component: EnnemiesStatsComponent = $"EnnemiesStatsComponent"
 @onready var timer: Timer = $"Timer"
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var lasergun: AudioStreamPlayer2D = $lasergun
+
 
 var found : bool = false
 
@@ -33,6 +35,7 @@ func player_detected(body: Node2D):
 		var time : float = 3 - (ennemies_stats_component.ATK_SPEED * pow(10, -1))
 		timer.wait_time = time
 		timer.start()
+		lasergun.play()
 		animated_sprite_2d.play("atk")
 		await timer.timeout
 	

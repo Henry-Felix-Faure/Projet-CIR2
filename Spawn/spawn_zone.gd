@@ -15,7 +15,7 @@ const boss = preload("res://Boss/atilla.tscn")
 const sniper = preload("res://enemy/sniper_body.tscn")
 
 
-var bank_mob = {"robot": 100, "police": 0, "kamikaze": 0, "riotman": 0, "sniper": 0}
+var bank_mob = {"robot": 20, "police": 20, "kamikaze": 20, "riotman": 20, "sniper": 20}
 
 var etat = []
 var etat_now = 0 
@@ -23,10 +23,10 @@ var etat_now = 0
 func _ready() -> void:
 	timer_spawn.timeout.connect(_spawn_mob)
 	timer_state.timeout.connect(change_etat)
-	timer_spawn.wait_time = 6
-	timer_state.wait_time = 60
+	timer_spawn.wait_time = 5
+	timer_state.wait_time = 180
 	
-	etat = [[80,18,2,0,0],
+	etat = [[20,20,20,20,20],
 	[60,35,5,0,0],
 	[34,44,20,2,0],
 	[20,35,35,10,0],

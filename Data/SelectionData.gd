@@ -86,21 +86,21 @@ var dronePath : Dictionary = {
 		"name": "Etudes d'ingénieurs\n\n",
 		"desc": "Ton drone passe aux choses sérieusess",
 		"call": Callable(self,"droneUpgrade"),
-		"value": 1,
+		"value": 4,
 		"icon": DRONE_NORMAL
 		},
 	2: {
 		"name": "Amélioration du drone\n\n",
 		"desc": "Boost tes kop1",
 		"call": Callable(self,"droneUpgrade"),
-		"value": 2,
+		"value": 5,
 		"icon": DRONE_NORMAL
 		},
 	3: {
 		"name": "Amélioration du drone\n\n",
 		"desc": "Boost tes kop1",
 		"call": Callable(self,"droneUpgrade"),
-		"value": 3,
+		"value": 6,
 		"icon": DRONE_NORMAL
 		},
 	4: {
@@ -409,9 +409,6 @@ func addAtk(atk : int, choice : Array , choice_i : int):
 	if  choice_i== 2: allPath.remove_at(allPath.find(choice, 0))
 	
 func droneUpgrade(lvl : int, choice : Array = [], _choice_i : int = 0):
-	if lvl == 1:
-		drone_menu.show_drone_menu()
-		return
 	if lvl == 3 || lvl == 7 || lvl == 10:
 		allPath.remove_at(allPath.find(choice, 0))
 	droneUp.emit(lvl)

@@ -26,6 +26,7 @@ func _on_lvl_up():
 	while(choice3 == choice1 or choice3 == choice2):
 		choice3 = level_up_tree._GetUpgrade()
 	var all_choices = [choice1,choice2,choice3]
+	choice_1.grab_focus()
 	for i in range(0,3):
 		var button = all_buttons[i] as Button
 		var choice = all_choices[i]

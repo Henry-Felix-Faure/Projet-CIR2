@@ -8,6 +8,7 @@ extends Node2D
 @export var bullet_speed : int = 200
 @export var speed : int = 1
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var lasergun_drone: AudioStreamPlayer2D = $lasergun_drone
 
 enum TYPE {Normal = 1, Sniper = 1, Turret = 1, Melee = 0}
 @export var mode : TYPE = TYPE.Normal
@@ -43,6 +44,7 @@ func shoot(ennemie) -> void :
 	var bullet : Node2D = spawn_component.spawn(muzzle.global_position)
 	var v = ennemie_pos - bullet.global_position
 	var angle = v.angle()
+	lasergun_drone.play()
 	bullet.get_node("HitboxComponent").set_collision_layer_value(3, false)
 	bullet.get_node("HitboxComponent").set_collision_mask_value(2, false)
 	bullet.get_node("HitboxComponent").set_collision_mask_value(3, true)
@@ -50,11 +52,5 @@ func shoot(ennemie) -> void :
 	bullet.SPEED = bullet_speed
 	bullet.damage = damage
 	
-func change_mode(i : String):
-	mode = TYPE[i]
-	if i == "Sniper":
-		animated_sprite_2d.play("sniper") 
-	elif i == "Melee": 
-		animated_sprite_2d.play("melee")
-	else:
-		animated_sprite_2d.play("normal")
+func change_mode(_i : String):
+	animated_sprite_2d.play("normal")
