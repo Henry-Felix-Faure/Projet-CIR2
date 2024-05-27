@@ -1,12 +1,12 @@
-[gd_scene load_steps=63 format=3 uid="uid://bjvbi4ila7pej"]
+[gd_scene load_steps=65 format=3 uid="uid://bjvbi4ila7pej"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_v0has"]
-[ext_resource type="SpriteFrames" uid="uid://dld47ipx71i0a" path="res://Assets/Bob/Player.tres" id="2_gnar5"]
-[ext_resource type="Curve" path="res://Shaders/Line_Curve.tres" id="2_hf2qm"]
-[ext_resource type="Gradient" path="res://Shaders/Gradient.tres" id="3_vra5h"]
+[ext_resource type="SpriteFrames" uid="uid://d02qxufqagsab" path="res://Assets/Bob/Player.tres" id="2_gnar5"]
+[ext_resource type="Curve" uid="uid://cu8njceyrhh4r" path="res://Shaders/Line_Curve.tres" id="2_hf2qm"]
+[ext_resource type="Gradient" uid="uid://xb7hm4p32v7h" path="res://Shaders/Gradient.tres" id="3_vra5h"]
 [ext_resource type="Script" path="res://Player/Line2D.gd" id="4_arnim"]
 [ext_resource type="PackedScene" uid="uid://cj6o401qrracu" path="res://Spawn/spawn_zone.tscn" id="5_ts6ny"]
-[ext_resource type="PackedScene" path="res://Shaders/explosion_particules.tscn" id="6_eoso3"]
+[ext_resource type="PackedScene" uid="uid://c3bv63xl4hetp" path="res://Shaders/explosion_particules.tscn" id="6_eoso3"]
 [ext_resource type="Script" path="res://Player/Camera2D.gd" id="10_f7jln"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="12_6rljm"]
 [ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="13_xi33h"]
@@ -32,6 +32,75 @@
 [sub_resource type="Environment" id="Environment_mf3nm"]
 background_mode = 3
 glow_enabled = true
+
+[sub_resource type="Shader" id="Shader_senym"]
+code = "shader_type canvas_item;
+
+// flash uniforms
+uniform vec4 flash_color: source_color = vec4(1.0);
+uniform float flash_modifier: hint_range(0.0, 1.0)=1;
+
+// glitch uniforms
+uniform float shake_power = 0.0;
+uniform float shake_rate : hint_range( 0.0, 1.0 ) = 0;
+uniform float shake_speed = 5.0;
+uniform float shake_block_size = 30.5;
+uniform float shake_color_rate : hint_range( 0.0, 1.0 ) = 0.0;
+
+uniform int is_flash: hint_range(0, 1, 1) = 1;
+
+float random(float seed){
+    return fract( 543.2543 * sin(dot(vec2(seed, seed), vec2( 3525.46, -54.3415 ) ) ) );
+}
+
+void fragment() {
+	
+	if (is_flash == 1){
+		vec4 color = texture(TEXTURE,UV);
+		color.rgb = mix(color.rgb, flash_color.rgb,flash_modifier);
+		COLOR = color;
+	}
+	else{
+			float enable_shift = float(
+	        random( trunc( TIME * shake_speed ) )
+	    <    shake_rate
+	    );
+
+	    vec2 fixed_uv = UV;
+	    fixed_uv.x += (
+	        random(
+	            ( trunc( SCREEN_UV.y * shake_block_size ) / shake_block_size )
+	        +    TIME
+	        ) - 0.5
+	    ) * shake_power * enable_shift;
+
+	    vec4 pixel_color = texture( TEXTURE, fixed_uv );
+	    pixel_color.r = mix(
+	        pixel_color.r
+	    ,    texture( TEXTURE, fixed_uv + vec2( shake_color_rate, 0.0 ) ).r
+	    ,    enable_shift
+	    );
+	    pixel_color.b = mix(
+	        pixel_color.b
+	    ,    texture( TEXTURE, fixed_uv + vec2( -shake_color_rate, 0.0 ) ).b
+	    ,    enable_shift
+	    );
+	    COLOR = pixel_color;
+		}
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_khdnv"]
+shader = SubResource("Shader_senym")
+shader_parameter/flash_color = Color(1, 0, 0, 0.65098)
+shader_parameter/flash_modifier = 0.0
+shader_parameter/shake_power = 0.0
+shader_parameter/shake_rate = 0.0
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.0
+shader_parameter/is_flash = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6sj5t"]
 radius = 5.0
@@ -3342,6 +3411,7 @@ script = ExtResource("4_arnim")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
+material = SubResource("ShaderMaterial_khdnv")
 sprite_frames = ExtResource("2_gnar5")
 animation = &"idle_down"
 

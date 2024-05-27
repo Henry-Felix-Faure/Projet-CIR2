@@ -24,8 +24,8 @@ func _process(delta):
 
 func player_detected(body: Node2D):
 	found = true
-	animated_sprite_2d.play("detection")
-	await animated_sprite_2d.animation_finished
+	#animated_sprite_2d.play("detection")
+	#await animated_sprite_2d.animation_finished
 	while(found):
 		animated_sprite_2d.play("atk_load")
 		await animated_sprite_2d.animation_finished

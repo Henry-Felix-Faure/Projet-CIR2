@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bpg4avgcs5qud"]
+[gd_scene load_steps=56 format=3 uid="uid://bpg4avgcs5qud"]
 
 [ext_resource type="Script" path="res://Scripts/Components/move_towards_player_component.gd" id="1_mixs2"]
 [ext_resource type="Shader" path="res://Shaders/ennemy_shader.gdshader" id="2_6gps2"]
@@ -72,10 +72,6 @@ region = Rect2(320, 0, 64, 64)
 atlas = ExtResource("3_wxpoc")
 region = Rect2(384, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ln2as"]
-atlas = ExtResource("4_t732v")
-region = Rect2(0, 0, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ohl2"]
 atlas = ExtResource("4_t732v")
 region = Rect2(64, 0, 64, 64)
@@ -144,41 +140,37 @@ region = Rect2(256, 0, 64, 64)
 atlas = ExtResource("5_by0jl")
 region = Rect2(320, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4b1ut"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vhx2"]
 atlas = ExtResource("6_5hsnb")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jnsrj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ertoh"]
 atlas = ExtResource("6_5hsnb")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l7u8t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_psh4g"]
 atlas = ExtResource("6_5hsnb")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jh37g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv3yq"]
 atlas = ExtResource("6_5hsnb")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_waspu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uplnh"]
 atlas = ExtResource("6_5hsnb")
 region = Rect2(256, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v4gju"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww6r1"]
 atlas = ExtResource("6_5hsnb")
 region = Rect2(320, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_smrfi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q558y"]
 atlas = ExtResource("6_5hsnb")
 region = Rect2(384, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_481f8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk7tf"]
 atlas = ExtResource("6_5hsnb")
 region = Rect2(448, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nh2vs"]
-atlas = ExtResource("6_5hsnb")
-region = Rect2(512, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gccps"]
 animations = [{
@@ -226,9 +218,6 @@ animations = [{
 "speed": 12.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ln2as")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1ohl2")
 }, {
@@ -291,51 +280,50 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4b1ut")
+"texture": SubResource("AtlasTexture_6vhx2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jnsrj")
+"texture": SubResource("AtlasTexture_ertoh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l7u8t")
+"texture": SubResource("AtlasTexture_psh4g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jh37g")
+"texture": SubResource("AtlasTexture_mv3yq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_waspu")
+"texture": SubResource("AtlasTexture_uplnh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v4gju")
+"texture": SubResource("AtlasTexture_ww6r1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_smrfi")
+"texture": SubResource("AtlasTexture_q558y")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_481f8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nh2vs")
+"texture": SubResource("AtlasTexture_dk7tf")
 }],
 "loop": true,
 "name": &"move",
-"speed": 7.0
+"speed": 8.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqdun"]
 radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7qpi"]
-radius = 5.6666
+radius = 2.68169
 
 [node name="Sniper_body" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_mixs2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_fjsm7")
 scale = Vector2(0.871875, 0.926367)
 sprite_frames = SubResource("SpriteFrames_gccps")
-animation = &"move"
+animation = &"atk_load"
 
 [node name="DetectActionPlayer" parent="." node_paths=PackedStringArray("ComponentFonctionToCallFrom", "AttackSpeed") instance=ExtResource("7_224xs")]
 scale = Vector2(0.871875, 0.926367)

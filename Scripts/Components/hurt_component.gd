@@ -55,8 +55,7 @@ func _ready() -> void:
 		elif player and player.dashing:
 			pass
 		else:
-			if not(player):
-				flash()
+			flash()
 			if (hitbox_component.get_parent().name == "Robot" or hitbox_component.get_parent().name == "policeman" or hitbox_component.get_parent().name == "riotman"):
 				if not(hitbox_component.get_parent().has_input_dmg):
 					stats_component.health -= hitbox_component.damage

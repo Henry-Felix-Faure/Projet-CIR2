@@ -12,8 +12,10 @@ const police = preload("res://enemy/CAC/policeman.tscn")
 const robot = preload("res://enemy/CAC/robot.tscn")
 const kamikaze = preload("res://enemy/CAC/kamikaze_robot.tscn")
 const boss = preload("res://Boss/atilla.tscn")
+const sniper = preload("res://enemy/sniper_body.tscn")
 
-var bank_mob = {"robot": 100, "police": 0, "kamikaze": 0, "riotman": 0}
+
+var bank_mob = {"robot": 100, "police": 0, "kamikaze": 0, "riotman": 0, "sniper": 0}
 
 var etat = []
 var etat_now = 0 
@@ -48,6 +50,8 @@ func _spawn_mob() -> void:
 			mob_spawn = kamikaze.instantiate()
 		"riotman":
 			mob_spawn = riotman.instantiate()
+		"sniper":
+			mob_spawn = sniper.instantiate()
 	
 	
 	var random_spawn = randi() % 4

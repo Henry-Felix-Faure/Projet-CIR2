@@ -259,7 +259,6 @@ shape = SubResource("CapsuleShape2D_hwtus")
 [node name="knife" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_yxsno")
 volume_db = 8.814
-bus = &"SFX"
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_layer = 4

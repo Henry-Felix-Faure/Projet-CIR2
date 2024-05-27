@@ -178,5 +178,5 @@ func create_new_drone():
 		new_drone.rotation_degrees = drone.rotation_degrees - 90
 
 func health_regen():
-	if health < max_health : 
+	if health < max_health:
 		health += 1

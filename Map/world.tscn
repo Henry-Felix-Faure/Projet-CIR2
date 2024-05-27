@@ -22,6 +22,7 @@ script = ExtResource("1_u1x4u")
 [node name="debug_tool_stats" parent="." instance=ExtResource("6_bh5pn")]
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="DroneMenu" parent="MenuLayer" instance=ExtResource("5_b6i78")]
 
@@ -29,7 +30,7 @@ script = ExtResource("1_u1x4u")
 UI = NodePath("../../UI")
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
-position = Vector2(-404, 177)
+position = Vector2(-326, 157)
 wall_min_slide_angle = 0.261799
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -38,6 +39,10 @@ wall_min_slide_angle = 0.261799
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_left = 1.0
+offset_top = 103.0
+offset_right = 1.0
+offset_bottom = 103.0
 grow_horizontal = 1
 grow_vertical = 1
 bob = NodePath("../../Bob")
@@ -47,6 +52,8 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_right = 0.0
 anchor_bottom = 0.5
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 1
 bob = NodePath("../../Bob")
 
@@ -79,4 +86,4 @@ stream = ExtResource("14_iup0j")
 autoplay = true
 
 [node name="Sniper_body" parent="." instance=ExtResource("13_df6qj")]
-position = Vector2(-191, 115)
+position = Vector2(-182, 77)
