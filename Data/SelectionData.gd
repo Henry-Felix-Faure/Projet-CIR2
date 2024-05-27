@@ -11,7 +11,7 @@ signal up_atk_speed
 signal up_parry_lvl
 signal up_crit_chance
 signal up_damage_crit
-signal up_health
+signal up_max_health
 
 @onready var drone_menu = get_parent().get_parent().get_child(0)
 
@@ -34,9 +34,9 @@ const DASH_SPEED_UP_1 = preload("res://Assets/PowerUp/dash_speed_up_1.png")
 const DASH_SPEED_UP_2 = preload("res://Assets/PowerUp/dash_speed_up_2.png")
 const DASH_SPEED_UP_3 = preload("res://Assets/PowerUp/dash_speed_up_3.png")
 const DRONE_NORMAL = preload("res://Assets/PowerUp/drone_normal.png")
-const HEALTH_UP_1 = preload("res://Assets/PowerUp/health_up_1.png")
-const HEALTH_UP_2 = preload("res://Assets/PowerUp/health_up_2.png")
-const HEALTH_UP_3 = preload("res://Assets/PowerUp/health_up_3.png")
+const MAX_HEALTH_UP_1 = preload("res://Assets/PowerUp/health_up_1.png")
+const MAX_HEALTH_UP_2 = preload("res://Assets/PowerUp/health_up_2.png")
+const MAX_HEALTH_UP_3 = preload("res://Assets/PowerUp/health_up_3.png")
 const PARRY_COOLDOWN_1 = preload("res://Assets/PowerUp/parry_cooldown_1.png")
 const PARRY_COOLDOWN_2 = preload("res://Assets/PowerUp/parry_cooldown_2.png")
 const PARRY_COOLDOWN_3 = preload("res://Assets/PowerUp/parry_cooldown_3.png")
@@ -332,27 +332,27 @@ var damageCritUpPath: Dictionary = {
 		}
 }
 
-var healthUpPath: Dictionary = {
+var maxHealthUpPath: Dictionary = {
 	0: {
 		"name": "Installation du défibrilateur\n\n",
 		"desc": "Augmente la santé maximum",
-		"call": Callable(self,"health"),
+		"call": Callable(self,"max_health"),
 		"value": 5,
-		"icon" : HEALTH_UP_1
+		"icon" : MAX_HEALTH_UP_1
 		},
 	1: {
 		"name": "Pompe cardiaque\n\n",
 		"desc": "Augmente la santé maximum",
-		"call": Callable(self,"health"),
+		"call": Callable(self,"max_health"),
 		"value": 10,
-		"icon" :  HEALTH_UP_2
+		"icon" :  MAX_HEALTH_UP_2
 		},
 	2: {
 		"name": "Coeur artificiel\n\n",
 		"desc": "Augmente la santé maximum",
-		"call": Callable(self,"health"),
+		"call": Callable(self,"max_health"),
 		"value": 15,
-		"icon" :  HEALTH_UP_3
+		"icon" :  MAX_HEALTH_UP_3
 		}
 }
 
@@ -368,7 +368,7 @@ func _ready() -> void:
 	allPath.append([parryUpPath, 0])
 	allPath.append([critUpPath, 0])
 	allPath.append([damageCritUpPath, 0])
-	allPath.append([healthUpPath, 0])
+	allPath.append([maxHealthUpPath, 0])
 	
 func _GetUpgrade() -> Array:
 	var rng = RandomNumberGenerator.new()
@@ -423,6 +423,6 @@ func damage_crit(up, choice : Array, choice_i: int):
 	up_damage_crit.emit(up)
 	if choice_i == 2: allPath.remove_at(allPath.find(choice, 0))
 
-func health(up, choice : Array, choice_i: int):
-	up_health.emit(up)
+func max_health(up, choice : Array, choice_i: int):
+	up_max_health.emit(up)
 	if choice_i == 2: allPath.remove_at(allPath.find(choice, 0))

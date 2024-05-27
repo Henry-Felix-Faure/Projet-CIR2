@@ -19,6 +19,7 @@ const expScene = preload("res://experience/experience.tscn")
 @onready var attack_l: CollisionShape2D = $HitboxComponent/AttackL
 @onready var attack_r: CollisionShape2D = $HitboxComponent/AttackR
 
+@onready var has_input_dmg: bool = false
 var wait : bool = false
 var in_area : bool = false
 var direction : Vector2
@@ -34,6 +35,7 @@ func _ready():
 
 
 func attack() -> void:
+	has_input_dmg = false
 	if direction.x > 0:
 		attack_r.set_deferred("disabled", false)
 	else:

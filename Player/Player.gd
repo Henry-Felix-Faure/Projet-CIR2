@@ -15,8 +15,8 @@ extends CharacterBody2D
 @onready var parry_cd_indicator: Control = get_parent().get_node("UI").get_node("parry_cd_indicator")
 
 # importing initial stats variables
-@onready var max_health: int = stats_component.health
-@onready var health: int = max_health
+@onready var max_health: int = stats_component.max_health
+@onready var health: int = stats_component.health
 @onready var crit_chance: float = stats_component.crit_chance
 @onready var damage: int = stats_component.dmg
 @onready var crit_damage: float = stats_component.damage_crit
@@ -77,7 +77,8 @@ func update_stats():
 	damage = stats_component.dmg
 	crit_chance = stats_component.crit_chance
 	crit_damage = stats_component.damage_crit
-	max_health = stats_component.health
+	max_health = stats_component.max_health
+	health = stats_component.health
 	xp = stats_component.xp
 	xp_lvl_up = stats_component.xp_lvl_up
 	dash_timer.wait_time = dash_cd
