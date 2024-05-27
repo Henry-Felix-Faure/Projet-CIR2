@@ -12,7 +12,7 @@ signal up_parry_lvl
 signal up_crit_chance
 signal up_damage_crit
 signal up_max_health
-
+signal up_regen
 @onready var drone_menu = get_parent().get_parent().get_child(0)
 
 const ATK_SPEED_UP_1 = preload("res://Assets/PowerUp/atk_speed_up_1.png")
@@ -356,6 +356,30 @@ var maxHealthUpPath: Dictionary = {
 		}
 }
 
+var RegenUpPath: Dictionary = {
+	0: {
+		"name": "Regen\n\n",
+		"desc": "regen",
+		"call": Callable(self,"regen_up"),
+		"value": 5,
+		"icon" : REGEN_UP_1
+		},
+	1: {
+		"name": "Regen\n\n",
+		"desc": "regen",
+		"call": Callable(self,"regen_up"),
+		"value": 10,
+		"icon" :  REGEN_UP_2
+		},
+	2: {
+		"name": "Regen\n\n",
+		"desc": "regen",
+		"call": Callable(self,"regen_up"),
+		"value": 15,
+		"icon" :  REGEN_UP_3
+		}
+}
+
 func _ready() -> void:
 	drone_menu.choosen.connect(drone_mode)
 	allPath.append([pathSpeed,0])
@@ -369,6 +393,7 @@ func _ready() -> void:
 	allPath.append([critUpPath, 0])
 	allPath.append([damageCritUpPath, 0])
 	allPath.append([maxHealthUpPath, 0])
+	allPath.append([RegenUpPath, 0])
 	
 func _GetUpgrade() -> Array:
 	var rng = RandomNumberGenerator.new()
@@ -425,4 +450,8 @@ func damage_crit(up, choice : Array, choice_i: int):
 
 func max_health(up, choice : Array, choice_i: int):
 	up_max_health.emit(up)
+	if choice_i == 2: allPath.remove_at(allPath.find(choice, 0))
+
+func regen_up(up, choice : Array, choice_i: int):
+	up_regen.emit()
 	if choice_i == 2: allPath.remove_at(allPath.find(choice, 0))
