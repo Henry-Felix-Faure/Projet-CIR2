@@ -4,6 +4,7 @@ extends State
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var camera_2d: Camera2D = $"../../Camera2D"
+@onready var blood_particles: CPUParticles2D = $"../../BloodParticles"
 
 #@onready var leapfrogger_map: Node2D = $"../../../Leapfrogger_map"
 #@onready var pathfinding = leapfrogger_map.get_node("Pathfinding")

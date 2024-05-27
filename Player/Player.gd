@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var stats_component: StatsComponent = $StatsComponent
 @onready var sword_area_2d: HitboxComponent = $SwordArea2D
 @onready var explosion_particles: CPUParticles2D = $CPUParticles2D
+@onready var blood_particles: CPUParticles2D = $BloodParticles
 @onready var dash_timer: Timer = $Dash_cd
 @onready var parry_timer: Timer = $Parry_cd
 @onready var atk_1_cd: Timer = $ATK_1_cd

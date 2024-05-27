@@ -62,7 +62,6 @@ scale = Vector2(0.637931, 1)
 sprite_frames = SubResource("SpriteFrames_hkxjn")
 animation = &"turning"
 autoplay = "turning"
-frame_progress = 0.0320509
 script = ExtResource("1_b2i7t")
 SPEED = 100
 

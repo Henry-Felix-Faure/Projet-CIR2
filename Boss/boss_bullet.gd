@@ -1,3 +1,4 @@
+class_name boss_bullet
 extends AnimatedSprite2D
 
 @export var SPEED : int

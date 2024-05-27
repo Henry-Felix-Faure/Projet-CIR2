@@ -369,7 +369,6 @@ SPEED = 50
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("13_wma2f")
 max_health = 5
-health = 5
 
 [node name="SpawnComponent" type="Node2D" parent="."]
 scale = Vector2(0.871875, 0.926367)

@@ -35,7 +35,7 @@ var d_2 : bool = false
 @export var crit_chance : float = 0.0
 @export var damage_crit : float = 1.2
 @export var max_health : int = 20
-@export var health : int:
+@onready var health : int = max_health:
 	set(value):
 		health = value
 		# Signal out that the health has changed
