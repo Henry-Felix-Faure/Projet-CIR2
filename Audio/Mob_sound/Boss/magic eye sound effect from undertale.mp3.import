@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dftp3d1hwfsrw"
+path="res://.godot/imported/magic eye sound effect from undertale.mp3-866f668f1ff34110de6a5bd026e85700.mp3str"
+
+[deps]
+
+source_file="res://Audio/Mob_sound/Boss/magic eye sound effect from undertale.mp3"
+dest_files=["res://.godot/imported/magic eye sound effect from undertale.mp3-866f668f1ff34110de6a5bd026e85700.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

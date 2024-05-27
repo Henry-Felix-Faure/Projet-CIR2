@@ -321,14 +321,17 @@ scene = ExtResource("11_n7cko")
 [node name="atk_1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_ds7n4")
 volume_db = -20.271
+bus = &"SFX"
 
 [node name="atk_2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_r2bjc")
 volume_db = -23.797
+bus = &"SFX"
 
 [node name="atk_3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_hvf5q")
 volume_db = -23.797
+bus = &"SFX"
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_layer = 4
