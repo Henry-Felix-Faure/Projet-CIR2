@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfxiv30ga1ll2"
-path="res://.godot/imported/parry_cd.png-07faf65bc8c73dcee9362f747c43f1b9.ctex"
+path="res://.godot/imported/parry_cd.png-bf2c2a45cc84466c4d39129b77f47175.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/bob/Cooldown/parry_cd.png"
-dest_files=["res://.godot/imported/parry_cd.png-07faf65bc8c73dcee9362f747c43f1b9.ctex"]
+source_file="res://Assets/Bob/Cooldown/parry_cd.png"
+dest_files=["res://.godot/imported/parry_cd.png-bf2c2a45cc84466c4d39129b77f47175.ctex"]
 
 [params]
 

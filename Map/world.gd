@@ -6,8 +6,10 @@ extends Node2D
 
 func pauseMenu():
 	if Global.paused:
+		get_tree().paused = false
 		pause.hide()
 	else:
+		get_tree().paused = true
 		pause.show()
 
 	Global.paused = !Global.paused

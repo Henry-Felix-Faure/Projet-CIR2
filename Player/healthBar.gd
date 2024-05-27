@@ -4,9 +4,9 @@ extends Control
 @onready var texture_progress_bar = $TextureProgressBar
 
 func _ready():
-	print(player.health)
-	player.stats_component.health_changed.connect(update)
+	player.stats_component.stat_changed.connect(update)
 	update()
 	
 func update():
+	texture_progress_bar.max_value = player.max_health
 	texture_progress_bar.value = player.health
