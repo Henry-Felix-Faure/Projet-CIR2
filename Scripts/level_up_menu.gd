@@ -6,7 +6,7 @@ extends Control
 @onready var choice_3: Button = $PanelContainer/VBoxContainer/Choice3
 
 @export var UI: CanvasLayer
-var clickable = false
+var clickable : bool
 @onready var all_buttons : Array = [choice_1, choice_2, choice_3]
 var choice1 : Array
 var choice2 : Array
@@ -18,6 +18,8 @@ func _ready() -> void:
 	hide()
 	
 func _on_lvl_up():
+	clickable = false
+	%Timer.start()
 	choice1 = level_up_tree._GetUpgrade()
 	choice2 = choice1
 	choice3 = choice1
