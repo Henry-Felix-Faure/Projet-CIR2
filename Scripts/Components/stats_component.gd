@@ -51,7 +51,7 @@ var regen : Timer
 func _ready() -> void:
 	if(get_parent().name == "Bob"):
 		regen = Timer.new()
-		regen.wait_time = 8
+		regen.wait_time = 5
 		regen.autostart = true
 		regen.timeout.connect(health_regen)
 		add_child(regen)
@@ -111,7 +111,7 @@ func up_max_health(up):
 	stat_changed.emit()
 	
 func up_regen():
-	regen.wait_time -= 2
+	regen.wait_time -= 1
 
 func up_drone(indice):
 	match indice:

@@ -658,7 +658,7 @@ hurtbox_component = NodePath("../HurtboxComponent")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("13_ctsu4")
-max_health = 50
+max_health = 70
 xp_dropped = 10
 
 [node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "stats_component", "destroy_effect_spawner_component")]

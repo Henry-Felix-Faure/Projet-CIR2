@@ -6,7 +6,7 @@ extends Control
 @onready var choice_3: Button = $PanelContainer/VBoxContainer/Choice3
 
 @export var UI: CanvasLayer
-
+var clickable = false
 @onready var all_buttons : Array = [choice_1, choice_2, choice_3]
 var choice1 : Array
 var choice2 : Array
@@ -40,25 +40,32 @@ func _on_lvl_up():
 	show()
 
 func _on_choice_1_pressed() -> void:
-	var item = choice1[0][choice1[1]]
-	item["call"].call(item["value"], choice1, choice1[1])
-	choice1[1] += 1
-	get_tree().paused = false
-	UI.visible = true
-	hide()
+	if clickable:
+		var item = choice1[0][choice1[1]]
+		item["call"].call(item["value"], choice1, choice1[1])
+		choice1[1] += 1
+		get_tree().paused = false
+		UI.visible = true
+		hide()
 
 func _on_choice_2_pressed() -> void:
-	var item = choice2[0][choice2[1]]
-	item["call"].call(item["value"], choice2, choice2[1])
-	get_tree().paused = false
-	choice2[1] += 1
-	UI.visible = true
-	hide()
+	if clickable:
+		var item = choice2[0][choice2[1]]
+		item["call"].call(item["value"], choice2, choice2[1])
+		get_tree().paused = false
+		choice2[1] += 1
+		UI.visible = true
+		hide()
 	
 func _on_choice_3_pressed() -> void:
-	var item = choice3[0][choice3[1]]
-	item["call"].call(item["value"], choice3, choice3[1])
-	choice3[1] += 1
-	get_tree().paused = false
-	UI.visible = true
-	hide()
+	if clickable:
+		var item = choice3[0][choice3[1]]
+		item["call"].call(item["value"], choice3, choice3[1])
+		choice3[1] += 1
+		get_tree().paused = false
+		UI.visible = true
+		hide()
+
+
+func _on_timer_timeout() -> void:
+	clickable = true

@@ -84,7 +84,7 @@ var dronePath : Dictionary = {
 		},
 	1: {
 		"name": "Etudes d'ingénieurs\n\n",
-		"desc": "Ton drone passe aux choses sérieusess",
+		"desc": "Ton drone passe aux choses sérieuses",
 		"call": Callable(self,"droneUpgrade"),
 		"value": 4,
 		"icon": DRONE_NORMAL
@@ -149,7 +149,7 @@ var dronePath : Dictionary = {
 var atkUpPath : Dictionary = {
 	0: {
 		"name": "Le bras de Damia\n\n",
-		"desc": "C'est pas encore ca, mais on commence a voir le biceps (attaque +)",
+		"desc": "C'est pas encore ca, mais on commence à voir le biceps (attaque +)",
 		"call": Callable(self,"addAtk"),
 		"value": 1,
 		"icon" : ATK_UP_1
@@ -163,7 +163,7 @@ var atkUpPath : Dictionary = {
 		},
 	2: {
 		"name": "Le bras de Clarence\n\n",
-		"desc": "T'as mangé quoi pour devenir comme ca ? (attaque +)",
+		"desc": "T'as mangé quoi pour être aussi stock ? (attaque +)",
 		"call": Callable(self,"addAtk"),
 		"value": 2,
 		"icon" : ATK_UP_3
@@ -221,21 +221,21 @@ var dashCDUpPath: Dictionary = {
 var parryCDUpPath: Dictionary = {
 	0: {
 		"name": "Accordeur de réflexes\n\n",
-		"desc": "Réduit le temps de recharge entre 2 parrade",
+		"desc": "Réduit le temps de recharge entre 2 parades",
 		"call": Callable(self,"parry_cd"),
 		"value": 0.5,
 		"icon" : PARRY_COOLDOWN_1
 		},
 	1: {
 		"name": "Accélérateur synaptique\n\n",
-		"desc": "Réduit le temps de recharge entre 2 parrade",
+		"desc": "Réduit le temps de recharge entre 2 parades",
 		"call": Callable(self,"parry_cd"),
 		"value": 0.5,
 		"icon" :  PARRY_COOLDOWN_2
 		},
 	2: {
 		"name": "Kerenzikov\n\n",
-		"desc": "Réduit le temps de recharge entre 2 parrade",
+		"desc": "Réduit le temps de recharge entre 2 parades",
 		"call": Callable(self,"parry_cd"),
 		"value": 1.0,
 		"icon" :  PARRY_COOLDOWN_3
@@ -275,7 +275,7 @@ var parryUpPath: Dictionary = {
 		"icon" : PARRY_UP_2
 		},
 	1: {
-		"name": "Yeux cybérnétique\n\n",
+		"name": "Yeux cybernétiques\n\n",
 		"desc": "Augmente la durée du parry",
 		"call": Callable(self,"parry_lvl"),
 		"value": 1,
@@ -359,21 +359,21 @@ var maxHealthUpPath: Dictionary = {
 var RegenUpPath: Dictionary = {
 	0: {
 		"name": "Bioconducteur\n\n",
-		"desc": "Augmente la vitesse de régéneration",
+		"desc": "Augmente la vitesse de régénération",
 		"call": Callable(self,"regen_up"),
 		"value": 5,
 		"icon" : REGEN_UP_1
 		},
 	1: {
 		"name": "Circuit de rétroaction\n\n",
-		"desc": "Augmente la vitesse de régéneration",
+		"desc": "Augmente la vitesse de régénération",
 		"call": Callable(self,"regen_up"),
 		"value": 10,
 		"icon" :  REGEN_UP_2
 		},
 	2: {
 		"name": "Pompe sanguine\n\n",
-		"desc": "Augmente la vitesse de régéneration",
+		"desc": "Augmente la vitesse de régénération",
 		"call": Callable(self,"regen_up"),
 		"value": 15,
 		"icon" :  REGEN_UP_3

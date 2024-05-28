@@ -173,6 +173,7 @@ radius = 110.695
 position = Vector2(-3.8147e-06, 0)
 scale = Vector2(0.75, 0.798)
 script = ExtResource("1_j08d6")
+damage = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(46.6667, -1.19209e-07)
