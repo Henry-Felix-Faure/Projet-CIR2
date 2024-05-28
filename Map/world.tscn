@@ -29,7 +29,7 @@ script = ExtResource("1_u1x4u")
 UI = NodePath("../../UI")
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
-position = Vector2(240, -31)
+position = Vector2(248, -33)
 wall_min_slide_angle = 0.261799
 
 [node name="UI" type="CanvasLayer" parent="."]

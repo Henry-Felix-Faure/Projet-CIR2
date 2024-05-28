@@ -442,12 +442,12 @@ volume_db = -17.627
 autoplay = true
 bus = &"Music"
 
-[connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="test/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/option" to="." method="_on_option_pressed"]
 [connection signal="toggled" from="test/VBoxContainer/option" to="." method="_on_option_toggled"]
-[connection signal="pressed" from="test/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="test/VBoxContainer/quit" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="test/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Option/VBoxContainer/Video" to="." method="_on_video_pressed"]
 [connection signal="pressed" from="Option/VBoxContainer/Video" to="Option" method="_on_video_pressed"]
 [connection signal="pressed" from="Option/VBoxContainer/Audio" to="." method="_on_audio_pressed"]

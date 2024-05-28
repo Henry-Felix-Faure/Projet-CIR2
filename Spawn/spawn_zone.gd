@@ -28,8 +28,8 @@ func _ready() -> void:
 	
 	etat = [[65,25,10,0,0],
 	[45,35,5,10,5],
-	[20,24,34,15,7],
-	[5,15,40,25,15],
+	[20,25,20,25,10],
+	[10,15,30,25,20],
 	[0,10,20,40,30],
 	[0,5,15,40,40],
 	[0,0,10,55,45],
@@ -95,7 +95,7 @@ func choose_mob(spawn_rate = bank_mob):
 
 
 func change_etat() -> void:
-	if etat_now < 10:
+	if etat_now < 7:
 		timer_spawn.wait_time -= 0.8
 		if etat_now >= 5 :
 			spawn_do = false
