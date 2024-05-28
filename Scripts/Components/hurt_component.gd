@@ -89,7 +89,7 @@ func successful_parry(player: CharacterBody2D, hitbox_component: HitboxComponent
 	player.get_node("audio_parry").play()
 	player.explosion_particles.direction = player.last_dir
 	player.explosion_particles.emitting = true
-	player.get_node("Camera2D").shake(0.2, 3)
+	player.get_node("Camera2D").shake(0.3, 3)
 	if hitbox_component.get_parent() is bullet_to_player or hitbox_component.get_parent() is boss_bullet:
 		var bullet = hitbox_component.get_parent()
 		var parry_lvl: int = player.parry_lvl

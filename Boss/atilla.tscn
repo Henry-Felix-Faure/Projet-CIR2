@@ -759,6 +759,7 @@ script = ExtResource("27_srfy4")
 scene = ExtResource("28_r51xa")
 
 [node name="musique_background" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("29_r6mxm")
 autoplay = true
 

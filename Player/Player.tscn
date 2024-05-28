@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://Player/States/DASHING_INIT.gd" id="21_dpayd"]
 [ext_resource type="Script" path="res://Player/States/DASHING_RECOVERY.gd" id="22_0ed03"]
 [ext_resource type="AudioStream" uid="uid://ddwgp11fwy77g" path="res://Audio/Player_sound/draw_sword.mp3" id="22_tik1o"]
-[ext_resource type="AudioStream" uid="uid://cctjhuxq3ce6x" path="res://Audio/Player_sound/Parry.mp3" id="23_3puad"]
+[ext_resource type="AudioStream" uid="uid://cctjhuxq3ce6x" path="res://Audio/Player_sound/parry.mp3" id="23_3puad"]
 [ext_resource type="Script" path="res://Player/States/DYING.gd" id="23_7xgns"]
 [ext_resource type="AudioStream" uid="uid://dn8imuf13vo25" path="res://Audio/Player_sound/atk_1.wav" id="23_r1765"]
 [ext_resource type="AudioStream" uid="uid://b7kule2knt833" path="res://Audio/Player_sound/atk_2.wav" id="24_anb8k"]
@@ -3493,9 +3493,8 @@ hurtbox_component = NodePath("../HurtboxArea2D")
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("15_pvxni")
 speed_up = 100
+dash_cd = 4.5
 atk_speed = 1.4
-dmg = 3
-max_health = 300
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true

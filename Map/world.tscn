@@ -1,30 +1,25 @@
-[gd_scene load_steps=17 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=15 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
 [ext_resource type="PackedScene" uid="uid://cxn4xmmsx44km" path="res://Map/leapfrogger_map.tscn" id="2_mp1s5"]
 [ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
 [ext_resource type="PackedScene" uid="uid://b0u1xks6d8yqu" path="res://Menu/MenuDrone/drone_menu.tscn" id="5_b6i78"]
-[ext_resource type="PackedScene" uid="uid://c68wgflxvw0qg" path="res://debug_tool_stats.tscn" id="6_bh5pn"]
 [ext_resource type="PackedScene" uid="uid://cxk4ps7si3fyw" path="res://Menu/MenuPause/MenuPause.tscn" id="7_fa4h2"]
 [ext_resource type="PackedScene" uid="uid://6g1jtr7nkh5t" path="res://Assets/PowerUp/dash_cd_indicator.tscn" id="7_hwn58"]
 [ext_resource type="PackedScene" uid="uid://y0xbmrlqowhj" path="res://Assets/PowerUp/parry_cd_indicator.tscn" id="8_pl083"]
 [ext_resource type="PackedScene" uid="uid://c4jpkcxsynto7" path="res://Player/healthBar.tscn" id="9_62nuh"]
+[ext_resource type="FontFile" uid="uid://c1bmvajv8ivma" path="res://Assets/Font/Crang.ttf" id="10_1ruqh"]
 [ext_resource type="PackedScene" uid="uid://ccpe88qjia0d" path="res://Player/xp_bar.tscn" id="10_djw0c"]
-[ext_resource type="FontFile" uid="uid://b240a7o38ytat" path="res://Assets/Font/Board of Directors W00 Book.ttf" id="11_0wmhu"]
 [ext_resource type="Script" path="res://Map/KillCount.gd" id="12_vhp55"]
 [ext_resource type="AudioStream" uid="uid://dg27i8k1r7ujk" path="res://Audio/background/game.mp3" id="14_iup0j"]
-[ext_resource type="PackedScene" uid="uid://b7tnfff6rrpj1" path="res://Boss/atilla.tscn" id="15_gppyq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rcvjg"]
-font = ExtResource("11_0wmhu")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_u1x4u")
 
 [node name="Leapfrogger_map" parent="." instance=ExtResource("2_mp1s5")]
-
-[node name="debug_tool_stats" parent="." instance=ExtResource("6_bh5pn")]
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 
@@ -79,10 +74,12 @@ player = NodePath("../../Bob")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -45.0
-offset_right = -5.0
-offset_bottom = 23.0
+offset_left = -46.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = 29.0
 grow_horizontal = 0
+theme_override_fonts/font = ExtResource("10_1ruqh")
 label_settings = SubResource("LabelSettings_rcvjg")
 script = ExtResource("12_vhp55")
 
@@ -97,7 +94,6 @@ offset_right = -1.0
 offset_bottom = -2.0
 
 [node name="sound_game" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("14_iup0j")
 autoplay = true
-
-[node name="Atilla" parent="." instance=ExtResource("15_gppyq")]

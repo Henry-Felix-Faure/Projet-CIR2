@@ -300,6 +300,7 @@ destroy_effect_spawner_component = NodePath("../SpawnComponent")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("8_353lc")
+max_health = 12
 xp_dropped = 5
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
