@@ -208,7 +208,7 @@ shape = SubResource("CapsuleShape2D_5tscf")
 script = ExtResource("3_jerbp")
 dmg = 3
 max_health = 7
-xp_dropped = 3
+xp_dropped = 5
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
 script = ExtResource("4_5v3yc")

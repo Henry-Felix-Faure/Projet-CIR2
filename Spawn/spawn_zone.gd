@@ -96,7 +96,7 @@ func choose_mob(spawn_rate = bank_mob):
 
 func change_etat() -> void:
 	if etat_now < 7:
-		timer_spawn.wait_time -= 0.8
+		timer_spawn.wait_time -= 0.6
 		if etat_now > 5 :
 			spawn_do = true
 		var idx = 0
