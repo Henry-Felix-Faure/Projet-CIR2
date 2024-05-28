@@ -97,3 +97,18 @@ offset_bottom = -2.0
 process_mode = 3
 stream = ExtResource("14_iup0j")
 autoplay = true
+
+[node name="Win" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="Win"]
+offset_left = 167.0
+offset_top = 48.0
+offset_right = 329.0
+offset_bottom = 115.0
+theme_override_fonts/font = ExtResource("10_1ruqh")
+theme_override_font_sizes/font_size = 31
+text = "YOU WIN !
+ "
+horizontal_alignment = 1
+vertical_alignment = 1

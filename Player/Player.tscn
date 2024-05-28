@@ -3495,6 +3495,7 @@ script = ExtResource("15_pvxni")
 speed_up = 100
 dash_cd = 4.5
 atk_speed = 1.4
+dmg = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true

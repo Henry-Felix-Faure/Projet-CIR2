@@ -3,6 +3,7 @@ class_name DestroyedComponent
 extends Node
 
 @onready var animated_sprite_2d: AnimatedSprite2D = get_parent().get_node("AnimatedSprite2D")
+@onready var win: CanvasLayer = get_parent().get_parent().get_node("Win")
 
 # Export the actor this component will operate on
 @export var actor: Node2D
@@ -20,10 +21,12 @@ func _ready() -> void:
 func destroy() -> void:
 	if actor.name == "AnimatedSprite2D":
 		actor = actor.get_parent()
-	if get_parent().name == "Atilla":
-		get_parent().player.stats_component.health = 0
-	# create an effect (from the spawner component) and free the actor
-	destroy_effect_spawner_component.spawn(actor.global_position)
+	if actor.name == "Atilla":
+		win.visible = true
+		
+	if actor.name != "Atilla":
+		# create an effect (from the spawner component) and free the actor
+		destroy_effect_spawner_component.spawn(actor.global_position)
 	animated_sprite_2d.material.set_shader_parameter("shake_power", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("shake_rate", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("shake_color_rate", float(0.0))
