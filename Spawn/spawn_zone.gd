@@ -12,9 +12,9 @@ const police = preload("res://enemy/CAC/policeman.tscn")
 const robot = preload("res://enemy/CAC/robot.tscn")
 const kamikaze = preload("res://enemy/CAC/kamikaze_robot.tscn")
 const boss = preload("res://Boss/atilla.tscn")
-const sniper = preload("res://Ennemies/Ranged/sniper.tscn")
+const sniper = preload("res://enemy/sniper_body.tscn")
 
-var bank_mob = {"robot": 100, "police": 0, "kamikaze": 0, "riotman": 0, "sniper": 0}
+var bank_mob = {"robot": 100, "police": 0, "kamikaze": 0, "sniper": 0, "riotman": 0}
 
 var etat = []
 var etat_now = 0 
@@ -24,17 +24,17 @@ func _ready() -> void:
 	timer_spawn.timeout.connect(_spawn_mob)
 	timer_state.timeout.connect(change_etat)
 	timer_spawn.wait_time = 5
-	timer_state.wait_time = 45
+	timer_state.wait_time = 35
 	
-	etat = [[80,18,2,0,0],
-	[60,35,5,0,0],
-	[34,44,20,2,0],
-	[20,35,35,10,0],
-	[0,18,60,20,2],
-	[0,18,60,20,2],
-	[0,0,44,44,10],
-	[0,0,15,50,20],
-	[0,0,10,35,55]]
+	etat = [[65,25,10,0,0],
+	[45,35,5,10,5],
+	[20,24,34,15,7],
+	[5,15,40,25,15],
+	[0,10,20,40,30],
+	[0,5,15,40,40],
+	[0,0,10,55,45],
+	[0,0,5,40,55],
+	[0,0,2,28,70]]
 
 
 
@@ -45,7 +45,6 @@ func _spawn_mob() -> void:
 		print("boss spawn")
 		mob_spawn = boss.instantiate()
 	else:
-		spawn_do = true
 		match mob_choose:
 			"robot":
 				mob_spawn = robot.instantiate()
@@ -98,8 +97,8 @@ func choose_mob(spawn_rate = bank_mob):
 func change_etat() -> void:
 	if etat_now < 10:
 		timer_spawn.wait_time -= 0.8
-		if etat_now == 5 :
-			pass
+		if etat_now >= 5 :
+			spawn_do = false
 		var idx = 0
 		for cle in bank_mob:
 			bank_mob[cle] = etat[etat_now][idx]
