@@ -17,13 +17,13 @@ const sniper = preload("res://enemy/sniper_body.tscn")
 var bank_mob = {"robot": 100, "police": 0, "kamikaze": 0, "sniper": 0, "riotman": 0}
 
 var etat = []
-var etat_now = 0 
+var etat_now = 0
 var spawn_do : bool = true
 
 func _ready() -> void:
 	timer_spawn.timeout.connect(_spawn_mob)
 	timer_state.timeout.connect(change_etat)
-	timer_spawn.wait_time = 5
+	timer_spawn.wait_time = 6
 	timer_state.wait_time = 35
 	
 	etat = [[65,25,10,0,0],
@@ -97,8 +97,8 @@ func choose_mob(spawn_rate = bank_mob):
 func change_etat() -> void:
 	if etat_now < 7:
 		timer_spawn.wait_time -= 0.8
-		if etat_now >= 5 :
-			spawn_do = false
+		if etat_now > 5 :
+			spawn_do = true
 		var idx = 0
 		for cle in bank_mob:
 			bank_mob[cle] = etat[etat_now][idx]
