@@ -1,9 +1,12 @@
+class_name Boss
 extends CharacterBody2D
 
 @onready var player = get_parent().get_node("Bob")
 @onready var aoe_cd: Timer = $AOE_cd
 @onready var atk_cd: Timer = $Atk_cd
 @onready var full_recovery: Timer = $FullRecovery
+
+
 @onready var stats_component: StatsComponent = $StatsComponent
 
 var is_aoe_cd = false

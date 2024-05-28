@@ -21,7 +21,7 @@ func _ready() -> void:
 func destroy() -> void:
 	if actor.name == "AnimatedSprite2D":
 		actor = actor.get_parent()
-	if actor.name == "Atilla":
+	if actor is Boss:
 		win.visible = true
 		
 	if actor.name != "Atilla":
@@ -32,4 +32,10 @@ func destroy() -> void:
 	animated_sprite_2d.material.set_shader_parameter("shake_color_rate", float(0.0))
 	animated_sprite_2d.material.set_shader_parameter("flash_modifier",0)
 	Global.kill_count += 1
+	
+	if actor is Boss:
+		await get_tree().create_timer(3).timeout
+		get_tree().change_scene_to_file("res://Menu/MenuStart/MenuStart.tscn")
+	
 	actor.queue_free()
+	

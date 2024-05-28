@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=16 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
@@ -12,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://c1bmvajv8ivma" path="res://Assets/Font/Crang.ttf" id="10_1ruqh"]
 [ext_resource type="PackedScene" uid="uid://ccpe88qjia0d" path="res://Player/xp_bar.tscn" id="10_djw0c"]
 [ext_resource type="Script" path="res://Map/KillCount.gd" id="12_vhp55"]
+[ext_resource type="Texture2D" uid="uid://bas1t7o5kvvka" path="res://Assets/victory.png" id="14_dj8j6"]
 [ext_resource type="AudioStream" uid="uid://dg27i8k1r7ujk" path="res://Audio/background/game.mp3" id="14_iup0j"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rcvjg"]
@@ -101,14 +102,8 @@ autoplay = true
 [node name="Win" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Label" type="Label" parent="Win"]
-offset_left = 167.0
-offset_top = 48.0
-offset_right = 329.0
-offset_bottom = 115.0
-theme_override_fonts/font = ExtResource("10_1ruqh")
-theme_override_font_sizes/font_size = 31
-text = "YOU WIN !
- "
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="TextureRect" type="TextureRect" parent="Win"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_dj8j6")
