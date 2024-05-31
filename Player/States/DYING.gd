@@ -20,6 +20,7 @@ func Enter():
 		if node.name != "Bob":
 			node.queue_free()	
 	
+	bob.get_node("StatsComponent").queue_free()
 	bob.get_node("spawn_zone").queue_free()
 	var death_scene = death_screen.instantiate()
 	add_child(death_scene)

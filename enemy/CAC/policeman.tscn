@@ -206,8 +206,9 @@ shape = SubResource("CapsuleShape2D_5tscf")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("3_jerbp")
-health = 8
-xp_dropped = 3
+dmg = 3
+max_health = 7
+xp_dropped = 5
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
 script = ExtResource("4_5v3yc")
@@ -239,12 +240,12 @@ shape = SubResource("CapsuleShape2D_44vdk")
 [node name="shotgun" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_1tsay")
 volume_db = -22.459
-bus = &"SFX"
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("13_igp8l")
+damage = 3
 
 [node name="AttackL" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(-19, -4)
@@ -259,3 +260,4 @@ shape = SubResource("CapsuleShape2D_qyxne")
 debug_color = Color(1, 0.0431373, 0.231373, 0.109804)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="health_changed" from="StatsComponent" to="." method="_on_stats_component_health_changed"]

@@ -4,6 +4,7 @@ extends State
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var camera_2d: Camera2D = $"../../Camera2D"
+@onready var blood_particles: CPUParticles2D = $"../../BloodParticles"
 
 #@onready var leapfrogger_map: Node2D = $"../../../Leapfrogger_map"
 #@onready var pathfinding = leapfrogger_map.get_node("Pathfinding")
@@ -64,11 +65,11 @@ func Update(_delta:float):
 		bob.stats_component.health = 0
 		state_transition.emit(self, "DYING")
 	
-	if Input.is_action_just_pressed("ui_camera_debug"): # if ! is pressed / debug tool
-		if camera_2d.zoom == Vector2(1,1):
-			camera_2d.zoom = Vector2(0.12,0.12)
-		else:
-			camera_2d.zoom = Vector2(1,1)
+	#if Input.is_action_just_pressed("ui_camera_debug"): # if ! is pressed / debug tool
+		#if camera_2d.zoom == Vector2(1,1):
+			#camera_2d.zoom = Vector2(0.12,0.12)
+		#else:
+			#camera_2d.zoom = Vector2(1,1)
 
 
 func next_animation_selector_moving(): # function to decide which running animations we want to play

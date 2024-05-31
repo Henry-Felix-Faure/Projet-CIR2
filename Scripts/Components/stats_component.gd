@@ -35,7 +35,7 @@ var d_2 : bool = false
 @export var crit_chance : float = 0.0
 @export var damage_crit : float = 1.2
 @export var max_health : int = 20
-@export var health : int = max_health:
+@onready var health : int = max_health:
 	set(value):
 		health = value
 		# Signal out that the health has changed
@@ -46,9 +46,15 @@ var d_2 : bool = false
 @export var xp_dropped: int = 1
 # Create our signals for health
 
+var regen : Timer
 
 func _ready() -> void:
 	if(get_parent().name == "Bob"):
+		regen = Timer.new()
+		regen.wait_time = 5
+		regen.autostart = true
+		regen.timeout.connect(health_regen)
+		add_child(regen)
 		var level_up_tree : LevelUpTree = level_up_menu.level_up_tree
 		level_up_tree.speedUp.connect(up_speed)
 		level_up_tree.droneUp.connect(up_drone)
@@ -61,7 +67,7 @@ func _ready() -> void:
 		level_up_tree.up_crit_chance.connect(up_crit_chance)
 		level_up_tree.up_damage_crit.connect(up_damage_crit)
 		level_up_tree.up_max_health.connect(up_max_health)
-		
+		level_up_tree.up_regen.connect(up_regen)
 
 func up_speed(speed):
 	speed_up += speed
@@ -101,8 +107,12 @@ func up_damage_crit(up):
 	
 func up_max_health(up):
 	max_health += up
+	health += up
 	stat_changed.emit()
 	
+func up_regen():
+	regen.wait_time -= 1
+
 func up_drone(indice):
 	match indice:
 		0:	
@@ -167,3 +177,6 @@ func create_new_drone():
 	else:
 		new_drone.rotation_degrees = drone.rotation_degrees - 90
 
+func health_regen():
+	if health < max_health:
+		health += 1

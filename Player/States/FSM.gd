@@ -19,6 +19,7 @@ func _ready():
 		current_state = initial_state
 
 func _process(delta: float) -> void:
+	bob.blood_particles.emitting = false
 	if current_state:
 		current_state.Update(delta)
 

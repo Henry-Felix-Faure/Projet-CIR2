@@ -12,42 +12,50 @@ const police = preload("res://enemy/CAC/policeman.tscn")
 const robot = preload("res://enemy/CAC/robot.tscn")
 const kamikaze = preload("res://enemy/CAC/kamikaze_robot.tscn")
 const boss = preload("res://Boss/atilla.tscn")
+const sniper = preload("res://enemy/sniper_body.tscn")
 
-var bank_mob = {"robot": 100, "police": 0, "kamikaze": 0, "riotman": 0}
+var bank_mob = {"robot": 100, "police": 0, "kamikaze": 0, "sniper": 0, "riotman": 0}
 
 var etat = []
-var etat_now = 0 
+var etat_now = 0
+var spawn_do : bool = true
 
 func _ready() -> void:
 	timer_spawn.timeout.connect(_spawn_mob)
 	timer_state.timeout.connect(change_etat)
 	timer_spawn.wait_time = 6
-	timer_state.wait_time = 60
+	timer_state.wait_time = 35
 	
-	etat = [[80,18,2,0,0],
-	[60,35,5,0,0],
-	[34,44,20,2,0],
-	[20,35,35,10,0],
-	[0,18,60,20,2],
-	[0,18,60,20,2],
-	[0,0,44,44,10],
-	[0,0,15,50,20],
-	[0,0,10,35,55]]
+	etat = [[65,25,10,0,0],
+	[45,35,5,10,5],
+	[20,25,20,25,10],
+	[10,15,30,25,20],
+	[0,10,20,40,30],
+	[0,5,15,40,40],
+	[0,0,10,55,45],
+	[0,0,5,40,55],
+	[0,0,2,28,70]]
 
 
 
 func _spawn_mob() -> void:
 	var mob_spawn = ""
 	var mob_choose = choose_mob()
-	match mob_choose:
-		"robot":
-			mob_spawn = robot.instantiate()
-		"police":
-			mob_spawn = police.instantiate()
-		"kamikaze":
-			mob_spawn = kamikaze.instantiate()
-		"riotman":
-			mob_spawn = riotman.instantiate()
+	if etat_now == 5:
+		print("boss spawn")
+		mob_spawn = boss.instantiate()
+	else:
+		match mob_choose:
+			"robot":
+				mob_spawn = robot.instantiate()
+			"police":
+				mob_spawn = police.instantiate()
+			"kamikaze":
+				mob_spawn = kamikaze.instantiate()
+			"riotman":
+				mob_spawn = riotman.instantiate()
+			"sniper":
+				mob_spawn = sniper.instantiate()
 	
 	
 	var random_spawn = randi() % 4
@@ -65,12 +73,17 @@ func _spawn_mob() -> void:
 	var mob_x = randf_range(rect.position.x, rect.end.x)
 	var mob_y = randf_range(rect.position.y, rect.end.y)
 	mob_spawn.position = Vector2(mob_x, mob_y)
-	if etat_now == 5 and etat_now == 10:
-		mob_spawn = boss.instantiate()
-		get_parent().get_parent().add_child(mob_spawn)
-	else :
-		get_parent().get_parent().add_child(mob_spawn)
 	
+	#if etat_now == 6 or etat_now == 11:
+			#spawn_do = true
+	
+	if spawn_do :
+		get_parent().get_parent().add_child(mob_spawn)
+		if etat_now == 5:
+			spawn_do = false
+		
+		
+
 func choose_mob(spawn_rate = bank_mob):
 	var random_nb = randf_range(1,100)
 	var somme = 0
@@ -82,10 +95,10 @@ func choose_mob(spawn_rate = bank_mob):
 
 
 func change_etat() -> void:
-	if etat_now < 10:
-		timer_spawn.wait_time -= 0.5
-		if etat_now == 5 :
-			pass
+	if etat_now < 7:
+		timer_spawn.wait_time -= 0.6
+		if etat_now > 5 :
+			spawn_do = true
 		var idx = 0
 		for cle in bank_mob:
 			bank_mob[cle] = etat[etat_now][idx]

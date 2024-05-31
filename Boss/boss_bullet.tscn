@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbhow7tnssngl"]
+[gd_scene load_steps=12 format=3 uid="uid://bbhow7tnssngl"]
 
 [ext_resource type="Script" path="res://Boss/boss_bullet.gd" id="1_b2i7t"]
 [ext_resource type="Texture2D" uid="uid://dqjx7qb5q4euq" path="res://Assets/Boss/boss_bullet.png" id="1_glp56"]
@@ -54,19 +54,26 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gw2f2"]
+size = Vector2(19.4054, 2)
+
 [node name="BossBullet" type="AnimatedSprite2D"]
 scale = Vector2(0.637931, 1)
 sprite_frames = SubResource("SpriteFrames_hkxjn")
 animation = &"turning"
 autoplay = "turning"
-frame_progress = 0.0320509
 script = ExtResource("1_b2i7t")
 SPEED = 100
 
 [node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
 script = ExtResource("2_kf41o")
+damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-0.297297, 0)
+shape = SubResource("RectangleShape2D_gw2f2")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0

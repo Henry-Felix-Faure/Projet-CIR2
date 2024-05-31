@@ -1,23 +1,26 @@
-[gd_scene load_steps=12 format=3 uid="uid://bo74rhwwir0tc"]
+[gd_scene load_steps=16 format=3 uid="uid://bo74rhwwir0tc"]
 
 [ext_resource type="PackedScene" uid="uid://bjvbi4ila7pej" path="res://Player/Player.tscn" id="1_8n85s"]
 [ext_resource type="Script" path="res://Map/world.gd" id="1_u1x4u"]
-[ext_resource type="PackedScene" path="res://Map/leapfrogger_map.tscn" id="2_mp1s5"]
-[ext_resource type="PackedScene" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
+[ext_resource type="PackedScene" uid="uid://cxn4xmmsx44km" path="res://Map/leapfrogger_map.tscn" id="2_mp1s5"]
+[ext_resource type="PackedScene" uid="uid://c6xywh2icv6a" path="res://Scenes/level_up_menu.tscn" id="3_8lbtx"]
 [ext_resource type="PackedScene" uid="uid://b0u1xks6d8yqu" path="res://Menu/MenuDrone/drone_menu.tscn" id="5_b6i78"]
-[ext_resource type="PackedScene" path="res://debug_tool_stats.tscn" id="6_bh5pn"]
 [ext_resource type="PackedScene" uid="uid://cxk4ps7si3fyw" path="res://Menu/MenuPause/MenuPause.tscn" id="7_fa4h2"]
-[ext_resource type="PackedScene" path="res://Assets/PowerUp/dash_cd_indicator.tscn" id="7_hwn58"]
-[ext_resource type="PackedScene" path="res://Assets/PowerUp/parry_cd_indicator.tscn" id="8_pl083"]
-[ext_resource type="AudioStream" uid="uid://dg27i8k1r7ujk" path="res://Audio/background/game.mp3" id="11_idtef"]
-[ext_resource type="PackedScene" uid="uid://4o2ksvge2e5y" path="res://enemy/CAC/robot.tscn" id="11_laxd7"]
+[ext_resource type="PackedScene" uid="uid://6g1jtr7nkh5t" path="res://Assets/PowerUp/dash_cd_indicator.tscn" id="7_hwn58"]
+[ext_resource type="PackedScene" uid="uid://y0xbmrlqowhj" path="res://Assets/PowerUp/parry_cd_indicator.tscn" id="8_pl083"]
+[ext_resource type="PackedScene" uid="uid://c4jpkcxsynto7" path="res://Player/healthBar.tscn" id="9_62nuh"]
+[ext_resource type="FontFile" uid="uid://c1bmvajv8ivma" path="res://Assets/Font/Crang.ttf" id="10_1ruqh"]
+[ext_resource type="PackedScene" uid="uid://ccpe88qjia0d" path="res://Player/xp_bar.tscn" id="10_djw0c"]
+[ext_resource type="Script" path="res://Map/KillCount.gd" id="12_vhp55"]
+[ext_resource type="Texture2D" uid="uid://bas1t7o5kvvka" path="res://Assets/victory.png" id="14_dj8j6"]
+[ext_resource type="AudioStream" uid="uid://dg27i8k1r7ujk" path="res://Audio/background/game.mp3" id="14_iup0j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rcvjg"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_u1x4u")
 
 [node name="Leapfrogger_map" parent="." instance=ExtResource("2_mp1s5")]
-
-[node name="debug_tool_stats" parent="." instance=ExtResource("6_bh5pn")]
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 
@@ -27,7 +30,7 @@ script = ExtResource("1_u1x4u")
 UI = NodePath("../../UI")
 
 [node name="Bob" parent="." instance=ExtResource("1_8n85s")]
-position = Vector2(-404, 177)
+position = Vector2(248, -33)
 wall_min_slide_angle = 0.261799
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -36,6 +39,10 @@ wall_min_slide_angle = 0.261799
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_left = 1.0
+offset_top = 103.0
+offset_right = 1.0
+offset_bottom = 103.0
 grow_horizontal = 1
 grow_vertical = 1
 bob = NodePath("../../Bob")
@@ -45,28 +52,58 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_right = 0.0
 anchor_bottom = 0.5
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 1
 bob = NodePath("../../Bob")
+
+[node name="HealthBar" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("9_62nuh")]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 7.0
+offset_bottom = 7.0
+player = NodePath("../../Bob")
+
+[node name="xp_bar" parent="UI" node_paths=PackedStringArray("player") instance=ExtResource("10_djw0c")]
+offset_left = 7.0
+offset_top = 16.0
+offset_right = 7.0
+offset_bottom = 16.0
+player = NodePath("../../Bob")
+
+[node name="kill_count" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -46.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = 29.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("10_1ruqh")
+label_settings = SubResource("LabelSettings_rcvjg")
+script = ExtResource("12_vhp55")
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 
 [node name="MenuPause" parent="PauseLayer" instance=ExtResource("7_fa4h2")]
+process_mode = 2
 visible = false
 offset_left = -1.0
 offset_top = -2.0
 offset_right = -1.0
 offset_bottom = -2.0
 
-[node name="music_game" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_idtef")
+[node name="sound_game" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("14_iup0j")
 autoplay = true
-bus = &"Music"
 
-[node name="Robot" parent="." instance=ExtResource("11_laxd7")]
-position = Vector2(-666, 87)
+[node name="Win" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="Robot2" parent="." instance=ExtResource("11_laxd7")]
-position = Vector2(-141, 278)
-
-[node name="Robot3" parent="." instance=ExtResource("11_laxd7")]
-position = Vector2(-341, 12)
+[node name="TextureRect" type="TextureRect" parent="Win"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_dj8j6")

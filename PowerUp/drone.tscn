@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://duihbdcecbrl4"]
+[gd_scene load_steps=30 format=3 uid="uid://duihbdcecbrl4"]
 
 [ext_resource type="Script" path="res://PowerUp/drone.gd" id="1_j08d6"]
 [ext_resource type="Texture2D" uid="uid://htr8vdi2rtnq" path="res://Assets/Drones/walk_normal_drone.png" id="1_vvr08"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/spawn_component.gd" id="3_c7o3t"]
 [ext_resource type="PackedScene" uid="uid://erwriagmkvtr" path="res://Bullet/BulletToPlayer.tscn" id="4_sk5ln"]
 [ext_resource type="Texture2D" uid="uid://bopnpfuo5ppec" path="res://Assets/Drones/walk_sniper_drone.png" id="4_wpcat"]
+[ext_resource type="AudioStream" uid="uid://deht6r852liph" path="res://Audio/Mob_sound/laser-gun_drone.wav" id="7_wqa3l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_es8y7"]
 atlas = ExtResource("2_ggtef")
@@ -172,14 +173,14 @@ radius = 110.695
 position = Vector2(-3.8147e-06, 0)
 scale = Vector2(0.75, 0.798)
 script = ExtResource("1_j08d6")
+damage = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(46.6667, -1.19209e-07)
 scale = Vector2(0.9, 0.917711)
 sprite_frames = SubResource("SpriteFrames_f0ahl")
-animation = &"melee"
+animation = &"normal"
 autoplay = "normal"
-frame_progress = 0.711728
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(53.3333, 8.77193)
@@ -198,3 +199,7 @@ scene = ExtResource("4_sk5ln")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="lasergun_drone" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_wqa3l")
+volume_db = -10.0

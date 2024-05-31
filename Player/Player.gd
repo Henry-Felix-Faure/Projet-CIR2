@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var stats_component: StatsComponent = $StatsComponent
 @onready var sword_area_2d: HitboxComponent = $SwordArea2D
 @onready var explosion_particles: CPUParticles2D = $CPUParticles2D
+@onready var blood_particles: CPUParticles2D = $BloodParticles
 @onready var dash_timer: Timer = $Dash_cd
 @onready var parry_timer: Timer = $Parry_cd
 @onready var atk_1_cd: Timer = $ATK_1_cd
@@ -16,7 +17,7 @@ extends CharacterBody2D
 
 # importing initial stats variables
 @onready var max_health: int = stats_component.max_health
-@onready var health: int = stats_component.health
+@onready var health: int = max_health
 @onready var crit_chance: float = stats_component.crit_chance
 @onready var damage: int = stats_component.dmg
 @onready var crit_damage: float = stats_component.damage_crit

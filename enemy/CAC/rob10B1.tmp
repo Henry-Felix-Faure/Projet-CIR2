@@ -1,0 +1,281 @@
+[gd_scene load_steps=32 format=3 uid="uid://4o2ksvge2e5y"]
+
+[ext_resource type="Script" path="res://enemy/CAC/robot.gd" id="1_i0ghq"]
+[ext_resource type="Texture2D" uid="uid://cqm4oqsjve1du" path="res://Assets/Foe/bot/bot_attack.png" id="2_71kf2"]
+[ext_resource type="Texture2D" uid="uid://ifhecsftvu3l" path="res://Assets/Foe/bot/bot_run.png" id="3_d6ujd"]
+[ext_resource type="Script" path="res://Scripts/Components/stats_component.gd" id="5_674u2"]
+[ext_resource type="Script" path="res://Scripts/Components/hurt_component.gd" id="6_avd5g"]
+[ext_resource type="Script" path="res://Scripts/Components/destroyed_component.gd" id="7_ebvsc"]
+[ext_resource type="Script" path="res://Scripts/Components/ennemies_stats_component.gd" id="8_aveup"]
+[ext_resource type="Script" path="res://Scripts/Components/spawn_component.gd" id="9_40xle"]
+[ext_resource type="PackedScene" uid="uid://c44phjt3qn2wl" path="res://experience/experience.tscn" id="10_wylpb"]
+[ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="11_iqbm8"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="12_hgxkp"]
+[ext_resource type="AudioStream" uid="uid://cff2ruc7bfedg" path="res://Audio/Mob_sound/Robot/knife_cut_v2.wav" id="12_yxsno"]
+
+[sub_resource type="Shader" id="Shader_yq23s"]
+code = "shader_type canvas_item;
+
+// flash uniforms
+uniform vec4 flash_color: source_color = vec4(1.0);
+uniform float flash_modifier: hint_range(0.0, 1.0)=1;
+
+// glitch uniforms
+uniform float shake_power = 0.0;
+uniform float shake_rate : hint_range( 0.0, 1.0 ) = 0.2;
+uniform float shake_speed = 5.0;
+uniform float shake_block_size = 30.5;
+uniform float shake_color_rate : hint_range( 0.0, 1.0 ) = 0.0;
+
+uniform int is_flash: hint_range(0, 1, 1) = 1;
+
+float random(float seed){
+    return fract( 543.2543 * sin(dot(vec2(seed, seed), vec2( 3525.46, -54.3415 ) ) ) );
+}
+
+void fragment() {
+	
+	if (is_flash == 1){
+		vec4 color = texture(TEXTURE,UV);
+		color.rgb = mix(color.rgb, flash_color.rgb,flash_modifier);
+		COLOR = color;
+	}
+	else{
+			float enable_shift = float(
+	        random( trunc( TIME * shake_speed ) )
+	    <    shake_rate
+	    );
+
+	    vec2 fixed_uv = UV;
+	    fixed_uv.x += (
+	        random(
+	            ( trunc( SCREEN_UV.y * shake_block_size ) / shake_block_size )
+	        +    TIME
+	        ) - 0.5
+	    ) * shake_power * enable_shift;
+
+	    vec4 pixel_color = texture( TEXTURE, fixed_uv );
+	    pixel_color.r = mix(
+	        pixel_color.r
+	    ,    texture( TEXTURE, fixed_uv + vec2( shake_color_rate, 0.0 ) ).r
+	    ,    enable_shift
+	    );
+	    pixel_color.b = mix(
+	        pixel_color.b
+	    ,    texture( TEXTURE, fixed_uv + vec2( -shake_color_rate, 0.0 ) ).b
+	    ,    enable_shift
+	    );
+	    COLOR = pixel_color;
+		}
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0v5yw"]
+resource_local_to_scene = true
+shader = SubResource("Shader_yq23s")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+shader_parameter/is_flash = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5numq"]
+atlas = ExtResource("2_71kf2")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xc8f4"]
+atlas = ExtResource("2_71kf2")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm766"]
+atlas = ExtResource("2_71kf2")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66y7e"]
+atlas = ExtResource("2_71kf2")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jixe"]
+atlas = ExtResource("2_71kf2")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lk78"]
+atlas = ExtResource("3_d6ujd")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7kx8"]
+atlas = ExtResource("3_d6ujd")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqutv"]
+atlas = ExtResource("3_d6ujd")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utg16"]
+atlas = ExtResource("3_d6ujd")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eurdp"]
+atlas = ExtResource("3_d6ujd")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw0pr"]
+atlas = ExtResource("3_d6ujd")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8vywj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5numq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xc8f4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm766")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66y7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jixe")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lk78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7kx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqutv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utg16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eurdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hw0pr")
+}],
+"loop": true,
+"name": &"move",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_djc50"]
+radius = 4.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kdkho"]
+radius = 13.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcyql"]
+radius = 13.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hwtus"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7gmjw"]
+radius = 7.0
+
+[node name="Robot" type="CharacterBody2D" node_paths=PackedStringArray("stats", "hurtbox_component")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_i0ghq")
+stats = NodePath("EnnemiesStatsComponent")
+hurtbox_component = NodePath("HurtboxComponent")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_0v5yw")
+position = Vector2(2, -4)
+sprite_frames = SubResource("SpriteFrames_8vywj")
+animation = &"attack"
+frame = 4
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 6)
+shape = SubResource("CapsuleShape2D_djc50")
+
+[node name="range" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="DetectionR" type="CollisionShape2D" parent="range"]
+position = Vector2(12, 2)
+shape = SubResource("CapsuleShape2D_kdkho")
+
+[node name="DetectionL" type="CollisionShape2D" parent="range"]
+position = Vector2(-12, 2)
+shape = SubResource("CapsuleShape2D_qcyql")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("5_674u2")
+
+[node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
+script = ExtResource("6_avd5g")
+stats_component = NodePath("../StatsComponent")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "stats_component", "destroy_effect_spawner_component")]
+script = ExtResource("7_ebvsc")
+actor = NodePath("..")
+stats_component = NodePath("../StatsComponent")
+destroy_effect_spawner_component = NodePath("../SpawnComponent")
+
+[node name="EnnemiesStatsComponent" type="Node" parent="."]
+script = ExtResource("8_aveup")
+
+[node name="SpawnComponent" type="Node2D" parent="."]
+script = ExtResource("9_40xle")
+scene = ExtResource("10_wylpb")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("11_iqbm8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_hwtus")
+
+[node name="knife" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_yxsno")
+volume_db = 15.0
+bus = &"SFX"
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("12_hgxkp")
+
+[node name="AttackL" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-15, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7gmjw")
+debug_color = Color(1, 0.0431373, 0.231373, 0.109804)
+
+[node name="AttackR" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(15, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7gmjw")
+debug_color = Color(1, 0.0431373, 0.231373, 0.109804)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="health_changed" from="StatsComponent" to="." method="_on_stats_component_health_changed"]
